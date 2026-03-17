@@ -48,6 +48,64 @@ function extractFirstJsonObject(text) {
   throw new Error("Unterminated JSON object in model response.");
 }
 
+let cachedModelName = "";
+let cachedModelAtMs = 0;
+
+async function pickGeminiModel(apiKey) {
+  const envModel = (process.env.GEMINI_MODEL || "").trim();
+  if (envModel) return envModel;
+
+  const now = Date.now();
+  if (cachedModelName && now - cachedModelAtMs < 10 * 60 * 1000) {
+    return cachedModelName;
+  }
+
+  const listUrl = `https://generativelanguage.googleapis.com/v1/models?key=${encodeURIComponent(apiKey)}`;
+  const resp = await fetch(listUrl, { method: "GET" });
+  const raw = await resp.text();
+  if (!resp.ok) {
+    throw new Error(`ListModels failed (HTTP ${resp.status}): ${raw}`);
+  }
+
+  const parsed = JSON.parse(raw);
+  const models = Array.isArray(parsed?.models) ? parsed.models : [];
+
+  const supportsGenerateContent = (m) =>
+    Array.isArray(m?.supportedGenerationMethods) &&
+    m.supportedGenerationMethods.includes("generateContent");
+
+  const available = models
+    .filter(supportsGenerateContent)
+    .map((m) => String(m.name || "").trim())
+    .filter(Boolean);
+
+  // Prefer faster/cheaper "flash" models when available.
+  const preferredOrder = [
+    "models/gemini-2.0-flash",
+    "models/gemini-1.5-flash",
+    "models/gemini-1.5-flash-latest",
+    "models/gemini-1.5-pro",
+    "models/gemini-1.5-pro-latest",
+    "models/gemini-2.0-pro",
+  ];
+
+  let chosen = "";
+  for (const p of preferredOrder) {
+    if (available.includes(p)) {
+      chosen = p;
+      break;
+    }
+  }
+  if (!chosen) chosen = available[0] || "";
+  if (!chosen) {
+    throw new Error("No generateContent-capable models available for this API key.");
+  }
+
+  cachedModelName = chosen;
+  cachedModelAtMs = now;
+  return chosen;
+}
+
 app.post("/api/score", async (req, res) => {
   try {
     const apiKey = (process.env.GEMINI_API_KEY || "").trim();
@@ -62,8 +120,8 @@ app.post("/api/score", async (req, res) => {
 
     const prompt = buildPrompt(text);
 
-    const url =
-      `https://generativelanguage.googleapis.com/v1/models/gemini-1.5-flash:generateContent?key=${encodeURIComponent(apiKey)}`;
+    const modelName = await pickGeminiModel(apiKey);
+    const url = `https://generativelanguage.googleapis.com/v1/${modelName}:generateContent?key=${encodeURIComponent(apiKey)}`;
 
     const resp = await fetch(url, {
       method: "POST",

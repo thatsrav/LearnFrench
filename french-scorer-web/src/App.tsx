@@ -16,6 +16,7 @@ function App() {
   const [result, setResult] = useState<FrenchScore | null>(null)
 
   const canSubmit = useMemo(() => text.trim().length > 0 && !loading, [text, loading])
+  const apiBase = (import.meta.env.VITE_API_BASE_URL as string | undefined)?.trim() || ''
 
   async function onScore() {
     const trimmed = text.trim()
@@ -24,7 +25,7 @@ function App() {
     setError(null)
     setResult(null)
     try {
-      const resp = await fetch('/api/score', {
+      const resp = await fetch(`${apiBase}/api/score`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ text: trimmed }),
