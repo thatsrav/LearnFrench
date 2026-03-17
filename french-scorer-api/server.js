@@ -63,7 +63,7 @@ app.post("/api/score", async (req, res) => {
     const prompt = buildPrompt(text);
 
     const url =
-      `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${encodeURIComponent(apiKey)}`;
+      `https://generativelanguage.googleapis.com/v1/models/gemini-1.5-flash:generateContent?key=${encodeURIComponent(apiKey)}`;
 
     const resp = await fetch(url, {
       method: "POST",
