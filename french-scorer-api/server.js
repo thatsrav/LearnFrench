@@ -81,6 +81,7 @@ async function pickGeminiModel(apiKey) {
 
   // Prefer faster/cheaper "flash" models when available.
   const preferredOrder = [
+    "models/gemini-2.5-flash",
     "models/gemini-2.0-flash",
     "models/gemini-1.5-flash",
     "models/gemini-1.5-flash-latest",
@@ -106,45 +107,129 @@ async function pickGeminiModel(apiKey) {
   return chosen;
 }
 
+async function scoreWithGemini({ apiKey, text }) {
+  const prompt = buildPrompt(text);
+  const modelName = await pickGeminiModel(apiKey);
+  const url = `https://generativelanguage.googleapis.com/v1/${modelName}:generateContent?key=${encodeURIComponent(apiKey)}`;
+
+  const resp = await fetch(url, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      contents: [{ parts: [{ text: prompt }] }],
+    }),
+  });
+
+  const raw = await resp.text();
+  if (!resp.ok) {
+    const err = new Error(`Gemini HTTP ${resp.status}`);
+    err.status = resp.status;
+    err.details = raw;
+    throw err;
+  }
+
+  const parsed = JSON.parse(raw);
+  const modelText = parsed?.candidates?.[0]?.content?.parts?.[0]?.text ?? "";
+  const jsonText = extractFirstJsonObject(modelText);
+  return JSON.parse(jsonText);
+}
+
+async function scoreWithGroq({ apiKey, text }) {
+  const model = (process.env.GROQ_MODEL || "").trim() || "llama-3.1-70b-versatile";
+  const prompt = buildPrompt(text);
+
+  const resp = await fetch("https://api.groq.com/openai/v1/chat/completions", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${apiKey}`,
+    },
+    body: JSON.stringify({
+      model,
+      temperature: 0.2,
+      messages: [
+        { role: "system", content: "You are a strict but helpful French teacher. Always output ONLY valid JSON as requested." },
+        { role: "user", content: prompt },
+      ],
+    }),
+  });
+
+  const raw = await resp.text();
+  if (!resp.ok) {
+    const err = new Error(`Groq HTTP ${resp.status}`);
+    err.status = resp.status;
+    err.details = raw;
+    throw err;
+  }
+
+  const parsed = JSON.parse(raw);
+  const modelText = parsed?.choices?.[0]?.message?.content ?? "";
+  const jsonText = extractFirstJsonObject(modelText);
+  return JSON.parse(jsonText);
+}
+
+function isRetryableProviderError(err) {
+  const status = Number(err?.status || 0);
+  return status === 408 || status === 429 || (status >= 500 && status <= 599);
+}
+
 app.post("/api/score", async (req, res) => {
   try {
-    const apiKey = (process.env.GEMINI_API_KEY || "").trim();
-    if (!apiKey) {
-      return res.status(500).json({ error: "Missing GEMINI_API_KEY in backend env." });
-    }
-
     const text = (req.body && req.body.text ? String(req.body.text) : "").trim();
     if (!text) {
       return res.status(400).json({ error: "Missing 'text'." });
     }
 
-    const prompt = buildPrompt(text);
+    const providerRaw = String(req.body?.provider || "").trim().toLowerCase();
+    const provider = providerRaw || "auto"; // auto | gemini | groq
 
-    const modelName = await pickGeminiModel(apiKey);
-    const url = `https://generativelanguage.googleapis.com/v1/${modelName}:generateContent?key=${encodeURIComponent(apiKey)}`;
+    const geminiKey = (process.env.GEMINI_API_KEY || "").trim();
+    const groqKey = (process.env.GROQ_API_KEY || "").trim();
 
-    const resp = await fetch(url, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        contents: [{ parts: [{ text: prompt }] }],
-      }),
-    });
+    const canGemini = Boolean(geminiKey);
+    const canGroq = Boolean(groqKey);
 
-    const raw = await resp.text();
-    if (!resp.ok) {
-      return res.status(resp.status).json({ error: `Gemini HTTP ${resp.status}`, details: raw });
+    if (!canGemini && !canGroq) {
+      return res.status(500).json({ error: "Missing GEMINI_API_KEY and GROQ_API_KEY in backend env." });
     }
 
-    const parsed = JSON.parse(raw);
-    const modelText =
-      parsed?.candidates?.[0]?.content?.parts?.[0]?.text ??
-      "";
+    const runGemini = () => scoreWithGemini({ apiKey: geminiKey, text });
+    const runGroq = () => scoreWithGroq({ apiKey: groqKey, text });
 
-    const jsonText = extractFirstJsonObject(modelText);
-    const scoreObj = JSON.parse(jsonText);
+    if (provider === "gemini") {
+      if (!canGemini) return res.status(500).json({ error: "Missing GEMINI_API_KEY in backend env." });
+      const result = await runGemini();
+      return res.json({ provider: "gemini", result });
+    }
 
-    return res.json({ result: scoreObj });
+    if (provider === "groq") {
+      if (!canGroq) return res.status(500).json({ error: "Missing GROQ_API_KEY in backend env." });
+      const result = await runGroq();
+      return res.json({ provider: "groq", result });
+    }
+
+    // auto fallback: Gemini first (if configured), then Groq
+    if (canGemini) {
+      try {
+        const result = await runGemini();
+        return res.json({ provider: "gemini", result });
+      } catch (err) {
+        if (!canGroq || !isRetryableProviderError(err)) {
+          return res.status(Number(err?.status || 500)).json({ error: err?.message || String(err), details: err?.details });
+        }
+      }
+    }
+
+    if (canGroq) {
+      try {
+        const result = await runGroq();
+        return res.json({ provider: "groq", result });
+      } catch (err) {
+        return res.status(Number(err?.status || 500)).json({ error: err?.message || String(err), details: err?.details });
+      }
+    }
+
+    return res.status(500).json({ error: "No providers configured." });
   } catch (err) {
     return res.status(500).json({ error: err?.message || String(err) });
   }

@@ -17,6 +17,9 @@ Edit `.env` and set:
 
 ```bash
 GEMINI_API_KEY=YOUR_KEY_HERE
+GEMINI_MODEL=models/gemini-2.5-flash
+GROQ_API_KEY=YOUR_KEY_HERE
+GROQ_MODEL=llama-3.1-70b-versatile
 PORT=8787
 ```
 
@@ -43,6 +46,15 @@ Open the URL Vite prints (usually `http://localhost:5173`).
 
 - **Key safety**: the API key stays in the backend `.env`. Don’t put keys in frontend code.
 - If you deploy, lock down CORS and consider auth + rate limits.
+
+## Providers
+
+The API supports:
+- **Gemini**
+- **Groq**
+- **Auto** (tries Gemini first, falls back to Groq on 429/5xx)
+
+Frontend sends `provider: "auto" | "gemini" | "groq"` to `/api/score`.
 
 ## Deploy notes (fixing 404 online)
 

@@ -11,6 +11,7 @@ type FrenchScore = {
 
 function App() {
   const [text, setText] = useState('')
+  const [provider, setProvider] = useState<'auto' | 'gemini' | 'groq'>('auto')
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
   const [result, setResult] = useState<FrenchScore | null>(null)
@@ -28,7 +29,7 @@ function App() {
       const resp = await fetch(`${apiBase}/api/score`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ text: trimmed }),
+        body: JSON.stringify({ text: trimmed, provider }),
       })
       const data = await resp.json().catch(() => ({}))
       if (!resp.ok) {
@@ -48,10 +49,30 @@ function App() {
   return (
     <>
       <div style={{ maxWidth: 900, margin: '0 auto', padding: 16 }}>
-        <h1 style={{ marginBottom: 8 }}>French Scorer (Gemini)</h1>
+        <h1 style={{ marginBottom: 8 }}>French Scorer</h1>
         <p style={{ marginTop: 0, opacity: 0.8 }}>
-          Paste your French text, then score it. (API key stays on the backend.)
+          Paste your French text, then score it. (Keys stay on the backend.)
         </p>
+
+        <div style={{ display: 'flex', gap: 12, alignItems: 'center', flexWrap: 'wrap' }}>
+          <label style={{ fontWeight: 600 }}>Provider</label>
+          <select
+            value={provider}
+            onChange={(e) => setProvider(e.target.value as 'auto' | 'gemini' | 'groq')}
+            disabled={loading}
+            style={{
+              padding: '10px 12px',
+              borderRadius: 10,
+              border: '1px solid rgba(255,255,255,0.15)',
+              background: 'rgba(255,255,255,0.05)',
+              color: 'inherit',
+            }}
+          >
+            <option value="auto">Auto (fallback)</option>
+            <option value="gemini">Gemini</option>
+            <option value="groq">Groq</option>
+          </select>
+        </div>
 
         <label style={{ display: 'block', fontWeight: 600, marginTop: 16 }}>
           French text
@@ -89,7 +110,11 @@ function App() {
           >
             {loading ? 'Scoring…' : 'Score my French'}
           </button>
-          {loading && <span style={{ opacity: 0.8 }}>Calling Gemini…</span>}
+          {loading && (
+            <span style={{ opacity: 0.8 }}>
+              Calling {provider === 'auto' ? 'provider…' : `${provider}…`}
+            </span>
+          )}
         </div>
 
         {error && (
