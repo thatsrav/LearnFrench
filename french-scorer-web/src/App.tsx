@@ -17,7 +17,9 @@ function App() {
   const [result, setResult] = useState<FrenchScore | null>(null)
 
   const canSubmit = useMemo(() => text.trim().length > 0 && !loading, [text, loading])
-  const apiBase = (import.meta.env.VITE_API_BASE_URL as string | undefined)?.trim() || ''
+  const apiBase =
+    (import.meta.env.VITE_API_BASE_URL as string | undefined)?.trim() ||
+    (location.hostname === 'localhost' ? '' : 'https://learnfrench-0vkn.onrender.com')
 
   async function onScore() {
     const trimmed = text.trim()

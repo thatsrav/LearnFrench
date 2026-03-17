@@ -72,3 +72,6 @@ Example:
 VITE_API_BASE_URL=https://your-api.onrender.com
 ```
 
+If you forget to set `VITE_API_BASE_URL`, the frontend falls back to
+`https://learnfrench-0vkn.onrender.com` (non-localhost only).
+
