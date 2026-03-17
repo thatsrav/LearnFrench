@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">French Scorer</string>
+    <string name="title">French writing scorer (Gemini)</string>
+    <string name="french_hint">Paste your French text here…</string>
+    <string name="score_button">Score my French</string>
+    <string name="result_placeholder">Your score and feedback will appear here.</string>
+</resources>
+
