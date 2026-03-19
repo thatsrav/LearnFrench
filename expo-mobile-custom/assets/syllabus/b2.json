@@ -1,0 +1,293 @@
+[
+  {
+    "id": "b2-u1",
+    "grammar_rule_text": "Subjonctif avance (valeur concessive et affective) + articulateurs complexes (quoique, bien que, pourvu que, de sorte que). En TEF B, viser une argumentation fine avec contre-arguments explicites.",
+    "vocab_list": [
+      "quoique","bien que","pourvu que","de sorte que","a supposer que","en depit de","aussi paradoxal que cela paraisse","d autant plus que","a fortiori","en l occurrence",
+      "enjeu majeur","viabilite","acceptabilite","legitimite","arbitrage","compromis","consensus","polarisation","controverse","regulation",
+      "encadrement","gouvernance","responsabilisation","coordination","interdependance","interlocuteur","negociation","mediation","transparence","redevabilite",
+      "marge de manoeuvre","effet pervers","benefice net","cout social","externalite","equite","cohesion","durabilite","resilience","anticipation",
+      "dispositif pilote","generalisation","ajustement progressif","evaluation continue","scenario","hypothese de travail","robustesse","fiabilite","soutenabilite","efficience"
+    ],
+    "quiz": [
+      {
+        "question": "Texte: 'Bien que la mesure ___ des inconvenients a court terme, elle pourrait reduire les couts structurels sur plusieurs annees.' Quelle forme convient?",
+        "options": ["a", "ait", "aura", "avait"],
+        "answer_index": 1
+      },
+      {
+        "question": "Choisissez l'option qui introduit le mieux une concession argumentee.",
+        "options": [
+          "De plus,",
+          "Bien que cette reforme soit couteuse au depart, ses effets long terme restent favorables.",
+          "Donc, c'est fini.",
+          "Et puis voila."
+        ],
+        "answer_index": 1
+      },
+      {
+        "question": "Dans une reponse TEF B de niveau B2, quelle strategie est la plus pertinente?",
+        "options": [
+          "Ignorer totalement les objections.",
+          "Presenter un contre-argument, puis montrer ses limites avec des donnees et un compromis.",
+          "Multiplier les affirmations absolues.",
+          "Eviter les connecteurs logiques."
+        ],
+        "answer_index": 1
+      },
+      {
+        "question": "Quel connecteur exprime une consequence organisee?",
+        "options": ["de sorte que", "quoique", "en depit de", "pourvu que"],
+        "answer_index": 0
+      },
+      {
+        "question": "Choisissez la formulation la plus precise:",
+        "options": [
+          "La mesure est bonne.",
+          "La mesure est globalement recevable, a condition qu'un suivi trimestriel corrige les effets pervers identifies.",
+          "La mesure est mauvaise.",
+          "Je ne sais pas."
+        ],
+        "answer_index": 1
+      }
+    ]
+  },
+  {
+    "id": "b2-u2",
+    "grammar_rule_text": "Conditionnel present et passe pour l'hypothese, la reservation et la politesse strategique. TEF A/B: exprimer des scenarii alternatifs et leurs consequences probables.",
+    "vocab_list": [
+      "aurait","serait","pourrait","devrait","faudrait","si toutefois","dans l hypothese ou","a defaut","en cas de","sous reserve",
+      "scenario alternatif","projection","estimation","probabilite elevee","probabilite faible","incidence","retombee","effet domino","seuil critique","facteur limitant",
+      "levier","priorisation","allocation","mutualisation","optimisation","rationalisation","calibrage","ajustement budgetaire","cofinancement","subvention",
+      "convergence","divergence","stabilisation","fluctuation","tension","equilibre macro","mesure compensatoire","filet de securite","accompagnement cible","phase transitoire",
+      "retour sur investissement","rentabilite","performance","qualite de service","satisfaction usager","adoption","adherence","resistance au changement","appropriation","perennite"
+    ],
+    "quiz": [
+      {
+        "question": "Enonce: 'Si la ville augmentait l'offre de bus en soiree, les habitants ___ moins la voiture.'",
+        "options": ["utiliseraient", "utilisent", "utiliseront", "utilisaient"],
+        "answer_index": 0
+      },
+      {
+        "question": "Quel enonce est le plus adapte a une recommendation prudente?",
+        "options": [
+          "Il faut appliquer la mesure partout demain.",
+          "La collectivité devrait d'abord tester la mesure sur un secteur limite.",
+          "La mesure ne sert a rien.",
+          "On ne change rien."
+        ],
+        "answer_index": 1
+      },
+      {
+        "question": "Choisissez la phrase au conditionnel passe correctement formee.",
+        "options": [
+          "La mesure aurait reduit les depenses si le suivi avait ete maintenu.",
+          "La mesure aurait reduit les depenses si le suivi est maintenu.",
+          "La mesure reduirait les depenses si le suivi avait ete maintenu.",
+          "La mesure aurait reduire les depenses."
+        ],
+        "answer_index": 0
+      },
+      {
+        "question": "Dans un texte argumentatif, le conditionnel permet surtout de:",
+        "options": [
+          "Supprimer toute nuance.",
+          "Presenter des hypotheses et evaluer des consequences.",
+          "Eviter les preuves.",
+          "Remplacer tous les verbes."
+        ],
+        "answer_index": 1
+      },
+      {
+        "question": "Quel connecteur marque une condition restrictive?",
+        "options": ["sous reserve que", "en outre", "de meme", "ainsi"],
+        "answer_index": 0
+      }
+    ]
+  },
+  {
+    "id": "b2-u3",
+    "grammar_rule_text": "Connecteurs logiques de haut niveau: en revanche, en somme, dans la mesure ou, de surcroit, force est de constater que. Objectif: coherence argumentative dense et progression rigoureuse.",
+    "vocab_list": [
+      "dans la mesure ou","de surcroit","en somme","or","cela dit","force est de constater","a cet egard","par ricochet","en filigrane","en definitive",
+      "raisonnement","charpente argumentative","hierarchisation","articulation","cohesion textuelle","progression thematique","enjeu transversal","interet general","benefice collectif","cout d opportunite",
+      "arbitrer","pondérer","concilier","trancher","prioriser","documenter","objectiver","contextualiser","problematique centrale","angle d analyse",
+      "hypothese credible","preuve empirique","donnee contextualisee","indicateur pertinent","lecture critique","biais de confirmation","limite methodologique","validite externe","validite interne","interpretation prudente",
+      "position nuancee","synthese operationnelle","preconisation","plan d action","mise a l echelle","retour d information","boucle d amelioration","pilotage","trajectoire","resultat attendu"
+    ],
+    "quiz": [
+      {
+        "question": "Quel connecteur introduit le mieux un changement d'angle argumentatif sans rupture brutale?",
+        "options": ["Or", "Et", "Donc", "Car"],
+        "answer_index": 0
+      },
+      {
+        "question": "En TEF B, l'expression 'dans la mesure ou' sert principalement a:",
+        "options": [
+          "Introduire une condition/justification nuancee.",
+          "Exprimer une emotion soudaine.",
+          "Remplacer tous les connecteurs.",
+          "Conclure sans argument."
+        ],
+        "answer_index": 0
+      },
+      {
+        "question": "Choisissez la phrase la plus cohérente:",
+        "options": [
+          "Les couts augmentent. En somme, il faut reduire les depenses sans analyser les causes.",
+          "Les couts augmentent; a cet egard, une analyse poste par poste parait necessaire avant toute decision.",
+          "Les couts augmentent. Donc c'est parfait.",
+          "Les couts augmentent, et puis c'est tout."
+        ],
+        "answer_index": 1
+      },
+      {
+        "question": "Quelle option correspond a une synthese operationnelle?",
+        "options": [
+          "On ne sait pas quoi faire.",
+          "Prioriser trois actions mesurables, fixer un calendrier et suivre deux indicateurs trimestriels.",
+          "Reporter toutes les decisions.",
+          "Supprimer toute evaluation."
+        ],
+        "answer_index": 1
+      },
+      {
+        "question": "Dans une copie B2, un argument est plus solide lorsqu'il est:",
+        "options": [
+          "General et absolu.",
+          "Soutenu par un exemple contextualise et une limite explicitement reconnue.",
+          "Emotionnel uniquement.",
+          "Contradictoire."
+        ],
+        "answer_index": 1
+      }
+    ]
+  },
+  {
+    "id": "b2-u4",
+    "grammar_rule_text": "Narration TEF Section A de niveau B2: recit detaille, point de vue personnel, consequences, recul critique. Utiliser subjonctif/conditionnel/connecteurs pour nuancer le recit.",
+    "vocab_list": [
+      "recit detaille","chronologie","retrospective","basculement","imprevu","gestion de crise","prise d initiative","coordination d equipe","improvisation","retour critique",
+      "ressenti","frustration","soulagement","fierte","incertitude","stabilisation","adaptabilite","reactivite","organisation logistique","priorite immediate",
+      "delegation","communication interne","communication externe","consigne","feedback","point de situation","obstacle","blocage","deblocage","resolution",
+      "strategie temporaire","plan B","contingence","mesure corrective","lecon apprise","capitalisation","prevention","anticipation","resilience collective","amelioration continue",
+      "ancrage","perspective personnelle","mise a distance","enseignement","retombee positive","retombee negative","equilibre emotionnel","cooperation","leadership","bilan final"
+    ],
+    "quiz": [
+      {
+        "question": "Prompt TEF A: 'Racontez un evenement imprévu au travail et comment vous l'avez gere.' Quelle structure est la plus efficace?",
+        "options": [
+          "Description vague sans chronologie.",
+          "Contexte -> incident -> actions entreprises -> resultat -> lecon personnelle.",
+          "Uniquement la conclusion.",
+          "Liste de mots sans phrases."
+        ],
+        "answer_index": 1
+      },
+      {
+        "question": "Choisissez la phrase la plus nuancee au subjonctif dans un recit B2:",
+        "options": [
+          "Il fallait que l'equipe reste concentree malgre la pression.",
+          "Il fallait que l'equipe reste concentre.",
+          "Il fallait que l'equipe rester concentree.",
+          "Il fallait que l'equipe restait concentree."
+        ],
+        "answer_index": 0
+      },
+      {
+        "question": "Pour exprimer une hypothese retrospective credible, on utilise:",
+        "options": [
+          "Le futur simple seul.",
+          "Le conditionnel passe avec une condition explicite.",
+          "L'imperatif.",
+          "Le present uniquement."
+        ],
+        "answer_index": 1
+      },
+      {
+        "question": "Dans un bilan narratif, l'element le plus attendu au niveau B2 est:",
+        "options": [
+          "Une moralisation generale sans lien.",
+          "Un retour critique sur les choix faits et leurs consequences.",
+          "Une liste de dates sans interpretation.",
+          "Une conclusion tres courte sans ouverture."
+        ],
+        "answer_index": 1
+      },
+      {
+        "question": "Quelle phrase conclut le mieux un recit professionnel B2?",
+        "options": [
+          "Bref, c'etait compliqué.",
+          "Avec le recul, cette experience m'a appris a prioriser la communication afin que l'equipe gagne en reactivite.",
+          "Fin.",
+          "Je ne sais pas."
+        ],
+        "answer_index": 1
+      }
+    ]
+  },
+  {
+    "id": "b2-u5",
+    "grammar_rule_text": "TEF Section B (argumentative) avancee: these, contre-these, compromis et recommandations operationnelles. Mobiliser subjonctif/conditionnel/connecteurs pour convaincre avec precision.",
+    "vocab_list": [
+      "these principale","contre these","compromis operationnel","arbitrage public","acceptation sociale","faisabilite technique","soutenabilite financiere","impact environnemental","impact social","impact economique",
+      "partie prenante","consultation","concertation","mise en debat","priorite strategique","orientation","feuille de route","implementation","phase pilote","deploiement",
+      "garde fou","cadre reglementaire","incitation","accompagnement","evaluation ex ante","evaluation ex post","indicateur de resultat","indicateur de processus","revue periodique","ajustement cible",
+      "equilibre global","interet collectif","effet redistributif","coherence d ensemble","mesure transitoire","mecanisme correctif","transversalite","mutualisation des moyens","pilotage local","pilotage national",
+      "durabilite operationnelle","viabilite long terme","recommandation finale","conclusion ouverte","perspective d evolution","scenario prudent","scenario ambitieux","condition de reussite","risque residuel","mesure d attenuation"
+    ],
+    "quiz": [
+      {
+        "question": "Prompt TEF B: 'Faut-il rendre les transports publics gratuits?' Quelle these est la plus defendable au niveau B2?",
+        "options": [
+          "Oui, sans condition ni financement.",
+          "Une gratuité ciblee peut etre pertinente, a condition qu'un financement durable et un suivi des usages soient prevus.",
+          "Non, jamais.",
+          "Je n'ai pas d'argument."
+        ],
+        "answer_index": 1
+      },
+      {
+        "question": "Quel enchainement argumentatif est le plus convaincant?",
+        "options": [
+          "Opinion -> conclusion -> exemple.",
+          "Constat -> these -> contre-argument -> compromis -> recommandation.",
+          "Conclusion immediate sans developpement.",
+          "Exemple unique sans these."
+        ],
+        "answer_index": 1
+      },
+      {
+        "question": "Choisissez la phrase qui combine correctement conditionnel et connecteur logique:",
+        "options": [
+          "La mesure pourrait etre acceptable; toutefois, il faudrait renforcer l'offre aux heures de pointe.",
+          "La mesure pourrait est acceptable et c'est tout.",
+          "La mesure pourrait acceptable pourtant.",
+          "La mesure est acceptable toutefois il faut pas."
+        ],
+        "answer_index": 0
+      },
+      {
+        "question": "Dans une recommandation finale B2, il est preferable de:",
+        "options": [
+          "Donner un verdict absolu sans nuance.",
+          "Formuler une orientation claire, assortie de conditions de mise en oeuvre et d'indicateurs de suivi.",
+          "Eviter toute proposition concrete.",
+          "Contradire la these initiale sans justification."
+        ],
+        "answer_index": 1
+      },
+      {
+        "question": "Quelle conclusion est la plus aboutie?",
+        "options": [
+          "En somme, une mise en oeuvre progressive serait souhaitable afin que la reforme reste equilibree, mesurable et socialement acceptable.",
+          "En conclusion, je ne sais pas.",
+          "Finalement, c'est impossible.",
+          "Bref, tout va bien."
+        ],
+        "answer_index": 0
+      }
+    ]
+  }
+]
+

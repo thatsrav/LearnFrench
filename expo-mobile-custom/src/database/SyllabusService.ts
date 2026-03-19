@@ -30,12 +30,7 @@ export async function unlockNextUnit(
       return { completed: false, unlockedUnitId: null }
     }
 
-    let outcome: { completed: boolean; unlockedUnitId: string | null } = {
-      completed: true,
-      unlockedUnitId: null,
-    }
-
-    await db.withTransactionAsync(async () => {
+    return await db.withTransactionAsync(async () => {
       try {
         await db.runAsync(
           `
@@ -107,8 +102,7 @@ export async function unlockNextUnit(
       }
 
       if (!nextUnit) {
-        outcome = { completed: true, unlockedUnitId: null }
-        return
+        return { completed: true, unlockedUnitId: null }
       }
 
       try {
@@ -128,10 +122,8 @@ export async function unlockNextUnit(
         throw new Error(`Failed unlocking next unit: ${String(error)}`)
       }
 
-      outcome = { completed: true, unlockedUnitId: nextUnit.id }
+      return { completed: true, unlockedUnitId: nextUnit.id }
     })
-
-    return outcome
   } catch (error) {
     throw new Error(`unlockNextUnit failed: ${String(error)}`)
   }

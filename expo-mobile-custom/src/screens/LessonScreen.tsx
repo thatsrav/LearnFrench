@@ -23,29 +23,9 @@ type RouteParams = {
 
 const a1Data: LessonUnit[] = require('../../assets/syllabus/a1.json')
 const a2Data: LessonUnit[] = require('../../assets/syllabus/a2.json')
-const b1Data: LessonUnit[] = require('../../assets/syllabus/b1.json')
-const b2Data: LessonUnit[] = require('../../assets/syllabus/b2.json')
-const c1Data: LessonUnit[] = require('../../assets/syllabus/c1.json')
-
-function getLevelUnits(level: RouteParams['level']): LessonUnit[] {
-  switch (level) {
-    case 'A1':
-      return a1Data
-    case 'A2':
-      return a2Data
-    case 'B1':
-      return b1Data
-    case 'B2':
-      return b2Data
-    case 'C1':
-      return c1Data
-    default:
-      return []
-  }
-}
 
 function getUnit(level: RouteParams['level'], unitId: string): LessonUnit | null {
-  const source = getLevelUnits(level)
+  const source = level === 'A1' ? a1Data : level === 'A2' ? a2Data : []
   return source.find((u) => u.id === unitId) ?? null
 }
 

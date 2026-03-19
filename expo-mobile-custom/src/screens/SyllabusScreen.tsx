@@ -10,8 +10,6 @@ import {
   View,
 } from 'react-native'
 import { useNavigation } from '@react-navigation/native'
-import type { NativeStackNavigationProp } from '@react-navigation/native-stack'
-import type { RootStackParamList } from '../navigation/AppNavigator'
 import { getSyllabusData, type SyllabusRow } from '../database'
 
 const LEVELS = ['A1', 'A2', 'B1', 'B2', 'C1'] as const
@@ -28,7 +26,7 @@ function showLockedToast() {
 }
 
 export default function SyllabusScreen() {
-  const navigation = useNavigation()
+  const navigation = useNavigation<any>()
   const [selectedLevel, setSelectedLevel] = useState<Level>('A1')
   const [loading, setLoading] = useState(true)
   const [units, setUnits] = useState<SyllabusRow[]>([])
@@ -62,8 +60,7 @@ export default function SyllabusScreen() {
       return
     }
 
-    const rootNav = navigation.getParent<NativeStackNavigationProp<RootStackParamList>>()
-    rootNav?.navigate('LessonScreen', { unitId: unit.id, level: unit.level })
+    navigation.navigate('LessonScreen', { unitId: unit.id, level: unit.level })
   }
 
   return (

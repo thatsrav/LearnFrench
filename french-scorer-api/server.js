@@ -18,8 +18,12 @@ function buildPrompt(frenchText) {
 Task: Grade the student's French writing on a 0-100 scale.
 
 Return ONLY valid JSON with exactly these keys:
-- score (number, 0-100)
+- score (number, 0-100) overall writing quality
 - cecr (string, one of: A1, A2, B1, B2, C1, C2)
+- grammar (number, 0-100) agreement, tense, structure
+- vocabulary (number, 0-100) range and precision of word choice
+- pronunciation (number, 0-100) for WRITING: infer from spelling, accents, liaison cues in text
+- fluency (number, 0-100) cohesion, connectors, paragraph flow
 - strengths (array of 2-5 short bullet strings)
 - improvements (array of 2-5 short bullet strings)
 - corrected_version (string: corrected French text)
@@ -27,10 +31,38 @@ Return ONLY valid JSON with exactly these keys:
 Rules:
 - Be concise.
 - Do not add any extra keys.
+- Subscores should be consistent with the overall score (not wildly higher).
 - If the text is not French, still score it and explain in improvements.
 
 Student text:
 ${frenchText.trim()}`;
+}
+
+function clamp100(n) {
+  const x = Math.round(Number(n));
+  if (!Number.isFinite(x)) return null;
+  return Math.max(0, Math.min(100, x));
+}
+
+/** Ensures new breakdown fields exist for older clients / model slips. */
+function normalizeFrenchResult(raw) {
+  const score = clamp100(raw?.score) ?? 0;
+  const fill = (v) => clamp100(v) ?? score;
+  return {
+    score,
+    cecr: String(raw?.cecr ?? "A1"),
+    grammar: fill(raw?.grammar ?? raw?.grammar_score),
+    vocabulary: fill(raw?.vocabulary ?? raw?.vocabulary_score),
+    pronunciation: fill(raw?.pronunciation ?? raw?.pronunciation_score),
+    fluency: fill(raw?.fluency ?? raw?.fluency_score),
+    strengths: Array.isArray(raw?.strengths) ? raw.strengths.map((s) => String(s)) : [],
+    improvements: Array.isArray(raw?.improvements) ? raw.improvements.map((s) => String(s)) : [],
+    corrected_version: String(raw?.corrected_version ?? raw?.correctedVersion ?? ""),
+  };
+}
+
+function jsonScore(res, providerName, raw) {
+  return res.json({ provider: providerName, result: normalizeFrenchResult(raw) });
 }
 
 function extractFirstJsonObject(text) {
@@ -277,25 +309,25 @@ app.post("/api/score", async (req, res) => {
     if (provider === "gemini") {
       if (!canGemini) return res.status(500).json({ error: "Missing GEMINI_API_KEY in backend env." });
       const result = await runGemini();
-      return res.json({ provider: "gemini", result });
+      return jsonScore(res, "gemini", result);
     }
 
     if (provider === "groq") {
       if (!canGroq) return res.status(500).json({ error: "Missing GROQ_API_KEY in backend env." });
       const result = await runGroq();
-      return res.json({ provider: "groq", result });
+      return jsonScore(res, "groq", result);
     }
 
     if (provider === "openai") {
       if (!canOpenAI) return res.status(500).json({ error: "Missing OPENAI_API_KEY in backend env." });
       const result = await runOpenAI();
-      return res.json({ provider: "openai", result });
+      return jsonScore(res, "openai", result);
     }
 
     if (provider === "claude") {
       if (!canClaude) return res.status(500).json({ error: "Missing CLAUDE_API_KEY in backend env." });
       const result = await runClaude();
-      return res.json({ provider: "claude", result });
+      return jsonScore(res, "claude", result);
     }
 
     // C1 essay fallback preference: OpenAI -> Claude
@@ -303,7 +335,7 @@ app.post("/api/score", async (req, res) => {
       if (canOpenAI) {
         try {
           const result = await runOpenAI();
-          return res.json({ provider: "openai", result });
+          return jsonScore(res, "openai", result);
         } catch (err) {
           if (!canClaude || !isRetryableProviderError(err)) {
             return res.status(Number(err?.status || 500)).json({ error: err?.message || String(err), details: err?.details });
@@ -313,7 +345,7 @@ app.post("/api/score", async (req, res) => {
       if (canClaude) {
         try {
           const result = await runClaude();
-          return res.json({ provider: "claude", result });
+          return jsonScore(res, "claude", result);
         } catch (err) {
           return res.status(Number(err?.status || 500)).json({ error: err?.message || String(err), details: err?.details });
         }
@@ -324,7 +356,7 @@ app.post("/api/score", async (req, res) => {
     if (canGemini) {
       try {
         const result = await runGemini();
-        return res.json({ provider: "gemini", result });
+        return jsonScore(res, "gemini", result);
       } catch (err) {
         if (!canGroq || !isRetryableProviderError(err)) {
           return res.status(Number(err?.status || 500)).json({ error: err?.message || String(err), details: err?.details });
@@ -335,7 +367,7 @@ app.post("/api/score", async (req, res) => {
     if (canGroq) {
       try {
         const result = await runGroq();
-        return res.json({ provider: "groq", result });
+        return jsonScore(res, "groq", result);
       } catch (err) {
         return res.status(Number(err?.status || 500)).json({ error: err?.message || String(err), details: err?.details });
       }

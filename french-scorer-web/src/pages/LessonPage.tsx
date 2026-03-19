@@ -1,11 +1,18 @@
 import { useMemo, useState } from 'react'
-import { useNavigate, useParams } from 'react-router-dom'
+import { useNavigate, useParams, useSearchParams } from 'react-router-dom'
 import { getUnitById, unlockNextUnit } from '../lib/syllabus'
 
 export default function LessonPage() {
   const { unitId = '' } = useParams()
+  const [searchParams] = useSearchParams()
+  const moduleId = searchParams.get('module')
   const navigate = useNavigate()
   const unit = getUnitById(unitId)
+
+  const goBack = () => {
+    if (moduleId) navigate(`/unit/${moduleId}`)
+    else navigate('/#syllabus')
+  }
   const [answers, setAnswers] = useState<Record<number, number>>({})
   const [done, setDone] = useState<{ score: number; unlocked: string | null } | null>(null)
 
@@ -25,10 +32,10 @@ export default function LessonPage() {
       <section className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
         <h2 className="text-xl font-semibold text-slate-900">Lesson not found</h2>
         <button
-          onClick={() => navigate('/syllabus')}
+          onClick={goBack}
           className="mt-4 rounded-xl bg-[#2955B8] px-4 py-2 text-sm font-semibold text-white"
         >
-          Back to syllabus
+          Back
         </button>
       </section>
     )
@@ -53,7 +60,7 @@ export default function LessonPage() {
           <h2 className="text-xl font-semibold text-slate-900">{unit.title}</h2>
         </div>
         <button
-          onClick={() => navigate('/syllabus')}
+          onClick={goBack}
           className="rounded-xl bg-slate-200 px-3 py-2 text-xs font-semibold text-slate-700"
         >
           Back

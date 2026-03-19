@@ -1,8 +1,8 @@
 # French Scorer (Web)
 
 This repo contains:
-- `french-scorer-api/` (Express backend): holds your Gemini API key and calls Gemini
-- `french-scorer-web/` (Vite + React frontend): UI that calls the backend
+- `french-scorer-api/` (Express backend): holds your AI API keys and scores French writing (overall + grammar/vocab/pronunciation/fluency breakdown)
+- `french-scorer-web/` (Vite + React frontend): **FrenchLearn** landing page, curriculum units (Figma-style), and AI Scorer
 
 ## Setup
 
@@ -65,6 +65,16 @@ Special rule:
 
 Frontend can send `provider: "auto" | "gemini" | "groq" | "openai" | "claude"` to `/api/score`.
 
+The `/api/score` JSON `result` includes **`grammar`**, **`vocabulary`**, **`pronunciation`**, and **`fluency`** (0–100 each), normalized on the server if the model omits them.
+
+### Web routes (FrenchLearn)
+
+- `/` — Landing (hero, syllabus grid, CTA)
+- `/scorer` — AI French Scorer (text/voice demo tab, gradient breakdown, strengths/suggestions)
+- `/unit/:moduleId` — Unit overview (progress card, topics, lesson list with Review/Start/Locked)
+- `/lesson/:unitId` — Quiz lesson (optional `?module=` for back navigation)
+- `/reading`, `/speaking`, `/leaderboard` — Practice extras
+
 ## Deploy notes (fixing 404 online)
 
 Local dev uses Vite’s proxy for `/api` to `http://localhost:8787`.
@@ -83,4 +93,29 @@ VITE_API_BASE_URL=https://your-api.onrender.com
 
 If you forget to set `VITE_API_BASE_URL`, the frontend falls back to
 `https://learnfrench-0vkn.onrender.com` (non-localhost only).
+
+## Expo mobile (`expo-mobile/`)
+
+The Expo app includes the same practice areas as the web app:
+
+- **Home / Writing Lab** — calls `POST /api/score` on your backend (same keys-on-server model). Provider chips: Auto, Gemini, Groq, OpenAI, Claude. History + streak + simple progress bars use `AsyncStorage`.
+- **Syllabus** — SQLite units / lessons / quizzes (unchanged).
+- **Reading room** — level-tagged passages.
+- **Speaking coach** — prompts + placeholder feedback (no microphone API yet).
+- **Leaderboard** — top scores from this device’s Writing Lab history.
+
+Optional: point the app at a local API with Expo env (create `.env` in `expo-mobile`):
+
+```bash
+EXPO_PUBLIC_API_BASE_URL=http://YOUR_LAN_IP:8787
+```
+
+If unset, the app defaults to `https://learnfrench-0vkn.onrender.com` (see `src/lib/config.ts`).
+
+Run:
+
+```bash
+cd expo-mobile
+npx expo start
+```
 

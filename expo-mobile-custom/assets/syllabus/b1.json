@@ -1,0 +1,288 @@
+[
+  {
+    "id": "b1-u1",
+    "grammar_rule_text": "Le subjonctif present apres les expressions d'opinion et de necessite (il faut que, il est important que, bien que). En production TEF A (narrative), utiliser le subjonctif pour exprimer l'incertitude et l'emotion dans un recit personnel.",
+    "vocab_list": [
+      "cependant","d ailleurs","en effet","pourtant","neanmoins","il faut que","bien que","afin que","quoique","a condition que",
+      "attitude","contexte","demarche","difficulte","ressource","objectif","experience","souhait","pression","equilibre",
+      "reussite","echec","comportement","habitude","decision","consequence","analyse","perspective","initiative","confiance",
+      "solidarite","responsabilite","motivation","adaptation","inquietude","satisfaction","coherence","argument","nuance","developpement",
+      "situation","cadre","terrain","temoignage","parcours","competence","formation","encadrement","soutien","autonomie"
+    ],
+    "quiz": [
+      {
+        "question": "Texte: 'Dans mon ancien emploi, mon responsable insistait pour que je ___ chaque dossier avant midi, bien que je n'aie pas toujours les informations completes.' Quel verbe complete correctement la phrase?\n\nA. finissais\nB. finisse\nC. finirai\nD. finissais",
+        "options": ["A", "B", "C", "D"],
+        "answer_index": 1
+      },
+      {
+        "question": "Dans le passage suivant, quel connecteur logique est le plus pertinent?\n'Le projet semblait simple au debut. ___, nous avons du revoir toute la planification apres l'audit.'",
+        "options": ["En revanche", "Par consequent", "Donc", "Et"],
+        "answer_index": 0
+      },
+      {
+        "question": "Choisissez la phrase la plus nuancee pour une tache TEF Section B (argumentative) sur le teletravail.",
+        "options": [
+          "Le teletravail est parfait pour tout le monde.",
+          "Le teletravail est inutile.",
+          "Le teletravail peut ameliorer la productivite, a condition que l'organisation reste claire.",
+          "Le teletravail est toujours mauvais."
+        ],
+        "answer_index": 2
+      },
+      {
+        "question": "Dans un recit narratif, quelle phrase utilise correctement le subjonctif apres 'il est important que'?",
+        "options": [
+          "Il est important que vous comprenez la procedure.",
+          "Il est important que vous compreniez la procedure.",
+          "Il est important que vous comprendrez la procedure.",
+          "Il est important que vous comprenez bien."
+        ],
+        "answer_index": 1
+      },
+      {
+        "question": "Quel enonce est le plus coherent pour conclure un texte argumentatif?",
+        "options": [
+          "Bref, je n'ai pas d'idee.",
+          "En conclusion, une solution progressive semble preferable afin que les usagers s'adaptent.",
+          "Conclusion: c'est comme ca.",
+          "Donc rien ne change."
+        ],
+        "answer_index": 1
+      }
+    ]
+  },
+  {
+    "id": "b1-u2",
+    "grammar_rule_text": "Le conditionnel present pour exprimer la politesse, l'hypothese et le conseil (je voudrais, on pourrait, il faudrait). Application TEF B: proposer des solutions argumentees et realistes.",
+    "vocab_list": [
+      "je voudrais","on pourrait","il faudrait","si j avais","dans ce cas","envisager","proposer","suggerer","negocier","ameliorer",
+      "reduire","augmenter","budget","depense","revenu","investissement","priorite","strategie","efficacite","impact",
+      "durable","rentable","equitable","faisable","mesure","dispositif","reforme","prevision","delai","urgence",
+      "contrainte","marge","option","planifier","coordonner","optimiser","accompagner","mobiliser","partenaire","beneficiaire",
+      "service public","collectivite","entreprise","association","resultat","objectif commun","valeur ajoutee","qualite","suivi","evaluation"
+    ],
+    "quiz": [
+      {
+        "question": "Texte TEF B: 'Pour limiter les couts, la mairie ___ lancer un programme pilote avant de generaliser la mesure.' Quelle option est la plus appropriee?",
+        "options": ["pourrait", "peut", "pouvait", "pourra"],
+        "answer_index": 0
+      },
+      {
+        "question": "Choisissez la phrase la plus polie dans un courrier formel.",
+        "options": [
+          "Envoyez-moi ce document maintenant.",
+          "Je veux ce document immediatement.",
+          "Je voudrais recevoir ce document des que possible.",
+          "Tu peux m'envoyer le document?"
+        ],
+        "answer_index": 2
+      },
+      {
+        "question": "Quel connecteur introduit le mieux une consequence logique forte?",
+        "options": ["De plus", "Par consequent", "D'une part", "Par exemple"],
+        "answer_index": 1
+      },
+      {
+        "question": "Dans une recommandation, quelle formulation est la plus pertinente?",
+        "options": [
+          "Il faut obliger tout le monde sans discussion.",
+          "Il faudrait prevoir une phase de transition pour accompagner les usagers.",
+          "On ne peut rien faire.",
+          "Je suis contre, point final."
+        ],
+        "answer_index": 1
+      },
+      {
+        "question": "Reperez la phrase correcte au conditionnel present.",
+        "options": [
+          "Nous pourrions tester la solution pendant trois mois.",
+          "Nous pourrons tester la solution si possible.",
+          "Nous pouvions tester la solution demain.",
+          "Nous peut tester la solution."
+        ],
+        "answer_index": 0
+      }
+    ]
+  },
+  {
+    "id": "b1-u3",
+    "grammar_rule_text": "Connecteurs logiques de structuration: d'abord, ensuite, en revanche, pourtant, en outre, enfin. Pour TEF A/B: organiser un texte clair (introduction, developpement, conclusion).",
+    "vocab_list": [
+      "d abord","ensuite","en revanche","en outre","par ailleurs","pourtant","en conclusion","premierement","deuxiemement","finalement",
+      "organisation","structure","coherence","transition","idee principale","idee secondaire","illustration","exemple concret","temoignage","constat",
+      "enjeu","problematique","solution","argumentation","objection","contre argument","synthese","resume","clarification","precision",
+      "point de vue","position","accord","desaccord","consensus","divergence","tendance","evolution","statistique","donnee",
+      "source","fiabilite","credibilite","verifiable","interpretation","comparaison","priorisation","axe","proposition","recommandation"
+    ],
+    "quiz": [
+      {
+        "question": "Dans ce plan argumentatif, quel connecteur introduit une opposition?\n'Le cout initial est eleve. ___, les economies a long terme sont significatives.'",
+        "options": ["Par ailleurs", "En revanche", "En outre", "D'abord"],
+        "answer_index": 1
+      },
+      {
+        "question": "Quelle phrase montre la meilleure progression logique?",
+        "options": [
+          "D'abord, je conclus. Ensuite, j'introduis le sujet.",
+          "D'abord, je presente le contexte; ensuite, j'expose les arguments; enfin, je propose une conclusion.",
+          "Je mets les idees au hasard.",
+          "Je donne seulement des exemples sans these."
+        ],
+        "answer_index": 1
+      },
+      {
+        "question": "Pour renforcer la credibilite dans une section argumentative, il vaut mieux:",
+        "options": [
+          "Donner une opinion sans preuve.",
+          "Ajouter une donnee verifiable et une source claire.",
+          "Multiplier les generalisations.",
+          "Eviter toute nuance."
+        ],
+        "answer_index": 1
+      },
+      {
+        "question": "Choisissez l'option la plus appropriee pour conclure un texte narratif-reflexif.",
+        "options": [
+          "Enfin, cette experience m'a appris a mieux anticiper les difficultes.",
+          "Bref, c'etait nul.",
+          "Donc rien.",
+          "Je change de sujet."
+        ],
+        "answer_index": 0
+      },
+      {
+        "question": "Quel connecteur ajoute une information supplementary?",
+        "options": ["En outre", "En revanche", "Pourtant", "Cependant"],
+        "answer_index": 0
+      }
+    ]
+  },
+  {
+    "id": "b1-u4",
+    "grammar_rule_text": "Subjonctif vs indicatif selon le sens (certainty vs doubt): 'je pense que' (indicatif) mais 'je ne pense pas que' (subjonctif). TEF: eviter les erreurs de mode dans l'argumentation.",
+    "vocab_list": [
+      "certitude","incertitude","doute","probabilite","evidence","supposition","hypothese","affirmation","negation","opinion",
+      "croire","penser","douter","imaginer","admettre","reconnaitre","contester","justifier","demontrer","soutenir",
+      "nuancer","moderation","convaincant","coherent","pertinent","pertinence","ambigu","nuance","precision","validite",
+      "conclusion provisoire","verification","confirmation","infirmation","evaluation critique","raisonnement","logique","biais","objectivite","neutralite",
+      "discutable","argumente","justifiable","clarte","rigueur","cohesion","consistance","vraisemblable","probant","recevable"
+    ],
+    "quiz": [
+      {
+        "question": "Choisissez la phrase correcte:",
+        "options": [
+          "Je ne pense pas qu'il est pret.",
+          "Je ne pense pas qu'il soit pret.",
+          "Je pense qu'il soit pret.",
+          "Je pense pas qu'il est pret."
+        ],
+        "answer_index": 1
+      },
+      {
+        "question": "Dans un texte TEF B, quelle phrase est la plus rigoureuse?",
+        "options": [
+          "Je suis sur a 100% sans preuve.",
+          "Les donnees suggerent une tendance, bien qu'une verification supplementaire soit necessaire.",
+          "Tout est faux.",
+          "Tout est vrai."
+        ],
+        "answer_index": 1
+      },
+      {
+        "question": "Reperez l'emploi correct du mode verbal:",
+        "options": [
+          "Il est possible qu'ils viennent demain.",
+          "Il est possible qu'ils viennentes demain.",
+          "Il est possible qu'ils viennentont demain.",
+          "Il est possible qu'ils vient demain."
+        ],
+        "answer_index": 0
+      },
+      {
+        "question": "Quel enonce exprime une certitude (indicatif attendu)?",
+        "options": [
+          "Je doute qu'il ait raison.",
+          "Je suis certain qu'il a raison.",
+          "Je ne crois pas qu'il ait raison.",
+          "Il faut qu'il ait raison."
+        ],
+        "answer_index": 1
+      },
+      {
+        "question": "Pour une conclusion nuancee, la meilleure option est:",
+        "options": [
+          "Le sujet est totalement resolu.",
+          "Les resultats sont prometteurs, a condition que l'evaluation se poursuive.",
+          "Aucune analyse n'est utile.",
+          "Il n'y a qu'une seule interpretation possible."
+        ],
+        "answer_index": 1
+      }
+    ]
+  },
+  {
+    "id": "b1-u5",
+    "grammar_rule_text": "Production TEF Section A (narrative) et Section B (argumentative): narrer un evenement en detail puis soutenir une position avec connecteurs, conditionnel et subjonctif de maniere equilibrée.",
+    "vocab_list": [
+      "narration","anecdote","contexte initial","element declencheur","peripetie","resolution","bilan","prise de position","these","antithese",
+      "probleme concret","enjeu social","proposition concrete","argument principal","argument secondaire","illustration","cas pratique","retour d experience","lecon tiree","recul",
+      "efficace","inefficace","realiste","ideal","pragmatique","accessible","inclusif","progressif","equilibre","mesuree",
+      "public cible","citoyen","usager","participant","responsable","acteur","interlocuteur","partie prenante","consommateur","fournisseur",
+      "application immediate","mise en oeuvre","suivi regulier","ajustement","indicateur","critere","evaluation finale","synthese","ouverture","perspective future"
+    ],
+    "quiz": [
+      {
+        "question": "Prompt TEF A: 'Racontez une situation ou vous avez du vous adapter rapidement.' Quelle ouverture est la plus efficace?",
+        "options": [
+          "Je vais parler d'un sujet sans contexte.",
+          "L'an dernier, lors d'un changement de poste inattendu, j'ai du revoir toute mon organisation en quelques jours.",
+          "Je n'ai rien a dire.",
+          "C'etait un jour normal."
+        ],
+        "answer_index": 1
+      },
+      {
+        "question": "Prompt TEF B: 'Faut-il limiter la voiture en centre-ville?' Quelle these est la plus argumentable?",
+        "options": [
+          "Oui, parce que oui.",
+          "Une limitation progressive parait pertinente, a condition de renforcer les transports publics.",
+          "Non, jamais, sans explication.",
+          "Tout est pareil."
+        ],
+        "answer_index": 1
+      },
+      {
+        "question": "Dans un texte combine narratif + argumentatif, quel enchainement est le plus coherent?",
+        "options": [
+          "Conclusion -> Introduction -> Arguments.",
+          "Contexte -> experience personnelle -> analyse -> proposition.",
+          "Arguments sans exemple.",
+          "Opinion finale sans developpement."
+        ],
+        "answer_index": 1
+      },
+      {
+        "question": "Quelle phrase utilise correctement le conditionnel pour proposer une mesure?",
+        "options": [
+          "La mairie pourrait tester la mesure pendant six mois.",
+          "La mairie peutera tester la mesure.",
+          "La mairie testait la mesure demain.",
+          "La mairie testera hier."
+        ],
+        "answer_index": 0
+      },
+      {
+        "question": "Quelle conclusion est la plus solide pour TEF B?",
+        "options": [
+          "En conclusion, il faudrait adopter une approche progressive afin que la transition soit acceptable pour tous.",
+          "Bref, on verra.",
+          "Je termine ici sans proposition.",
+          "Aucune solution n'existe."
+        ],
+        "answer_index": 0
+      }
+    ]
+  }
+]
+

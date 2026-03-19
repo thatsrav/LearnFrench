@@ -1,0 +1,193 @@
+[
+  {
+    "id": "a2-u1",
+    "grammar_rule_text": "Review present tense in context + introduce near past references and sequence words for daily life narration. Reinforce agreements with articles and common adjective placement.",
+    "vocab_list": [
+      "bureau","metier","collegue","reunion","projet","client","message","courriel","dossier","objectif",
+      "retard","avance","pause","cantine","salaire","contrat","stage","formation","devoir","examen",
+      "universite","bibliotheque","classe","professeur","eleve","note","question","reponse","solution","probleme",
+      "internet","reseau","application","mot de passe","compte","service","atelier","calendrier","rdv","reservation",
+      "emploi du temps","organisation","habitude","priorite","effort","progres","resultat","sujet","conversation","discussion"
+    ],
+    "quiz": [
+      {
+        "question": "Choose the best sequence word for 'first'.",
+        "options": ["ensuite", "d abord", "puis", "finalement"],
+        "answer_index": 1
+      },
+      {
+        "question": "Which sentence is correct?",
+        "options": ["Je travaille au bureau.", "Je travailles au bureau.", "Je travail au bureau.", "Je travaillons au bureau."],
+        "answer_index": 0
+      },
+      {
+        "question": "Choose the correct article: ___ reunion",
+        "options": ["le", "la", "un", "du"],
+        "answer_index": 1
+      },
+      {
+        "question": "What is the best translation for 'meeting'?",
+        "options": ["discussion", "reunion", "conversation", "question"],
+        "answer_index": 1
+      },
+      {
+        "question": "Choose the correct phrase for 'I am late'.",
+        "options": ["Je suis en retard.", "Je suis retard.", "Je suis en avance.", "Je suis tard."],
+        "answer_index": 0
+      }
+    ]
+  },
+  {
+    "id": "a2-u2",
+    "grammar_rule_text": "Partitive and quantity in food situations: du, de la, de l', des. After negation, use 'de'. Useful for shopping and meal requests: je veux du pain, je ne prends pas de sucre.",
+    "vocab_list": [
+      "marche","epicerie","rayon","panier","commande","addition","prix","promo","quantite","kilo",
+      "gramme","litre","bouteille","boite","paquet","tranche","part","portion","sucre","sel",
+      "beurre","fromage","yaourt","oeuf","viande","poisson","poulet","riz","pates","soupe",
+      "salade","tomate","pomme de terre","carotte","oignon","ail","huile","vinaigre","sauce","dessert",
+      "gateau","glace","chocolat","fraise","pomme","banane","orange","raisin","eau gazeuse","eau plate"
+    ],
+    "quiz": [
+      {
+        "question": "Choose the correct partitive: Je prends ___ pain.",
+        "options": ["de la", "du", "des", "de l"],
+        "answer_index": 1
+      },
+      {
+        "question": "After negation, what is correct? Je ne bois pas ___ cafe.",
+        "options": ["du", "de", "des", "de la"],
+        "answer_index": 1
+      },
+      {
+        "question": "Choose the right phrase for feminine singular food: ___ salade",
+        "options": ["du", "de la", "des", "de"],
+        "answer_index": 1
+      },
+      {
+        "question": "Which means 'a bottle of water'?",
+        "options": ["une tranche d eau", "une bouteille d eau", "un kilo d eau", "un paquet d eau"],
+        "answer_index": 1
+      },
+      {
+        "question": "Choose the right quantity word for 1000 grams.",
+        "options": ["litre", "kilo", "portion", "boite"],
+        "answer_index": 1
+      }
+    ]
+  },
+  {
+    "id": "a2-u3",
+    "grammar_rule_text": "Reflexive verbs for routines: se lever, se laver, se preparer, se coucher. Conjugate with reflexive pronouns me, te, se, nous, vous, se. In negation: ne ... pas wraps pronoun + verb.",
+    "vocab_list": [
+      "se lever","se coucher","se laver","se preparer","se doucher","se coiffer","se maquiller","se raser","se reposer","se promener",
+      "reveil","reveiller","sommeil","brosse","savon","shampooing","serviette","miroir","vetement","chemise",
+      "pantalon","robe","jupe","chaussure","veste","manteau","chaussette","pyjama","sac a dos","parapluie",
+      "petit","grand","clair","sombre","prochain","dernier","rapide","lent","calme","bruyant",
+      "metro boulot dodo","trajet","station","quai","retour","depart","horaire","ponctuel","fatiguee","detendu"
+    ],
+    "quiz": [
+      {
+        "question": "Conjugate: 'Nous ___ levons a 7h.'",
+        "options": ["me", "se", "nous", "vous"],
+        "answer_index": 2
+      },
+      {
+        "question": "Choose the correct sentence.",
+        "options": ["Je me douche le matin.", "Je douche me le matin.", "Je me douches le matin.", "Je douche le matin me."],
+        "answer_index": 0
+      },
+      {
+        "question": "Negative form: 'Tu te couches tard.'",
+        "options": ["Tu te ne couches pas tard.", "Tu ne te couches pas tard.", "Tu ne couches te pas tard.", "Tu ne te couche pas tard."],
+        "answer_index": 1
+      },
+      {
+        "question": "Which reflexive pronoun is used with 'vous'?",
+        "options": ["me", "te", "se", "vous"],
+        "answer_index": 3
+      },
+      {
+        "question": "What is the best translation for 'alarm clock'?",
+        "options": ["reveil", "savon", "miroir", "horaire"],
+        "answer_index": 0
+      }
+    ]
+  },
+  {
+    "id": "a2-u4",
+    "grammar_rule_text": "Future proche and object pronouns in practical dialogue: aller + infinitive for near future (je vais acheter). Use me/te/le/la/nous/vous/les before the verb for direct objects.",
+    "vocab_list": [
+      "aller","vais","vas","va","allons","allez","vont","plan","objectif","week end",
+      "vacances","billet","valise","aeroport","gare","navette","taxi","location","hotelier","chambre",
+      "check in","check out","visite guidee","plage","montagne","musee","monument","parc","photos","souvenir",
+      "anniversaire","fete","invitation","cadeau","musique","film","serie","match","sport","entrainement",
+      "prochainement","bientot","plus tard","ce soir","demain matin","la semaine prochaine","cet ete","cet hiver","pendant","avant"
+    ],
+    "quiz": [
+      {
+        "question": "Choose the correct future proche: 'Je ___ visiter Paris.'",
+        "options": ["vais", "va", "allons", "vont"],
+        "answer_index": 0
+      },
+      {
+        "question": "Replace object: 'Je vois Marie' ->",
+        "options": ["Je la vois.", "Je vois la.", "Je le vois.", "Je vois lui."],
+        "answer_index": 0
+      },
+      {
+        "question": "Choose the correct sentence with 'nous'.",
+        "options": ["Nous allons partir demain.", "Nous allez partir demain.", "Nous va partir demain.", "Nous vont partir demain."],
+        "answer_index": 0
+      },
+      {
+        "question": "Replace object: 'Tu prends les billets' ->",
+        "options": ["Tu les prends.", "Tu prends les.", "Tu le prends.", "Tu en prends."],
+        "answer_index": 0
+      },
+      {
+        "question": "Which phrase means 'next week'?",
+        "options": ["ce soir", "la semaine prochaine", "cet ete", "avant"],
+        "answer_index": 1
+      }
+    ]
+  },
+  {
+    "id": "a2-u5",
+    "grammar_rule_text": "Comparisons and practical opinions: plus ... que, moins ... que, aussi ... que. Use simple connectors for daily choices: parce que, donc, mais. Add imperative for polite instructions.",
+    "vocab_list": [
+      "plus","moins","aussi","mieux","pire","meilleur","meilleure","cher","cher","bon marche",
+      "rapide","lent","simple","complexe","facile","difficile","utile","important","necessaire","possible",
+      "impossible","propre","sale","silencieux","bruyant","confortable","pratique","moderne","ancien","nouveau",
+      "choix","avis","preference","conseil","recommandation","raison","argument","decision","comparaison","difference",
+      "parce que","donc","mais","alors","ensuite","premierement","deuxiemement","finalement","attention","continue"
+    ],
+    "quiz": [
+      {
+        "question": "Choose the correct comparison: 'Ce cafe est ___ cher que l'autre.'",
+        "options": ["plus", "aussi", "moins", "tres"],
+        "answer_index": 0
+      },
+      {
+        "question": "Fill in: 'Cette option est ___ pratique que celle-la.'",
+        "options": ["moins", "aussi", "plus", "mieux"],
+        "answer_index": 1
+      },
+      {
+        "question": "Choose the best connector for a reason.",
+        "options": ["donc", "parce que", "alors", "ensuite"],
+        "answer_index": 1
+      },
+      {
+        "question": "Choose a polite imperative.",
+        "options": ["Ferme la porte.", "Fermez la porte, s'il vous plait.", "Tu fermer la porte.", "Vous ferme la porte."],
+        "answer_index": 1
+      },
+      {
+        "question": "Which means 'cheaper'?",
+        "options": ["plus cher", "moins cher", "aussi cher", "tres cher"],
+        "answer_index": 1
+      }
+    ]
+  }
+]
+
