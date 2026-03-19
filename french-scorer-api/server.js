@@ -168,6 +168,76 @@ async function scoreWithGroq({ apiKey, text }) {
   return JSON.parse(jsonText);
 }
 
+async function scoreWithOpenAI({ apiKey, text }) {
+  const model = (process.env.OPENAI_MODEL || "").trim() || "gpt-4o-mini";
+  const prompt = buildPrompt(text);
+
+  const resp = await fetch("https://api.openai.com/v1/chat/completions", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${apiKey}`,
+    },
+    body: JSON.stringify({
+      model,
+      temperature: 0.2,
+      messages: [
+        { role: "system", content: "You are a strict but helpful French teacher. Output ONLY valid JSON as requested." },
+        { role: "user", content: prompt },
+      ],
+    }),
+  });
+
+  const raw = await resp.text();
+  if (!resp.ok) {
+    const err = new Error(`OpenAI HTTP ${resp.status}`);
+    err.status = resp.status;
+    err.details = raw;
+    throw err;
+  }
+
+  const parsed = JSON.parse(raw);
+  const modelText = parsed?.choices?.[0]?.message?.content ?? "";
+  const jsonText = extractFirstJsonObject(modelText);
+  return JSON.parse(jsonText);
+}
+
+async function scoreWithClaude({ apiKey, text }) {
+  const model = (process.env.CLAUDE_MODEL || "").trim() || "claude-3-5-sonnet-20241022";
+  const prompt = buildPrompt(text);
+
+  const resp = await fetch("https://api.anthropic.com/v1/messages", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "x-api-key": apiKey,
+      "anthropic-version": "2023-06-01",
+    },
+    body: JSON.stringify({
+      model,
+      max_tokens: 1200,
+      temperature: 0.2,
+      system: "You are a strict but helpful French teacher. Output ONLY valid JSON as requested.",
+      messages: [{ role: "user", content: prompt }],
+    }),
+  });
+
+  const raw = await resp.text();
+  if (!resp.ok) {
+    const err = new Error(`Claude HTTP ${resp.status}`);
+    err.status = resp.status;
+    err.details = raw;
+    throw err;
+  }
+
+  const parsed = JSON.parse(raw);
+  const modelText = Array.isArray(parsed?.content)
+    ? parsed.content.map((c) => String(c?.text || "")).join("\n")
+    : "";
+  const jsonText = extractFirstJsonObject(modelText);
+  return JSON.parse(jsonText);
+}
+
 function isRetryableProviderError(err) {
   const status = Number(err?.status || 0);
   return status === 408 || status === 429 || (status >= 500 && status <= 599);
@@ -181,20 +251,28 @@ app.post("/api/score", async (req, res) => {
     }
 
     const providerRaw = String(req.body?.provider || "").trim().toLowerCase();
-    const provider = providerRaw || "auto"; // auto | gemini | groq
+    const provider = providerRaw || "auto"; // auto | gemini | groq | openai | claude
+    const level = String(req.body?.level || req.body?.targetLevel || req.body?.cefr || "").trim().toUpperCase();
+    const isC1Essay = level === "C1";
 
     const geminiKey = (process.env.GEMINI_API_KEY || "").trim();
     const groqKey = (process.env.GROQ_API_KEY || "").trim();
+    const openaiKey = (process.env.OPENAI_API_KEY || "").trim();
+    const claudeKey = (process.env.CLAUDE_API_KEY || "").trim();
 
     const canGemini = Boolean(geminiKey);
     const canGroq = Boolean(groqKey);
+    const canOpenAI = Boolean(openaiKey);
+    const canClaude = Boolean(claudeKey);
 
-    if (!canGemini && !canGroq) {
-      return res.status(500).json({ error: "Missing GEMINI_API_KEY and GROQ_API_KEY in backend env." });
+    if (!canGemini && !canGroq && !canOpenAI && !canClaude) {
+      return res.status(500).json({ error: "No model provider keys configured in backend env." });
     }
 
     const runGemini = () => scoreWithGemini({ apiKey: geminiKey, text });
     const runGroq = () => scoreWithGroq({ apiKey: groqKey, text });
+    const runOpenAI = () => scoreWithOpenAI({ apiKey: openaiKey, text });
+    const runClaude = () => scoreWithClaude({ apiKey: claudeKey, text });
 
     if (provider === "gemini") {
       if (!canGemini) return res.status(500).json({ error: "Missing GEMINI_API_KEY in backend env." });
@@ -206,6 +284,40 @@ app.post("/api/score", async (req, res) => {
       if (!canGroq) return res.status(500).json({ error: "Missing GROQ_API_KEY in backend env." });
       const result = await runGroq();
       return res.json({ provider: "groq", result });
+    }
+
+    if (provider === "openai") {
+      if (!canOpenAI) return res.status(500).json({ error: "Missing OPENAI_API_KEY in backend env." });
+      const result = await runOpenAI();
+      return res.json({ provider: "openai", result });
+    }
+
+    if (provider === "claude") {
+      if (!canClaude) return res.status(500).json({ error: "Missing CLAUDE_API_KEY in backend env." });
+      const result = await runClaude();
+      return res.json({ provider: "claude", result });
+    }
+
+    // C1 essay fallback preference: OpenAI -> Claude
+    if (isC1Essay) {
+      if (canOpenAI) {
+        try {
+          const result = await runOpenAI();
+          return res.json({ provider: "openai", result });
+        } catch (err) {
+          if (!canClaude || !isRetryableProviderError(err)) {
+            return res.status(Number(err?.status || 500)).json({ error: err?.message || String(err), details: err?.details });
+          }
+        }
+      }
+      if (canClaude) {
+        try {
+          const result = await runClaude();
+          return res.json({ provider: "claude", result });
+        } catch (err) {
+          return res.status(Number(err?.status || 500)).json({ error: err?.message || String(err), details: err?.details });
+        }
+      }
     }
 
     // auto fallback: Gemini first (if configured), then Groq

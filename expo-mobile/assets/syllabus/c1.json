@@ -1,0 +1,303 @@
+[
+  {
+    "id": "c1-u1",
+    "grammar_rule_text": "Discours politique et institutions: maitriser les connecteurs concessifs et les formulations hypothetico-critiques (encore faudrait-il que, bien qu'il soit admis que, il conviendrait de). Mobiliser subjonctif et conditionnel pour nuancer les positions publiques.",
+    "vocab_list": [
+      "gouvernance","etat de droit","separation des pouvoirs","deliberation","concertation","legitimite democratique","representativite","pluralisme","reddition des comptes","transparence institutionnelle",
+      "souverainete","subsidiarite","centralisation","decentralisation","arbitrage politique","agenda legislati","priorite nationale","opposition parlementaire","majorite relative","minorite active",
+      "participation citoyenne","abstention","mobilisation civique","mediation institutionnelle","consensus procedur","clivage ideologique","equilibre des pouvoirs","controle parlementaire","amendement","commission",
+      "politique publique","mise en oeuvre","echelon territorial","evaluation ex post","impact socioeconomique","efficacite normative","cohesion sociale","acceptabilite politique","temporalite electorale","responsabilite collective",
+      "interet general","justice distributive","equite intergenerationnelle","soutenabilite budgetaire","capacite administrative","pilotage strategique","regulation publique","reforme structurelle","compromis politique","stabilite institutionnelle"
+    ],
+    "quiz": [
+      {
+        "question": "Dans un essai politique, quelle phrase exprime le mieux une nuance argumentative de niveau C1?\n\nA. La reforme est forcement positive.\nB. Bien qu'elle puisse renforcer l'efficacite administrative, la reforme reste contestable si ses effets redistributifs ne sont pas explicitement evalues.\nC. La reforme est mauvaise, point.\nD. Tout depend.",
+        "options": ["A", "B", "C", "D"],
+        "answer_index": 1
+      },
+      {
+        "question": "Choisissez l'enchainement logique le plus coherent pour un paragraphe analytique sur la decentralisation.",
+        "options": [
+          "Thèse absolue -> slogan -> conclusion.",
+          "Contexte institutionnel -> benefices attendus -> risques de fragmentation -> conditions de reussite.",
+          "Exemple unique -> generalisation totale.",
+          "Opinion personnelle sans cadre conceptuel."
+        ],
+        "answer_index": 1
+      },
+      {
+        "question": "Laquelle de ces formulations mobilise correctement le subjonctif dans un raisonnement politique?",
+        "options": [
+          "Il est indispensable que le dispositif est revise.",
+          "Il est indispensable que le dispositif soit revise.",
+          "Il est indispensable que le dispositif sera revise.",
+          "Il est indispensable que le dispositif etait revise."
+        ],
+        "answer_index": 1
+      },
+      {
+        "question": "Dans une argumentation C1, 'encore faudrait-il que' sert principalement a:",
+        "options": [
+          "Introduire une condition critique de validite.",
+          "Conclure sans preuve.",
+          "Eviter toute prise de position.",
+          "Remplacer les donnees factuelles."
+        ],
+        "answer_index": 0
+      },
+      {
+        "question": "Quelle conclusion est la plus robuste pour un sujet sur la participation citoyenne?",
+        "options": [
+          "La participation est toujours suffisante.",
+          "Une participation accrue n'a de sens que si elle s'accompagne de mecanismes deliberatifs lisibles et d'une redevabilite institutionnelle verifiable.",
+          "La participation ne sert a rien.",
+          "Le sujet est trop complexe pour etre traite."
+        ],
+        "answer_index": 1
+      }
+    ]
+  },
+  {
+    "id": "c1-u2",
+    "grammar_rule_text": "Ethique appliquee: argumenter avec precision sur la responsabilite, la dignite, la proportionnalite et les dilemmes normatifs. Employer conditionnel de reserve et subjonctif d'appreciation pour ponderer les jugements.",
+    "vocab_list": [
+      "ethique appliquee","deontologie","principe de precaution","principe de proportionnalite","autonomie morale","dignite humaine","integrite","vulnerabilite","consentement eclaire","confidentialite",
+      "responsabilite professionnelle","devoir de diligence","arbitrage moral","dilemme ethique","confit de valeurs","utilitarisme","deontologisme","justice procedurale","equite substantielle","non malfaisance",
+      "bienfaisance","impartialite","neutralite axiologique","traceabilite","reddition de comptes","devance technologique","risque acceptable","dommage potentiel","reparabilite","irréversibilite",
+      "encadrement ethique","instance consultative","comite d ethique","deliberation collective","norme professionnelle","obligation de moyens","obligation de resultat","cas limite","responsabilite diffusee","vigilance",
+      "coherence normative","justification raisonnée","horizon de valeur","impact humain","externalite morale","qualite deliberative","acceptabilite sociale","gouvernance responsable","balisage juridique","prudence pratique"
+    ],
+    "quiz": [
+      {
+        "question": "Dans une note ethique, quelle formulation est la plus pertinente?",
+        "options": [
+          "La solution est evidente, sans debat.",
+          "Il conviendrait d'adopter une approche graduée, pourvu que les personnes concernees disposent d'un consentement reellement eclaire.",
+          "On applique la regle et on verra.",
+          "L'ethique est secondaire."
+        ],
+        "answer_index": 1
+      },
+      {
+        "question": "Quelle phrase traduit correctement un raisonnement de proportionnalite?",
+        "options": [
+          "Toute restriction est justifiee par principe.",
+          "La mesure n'est recevable que si l'atteinte aux libertes est strictement necessaire et proportionnee a l'objectif poursuivi.",
+          "Il faut interdire sans discussion.",
+          "Plus c'est severe, mieux c'est."
+        ],
+        "answer_index": 1
+      },
+      {
+        "question": "Reperez l'usage grammatical le plus juste du conditionnel pour exprimer une reserve.",
+        "options": [
+          "Cette pratique est ethique, donc aucun controle.",
+          "Cette pratique pourrait etre acceptable, a condition qu'un mecanisme de controle independant soit institue.",
+          "Cette pratique pourrait est acceptable.",
+          "Cette pratique sera acceptable si possible."
+        ],
+        "answer_index": 1
+      },
+      {
+        "question": "Dans un texte C1, un argument ethique solide combine:",
+        "options": [
+          "Une intuition personnelle uniquement.",
+          "Une justification normative explicite, des consequences anticipees et des garde-fous operationnels.",
+          "Des slogans moraux.",
+          "Une conclusion immediate sans analyse."
+        ],
+        "answer_index": 1
+      },
+      {
+        "question": "Quelle tournure au subjonctif est correcte apres 'il est souhaitable que'?",
+        "options": [
+          "il est souhaitable que la procedure est clarifiee",
+          "il est souhaitable que la procedure soit clarifiee",
+          "il est souhaitable que la procedure sera clarifiee",
+          "il est souhaitable que la procedure etait clarifiee"
+        ],
+        "answer_index": 1
+      }
+    ]
+  },
+  {
+    "id": "c1-u3",
+    "grammar_rule_text": "Science et communication scientifique: formuler hypotheses, limites methodologiques et inference prudente. Employer connecteurs de raisonnement (or, des lors, en l'etat des connaissances) et modalisation.",
+    "vocab_list": [
+      "methodologie","protocole experimental","echantillon","biais de selection","validite interne","validite externe","replicabilite","falsifiabilite","inferentialite","correlation",
+      "causalite","intervalle de confiance","significativite statistique","incertitude epistémique","robustesse empirique","revue par les pairs","meta analyse","hypothese nulle","variable confondante","controle",
+      "mesure operationnelle","instrumentation","qualite des donnees","tracabilite des resultats","transparence scientifique","integrite scientifique","pre enregistrement","reproductibilite","ecart type","distribution",
+      "modele explicatif","modele predictif","generalisation","limite methodologique","interpretation prudente","surinterpretation","consensus scientifique","controverse epistemologique","etat de l art","cadre theorique",
+      "evidence cumulative","probabilite conditionnelle","marge d erreur","resultat preliminaire","validation croisee","incertitude residuelle","application clinique","impact sociotechnique","communication responsable","litteratie scientifique"
+    ],
+    "quiz": [
+      {
+        "question": "Dans une synthese scientifique C1, quelle affirmation est la plus rigoureuse?",
+        "options": [
+          "Une correlation suffit a prouver la causalite.",
+          "Une correlation peut orienter l'analyse, mais une inference causale exige un dispositif methodologique approprie.",
+          "Les donnees parlent d'elles-memes.",
+          "Tout resultat est universel."
+        ],
+        "answer_index": 1
+      },
+      {
+        "question": "Quel connecteur convient pour introduire une consequence argumentative basee sur les donnees?",
+        "options": ["Des lors", "Par hasard", "Et puis", "Peut-etre"],
+        "answer_index": 0
+      },
+      {
+        "question": "Quelle phrase exprime correctement une limitation methodologique?",
+        "options": [
+          "L'etude est parfaite et definitive.",
+          "Les resultats demeurent interpretable avec prudence, l'echantillon etant restreint et potentiellement non representatif.",
+          "Les limites n'ont aucune importance.",
+          "Il suffit d'un seul indicateur."
+        ],
+        "answer_index": 1
+      },
+      {
+        "question": "Dans un essai de vulgarisation scientifique, la posture la plus credible consiste a:",
+        "options": [
+          "Exagerer les certitudes pour convaincre.",
+          "Distinguer clairement faits etablis, hypotheses plausibles et zones d'incertitude.",
+          "Supprimer tout detail methodologique.",
+          "Remplacer les resultats par des anecdotes."
+        ],
+        "answer_index": 1
+      },
+      {
+        "question": "Reperez la formulation correcte au subjonctif apres 'il est essentiel que':",
+        "options": [
+          "il est essentiel que les donnees soient accessibles",
+          "il est essentiel que les donnees sont accessibles",
+          "il est essentiel que les donnees seront accessibles",
+          "il est essentiel que les donnees etaient accessibles"
+        ],
+        "answer_index": 0
+      }
+    ]
+  },
+  {
+    "id": "c1-u4",
+    "grammar_rule_text": "Ecriture argumentative C1 (TEF B): these complexe, contre-argument fort, refutation nuancee, compromis operationnel. Utiliser connecteurs de concession et de consequence pour une progression rhetorique maitrisée.",
+    "vocab_list": [
+      "these nuancée","contre argument","refutation","compromis operationnel","coherence argumentative","force probante","densite analytique","economiede moyens","efficience publique","soutenabilite",
+      "faisabilite","acceptabilite","viabilite","arbitrage","priorisation","sequencement","calendrier deploiement","pilotage par indicateurs","retour d experience","boucle d apprentissage",
+      "horizon temporel","court terme","moyen terme","long terme","mesure transitoire","filet de securite","effet d eviction","rendement marginal","impact distributif","effet redistributif",
+      "alignement strategique","objectif intermediaire","resultat cible","condition de succes","risque residuel","mesure d attenuation","gouvernance multi acteurs","coordination interservices","parties prenantes","acceptation locale",
+      "justification budgétaire","contraintes reglementaires","marge d adaptation","standard de qualite","continuite de service","equilibre global","arbitrage transparent","evaluation independante","audit externe","redevabilite"
+    ],
+    "quiz": [
+      {
+        "question": "Quelle structure correspond le mieux a une production C1 en TEF B?",
+        "options": [
+          "Opinion rapide et conclusion immediate.",
+          "Problematique -> these argumentee -> contre-argument traite -> proposition conditionnelle -> conclusion ouverte.",
+          "Accumulation d'exemples sans these.",
+          "Liste de slogans."
+        ],
+        "answer_index": 1
+      },
+      {
+        "question": "Quel enonce illustre une concession bien maitrisée?",
+        "options": [
+          "Cette mesure est parfaite.",
+          "Bien que le cout initial soit significatif, l'option demeure defendable si l'evaluation independante confirme un gain net a moyen terme.",
+          "Cette mesure est nulle.",
+          "Je refuse toute nuance."
+        ],
+        "answer_index": 1
+      },
+      {
+        "question": "Dans une recommandation publique, l'argument le plus solide est celui qui:",
+        "options": [
+          "Ignore les contraintes de mise en oeuvre.",
+          "Articule objectif, faisabilite, risques et mecanismes de suivi mesurables.",
+          "Se limite a un jugement moral.",
+          "Evite les contre-arguments."
+        ],
+        "answer_index": 1
+      },
+      {
+        "question": "Quelle formulation au conditionnel exprime une proposition prudente?",
+        "options": [
+          "Il faut imposer immediatement cette mesure a tous.",
+          "Il serait pertinent de deployer la mesure en deux phases afin d'ajuster les parametres selon les resultats.",
+          "On deploye maintenant sans analyse.",
+          "La mesure est deja parfaite."
+        ],
+        "answer_index": 1
+      },
+      {
+        "question": "Quel connecteur convient pour introduire la synthese finale?",
+        "options": ["En definitive", "Or", "Bien que", "A supposer que"],
+        "answer_index": 0
+      }
+    ]
+  },
+  {
+    "id": "c1-u5",
+    "grammar_rule_text": "Synthesis professionnelle interdisciplinaire (politique, ethique, science): integrer evidences, valeurs et contraintes institutionnelles. Viser une argumentation C1 precise, critique et decisionnelle.",
+    "vocab_list": [
+      "approche interdisciplinaire","triangulation","evidence policy","ethique de la responsabilite","raisonnement contrefactuel","analyse multicritere","ponderation","priorite normative","choix collectif","intelligence institutionnelle",
+      "coordination scientifique","interface politique science","traduction operationnelle","acceptation citoyenne","legitimite epistemique","qualite de la preuve","incertitude strategique","risque systemique","vulnerabilite structurelle","resilience organisationnelle",
+      "scenario de reference","scenario de rupture","seuil de decision","option preferentielle","option de secours","garde fou institutionnel","reversibilite","adaptation iterative","evaluation continue","pilotage adaptatif",
+      "cadre de responsabilisation","controle externe","audit methodologique","garantie procedurale","equite d acces","impact territorial","effet macro","effet micro","coherence intersectorielle","alignement de politiques",
+      "decision informee","justification publique","communication transparente","appropriation sociale","capital de confiance","durabilite institutionnelle","interoperabilite","trajectoire credible","conditionnalite","feuille de route integrée"
+    ],
+    "quiz": [
+      {
+        "question": "Dans un memo C1 croisant politique, ethique et science, quelle posture est la plus pertinente?",
+        "options": [
+          "Choisir une solution uniquement sur intuition.",
+          "Combiner evidence empirique, analyse des valeurs en jeu et faisabilite institutionnelle avant arbitrage.",
+          "Ignorer la dimension etique.",
+          "Ignorer les contraintes de terrain."
+        ],
+        "answer_index": 1
+      },
+      {
+        "question": "Quel enonce traduit une decision publique responsable?",
+        "options": [
+          "La decision est definitive, aucun suivi n'est necessaire.",
+          "La decision est assortie d'indicateurs de suivi, d'un audit externe et d'un mecanisme de revision periodique.",
+          "La decision ne sera pas expliquee.",
+          "La decision depend uniquement du calendrier electoral."
+        ],
+        "answer_index": 1
+      },
+      {
+        "question": "Dans une conclusion C1, la meilleure formulation est:",
+        "options": [
+          "Le sujet est clos.",
+          "En l'etat des connaissances, une mise en oeuvre graduée parait la plus robuste, pourvu qu'un cadre de responsabilisation explicite en garantisse la legitimite.",
+          "On verra plus tard.",
+          "Aucune recommandation n'est possible."
+        ],
+        "answer_index": 1
+      },
+      {
+        "question": "Reperez l'emploi correct du subjonctif dans un cadre institutionnel:",
+        "options": [
+          "Il est essentiel que les mecanismes de controle sont independants.",
+          "Il est essentiel que les mecanismes de controle soient independants.",
+          "Il est essentiel que les mecanismes de controle seront independants.",
+          "Il est essentiel que les mecanismes de controle etaient independants."
+        ],
+        "answer_index": 1
+      },
+      {
+        "question": "Pour un arbitrage final de niveau C1, il faut prioritairement:",
+        "options": [
+          "Maximiser un seul critere a court terme.",
+          "Pondérer explicitement les criteres (efficacite, equite, faisabilite, legitimite) et rendre la justification publique.",
+          "Supprimer l'analyse de risque.",
+          "Eviter toute consultation des parties prenantes."
+        ],
+        "answer_index": 1
+      }
+    ]
+  }
+]
+

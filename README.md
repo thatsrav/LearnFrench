@@ -20,6 +20,10 @@ GEMINI_API_KEY=YOUR_KEY_HERE
 GEMINI_MODEL=models/gemini-2.5-flash
 GROQ_API_KEY=YOUR_KEY_HERE
 GROQ_MODEL=llama-3.1-70b-versatile
+OPENAI_API_KEY=YOUR_KEY_HERE
+OPENAI_MODEL=gpt-4o-mini
+CLAUDE_API_KEY=YOUR_KEY_HERE
+CLAUDE_MODEL=claude-3-5-sonnet-20241022
 PORT=8787
 ```
 
@@ -52,9 +56,14 @@ Open the URL Vite prints (usually `http://localhost:5173`).
 The API supports:
 - **Gemini**
 - **Groq**
+- **OpenAI**
+- **Claude**
 - **Auto** (tries Gemini first, falls back to Groq on 429/5xx)
 
-Frontend sends `provider: "auto" | "gemini" | "groq"` to `/api/score`.
+Special rule:
+- If request includes `level: "C1"` and provider is `auto`, backend tries **OpenAI first**, then **Claude** on retryable failure.
+
+Frontend can send `provider: "auto" | "gemini" | "groq" | "openai" | "claude"` to `/api/score`.
 
 ## Deploy notes (fixing 404 online)
 
