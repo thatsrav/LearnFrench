@@ -19,6 +19,8 @@ type LessonUnit = {
 type RouteParams = {
   unitId: string
   level: 'A1' | 'A2' | 'B1' | 'B2' | 'C1'
+  /** When set, user opened lesson from FrenchLearn unit overview. */
+  moduleId?: string
 }
 
 const a1Data: LessonUnit[] = require('../../assets/syllabus/a1.json')
@@ -85,13 +87,13 @@ export default function LessonScreen() {
           result.unlockedUnitId
             ? `Score: ${score}. Next unit unlocked: ${result.unlockedUnitId}`
             : `Score: ${score}. You completed the final unit for now.`,
-          [{ text: 'Back to Syllabus', onPress: () => navigation.goBack() }],
+          [{ text: 'Done', onPress: () => navigation.goBack() }],
         )
       } else {
         Alert.alert(
           'Keep practicing',
           `Score: ${score}. You need 80+ to unlock the next unit.`,
-          [{ text: 'Back to Syllabus', onPress: () => navigation.goBack() }],
+          [{ text: 'Done', onPress: () => navigation.goBack() }],
         )
       }
     } catch (err) {

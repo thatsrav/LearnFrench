@@ -4,6 +4,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import { Ionicons } from '@expo/vector-icons'
 import HomeScreen from '../screens/HomeScreen'
 import SyllabusScreen from '../screens/SyllabusScreen'
+import UnitOverviewScreen from '../screens/UnitOverviewScreen'
 import ReadingRoomScreen from '../screens/ReadingRoomScreen'
 import SpeakingCoachScreen from '../screens/SpeakingCoachScreen'
 import LeaderboardScreen from '../screens/LeaderboardScreen'
@@ -11,7 +12,8 @@ import LessonScreen from '../screens/LessonScreen'
 
 export type RootStackParamList = {
   MainTabs: undefined
-  LessonScreen: { unitId: string; level: 'A1' | 'A2' | 'B1' | 'B2' | 'C1' }
+  UnitOverviewScreen: { moduleId: string }
+  LessonScreen: { unitId: string; level: 'A1' | 'A2' | 'B1' | 'B2' | 'C1'; moduleId?: string }
 }
 
 export type MainTabParamList = {
@@ -54,7 +56,7 @@ function MainTabs() {
         name="Syllabus"
         component={SyllabusScreen}
         options={{
-          title: 'Syllabus',
+          title: 'Courses',
           tabBarIcon: ({ color, size }) => <Ionicons name="book-outline" size={size} color={color} />,
         }}
       />
@@ -98,6 +100,7 @@ export default function AppNavigator() {
         }}
       >
         <Stack.Screen name="MainTabs" component={MainTabs} options={{ headerShown: false }} />
+        <Stack.Screen name="UnitOverviewScreen" component={UnitOverviewScreen} options={{ title: 'Unit' }} />
         <Stack.Screen name="LessonScreen" component={LessonScreen} options={{ title: 'Lesson' }} />
       </Stack.Navigator>
     </NavigationContainer>

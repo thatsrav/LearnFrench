@@ -98,8 +98,8 @@ If you forget to set `VITE_API_BASE_URL`, the frontend falls back to
 
 The Expo app includes the same practice areas as the web app:
 
-- **Home / Writing Lab** — calls `POST /api/score` on your backend (same keys-on-server model). Provider chips: Auto, Gemini, Groq, OpenAI, Claude. History + streak + simple progress bars use `AsyncStorage`.
-- **Syllabus** — SQLite units / lessons / quizzes (unchanged).
+- **Home / AI Scorer** — calls `POST /api/score`; **Text / Voice (demo)** tabs; **grammar / vocabulary / pronunciation / fluency** breakdown bars; providers Auto–Claude; C1 essay hint; streak + history (`AsyncStorage`).
+- **Courses** (tab) — **FrenchLearn** module grid (same six units as the web). **View unit** opens the **unit overview** (progress, topics, lesson list with Review / Start / Locked / Soon). Lessons with a `contentUnitId` open the existing **quiz** screen; `goBack` returns to the unit.
 - **Reading room** — level-tagged passages.
 - **Speaking coach** — prompts + placeholder feedback (no microphone API yet).
 - **Leaderboard** — top scores from this device’s Writing Lab history.

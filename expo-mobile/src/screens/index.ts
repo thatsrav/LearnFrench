@@ -1,4 +1,5 @@
 export { default as SyllabusScreen } from './SyllabusScreen'
+export { default as UnitOverviewScreen } from './UnitOverviewScreen'
 export { default as LessonScreen } from './LessonScreen'
 export { default as HomeScreen } from './HomeScreen'
 export { default as ReadingRoomScreen } from './ReadingRoomScreen'

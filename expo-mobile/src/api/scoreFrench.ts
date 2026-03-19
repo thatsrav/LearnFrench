@@ -6,9 +6,35 @@ export type ScoreProvider = 'auto' | 'gemini' | 'groq' | 'openai' | 'claude'
 export type FrenchScore = {
   score: number
   cecr: string
+  grammar: number
+  vocabulary: number
+  pronunciation: number
+  fluency: number
   strengths: string[]
   improvements: string[]
   corrected_version: string
+}
+
+function clamp100(n: unknown, fallback: number): number {
+  const x = Math.round(Number(n))
+  if (!Number.isFinite(x)) return fallback
+  return Math.max(0, Math.min(100, x))
+}
+
+export function normalizeFrenchScore(raw: Partial<FrenchScore> & { score?: number }): FrenchScore {
+  const score = clamp100(raw.score, 0)
+  const fill = (v: unknown) => clamp100(v, score)
+  return {
+    score,
+    cecr: String(raw.cecr ?? 'A1'),
+    grammar: fill(raw.grammar),
+    vocabulary: fill(raw.vocabulary),
+    pronunciation: fill(raw.pronunciation),
+    fluency: fill(raw.fluency),
+    strengths: Array.isArray(raw.strengths) ? raw.strengths.map(String) : [],
+    improvements: Array.isArray(raw.improvements) ? raw.improvements.map(String) : [],
+    corrected_version: String(raw.corrected_version ?? ''),
+  }
 }
 
 export type ScoreFrenchResponse = {
@@ -65,7 +91,7 @@ export async function scoreFrench(
   }
 
   return {
-    result: data.result,
+    result: normalizeFrenchScore(data.result as Partial<FrenchScore>),
     providerUsed: String(data?.provider ?? ''),
   }
 }
