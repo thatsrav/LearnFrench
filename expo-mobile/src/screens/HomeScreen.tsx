@@ -1,6 +1,8 @@
 import { useCallback, useMemo, useRef, useState } from 'react'
 import {
   ActivityIndicator,
+  KeyboardAvoidingView,
+  Platform,
   Pressable,
   ScrollView,
   Text,
@@ -8,6 +10,7 @@ import {
   useWindowDimensions,
   View,
 } from 'react-native'
+import { useHeaderHeight } from '@react-navigation/elements'
 import { useFocusEffect, useNavigation } from '@react-navigation/native'
 import type { BottomTabNavigationProp } from '@react-navigation/bottom-tabs'
 import { LinearGradient } from 'expo-linear-gradient'
@@ -19,6 +22,7 @@ import { CURRICULUM_STATS } from '../lib/curriculum'
 import { getDailyVocab } from '../lib/vocab'
 import { getApiBaseUrl } from '../lib/config'
 import type { MainTabParamList } from '../navigation/AppNavigator'
+import { useTabScreenBottomPadding } from '../lib/screenPadding'
 
 const PROVIDERS: { value: ScoreProvider; label: string; short: string }[] = [
   { value: 'auto', label: 'Auto', short: 'Auto' },
@@ -38,6 +42,8 @@ const BREAKDOWN: { key: keyof Pick<FrenchScore, 'grammar' | 'vocabulary' | 'pron
 
 export default function HomeScreen() {
   const { width } = useWindowDimensions()
+  const headerHeight = useHeaderHeight()
+  const scrollBottomPad = useTabScreenBottomPadding(24)
   const compact = width < 390
   const scrollRef = useRef<ScrollView>(null)
   const [scorerOffsetY, setScorerOffsetY] = useState(0)
@@ -119,10 +125,16 @@ export default function HomeScreen() {
   }
 
   return (
+    <KeyboardAvoidingView
+      className="flex-1 bg-slate-50"
+      style={{ flex: 1 }}
+      behavior={Platform.OS === 'ios' ? 'padding' : undefined}
+      keyboardVerticalOffset={headerHeight}
+    >
     <ScrollView
       ref={scrollRef}
       className="flex-1 bg-slate-50"
-      contentContainerStyle={{ paddingHorizontal: 16, paddingTop: 12, paddingBottom: 40 }}
+      contentContainerStyle={{ paddingHorizontal: 16, paddingTop: 12, paddingBottom: scrollBottomPad }}
       keyboardShouldPersistTaps="handled"
       keyboardDismissMode="on-drag"
     >
@@ -477,5 +489,6 @@ export default function HomeScreen() {
         )}
       </View>
     </ScrollView>
+    </KeyboardAvoidingView>
   )
 }

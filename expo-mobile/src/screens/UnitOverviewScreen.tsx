@@ -21,6 +21,7 @@ import {
 } from '../lib/curriculum'
 import { getSyllabusData, type SyllabusRow } from '../database'
 import type { RootStackParamList } from '../navigation/AppNavigator'
+import { useStackScreenBottomPadding } from '../lib/screenPadding'
 
 type RouteParams = { moduleId: string }
 
@@ -65,6 +66,7 @@ function LessonStatusIcon({
 
 export default function UnitOverviewScreen() {
   const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>()
+  const scrollBottomPad = useStackScreenBottomPadding(32)
   const route = useRoute()
   const { moduleId } = route.params as RouteParams
   const mod = getModuleById(moduleId)
@@ -108,7 +110,7 @@ export default function UnitOverviewScreen() {
   return (
     <ScrollView
       className="flex-1 bg-slate-50"
-      contentContainerStyle={{ paddingHorizontal: 16, paddingTop: 12, paddingBottom: 40 }}
+      contentContainerStyle={{ paddingHorizontal: 16, paddingTop: 12, paddingBottom: scrollBottomPad }}
       keyboardShouldPersistTaps="handled"
     >
       <Pressable onPress={() => navigation.goBack()} className="mb-4 flex-row items-center gap-1 self-start active:opacity-70">

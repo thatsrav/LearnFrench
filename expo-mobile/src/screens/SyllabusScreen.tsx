@@ -5,6 +5,7 @@ import type { NativeStackNavigationProp } from '@react-navigation/native-stack'
 import type { BottomTabNavigationProp } from '@react-navigation/bottom-tabs'
 import { Ionicons } from '@expo/vector-icons'
 import { CURRICULUM_MODULES, type CEFRLevel } from '../lib/curriculum'
+import { useTabScreenBottomPadding } from '../lib/screenPadding'
 import type { MainTabParamList, RootStackParamList } from '../navigation/AppNavigator'
 
 const LEVEL_FILTER: { label: string; value: CEFRLevel | 'all' }[] = [
@@ -22,6 +23,7 @@ const TOPIC_PREVIEW = 3
 export default function SyllabusScreen() {
   const navigation = useNavigation<BottomTabNavigationProp<MainTabParamList, 'Syllabus'>>()
   const rootNav = navigation.getParent<NativeStackNavigationProp<RootStackParamList>>()
+  const scrollBottomPad = useTabScreenBottomPadding(28)
   const [filter, setFilter] = useState<CEFRLevel | 'all'>('all')
 
   const modules = useMemo(() => {
@@ -32,7 +34,7 @@ export default function SyllabusScreen() {
   return (
     <ScrollView
       className="flex-1 bg-slate-50"
-      contentContainerStyle={{ paddingHorizontal: 16, paddingTop: 12, paddingBottom: 40 }}
+      contentContainerStyle={{ paddingHorizontal: 16, paddingTop: 12, paddingBottom: scrollBottomPad }}
       keyboardShouldPersistTaps="handled"
     >
       {/* AI banner — Figma top card */}

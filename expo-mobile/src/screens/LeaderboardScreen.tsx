@@ -2,6 +2,7 @@ import { useCallback, useMemo, useState } from 'react'
 import { ScrollView, Text, View } from 'react-native'
 import { useFocusEffect } from '@react-navigation/native'
 import { loadRecentScores, type StoredScore } from '../lib/history'
+import { useTabScreenBottomPadding } from '../lib/screenPadding'
 
 type Row = {
   rank: number
@@ -12,6 +13,7 @@ type Row = {
 }
 
 export default function LeaderboardScreen() {
+  const scrollBottomPad = useTabScreenBottomPadding(28)
   const [scores, setScores] = useState<StoredScore[]>([])
 
   useFocusEffect(
@@ -43,7 +45,7 @@ export default function LeaderboardScreen() {
   const best = topEntries[0]?.score ?? 0
 
   return (
-    <ScrollView className="flex-1 bg-slate-50" contentContainerStyle={{ padding: 16, paddingBottom: 32 }}>
+    <ScrollView className="flex-1 bg-slate-50" contentContainerStyle={{ padding: 16, paddingBottom: scrollBottomPad }}>
       <Text className="text-2xl font-bold text-slate-900">Leaderboard</Text>
       <Text className="mt-1 text-sm text-slate-500">Top writing scores from this device (Writing Lab).</Text>
 

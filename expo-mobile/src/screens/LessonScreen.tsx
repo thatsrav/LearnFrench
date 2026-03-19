@@ -1,7 +1,9 @@
 import { useMemo, useState } from 'react'
 import { Alert, Pressable, ScrollView, Text, View } from 'react-native'
+import { useSafeAreaInsets } from 'react-native-safe-area-context'
 import { useNavigation, useRoute } from '@react-navigation/native'
 import { unlockNextUnit } from '../database'
+import { useStackScreenBottomPadding } from '../lib/screenPadding'
 
 type QuizQuestion = {
   question: string
@@ -53,6 +55,8 @@ function getUnit(level: RouteParams['level'], unitId: string): LessonUnit | null
 
 export default function LessonScreen() {
   const navigation = useNavigation<any>()
+  const insets = useSafeAreaInsets()
+  const scrollBottomPad = useStackScreenBottomPadding(20)
   const route = useRoute()
   const { unitId, level } = route.params as RouteParams
 
@@ -116,7 +120,7 @@ export default function LessonScreen() {
 
   return (
     <View className="flex-1 bg-slate-50">
-      <ScrollView className="flex-1 px-4 py-4" contentContainerStyle={{ gap: 14, paddingBottom: 24 }}>
+      <ScrollView className="flex-1 px-4 py-4" contentContainerStyle={{ gap: 14, paddingBottom: scrollBottomPad }}>
         <View className="rounded-2xl border border-slate-200 bg-white p-4">
           <Text className="text-xs font-medium uppercase tracking-wide text-blue-700">{level} • {unit.id}</Text>
           <Text className="mt-2 text-lg font-bold text-slate-900">Grammar Rule</Text>
@@ -175,7 +179,10 @@ export default function LessonScreen() {
         </View>
       </ScrollView>
 
-      <View className="border-t border-slate-200 bg-white px-4 py-3">
+      <View
+        className="border-t border-slate-200 bg-white px-4 pt-3"
+        style={{ paddingBottom: Math.max(12, insets.bottom) }}
+      >
         <View className="mb-2 flex-row items-center justify-between">
           <Text className="text-sm font-medium text-slate-600">Current score</Text>
           <Text className="text-sm font-bold text-slate-900">{score}/100</Text>

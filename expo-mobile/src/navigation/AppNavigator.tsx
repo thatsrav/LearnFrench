@@ -39,12 +39,16 @@ function MainTabs() {
         tabBarActiveTintColor: '#4f46e5',
         tabBarInactiveTintColor: '#64748b',
         tabBarLabelStyle: { fontSize: 11, fontWeight: '600' },
+        tabBarHideOnKeyboard: true,
         tabBarStyle: {
           borderTopWidth: 1,
           borderTopColor: '#e2e8f0',
           backgroundColor: '#ffffff',
-          paddingTop: 4,
-          height: 62,
+          paddingTop: 6,
+          /**
+           * No fixed height — lets React Navigation + safe areas adapt on
+           * iPhone home indicator, Samsung/Pixel gesture bars, and foldables.
+           */
         },
       }}
     >

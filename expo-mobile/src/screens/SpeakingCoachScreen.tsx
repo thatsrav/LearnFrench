@@ -1,8 +1,10 @@
 import { useMemo, useState } from 'react'
 import { Pressable, ScrollView, Text, View } from 'react-native'
 import { SPEAKING_PROMPTS } from '../content/speakingPrompts'
+import { useTabScreenBottomPadding } from '../lib/screenPadding'
 
 export default function SpeakingCoachScreen() {
+  const scrollBottomPad = useTabScreenBottomPadding(28)
   const [index, setIndex] = useState(0)
   const [feedback, setFeedback] = useState<string | null>(null)
   const prompt = useMemo(() => SPEAKING_PROMPTS[index % SPEAKING_PROMPTS.length], [index])
@@ -20,7 +22,7 @@ export default function SpeakingCoachScreen() {
   }
 
   return (
-    <ScrollView className="flex-1 bg-slate-50" contentContainerStyle={{ padding: 16, paddingBottom: 32 }}>
+    <ScrollView className="flex-1 bg-slate-50" contentContainerStyle={{ padding: 16, paddingBottom: scrollBottomPad }}>
       <Text className="text-2xl font-bold text-slate-900">Speaking coach</Text>
       <Text className="mt-1 text-sm text-slate-500">Oral prompts — practice out loud.</Text>
 

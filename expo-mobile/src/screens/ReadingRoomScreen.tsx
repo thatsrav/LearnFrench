@@ -1,13 +1,15 @@
 import { useMemo, useState } from 'react'
 import { Pressable, ScrollView, Text, View } from 'react-native'
 import { LEVEL_ORDER, PASSAGES, type ReadingLevel } from '../content/readingPassages'
+import { useTabScreenBottomPadding } from '../lib/screenPadding'
 
 export default function ReadingRoomScreen() {
+  const scrollBottomPad = useTabScreenBottomPadding(28)
   const [level, setLevel] = useState<ReadingLevel>('A1')
   const content = useMemo(() => PASSAGES[level], [level])
 
   return (
-    <ScrollView className="flex-1 bg-slate-50" contentContainerStyle={{ padding: 16, paddingBottom: 32 }}>
+    <ScrollView className="flex-1 bg-slate-50" contentContainerStyle={{ padding: 16, paddingBottom: scrollBottomPad }}>
       <Text className="text-2xl font-bold text-slate-900">Reading room</Text>
       <Text className="mt-1 text-sm text-slate-500">Short passages and comprehension — by CEFR level.</Text>
 
