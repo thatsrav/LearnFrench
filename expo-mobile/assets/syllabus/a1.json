@@ -1,0 +1,193 @@
+[
+  {
+    "id": "a1-u1",
+    "grammar_rule_text": "Greetings and identity basics: Use 'bonjour', 'salut', 'au revoir' and introduce yourself with 'Je m'appelle ...'. Use subject pronouns (je, tu, il, elle, nous, vous, ils, elles) with present tense of être: je suis, tu es, il/elle est, nous sommes, vous êtes, ils/elles sont.",
+    "vocab_list": [
+      "bonjour","salut","bonsoir","au revoir","a bientot","merci","s il vous plait","de rien","oui","non",
+      "je","tu","il","elle","nous","vous","ils","elles","etre","suis",
+      "es","est","sommes","etes","sont","nom","prenom","ami","amie","famille",
+      "pere","mere","frere","soeur","enfant","fils","fille","homme","femme","monsieur",
+      "madame","mademoiselle","maison","ville","pays","france","francais","francaise","langue","ecole"
+    ],
+    "quiz": [
+      {
+        "question": "How do you say 'I am' in French?",
+        "options": ["je es", "je suis", "je sommes", "je est"],
+        "answer_index": 1
+      },
+      {
+        "question": "Choose the correct greeting for daytime.",
+        "options": ["bonne nuit", "bonjour", "pardon", "de rien"],
+        "answer_index": 1
+      },
+      {
+        "question": "Fill in: 'Nous ___ etudiants.'",
+        "options": ["suis", "es", "sommes", "etes"],
+        "answer_index": 2
+      },
+      {
+        "question": "What is the polite way to say 'thank you'?",
+        "options": ["merci", "de rien", "salut", "non"],
+        "answer_index": 0
+      },
+      {
+        "question": "Choose the correct pronoun for 'they (feminine)'.",
+        "options": ["ils", "elle", "elles", "vous"],
+        "answer_index": 2
+      }
+    ]
+  },
+  {
+    "id": "a1-u2",
+    "grammar_rule_text": "Definite and indefinite articles: Use 'le, la, les' for known nouns and 'un, une, des' for non-specific nouns. Contract 'de + le' into 'du'. In daily life phrases, match article gender with noun gender.",
+    "vocab_list": [
+      "le","la","les","un","une","des","du","de la","de l","table",
+      "chaise","porte","fenetre","lit","cuisine","salle","salon","bureau","telephone","portable",
+      "ordinateur","livre","cahier","stylo","crayon","sac","cle","voiture","bus","train",
+      "metro","velo","rue","avenue","place","magasin","supermarche","boulangerie","pharmacie","hopital",
+      "restaurant","cafe","hotel","cinema","banque","poste","argent","ticket","carte","journal"
+    ],
+    "quiz": [
+      {
+        "question": "Choose the correct article: ___ table",
+        "options": ["le", "la", "les", "un"],
+        "answer_index": 1
+      },
+      {
+        "question": "Choose the correct article: ___ livre",
+        "options": ["une", "la", "le", "des"],
+        "answer_index": 2
+      },
+      {
+        "question": "How do you say 'some tickets'?",
+        "options": ["la ticket", "des tickets", "un ticket", "le ticket"],
+        "answer_index": 1
+      },
+      {
+        "question": "Which is the contraction of 'de + le'?",
+        "options": ["de le", "du", "de la", "des"],
+        "answer_index": 1
+      },
+      {
+        "question": "Choose the definite plural article.",
+        "options": ["des", "les", "une", "du"],
+        "answer_index": 1
+      }
+    ]
+  },
+  {
+    "id": "a1-u3",
+    "grammar_rule_text": "Present tense of regular -ER verbs: remove -er and add endings -e, -es, -e, -ons, -ez, -ent. Use in daily routines: parler, aimer, habiter, travailler, etudier, regarder.",
+    "vocab_list": [
+      "parler","aimer","habiter","travailler","etudier","regarder","ecouter","chanter","danser","marcher",
+      "arriver","quitter","commencer","chercher","trouver","acheter","payer","manger","boire","cuisiner",
+      "dormir","rester","sortir","entrer","ouvrir","fermer","lire","ecrire","repondre","demander",
+      "aider","jouer","nager","courir","voyager","visiter","attendre","appeler","utiliser","porter",
+      "matin","apres midi","soir","nuit","heure","minute","jour","semaine","mois","annee"
+    ],
+    "quiz": [
+      {
+        "question": "Conjugate 'parler' with 'nous'.",
+        "options": ["nous parle", "nous parlons", "nous parlez", "nous parlent"],
+        "answer_index": 1
+      },
+      {
+        "question": "Conjugate 'aimer' with 'vous'.",
+        "options": ["vous aimez", "vous aimons", "vous aiment", "vous aime"],
+        "answer_index": 0
+      },
+      {
+        "question": "Fill in: 'Il ___ en ville.' (habiter)",
+        "options": ["habites", "habite", "habitons", "habitez"],
+        "answer_index": 1
+      },
+      {
+        "question": "Which ending is used with 'tu' for -ER verbs?",
+        "options": ["-ons", "-ez", "-es", "-ent"],
+        "answer_index": 2
+      },
+      {
+        "question": "Fill in: 'Elles ___ le soir.' (travailler)",
+        "options": ["travaille", "travaillent", "travaillez", "travaillons"],
+        "answer_index": 1
+      }
+    ]
+  },
+  {
+    "id": "a1-u4",
+    "grammar_rule_text": "Present tense of avoir and practical possession expressions. Avoir: j'ai, tu as, il/elle a, nous avons, vous avez, ils/elles ont. Use with age, hunger, thirst: avoir ... ans, avoir faim, avoir soif.",
+    "vocab_list": [
+      "avoir","ai","as","a","avons","avez","ont","faim","soif","chaud",
+      "froid","peur","raison","envie","besoin","ans","age","petit","grand","jeune",
+      "vieux","heureux","triste","fatigue","malade","content","ouverte","ferme","propre","sale",
+      "beau","belle","nouveau","nouvelle","vieux","vieille","bon","bonne","mauvais","mauvaise",
+      "petit dejeuner","dejeuner","diner","pain","eau","lait","cafe noir","the","jus","fruit"
+    ],
+    "quiz": [
+      {
+        "question": "Conjugate 'avoir' with 'je'.",
+        "options": ["je suis", "j'ai", "je as", "j'avons"],
+        "answer_index": 1
+      },
+      {
+        "question": "Fill in: 'Nous ___ faim.'",
+        "options": ["sommes", "avons", "avez", "ont"],
+        "answer_index": 1
+      },
+      {
+        "question": "How do you say 'She is 20 years old'?",
+        "options": ["Elle est 20 ans", "Elle a 20 ans", "Elle ai 20 ans", "Elle ont 20 ans"],
+        "answer_index": 1
+      },
+      {
+        "question": "Fill in: 'Vous ___ soif.'",
+        "options": ["avez", "avons", "as", "a"],
+        "answer_index": 0
+      },
+      {
+        "question": "Choose the correct plural form with 'ils'.",
+        "options": ["ils a", "ils as", "ils ont", "ils avez"],
+        "answer_index": 2
+      }
+    ]
+  },
+  {
+    "id": "a1-u5",
+    "grammar_rule_text": "Basic negation and simple questions in present tense. Negation: ne ... pas around verb. Questions: intonation (Tu parles francais ?), est-ce que, and simple question words (qui, quoi, ou, quand, comment, pourquoi).",
+    "vocab_list": [
+      "ne","pas","jamais","toujours","souvent","parfois","ici","la","partout","nulle part",
+      "qui","quoi","ou","quand","comment","pourquoi","combien","quel","quelle","quels",
+      "quelles","est ce que","avec","sans","pour","contre","chez","dans","sur","sous",
+      "devant","derriere","entre","loin","pres","maintenant","aujourd hui","demain","hier","tard",
+      "tot","vite","lentement","bien","mal","beaucoup","peu","tres","assez","encore"
+    ],
+    "quiz": [
+      {
+        "question": "Make it negative: 'Je parle francais.'",
+        "options": ["Je ne parle pas francais.", "Je parle ne pas francais.", "Je pas parle francais.", "Je ne pas parle francais."],
+        "answer_index": 0
+      },
+      {
+        "question": "Choose a correct question form.",
+        "options": ["Est-ce que tu habites ici ?", "Tu est-ce habites ici ?", "Tu habites est-ce que ici ?", "Est que tu habites ici ?"],
+        "answer_index": 0
+      },
+      {
+        "question": "Which word means 'where'?",
+        "options": ["quand", "qui", "ou", "quoi"],
+        "answer_index": 2
+      },
+      {
+        "question": "Fill in: 'Il ___ mange pas le matin.'",
+        "options": ["pas", "ne", "est", "a"],
+        "answer_index": 1
+      },
+      {
+        "question": "Which means 'how much'?",
+        "options": ["comment", "combien", "pourquoi", "quand"],
+        "answer_index": 1
+      }
+    ]
+  }
+]
+
