@@ -9,6 +9,7 @@ import ReadingRoomScreen from '../screens/ReadingRoomScreen'
 import SpeakingCoachScreen from '../screens/SpeakingCoachScreen'
 import LeaderboardScreen from '../screens/LeaderboardScreen'
 import LessonScreen from '../screens/LessonScreen'
+import FrenchLearnLogo from '../components/FrenchLearnLogo'
 
 export type RootStackParamList = {
   MainTabs: undefined
@@ -35,11 +36,15 @@ function MainTabs() {
         headerStyle: { backgroundColor: '#ffffff' },
         headerTitleStyle: { fontWeight: '700', color: '#0f172a' },
         headerTintColor: '#0f172a',
-        tabBarActiveTintColor: '#2563eb',
+        tabBarActiveTintColor: '#4f46e5',
         tabBarInactiveTintColor: '#64748b',
+        tabBarLabelStyle: { fontSize: 11, fontWeight: '600' },
         tabBarStyle: {
+          borderTopWidth: 1,
           borderTopColor: '#e2e8f0',
-          backgroundColor: '#fff',
+          backgroundColor: '#ffffff',
+          paddingTop: 4,
+          height: 62,
         },
       }}
     >
@@ -47,7 +52,8 @@ function MainTabs() {
         name="Home"
         component={HomeScreen}
         options={{
-          title: 'Writing Lab',
+          headerTitle: () => <FrenchLearnLogo size="sm" />,
+          headerTitleAlign: 'left',
           tabBarLabel: 'Home',
           tabBarIcon: ({ color, size }) => <Ionicons name="home-outline" size={size} color={color} />,
         }}
@@ -56,7 +62,8 @@ function MainTabs() {
         name="Syllabus"
         component={SyllabusScreen}
         options={{
-          title: 'Courses',
+          headerTitle: () => <FrenchLearnLogo size="sm" />,
+          headerTitleAlign: 'left',
           tabBarIcon: ({ color, size }) => <Ionicons name="book-outline" size={size} color={color} />,
         }}
       />
