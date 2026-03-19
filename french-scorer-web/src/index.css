@@ -4,7 +4,7 @@
 
 @layer base {
   :root {
-    color-scheme: dark;
+    color-scheme: light;
   }
   html,
   body,
@@ -13,8 +13,8 @@
   }
   body {
     margin: 0;
-    background: #09090b; /* zinc-950 */
-    color: #f4f4f5; /* zinc-100 */
+    background: #f8fafc;
+    color: #0f172a;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }

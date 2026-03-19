@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useState } from 'react'
+import { BookOpen, Flame, Home, Mic, PenSquare, PlayCircle, Trophy } from 'lucide-react'
 import {
   CartesianGrid,
   Line,
@@ -75,10 +76,18 @@ function computeDailyStreak(scores: StoredScore[]): number {
 
 function cefrColor(cecr: string): string {
   const level = cecr.toUpperCase()
-  if (level.startsWith('A')) return 'bg-emerald-500/15 text-emerald-200 ring-emerald-400/30'
-  if (level.startsWith('B')) return 'bg-sky-500/15 text-sky-200 ring-sky-400/30'
-  if (level.startsWith('C')) return 'bg-fuchsia-500/15 text-fuchsia-200 ring-fuchsia-400/30'
-  return 'bg-zinc-500/15 text-zinc-200 ring-zinc-400/30'
+  if (level.startsWith('A')) return 'bg-emerald-100 text-emerald-800'
+  if (level.startsWith('B')) return 'bg-indigo-100 text-indigo-800'
+  if (level.startsWith('C')) return 'bg-violet-100 text-violet-800'
+  return 'bg-slate-100 text-slate-700'
+}
+
+function getDailyVocab(level: string): string[] {
+  const cecr = level.toUpperCase()
+  if (cecr.startsWith('A')) return ['bonjour', 'merci', 'demain']
+  if (cecr.startsWith('B')) return ['cependant', 'améliorer', 'quotidiennement']
+  if (cecr.startsWith('C')) return ['nuancer', 'pertinent', 'cohérence']
+  return ['mot', 'phrase', 'conversation']
 }
 
 function App() {
@@ -89,7 +98,6 @@ function App() {
   const [result, setResult] = useState<FrenchScore | null>(null)
   const [resultProvider, setResultProvider] = useState<string | null>(null)
   const [recentScores, setRecentScores] = useState<StoredScore[]>([])
-  const [sidebarOpen, setSidebarOpen] = useState(true)
 
   const canSubmit = useMemo(() => text.trim().length > 0 && !loading, [text, loading])
   const apiBase =
@@ -117,10 +125,9 @@ function App() {
       if (!resp.ok) {
         throw new Error(data?.error || `Request failed (${resp.status})`)
       }
+
       setResult(data?.result ?? null)
-      if (!data?.result) {
-        throw new Error('No result returned from server.')
-      }
+      if (!data?.result) throw new Error('No result returned from server.')
       setResultProvider(String(data?.provider ?? ''))
 
       const nextRecent: StoredScore[] = [
@@ -143,95 +150,64 @@ function App() {
 
   const streak = useMemo(() => computeDailyStreak(recentScores), [recentScores])
   const latestCecr = result?.cecr ?? (recentScores.at(-1)?.cecr || '—')
+  const dailyVocab = useMemo(() => getDailyVocab(latestCecr), [latestCecr])
 
-  const chartData = useMemo(() => {
-    return recentScores.map((s) => ({
-      t: new Date(s.ts).toLocaleDateString(undefined, { month: 'short', day: 'numeric' }),
-      score: Math.max(0, Math.min(100, s.score)),
-    }))
-  }, [recentScores])
+  const chartData = useMemo(
+    () =>
+      recentScores.map((s) => ({
+        t: new Date(s.ts).toLocaleDateString(undefined, { month: 'short', day: 'numeric' }),
+        score: Math.max(0, Math.min(100, s.score)),
+      })),
+    [recentScores],
+  )
 
   return (
-    <div className="h-full bg-gradient-to-b from-zinc-950 via-zinc-950 to-zinc-900">
+    <div className="h-full bg-[#F8FAFC] text-slate-800">
       <div className="flex h-full">
-        <aside
-          className={[
-            'h-full border-r border-white/10 bg-zinc-950/70 backdrop-blur',
-            sidebarOpen ? 'w-[240px]' : 'w-[72px]',
-            'transition-[width] duration-200 ease-out',
-          ].join(' ')}
-        >
-          <div className="flex h-16 items-center justify-between px-4">
-            <div className="flex items-center gap-3">
-              <div className="h-9 w-9 rounded-xl bg-white/10 ring-1 ring-white/10" />
-              {sidebarOpen && (
-                <div className="leading-tight">
-                  <div className="text-sm font-semibold text-white">French Scorer</div>
-                  <div className="text-xs text-zinc-400">Dashboard</div>
-                </div>
-              )}
-            </div>
-            <button
-              type="button"
-              onClick={() => setSidebarOpen((v) => !v)}
-              className="rounded-lg border border-white/10 bg-white/5 px-2 py-1 text-xs text-zinc-200 hover:bg-white/10"
-            >
-              {sidebarOpen ? '⟨' : '⟩'}
-            </button>
+        <aside className="w-[92px] border-r border-[#002654]/20 bg-[#002654] p-3">
+          <div className="mb-6 rounded-2xl bg-white/10 py-3 text-center text-xs font-semibold text-white">
+            FR
           </div>
-
-          <nav className="px-2">
+          <nav className="space-y-2">
             {[
-              { label: 'Practice', key: 'practice' },
-              { label: 'Scoreboard', key: 'scoreboard' },
-              { label: 'Settings', key: 'settings' },
-            ].map((item) => (
+              { label: 'Home', icon: Home },
+              { label: 'Writing Lab', icon: PenSquare },
+              { label: 'Reading Room', icon: BookOpen },
+              { label: 'Speaking Coach', icon: Mic },
+              { label: 'Leaderboard', icon: Trophy },
+            ].map(({ label, icon: Icon }) => (
               <button
-                key={item.key}
+                key={label}
                 type="button"
-                className={[
-                  'mt-1 flex w-full items-center gap-3 rounded-xl px-3 py-2 text-left',
-                  'text-sm text-zinc-200 hover:bg-white/5',
-                ].join(' ')}
+                title={label}
+                className="flex w-full flex-col items-center gap-1 rounded-xl px-2 py-3 text-[11px] font-medium text-white/90 transition hover:bg-white/15"
               >
-                <span className="inline-block h-2.5 w-2.5 rounded-full bg-white/20" />
-                {sidebarOpen && <span>{item.label}</span>}
+                <Icon size={18} />
+                <span className="text-center leading-tight">{label}</span>
               </button>
             ))}
           </nav>
         </aside>
 
-        <main className="flex-1 overflow-auto p-6">
-          <header className="mb-6 flex flex-wrap items-center justify-between gap-3">
-            <div>
-              <div className="text-xs font-medium text-zinc-400">Practice</div>
-              <h1 className="text-2xl font-semibold tracking-tight text-white">French scoring dashboard</h1>
-            </div>
-            <div className="flex items-center gap-3">
-              <span className={['inline-flex items-center rounded-full px-3 py-1 text-xs ring-1', cefrColor(latestCecr)].join(' ')}>
-                CEFR: <span className="ml-1 font-semibold">{latestCecr}</span>
-              </span>
-              <div className="rounded-full bg-white/5 px-3 py-1 text-xs text-zinc-200 ring-1 ring-white/10">
-                Streak: <span className="font-semibold">{streak}</span> day{streak === 1 ? '' : 's'}
-              </div>
-            </div>
+        <main className="flex-1 overflow-auto p-4 md:p-6">
+          <header className="mb-5">
+            <p className="text-sm font-medium text-[#2955B8]">Modern French</p>
+            <h1 className="text-2xl font-semibold tracking-tight text-slate-900">Bento Dashboard</h1>
           </header>
 
-          <div className="grid grid-cols-12 gap-4">
-            {/* Primary tile */}
-            <section className="col-span-12 lg:col-span-7 rounded-2xl border border-white/10 bg-white/[0.04] p-4">
+          <div className="grid grid-cols-1 gap-4 lg:grid-cols-12">
+            <section className="rounded-2xl border border-slate-200/70 bg-white p-5 shadow-sm transition hover:scale-[1.01] lg:col-span-8">
               <div className="flex flex-wrap items-center justify-between gap-3">
                 <div>
-                  <div className="text-sm font-semibold text-white">Write in French</div>
-                  <div className="text-xs text-zinc-400">Paste your text and score it with your chosen provider.</div>
+                  <h2 className="text-lg font-semibold text-slate-900">French Scorer</h2>
+                  <p className="text-sm text-slate-500">Writing Lab: improve your French writing instantly.</p>
                 </div>
                 <div className="flex items-center gap-2">
-                  <label className="text-xs font-medium text-zinc-400">Provider</label>
                   <select
                     value={provider}
                     onChange={(e) => setProvider(e.target.value as 'auto' | 'gemini' | 'groq')}
                     disabled={loading}
-                    className="rounded-xl border border-white/10 bg-zinc-950/60 px-3 py-2 text-sm text-zinc-100 outline-none ring-0 focus:border-white/20"
+                    className="rounded-xl border border-slate-200 bg-white px-3 py-2 text-sm text-slate-700 outline-none focus:border-[#2955B8]"
                   >
                     <option value="auto">Auto</option>
                     <option value="gemini">Gemini</option>
@@ -242,11 +218,11 @@ function App() {
                     onClick={onScore}
                     disabled={!canSubmit}
                     className={[
-                      'rounded-xl px-4 py-2 text-sm font-semibold',
-                      canSubmit ? 'bg-indigo-500 text-white hover:bg-indigo-400' : 'bg-white/10 text-zinc-400',
+                      'rounded-xl px-4 py-2 text-sm font-semibold text-white transition',
+                      canSubmit ? 'bg-[#2955B8] hover:bg-[#244a9e]' : 'bg-slate-300',
                     ].join(' ')}
                   >
-                    {loading ? 'Scoring…' : 'Score'}
+                    Score My French
                   </button>
                 </div>
               </div>
@@ -254,114 +230,137 @@ function App() {
               <textarea
                 value={text}
                 onChange={(e) => setText(e.target.value)}
-                rows={12}
-                placeholder="Écrivez votre texte ici…"
-                className="mt-4 w-full resize-y rounded-2xl border border-white/10 bg-zinc-950/40 p-4 text-sm text-zinc-100 outline-none placeholder:text-zinc-500 focus:border-white/20"
+                rows={10}
+                placeholder="Écrivez votre texte en français..."
+                className="mt-4 w-full resize-y rounded-2xl border border-white/80 bg-white/70 p-4 text-sm text-slate-800 shadow-inner backdrop-blur-md outline-none placeholder:text-slate-400 focus:border-[#2955B8]"
               />
 
               {error && (
-                <div className="mt-4 rounded-2xl border border-red-500/30 bg-red-500/10 p-3 text-sm text-red-200">
+                <div className="mt-4 rounded-xl border border-[#F27166]/40 bg-[#F27166]/10 p-3 text-sm text-[#8f2a22]">
                   <span className="font-semibold">Error:</span> {error}
                 </div>
               )}
 
-              {result && (
-                <div className="mt-4 rounded-2xl border border-white/10 bg-zinc-950/40 p-4">
+              {loading && (
+                <div className="mt-4 rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
+                  <div className="animate-pulse space-y-3">
+                    <div className="h-6 w-24 rounded bg-slate-200" />
+                    <div className="h-3 w-3/4 rounded bg-slate-200" />
+                    <div className="h-3 w-2/3 rounded bg-slate-200" />
+                    <div className="h-24 w-full rounded-xl bg-slate-200" />
+                  </div>
+                </div>
+              )}
+
+              {!loading && result && (
+                <div className="mt-4 rounded-2xl border border-slate-200 bg-white p-4">
                   <div className="flex flex-wrap items-end justify-between gap-3">
-                    <div className="flex items-baseline gap-3">
-                      <div className="text-4xl font-extrabold tracking-tight text-white">{result.score}</div>
-                      <div className="text-sm text-zinc-400">/ 100</div>
+                    <div className="flex items-end gap-2">
+                      <div className="text-4xl font-bold text-slate-900">{result.score}</div>
+                      <div className="pb-1 text-sm text-slate-500">/100</div>
                     </div>
-                    <div className="flex items-center gap-2 text-xs text-zinc-300">
+                    <div className="flex items-center gap-2">
                       {resultProvider && (
-                        <span className="rounded-full bg-white/5 px-2 py-1 ring-1 ring-white/10">
-                          Provider: <span className="font-semibold">{resultProvider}</span>
+                        <span className="rounded-full bg-slate-100 px-3 py-1 text-xs font-medium text-slate-600">
+                          {resultProvider}
                         </span>
                       )}
-                      <span className={['rounded-full px-2 py-1 ring-1', cefrColor(result.cecr)].join(' ')}>
-                        CEFR <span className="font-semibold">{result.cecr}</span>
+                      <span className={['rounded-full px-3 py-1 text-xs font-semibold', cefrColor(result.cecr)].join(' ')}>
+                        CEFR {result.cecr}
                       </span>
                     </div>
                   </div>
 
-                  <div className="mt-4 grid grid-cols-1 gap-4 md:grid-cols-2">
+                  <div className="mt-4 grid gap-4 md:grid-cols-2">
                     <div>
-                      <div className="text-xs font-semibold uppercase tracking-wide text-zinc-400">Strengths</div>
-                      <ul className="mt-2 list-disc space-y-1 pl-5 text-sm text-zinc-200">
-                        {result.strengths?.map((s, i) => (
+                      <h3 className="text-xs font-semibold uppercase tracking-wide text-slate-500">Strengths</h3>
+                      <ul className="mt-2 list-disc space-y-1 pl-5 text-sm text-slate-700">
+                        {result.strengths.map((s, i) => (
                           <li key={i}>{s}</li>
                         ))}
                       </ul>
                     </div>
                     <div>
-                      <div className="text-xs font-semibold uppercase tracking-wide text-zinc-400">Improvements</div>
-                      <ul className="mt-2 list-disc space-y-1 pl-5 text-sm text-zinc-200">
-                        {result.improvements?.map((s, i) => (
+                      <h3 className="text-xs font-semibold uppercase tracking-wide text-slate-500">Improvements</h3>
+                      <ul className="mt-2 list-disc space-y-1 pl-5 text-sm text-slate-700">
+                        {result.improvements.map((s, i) => (
                           <li key={i}>{s}</li>
                         ))}
                       </ul>
                     </div>
-                  </div>
-
-                  <div className="mt-4">
-                    <div className="text-xs font-semibold uppercase tracking-wide text-zinc-400">Corrected version</div>
-                    <pre className="mt-2 whitespace-pre-wrap rounded-2xl border border-white/10 bg-black/30 p-3 text-sm text-zinc-100">
-                      {result.corrected_version}
-                    </pre>
                   </div>
                 </div>
               )}
             </section>
 
-            {/* Secondary tiles */}
-            <section className="col-span-12 lg:col-span-5 grid grid-cols-12 gap-4">
-              <div className="col-span-12 rounded-2xl border border-white/10 bg-white/[0.04] p-4">
-                <div className="flex items-center justify-between">
-                  <div>
-                    <div className="text-sm font-semibold text-white">Recent Scores</div>
-                    <div className="text-xs text-zinc-400">Last {chartData.length} runs</div>
+            <section className="rounded-2xl border border-slate-200/70 bg-white p-5 shadow-sm transition hover:scale-[1.01] lg:col-span-4">
+              <h2 className="text-lg font-semibold text-slate-900">Stats</h2>
+              <p className="text-sm text-slate-500">Current level and daily consistency.</p>
+              <div className="mt-6 flex flex-col items-center gap-5">
+                <div className="rounded-full bg-[#2955B8] px-8 py-6 text-center text-white shadow-[0_0_45px_rgba(41,85,184,0.35)]">
+                  <div className="text-xs uppercase tracking-wide text-white/80">CEFR Level</div>
+                  <div className="text-4xl font-extrabold">{latestCecr}</div>
+                </div>
+                <div className="flex items-center gap-2 rounded-xl bg-amber-50 px-4 py-3 text-amber-700 ring-1 ring-amber-200">
+                  <Flame className="text-amber-500" size={18} />
+                  <div className="text-sm font-semibold">{streak} Days</div>
+                </div>
+              </div>
+            </section>
+
+            <section className="rounded-2xl border border-slate-200/70 bg-white p-5 shadow-sm transition hover:scale-[1.01] lg:col-span-4">
+              <h2 className="text-lg font-semibold text-slate-900">Daily Vocab</h2>
+              <p className="text-sm text-slate-500">Three words tailored to your level.</p>
+              <div className="mt-4 space-y-3">
+                {dailyVocab.map((word) => (
+                  <div
+                    key={word}
+                    className="flex items-center justify-between rounded-xl border border-slate-200 bg-slate-50 px-3 py-2"
+                  >
+                    <span className="font-medium text-slate-700">{word}</span>
+                    <button
+                      type="button"
+                      className="inline-flex items-center gap-1 rounded-lg bg-white px-2 py-1 text-xs text-[#2955B8] ring-1 ring-slate-200 hover:bg-slate-100"
+                    >
+                      <PlayCircle size={14} />
+                      Listen
+                    </button>
                   </div>
-                  <div className="text-xs text-zinc-400">0–100</div>
-                </div>
-                <div className="mt-3 h-44">
-                  {chartData.length === 0 ? (
-                    <div className="flex h-full items-center justify-center rounded-xl border border-white/10 bg-zinc-950/40 text-sm text-zinc-400">
-                      Score something to see a chart.
-                    </div>
-                  ) : (
-                    <ResponsiveContainer width="100%" height="100%">
-                      <LineChart data={chartData} margin={{ top: 10, right: 10, bottom: 0, left: -10 }}>
-                        <CartesianGrid stroke="rgba(255,255,255,0.08)" vertical={false} />
-                        <XAxis dataKey="t" tick={{ fill: 'rgba(244,244,245,0.7)', fontSize: 12 }} tickLine={false} axisLine={false} />
-                        <YAxis domain={[0, 100]} tick={{ fill: 'rgba(244,244,245,0.7)', fontSize: 12 }} tickLine={false} axisLine={false} />
-                        <Tooltip
-                          contentStyle={{ background: 'rgba(9,9,11,0.9)', border: '1px solid rgba(255,255,255,0.12)', borderRadius: 12 }}
-                          labelStyle={{ color: 'rgba(244,244,245,0.8)' }}
-                          itemStyle={{ color: 'rgba(244,244,245,0.9)' }}
-                        />
-                        <Line type="monotone" dataKey="score" stroke="#818cf8" strokeWidth={2} dot={false} />
-                      </LineChart>
-                    </ResponsiveContainer>
-                  )}
-                </div>
+                ))}
               </div>
+            </section>
 
-              <div className="col-span-6 rounded-2xl border border-white/10 bg-white/[0.04] p-4">
-                <div className="text-sm font-semibold text-white">Daily streak</div>
-                <div className="mt-1 text-xs text-zinc-400">Consecutive days you scored</div>
-                <div className="mt-6 text-4xl font-extrabold tracking-tight text-white">{streak}</div>
-                <div className="mt-1 text-sm text-zinc-300">day{streak === 1 ? '' : 's'}</div>
-              </div>
-
-              <div className="col-span-6 rounded-2xl border border-white/10 bg-white/[0.04] p-4">
-                <div className="text-sm font-semibold text-white">CEFR level</div>
-                <div className="mt-1 text-xs text-zinc-400">Latest result</div>
-                <div className="mt-6">
-                  <span className={['inline-flex items-center rounded-2xl px-4 py-2 text-2xl font-extrabold ring-1', cefrColor(latestCecr)].join(' ')}>
-                    {latestCecr}
-                  </span>
+            <section className="rounded-2xl border border-slate-200/70 bg-white p-5 shadow-sm transition hover:scale-[1.01] lg:col-span-8">
+              <div className="mb-2 flex items-center justify-between">
+                <div>
+                  <h2 className="text-lg font-semibold text-slate-900">Progress</h2>
+                  <p className="text-sm text-slate-500">Track your score trends over time.</p>
                 </div>
-                <div className="mt-2 text-xs text-zinc-400">A1 → C2</div>
+                <span className="text-xs text-slate-400">0 - 100</span>
+              </div>
+              <div className="h-56">
+                {chartData.length === 0 ? (
+                  <div className="flex h-full items-center justify-center rounded-xl border border-slate-200 bg-slate-50 text-sm text-slate-500">
+                    Start scoring to build your history.
+                  </div>
+                ) : (
+                  <ResponsiveContainer width="100%" height="100%">
+                    <LineChart data={chartData} margin={{ top: 16, right: 10, left: -14, bottom: 4 }}>
+                      <CartesianGrid stroke="#E2E8F0" vertical={false} />
+                      <XAxis dataKey="t" tick={{ fill: '#64748B', fontSize: 12 }} tickLine={false} axisLine={false} />
+                      <YAxis domain={[0, 100]} tick={{ fill: '#64748B', fontSize: 12 }} tickLine={false} axisLine={false} />
+                      <Tooltip
+                        contentStyle={{
+                          borderRadius: 12,
+                          border: '1px solid #E2E8F0',
+                          background: 'white',
+                          color: '#1E293B',
+                        }}
+                      />
+                      <Line type="monotone" dataKey="score" stroke="#2955B8" strokeWidth={3} dot={false} />
+                    </LineChart>
+                  </ResponsiveContainer>
+                )}
               </div>
             </section>
           </div>
