@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react'
+import { useMemo } from 'react'
 import { LEVEL_ORDER, type CEFRLevel } from '../lib/syllabus'
 
 const PASSAGES: Record<CEFRLevel, { title: string; text: string; question: string; answer: string }[]> = {
@@ -45,38 +45,33 @@ const PASSAGES: Record<CEFRLevel, { title: string; text: string; question: strin
 }
 
 export default function ReadingRoomPage() {
-  const [level, setLevel] = useState<CEFRLevel>('A1')
-  const content = useMemo(() => PASSAGES[level], [level])
+  const items = useMemo(
+    () =>
+      LEVEL_ORDER.flatMap((level) =>
+        PASSAGES[level].map((p) => ({ ...p, level })),
+      ),
+    [],
+  )
 
   return (
     <section className="rounded-2xl border border-slate-200/70 bg-white p-5 shadow-sm">
       <h2 className="text-xl font-semibold text-slate-900">Reading Room</h2>
-      <p className="mt-1 text-sm text-slate-500">Short reading drills by CEFR level.</p>
-
-      <div className="mt-4 flex flex-wrap gap-2">
-        {LEVEL_ORDER.map((l) => (
-          <button
-            key={l}
-            onClick={() => setLevel(l)}
-            className={[
-              'rounded-full px-4 py-2 text-sm font-semibold transition',
-              level === l ? 'bg-[#2955B8] text-white' : 'bg-slate-200 text-slate-700 hover:bg-slate-300',
-            ].join(' ')}
-          >
-            {l}
-          </button>
-        ))}
-      </div>
+      <p className="mt-1 text-sm text-slate-500">Short reading drills from A1 to C1.</p>
 
       <div className="mt-4 space-y-4">
-        {content.map((p) => (
-          <article key={p.title} className="rounded-2xl border border-slate-200 bg-slate-50 p-4">
-            <h3 className="text-base font-semibold text-slate-900">{p.title}</h3>
+        {items.map((p) => (
+          <article key={`${p.level}-${p.title}`} className="rounded-2xl border border-slate-200 bg-slate-50 p-4">
+            <div className="flex flex-wrap items-baseline justify-between gap-2">
+              <h3 className="text-base font-semibold text-slate-900">{p.title}</h3>
+              <span className="rounded-full bg-slate-200 px-2 py-0.5 text-xs font-semibold text-slate-600">{p.level}</span>
+            </div>
             <p className="mt-2 text-sm leading-6 text-slate-700">{p.text}</p>
             <div className="mt-3 rounded-xl bg-white p-3">
               <p className="text-xs font-semibold uppercase tracking-wide text-slate-500">Comprehension</p>
               <p className="mt-1 text-sm text-slate-800">{p.question}</p>
-              <p className="mt-2 text-sm text-[#2955B8]"><span className="font-semibold">Answer:</span> {p.answer}</p>
+              <p className="mt-2 text-sm text-[#2955B8]">
+                <span className="font-semibold">Answer:</span> {p.answer}
+              </p>
             </div>
           </article>
         ))}
@@ -84,4 +79,3 @@ export default function ReadingRoomPage() {
     </section>
   )
 }
-
