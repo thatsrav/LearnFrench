@@ -35,9 +35,23 @@ export default function AccountPage() {
   const submit = async () => {
     if (!email.trim() || !password) return
     setBusy(true)
-    const fn = mode === 'signin' ? signInWithEmail : signUpWithEmail
-    const { error } = await fn(email, password)
+    setSyncMsg(null)
+    if (mode === 'signin') {
+      const { error } = await signInWithEmail(email, password)
+      setBusy(false)
+      if (error) setSyncMsg(error.message)
+      else setSyncMsg('Signed in.')
+      return
+    }
+    const { error, info } = await signUpWithEmail(email, password)
     setBusy(false)
+    if (error) setSyncMsg(error.message)
+    else if (info) setSyncMsg(info)
+  }
+
+  const onGoogle = async () => {
+    setSyncMsg(null)
+    const { error } = await signInWithGoogle()
     if (error) setSyncMsg(error.message)
   }
 
@@ -134,6 +148,18 @@ export default function AccountPage() {
       <h1 className="text-2xl font-bold text-slate-900">Account</h1>
       <p className="text-sm text-slate-600">Sign in with email or Google to sync progress.</p>
 
+      {syncMsg ? (
+        <p
+          className={`rounded-xl px-3 py-2 text-sm font-medium ${
+            syncMsg === 'Signed in.' || syncMsg.includes('Check your email') || syncMsg.includes('Account ready')
+              ? 'bg-emerald-50 text-emerald-800'
+              : 'bg-red-50 text-red-700'
+          }`}
+        >
+          {syncMsg}
+        </p>
+      ) : null}
+
       <div className="flex rounded-xl bg-slate-200 p-1">
         <button
           type="button"
@@ -184,7 +210,7 @@ export default function AccountPage() {
       <button
         type="button"
         disabled={busy}
-        onClick={() => void signInWithGoogle()}
+        onClick={() => void onGoogle()}
         className="w-full rounded-xl border border-slate-200 bg-white py-3 text-sm font-semibold text-slate-800 hover:bg-slate-50"
       >
         Continue with Google

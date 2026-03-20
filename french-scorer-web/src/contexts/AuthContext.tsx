@@ -8,7 +8,10 @@ type AuthContextValue = {
   loading: boolean
   configured: boolean
   signInWithEmail: (email: string, password: string) => Promise<{ error: Error | null }>
-  signUpWithEmail: (email: string, password: string) => Promise<{ error: Error | null }>
+  signUpWithEmail: (
+    email: string,
+    password: string,
+  ) => Promise<{ error: Error | null; info?: string }>
   signInWithGoogle: () => Promise<{ error: Error | null }>
   signOut: () => Promise<void>
 }
@@ -40,18 +43,30 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
   const signUpWithEmail = useCallback(async (email: string, password: string) => {
     if (!supabase) return { error: new Error('Supabase not configured') }
-    const { error } = await supabase.auth.signUp({ email: email.trim(), password })
-    return { error: error ? new Error(error.message) : null }
+    const { data, error } = await supabase.auth.signUp({ email: email.trim(), password })
+    if (error) return { error: new Error(error.message) }
+    // Email confirmation enabled → user exists but no session yet
+    if (data.user && !data.session) {
+      return {
+        error: null,
+        info: 'Check your email for a confirmation link, then sign in here.',
+      }
+    }
+    return { error: null, info: 'Account ready — you are signed in.' }
   }, [])
 
   const signInWithGoogle = useCallback(async () => {
     if (!supabase) return { error: new Error('Supabase not configured') }
     const redirectTo = `${window.location.origin}/auth/callback`
-    const { error } = await supabase.auth.signInWithOAuth({
+    const { data, error } = await supabase.auth.signInWithOAuth({
       provider: 'google',
       options: { redirectTo },
     })
-    return { error: error ? new Error(error.message) : null }
+    if (error) return { error: new Error(error.message) }
+    if (data.url) {
+      window.location.assign(data.url)
+    }
+    return { error: null }
   }, [])
 
   const signOut = useCallback(async () => {
