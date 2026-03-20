@@ -1,4 +1,3 @@
-import { NavigationContainer } from '@react-navigation/native'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import { Ionicons } from '@expo/vector-icons'
@@ -131,34 +130,32 @@ function MainTabs() {
 
 export default function AppNavigator() {
   return (
-    <NavigationContainer>
-      <Stack.Navigator
-        screenOptions={{
+    <Stack.Navigator
+      screenOptions={{
         headerStyle: { backgroundColor: '#ffffff' },
         headerTitleStyle: { fontWeight: '700', color: '#0f172a' },
         headerTintColor: '#2563eb',
-          contentStyle: { backgroundColor: '#f8f9fb' },
-        }}
-      >
-        <Stack.Screen name="MainTabs" component={MainTabs} options={{ headerShown: false }} />
-        <Stack.Screen name="UnitOverviewScreen" component={UnitOverviewScreen} options={{ title: 'Unit' }} />
-        <Stack.Screen name="WritingJournal" component={WritingJournalScreen} options={{ title: 'Writing journal' }} />
-        <Stack.Screen name="JournalEntryDetail" component={JournalEntryDetailScreen} options={{ title: 'Entry' }} />
-        <Stack.Screen name="LessonScreen" component={LessonScreen} options={{ title: 'Lesson' }} />
-        <Stack.Screen name="SpacedReview" component={SpacedReviewScreen} options={{ title: 'Daily review' }} />
-        <Stack.Screen name="TefPrepHub" component={TefPrepHubScreen} options={{ title: 'TEF Prep' }} />
-        <Stack.Screen name="TefPrepUnit" component={TefPrepUnitScreen} options={{ title: 'TEF — Unit' }} />
-        <Stack.Screen
-          name="TefPrepActivity"
-          component={TefPrepActivityScreen}
-          options={({ route }) => ({
-            title:
-              route.params.skill === 'listening'
-                ? 'TEF Listening'
-                : `${route.params.skill} · U${route.params.unit}`,
-          })}
-        />
-      </Stack.Navigator>
-    </NavigationContainer>
+        contentStyle: { backgroundColor: '#f8f9fb' },
+      }}
+    >
+      <Stack.Screen name="MainTabs" component={MainTabs} options={{ headerShown: false }} />
+      <Stack.Screen name="UnitOverviewScreen" component={UnitOverviewScreen} options={{ title: 'Unit' }} />
+      <Stack.Screen name="WritingJournal" component={WritingJournalScreen} options={{ title: 'Writing journal' }} />
+      <Stack.Screen name="JournalEntryDetail" component={JournalEntryDetailScreen} options={{ title: 'Entry' }} />
+      <Stack.Screen name="LessonScreen" component={LessonScreen} options={{ title: 'Lesson' }} />
+      <Stack.Screen name="SpacedReview" component={SpacedReviewScreen} options={{ title: 'Daily review' }} />
+      <Stack.Screen name="TefPrepHub" component={TefPrepHubScreen} options={{ title: 'TEF Prep' }} />
+      <Stack.Screen name="TefPrepUnit" component={TefPrepUnitScreen} options={{ title: 'TEF — Unit' }} />
+      <Stack.Screen
+        name="TefPrepActivity"
+        component={TefPrepActivityScreen}
+        options={({ route }) => ({
+          title:
+            route.params.skill === 'listening'
+              ? 'TEF Listening'
+              : `${route.params.skill} · U${route.params.unit}`,
+        })}
+      />
+    </Stack.Navigator>
   )
 }

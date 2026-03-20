@@ -54,6 +54,7 @@ For **sign-in and cloud progress**, copy `french-scorer-web/.env.example` to `.e
 
 - **Key safety**: the API key stays in the backend `.env`. Don’t put keys in frontend code.
 - If you deploy, lock down CORS and consider auth + rate limits.
+- **Listening TTS (more natural speech)**: With `OPENAI_API_KEY` set, the API exposes `POST /api/tts/french` (body: `{ "text": "…" }`, optional `"voice"`: `nova` | `alloy` | …) and returns MP3 (`tts-1-hd`). Point **`VITE_API_BASE_URL`** (web) and optionally **`EXPO_PUBLIC_API_BASE_URL`** (Expo, e.g. your LAN IP + port) at that server so TEF listening fallbacks use cloud audio; otherwise the app picks the best **on-device / browser** French voice and slows the rate slightly for clarity. For exam-faithful audio later, prefer real **`audio_uri`** assets in the listening catalog.
 
 ## Providers
 

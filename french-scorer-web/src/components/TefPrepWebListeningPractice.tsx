@@ -14,6 +14,7 @@ import {
 import { getModuleIdForContentUnit } from '../lib/curriculum'
 import { persistTefPrepListeningAttempt, type TefPrepAnswerRecord } from '../lib/tefPrepProgressWeb'
 import { supabase } from '../lib/supabase'
+import { listeningAccentToBcp47, speakFrenchListening, stopFrenchWebTts } from '../lib/frenchWebTts'
 
 const LETTERS = ['A', 'B', 'C', 'D'] as const
 
@@ -28,14 +29,6 @@ function clampPlayerSpeed(rate: number): 0.8 | 1 | 1.2 {
   if (rate <= 0.85) return 0.8
   if (rate >= 1.05) return 1.2
   return 1.0
-}
-
-function speakFrCa(text: string) {
-  if (typeof window === 'undefined' || !window.speechSynthesis) return
-  const u = new SpeechSynthesisUtterance(text)
-  u.lang = 'fr-CA'
-  window.speechSynthesis.cancel()
-  window.speechSynthesis.speak(u)
 }
 
 type Props = {
@@ -279,8 +272,10 @@ export default function TefPrepWebListeningPractice({ tefUnit }: Props) {
                 <button
                   type="button"
                   onClick={() => {
-                    window.speechSynthesis?.cancel()
-                    speakFrCa(content.transcript_fr)
+                    stopFrenchWebTts()
+                    void speakFrenchListening(content.transcript_fr, listeningAccentToBcp47(content.accent)).then(
+                      () => {},
+                    )
                     setTtsEngaged(true)
                   }}
                   className="mt-3 inline-flex w-full items-center justify-center gap-2 rounded-xl bg-emerald-600 py-2.5 text-sm font-bold text-white shadow-sm hover:bg-emerald-700"

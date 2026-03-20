@@ -386,6 +386,61 @@ app.post("/api/score", async (req, res) => {
   }
 });
 
+const OPENAI_TTS_VOICES = new Set(["alloy", "echo", "fable", "onyx", "nova", "shimmer"]);
+
+/**
+ * OpenAI Text-to-Speech (HD) for French listening / practice.
+ * Requires OPENAI_API_KEY. Used by french-scorer-web (VITE_API_BASE_URL) and expo-mobile (EXPO_PUBLIC_API_BASE_URL).
+ */
+app.post("/api/tts/french", async (req, res) => {
+  try {
+    const text = (req.body && req.body.text ? String(req.body.text) : "").trim();
+    if (!text) {
+      return res.status(400).json({ error: "Missing 'text'." });
+    }
+    if (text.length > 4096) {
+      return res.status(400).json({ error: "Text too long (max 4096 chars)." });
+    }
+
+    const apiKey = (process.env.OPENAI_API_KEY || "").trim();
+    if (!apiKey) {
+      return res.status(503).json({ error: "TTS unavailable: OPENAI_API_KEY not set on server." });
+    }
+
+    let voice = String(req.body?.voice || "nova").trim().toLowerCase();
+    if (!OPENAI_TTS_VOICES.has(voice)) voice = "nova";
+
+    const r = await fetch("https://api.openai.com/v1/audio/speech", {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${apiKey}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        model: "tts-1-hd",
+        voice,
+        input: text,
+        response_format: "mp3",
+      }),
+    });
+
+    if (!r.ok) {
+      const err = await r.text().catch(() => "");
+      return res.status(502).json({
+        error: "OpenAI TTS request failed",
+        details: err.slice(0, 800),
+      });
+    }
+
+    const buffer = Buffer.from(await r.arrayBuffer());
+    res.setHeader("Content-Type", "audio/mpeg");
+    res.setHeader("Cache-Control", "private, max-age=3600");
+    return res.send(buffer);
+  } catch (err) {
+    return res.status(500).json({ error: err?.message || String(err) });
+  }
+});
+
 const port = Number(PORT_FROM_PLATFORM || process.env.PORT) || 8787;
 // Render and other hosts need a public bind; localhost-only fails health checks.
 const host = process.env.HOST || "0.0.0.0";

@@ -8,7 +8,6 @@ import {
 } from 'react-native'
 import { useNavigation } from '@react-navigation/native'
 import type { NativeStackNavigationProp } from '@react-navigation/native-stack'
-import * as Speech from 'expo-speech'
 import { Ionicons } from '@expo/vector-icons'
 import AudioPlayer from './AudioPlayer'
 import { getListeningContentForTefUnit } from '../content/listeningContent'
@@ -24,6 +23,7 @@ import {
 import { getModuleIdForContentUnit } from '../lib/curriculum'
 import type { RootStackParamList } from '../navigation/AppNavigator'
 import { useStackScreenBottomPadding } from '../lib/screenPadding'
+import { listeningAccentToBcp47, speakFrenchListening, stopFrenchExpoTts } from '../lib/frenchExpoTts'
 
 const LETTERS = ['A', 'B', 'C', 'D'] as const
 
@@ -287,9 +287,11 @@ export default function TefPrepListeningPractice({ tefUnit }: Props) {
                 <Text className="font-sans text-xs text-amber-950">Pas de fichier audio : lecture TTS pour simuler l’écoute.</Text>
                 <Pressable
                   onPress={() => {
-                    Speech.stop()
-                    Speech.speak(content.transcript_fr, { language: 'fr-CA' })
-                    setTtsEngaged(true)
+                    void (async () => {
+                      await stopFrenchExpoTts()
+                      setTtsEngaged(true)
+                      await speakFrenchListening(content.transcript_fr, listeningAccentToBcp47(content.accent))
+                    })()
                   }}
                   className="mt-3 flex-row items-center justify-center gap-2 rounded-xl bg-emerald-600 py-2.5 active:bg-emerald-700"
                 >

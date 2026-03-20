@@ -23,7 +23,7 @@ import type { NativeStackNavigationProp } from '@react-navigation/native-stack'
 import type { BottomTabNavigationProp } from '@react-navigation/bottom-tabs'
 import { LinearGradient } from 'expo-linear-gradient'
 import { Ionicons } from '@expo/vector-icons'
-import * as Speech from 'expo-speech'
+import { speakFrenchListening, stopFrenchExpoTts } from '../lib/frenchExpoTts'
 import { recordScoreEvent } from '../database/database'
 import { scoreFrench, type FrenchScore, type ScoreProvider } from '../api/scoreFrench'
 import { computeDailyStreak, loadRecentScores, saveRecentScores, type StoredScore } from '../lib/history'
@@ -630,8 +630,10 @@ export default function HomeScreen() {
               <Text className="font-medium text-slate-800">{word}</Text>
               <Pressable
                 onPress={() => {
-                  Speech.stop()
-                  Speech.speak(word, { language: 'fr-FR' })
+                  void (async () => {
+                    await stopFrenchExpoTts()
+                    await speakFrenchListening(word, 'fr-FR')
+                  })()
                 }}
                 className="rounded-lg border border-slate-200 bg-white px-3 py-2 active:bg-slate-100"
               >

@@ -1,7 +1,7 @@
 import { useMemo, useState } from 'react'
 import { Pressable, ScrollView, Text, TextInput, View } from 'react-native'
 import { useRoute } from '@react-navigation/native'
-import * as Speech from 'expo-speech'
+import { speakFrenchListening, stopFrenchExpoTts } from '../lib/frenchExpoTts'
 import { Ionicons } from '@expo/vector-icons'
 import TefPrepListeningPractice from '../components/TefPrepListeningPractice'
 import type { TefSkill, TefReadingJson } from '../content/tefPrepA1'
@@ -177,8 +177,10 @@ export default function TefPrepActivityScreen() {
         <Pressable
           key={i}
           onPress={() => {
-            Speech.stop()
-            Speech.speak(line, { language: 'fr-CA' })
+            void (async () => {
+              await stopFrenchExpoTts()
+              await speakFrenchListening(line, 'fr-FR')
+            })()
           }}
           className="mt-2 flex-row items-center gap-2 rounded-xl border border-slate-200 bg-white px-3 py-2"
         >
