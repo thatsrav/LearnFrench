@@ -4,6 +4,7 @@ This repo contains:
 - `french-scorer-api/` (Express backend): holds your AI API keys and scores French writing (overall + grammar/vocab/pronunciation/fluency breakdown)
 - `french-scorer-web/` (Vite + React frontend): **FrenchLearn** landing page, curriculum units (Figma-style), AI Scorer, and **TEF Canada Prep** (A1 skill rooms)
 - `expo-mobile/` (Expo / React Native): same product on device, including **TEF Prep** stack screens (JSON bundled from `assets/TEF_Prep/`)
+- `supabase/` — optional **accounts & cloud sync** (email + Google OAuth): lesson progress and AI score history. See **`supabase/README.md`** for project setup, redirect URLs, and env vars (`VITE_*` for web, `EXPO_PUBLIC_*` for Expo).
 
 ## Setup
 
@@ -47,6 +48,8 @@ npm run dev
 
 Open the URL Vite prints (usually `http://localhost:5173`).
 
+For **sign-in and cloud progress**, copy `french-scorer-web/.env.example` to `.env`, add your Supabase URL and anon key, add `http://localhost:5173/auth/callback` under **Redirect URLs** in the Supabase dashboard, then restart Vite.
+
 ## Notes
 
 - **Key safety**: the API key stays in the backend `.env`. Don’t put keys in frontend code.
@@ -78,6 +81,8 @@ The `/api/score` JSON `result` includes **`grammar`**, **`vocabulary`**, **`pron
 - `/tef-prep` — **TEF Canada** A1 hub (10 units)
 - `/tef-prep/a1/:unit` — Pick reading / writing / listening / speaking for that unit
 - `/tef-prep/a1/:unit/:skill` — Activity (`skill` = `reading` | `writing` | `listening` | `speaking`). Static JSON is served from `public/TEF_Prep/` (copy stays in sync with `expo-mobile/assets/TEF_Prep`).
+- `/account` — Sign in (email / Google), sync lesson progress & score history with Supabase
+- `/auth/callback` — OAuth redirect (Google)
 
 ## Deploy notes (fixing 404 online)
 
@@ -112,6 +117,13 @@ Optional: point the app at a local API with Expo env (create `.env` in `expo-mob
 
 ```bash
 EXPO_PUBLIC_API_BASE_URL=http://YOUR_LAN_IP:8787
+```
+
+Optional **Supabase** (see `expo-mobile/.env.example`):
+
+```bash
+EXPO_PUBLIC_SUPABASE_URL=https://YOUR_PROJECT_REF.supabase.co
+EXPO_PUBLIC_SUPABASE_ANON_KEY=your_anon_key
 ```
 
 If unset, the app defaults to `https://learnfrench-0vkn.onrender.com` (see `src/lib/config.ts`).

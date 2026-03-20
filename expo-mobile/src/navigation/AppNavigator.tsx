@@ -13,6 +13,7 @@ import FrenchLearnLogo from '../components/FrenchLearnLogo'
 import TefPrepHubScreen from '../screens/TefPrepHubScreen'
 import TefPrepUnitScreen from '../screens/TefPrepUnitScreen'
 import TefPrepActivityScreen from '../screens/TefPrepActivityScreen'
+import AccountScreen from '../screens/AccountScreen'
 import type { TefSkill } from '../content/tefPrepA1'
 
 export type RootStackParamList = {
@@ -30,6 +31,7 @@ export type MainTabParamList = {
   Reading: undefined
   Speaking: undefined
   Leaderboard: undefined
+  Account: undefined
 }
 
 const Tab = createBottomTabNavigator<MainTabParamList>()
@@ -100,6 +102,15 @@ function MainTabs() {
         options={{
           title: 'Scores',
           tabBarIcon: ({ color, size }) => <Ionicons name="trophy-outline" size={size} color={color} />,
+        }}
+      />
+      <Tab.Screen
+        name="Account"
+        component={AccountScreen}
+        options={{
+          title: 'Account',
+          tabBarLabel: 'Account',
+          tabBarIcon: ({ color, size }) => <Ionicons name="person-circle-outline" size={size} color={color} />,
         }}
       />
     </Tab.Navigator>

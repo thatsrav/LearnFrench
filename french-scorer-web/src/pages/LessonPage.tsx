@@ -1,8 +1,12 @@
 import { useMemo, useState } from 'react'
 import { useNavigate, useParams, useSearchParams } from 'react-router-dom'
+import { useAuth } from '../contexts/AuthContext'
+import { supabase } from '../lib/supabase'
+import { uploadWebUnitProgress } from '../lib/cloudProgressWeb'
 import { getUnitById, unlockNextUnit } from '../lib/syllabus'
 
 export default function LessonPage() {
+  const { user } = useAuth()
   const { unitId = '' } = useParams()
   const [searchParams] = useSearchParams()
   const moduleId = searchParams.get('module')
@@ -47,6 +51,9 @@ export default function LessonPage() {
       return
     }
     const result = unlockNextUnit(unit.id, score)
+    if (supabase && user) {
+      void uploadWebUnitProgress(supabase, user.id).catch(() => {})
+    }
     setDone({ score, unlocked: result.unlockedUnitId })
   }
 

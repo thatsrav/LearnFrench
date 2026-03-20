@@ -1,4 +1,4 @@
-import { BookOpen, Bot, Flag, Home, Mic, Trophy } from 'lucide-react'
+import { BookOpen, Bot, Flag, Home, Mic, Trophy, User } from 'lucide-react'
 import { NavLink, Outlet } from 'react-router-dom'
 
 const navLinkClass = ({ isActive }: { isActive: boolean }) =>
@@ -43,6 +43,10 @@ export default function AppShell() {
             <NavLink to="/leaderboard" className={navLinkClass}>
               <Trophy size={18} />
               <span className="hidden sm:inline">Scores</span>
+            </NavLink>
+            <NavLink to="/account" className={navLinkClass}>
+              <User size={18} />
+              <span className="hidden sm:inline">Account</span>
             </NavLink>
           </nav>
         </div>

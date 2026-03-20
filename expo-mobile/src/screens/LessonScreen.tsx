@@ -3,6 +3,9 @@ import { Alert, Pressable, ScrollView, Text, View } from 'react-native'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
 import { useNavigation, useRoute } from '@react-navigation/native'
 import { unlockNextUnit } from '../database'
+import { useAuth } from '../contexts/AuthContext'
+import { supabase } from '../lib/supabase'
+import { uploadUnitProgressToCloud } from '../services/cloudProgress'
 import { useStackScreenBottomPadding } from '../lib/screenPadding'
 
 type QuizQuestion = {
@@ -55,6 +58,7 @@ function getUnit(level: RouteParams['level'], unitId: string): LessonUnit | null
 
 export default function LessonScreen() {
   const navigation = useNavigation<any>()
+  const { user } = useAuth()
   const insets = useSafeAreaInsets()
   const scrollBottomPad = useStackScreenBottomPadding(20)
   const route = useRoute()
@@ -85,6 +89,9 @@ export default function LessonScreen() {
     try {
       setSubmitting(true)
       const result = await unlockNextUnit(unit.id, score)
+      if (supabase && user) {
+        void uploadUnitProgressToCloud(supabase, user.id).catch(() => {})
+      }
       if (score >= 80) {
         Alert.alert(
           'Great work!',

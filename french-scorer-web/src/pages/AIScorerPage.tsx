@@ -1,5 +1,8 @@
 import { Bot, Sparkles } from 'lucide-react'
 import { useMemo, useState } from 'react'
+import { useAuth } from '../contexts/AuthContext'
+import { supabase } from '../lib/supabase'
+import { syncWebScoreHistoryToCloud } from '../lib/cloudProgressWeb'
 import {
   CartesianGrid,
   Line,
@@ -77,6 +80,7 @@ const BREAKDOWN_LABELS: { key: keyof Pick<FrenchScore, 'grammar' | 'vocabulary' 
 ]
 
 export default function AIScorerPage() {
+  const { user } = useAuth()
   const [inputMode, setInputMode] = useState<'text' | 'voice'>('text')
   const [text, setText] = useState('')
   const [provider, setProvider] = useState<ScoreProvider>('auto')
@@ -136,6 +140,9 @@ export default function AIScorerPage() {
       ].slice(-30)
       setRecentScores(next)
       saveRecentScores(next)
+      if (supabase && user) {
+        void syncWebScoreHistoryToCloud(supabase, user.id, next).catch(() => {})
+      }
     } catch (e) {
       setError(e instanceof Error ? e.message : String(e))
     } finally {

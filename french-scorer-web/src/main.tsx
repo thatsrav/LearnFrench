@@ -14,6 +14,8 @@ import UnitOverviewPage from './pages/UnitOverviewPage.tsx'
 import TefPrepHubPage from './pages/TefPrepHubPage.tsx'
 import TefPrepUnitPage from './pages/TefPrepUnitPage.tsx'
 import TefPrepActivityPage from './pages/TefPrepActivityPage.tsx'
+import AccountPage from './pages/AccountPage.tsx'
+import AuthCallbackPage from './pages/AuthCallbackPage.tsx'
 
 const router = createBrowserRouter([
   {
@@ -34,6 +36,8 @@ const router = createBrowserRouter([
           { path: 'tef-prep/a1/:unit', element: <TefPrepUnitPage /> },
           { path: 'tef-prep/a1/:unit/:skill', element: <TefPrepActivityPage /> },
           { path: 'syllabus', element: <Navigate to="/#syllabus" replace /> },
+          { path: 'account', element: <AccountPage /> },
+          { path: 'auth/callback', element: <AuthCallbackPage /> },
         ],
       },
     ],

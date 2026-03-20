@@ -1,4 +1,4 @@
-import { ArrowRight, Award, BookOpen, Bot, Clock, Flag, Target } from 'lucide-react'
+import { ArrowRight, Award, BookOpen, Bot, Clock, Flag, Target, User } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import { CURRICULUM_MODULES, CURRICULUM_STATS } from '../lib/curriculum'
 
@@ -27,6 +27,13 @@ export default function LandingPage() {
             >
               <Flag size={18} />
               TEF Prep
+            </Link>
+            <Link
+              to="/account"
+              className="hidden items-center gap-2 rounded-full border border-slate-200 bg-white px-4 py-2 text-sm font-semibold text-slate-800 shadow-sm hover:bg-slate-50 sm:inline-flex"
+            >
+              <User size={18} />
+              Account
             </Link>
             <Link
               to="/scorer"

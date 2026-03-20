@@ -264,3 +264,24 @@ export function getUnitById(unitId: string): UnitLesson | null {
   return UNITS.find((u) => u.id === unitId) ?? null
 }
 
+/** Merge remote unit rows into localStorage progress (Supabase sync). */
+export function mergeRemoteUnitProgress(
+  rows: { unit_id: string; status: UnitStatus; score: number }[],
+): void {
+  const progress = loadProgress()
+  for (const r of rows) {
+    progress[r.unit_id] = { status: r.status, score: r.score }
+  }
+  saveProgress(progress)
+}
+
+/** Serialize current progress for cloud upload. */
+export function getAllProgressRows(): { unit_id: string; status: UnitStatus; score: number }[] {
+  const progress = loadProgress()
+  return Object.entries(progress).map(([unit_id, v]) => ({
+    unit_id,
+    status: v.status,
+    score: v.score,
+  }))
+}
+

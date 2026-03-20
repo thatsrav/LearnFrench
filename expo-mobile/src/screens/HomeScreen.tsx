@@ -22,6 +22,9 @@ import { computeDailyStreak, loadRecentScores, saveRecentScores, type StoredScor
 import { CURRICULUM_STATS } from '../lib/curriculum'
 import { getDailyVocab } from '../lib/vocab'
 import { getApiBaseUrl } from '../lib/config'
+import { useAuth } from '../contexts/AuthContext'
+import { supabase } from '../lib/supabase'
+import { syncScoreHistoryToCloud } from '../services/cloudProgress'
 import type { MainTabParamList, RootStackParamList } from '../navigation/AppNavigator'
 import { useTabScreenBottomPadding } from '../lib/screenPadding'
 
@@ -50,6 +53,7 @@ export default function HomeScreen() {
   const [scorerOffsetY, setScorerOffsetY] = useState(0)
   const tabNav = useNavigation<BottomTabNavigationProp<MainTabParamList>>()
   const rootNav = tabNav.getParent<NativeStackNavigationProp<RootStackParamList>>()
+  const { user } = useAuth()
 
   const [inputMode, setInputMode] = useState<'text' | 'voice'>('text')
   const [text, setText] = useState('')
@@ -99,6 +103,9 @@ export default function HomeScreen() {
       ].slice(-30)
       setRecentScores(nextHistory)
       await saveRecentScores(nextHistory)
+      if (supabase && user) {
+        void syncScoreHistoryToCloud(supabase, user.id, nextHistory).catch(() => {})
+      }
     } catch (e) {
       setError(e instanceof Error ? e.message : String(e))
     } finally {
