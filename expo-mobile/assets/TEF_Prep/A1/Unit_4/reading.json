@@ -1,0 +1,29 @@
+{
+  "tef_task_id": "TEF-CA-A1-U04-READ",
+  "clb_target": 2,
+  "strictness_level": "medium",
+  "lexical_density": 1.331,
+  "unit_index": 4,
+  "skill": "reading",
+  "passage_type": "email_courtois",
+  "title_fr": "Horaire de travail — courriel court",
+  "content_fr": "Bonjour M. Lavoie,\nJe vais au bureau à huit heures. Je travaille avec l'équipe le matin. À midi, je mange au restaurant près du bureau.\nCordialement,\nSara",
+  "gloss_en": "Email snippet: work routine—office at 8, team morning, lunch nearby.",
+  "questions": [
+    {
+      "question_fr": "Sara va au bureau à quelle heure ?",
+      "options": ["7 h", "8 h", "9 h", "10 h"],
+      "answer_index": 1
+    },
+    {
+      "question_fr": "Où Sara mange-t-elle à midi ?",
+      "options": ["chez elle", "au restaurant près du bureau", "à la maison", "au parc"],
+      "answer_index": 1
+    },
+    {
+      "question_fr": "Avec qui Sara travaille-t-elle le matin ?",
+      "options": ["seule", "avec l'équipe", "avec M. Lavoie", "avec des clients"],
+      "answer_index": 1
+    }
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "tef_task_id": "TEF-CA-A1-U04-SPEAK",
+  "clb_target": 2,
+  "strictness_level": "medium",
+  "lexical_density": 1.331,
+  "unit_index": 4,
+  "skill": "speaking",
+  "section": "A",
+  "task_type": "demander_des_renseignements",
+  "situation_fr": "À la station de métro, vous demandez comment aller à un hôpital (ligne, direction ou correspondance).",
+  "situation_en": "At a metro station, ask how to get to a hospital (line or transfer).",
+  "cues_oral_fr": [
+    "Bonjour, je voudrais aller à l'hôpital…",
+    "Quelle ligne ? / Je dois changer ?",
+    "Merci pour votre aide."
+  ],
+  "target_functions": ["demande_itinéraire", "reformulation_si_besoin"],
+  "evaluation_criteria": ["pertinence des questions", "registre standard"]
+}

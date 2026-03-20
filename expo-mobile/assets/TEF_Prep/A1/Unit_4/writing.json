@@ -1,0 +1,17 @@
+{
+  "tef_task_id": "TEF-CA-A1-U04-WRITE",
+  "clb_target": 2,
+  "strictness_level": "medium",
+  "lexical_density": 1.331,
+  "unit_index": 4,
+  "skill": "writing",
+  "section": "A",
+  "task_type": "fait_divers",
+  "genre": "message_quotidien",
+  "prompt_fr": "Racontez en 3–5 phrases votre journée-type : où vous allez (travail/école), ce que vous mangez le midi, une activité du soir. Utilisez manger, aller ou travailler au présent.",
+  "prompt_en": "3–5 sentences: daily routine with go/work/eat in present.",
+  "min_words": 28,
+  "max_words": 55,
+  "constraints_fr": ["Au moins deux verbes d'action différents.", "Ordre logique du temps."],
+  "rubric_hints": ["Variété lexicale A1+", "connecteurs simples (puis, ensuite)"]
+}

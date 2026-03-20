@@ -1,0 +1,19 @@
+{
+  "tef_task_id": "TEF-CA-A1-U01-SPEAK",
+  "clb_target": 1,
+  "strictness_level": "low",
+  "lexical_density": 1.0,
+  "unit_index": 1,
+  "skill": "speaking",
+  "section": "A",
+  "task_type": "demander_des_renseignements",
+  "situation_fr": "Vous êtes devant une bibliothèque à Toronto. Vous demandez les heures d'ouverture à un employé.",
+  "situation_en": "You are at a library in Toronto. Ask a staff member for opening hours.",
+  "cues_oral_fr": [
+    "Bonjour…",
+    "C'est ouvert quand ? / Quelles sont les heures ?",
+    "Merci beaucoup."
+  ],
+  "target_functions": ["salutation", "question_oui_non_fermé", "remerciement"],
+  "evaluation_criteria": ["Compréhensibilité", "politesse de base", "question claire"]
+}

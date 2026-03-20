@@ -1,0 +1,29 @@
+{
+  "tef_task_id": "TEF-CA-A1-U07-READ",
+  "clb_target": 2,
+  "strictness_level": "medium",
+  "lexical_density": 1.772,
+  "unit_index": 7,
+  "skill": "reading",
+  "passage_type": "courriel_service",
+  "title_fr": "Réponse — service à la clientèle",
+  "content_fr": "Bonjour Mme Huot,\nNous sommes désolés : votre colis n'arrive pas demain. Il arrive vendredi matin. Vous n'avez pas besoin de payer encore une fois. Merci de votre patience.\nL'équipe Livraison Nord",
+  "gloss_en": "Customer service: package not tomorrow—Friday morning; no extra payment.",
+  "questions": [
+    {
+      "question_fr": "Le colis arrive-t-il demain ?",
+      "options": ["oui", "non", "peut-être", "le dimanche"],
+      "answer_index": 1
+    },
+    {
+      "question_fr": "Quand arrive le colis ?",
+      "options": ["jeudi soir", "vendredi matin", "lundi", "samedi"],
+      "answer_index": 1
+    },
+    {
+      "question_fr": "Mme Huot doit-elle payer encore ?",
+      "options": ["oui, deux fois", "non", "seulement en ligne", "500 dollars"],
+      "answer_index": 1
+    }
+  ]
+}

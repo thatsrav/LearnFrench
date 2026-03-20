@@ -1,0 +1,19 @@
+{
+  "tef_task_id": "TEF-CA-A1-U05-SPEAK",
+  "clb_target": 2,
+  "strictness_level": "medium",
+  "lexical_density": 1.464,
+  "unit_index": 5,
+  "skill": "speaking",
+  "section": "A",
+  "task_type": "demander_des_renseignements",
+  "situation_fr": "Dans une pharmacie, vous demandez si le médicament est sans ordonnance et le prix approximatif.",
+  "situation_en": "At a pharmacy, ask if medicine is OTC and approximate price.",
+  "cues_oral_fr": [
+    "Bonjour, j'ai une question…",
+    "C'est sans ordonnance ?",
+    "C'est combien environ ? Merci."
+  ],
+  "target_functions": ["question_fermée", "prix_approximatif"],
+  "evaluation_criteria": ["Clarté", "vocabulaire de base santé"]
+}

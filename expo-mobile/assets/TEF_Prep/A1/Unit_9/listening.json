@@ -1,0 +1,30 @@
+{
+  "tef_task_id": "TEF-CA-A1-U09-LISTEN",
+  "clb_target": 3,
+  "strictness_level": "high",
+  "lexical_density": 2.144,
+  "unit_index": 9,
+  "skill": "listening",
+  "scenario": "temoin_evenement",
+  "audio_uri": null,
+  "duration_seconds_approx": 55,
+  "transcript_fr": "Témoignage : « J'ai vu un petit chien perdu devant le parc. J'ai appelé la SPA à quinze heures. Deux bénévoles sont arrivés vingt minutes après. Ils ont pris le chien et ils ont remercié les passants. »",
+  "gloss_en": "Witness: lost dog, called SPCA, volunteers came, took dog.",
+  "questions": [
+    {
+      "question_fr": "Qu'a vu le témoin ?",
+      "options": ["un chat", "un chien perdu", "un accident", "un vol"],
+      "answer_index": 1
+    },
+    {
+      "question_fr": "Qui est arrivé après l'appel ?",
+      "options": ["la police", "deux bénévoles", "le maire", "personne"],
+      "answer_index": 1
+    },
+    {
+      "question_fr": "Qu'ont-ils fait avec le chien ?",
+      "options": ["ils l'ont laissé", "ils l'ont pris", "ils ont couru", "ils ont mangé"],
+      "answer_index": 1
+    }
+  ]
+}

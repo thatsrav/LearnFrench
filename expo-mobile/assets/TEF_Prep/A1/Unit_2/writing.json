@@ -1,0 +1,17 @@
+{
+  "tef_task_id": "TEF-CA-A1-U02-WRITE",
+  "clb_target": 1,
+  "strictness_level": "low",
+  "lexical_density": 1.1,
+  "unit_index": 2,
+  "skill": "writing",
+  "section": "A",
+  "task_type": "fait_divers",
+  "genre": "avis_simple",
+  "prompt_fr": "Vous organisez une petite fête samedi. Écrivez une invitation par texto à un ami : jour, heure, adresse courte.",
+  "prompt_en": "You're hosting a small party Saturday. Text a friend with day, time, short address.",
+  "min_words": 14,
+  "max_words": 28,
+  "constraints_fr": ["Inclure un chiffre (heure ou numéro de rue).", "Ton amical."],
+  "rubric_hints": ["Qui / quand / où", "lisibilité"]
+}

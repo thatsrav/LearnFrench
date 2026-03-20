@@ -1,0 +1,25 @@
+{
+  "tef_task_id": "TEF-CA-A1-U10-WRITE",
+  "clb_target": 3,
+  "strictness_level": "high",
+  "lexical_density": 2.358,
+  "unit_index": 10,
+  "skill": "writing",
+  "section": "A",
+  "task_type": "fait_divers",
+  "genre": "mini_tef_section_a",
+  "exam_style_note": "Mini-TEF Section A : production brève 20–30 mots, objet communicatif clair.",
+  "prompt_fr": "Vous apprenez qu'une activité communautaire (cours de français, atelier sportif, etc.) est annulée en raison d'une tempête prévue demain. Rédigez un court message (courriel ou publication sur groupe) pour en informer les participants : quelle activité, quel jour, motif simple, et une phrase polie de report ou de condoléances légères.",
+  "prompt_en": "Community activity cancelled due to storm tomorrow—inform participants in 20–30 words: what, when, why, polite closing.",
+  "min_words": 20,
+  "max_words": 30,
+  "constraints_fr": [
+    "Respecter strictement la limite de 20 à 30 mots.",
+    "Inclure au moins un passé composé OU un futur proche pour la report (ex. « nous reporterons » / « le cours sera … ») si niveau atteint ; sinon présent autorisé avec consigne examinateur."
+  ],
+  "rubric_hints": [
+    "Objectif communicatif atteint",
+    "ponctuation et saluts minimaux",
+    "cohérence avec consigne TEF A"
+  ]
+}

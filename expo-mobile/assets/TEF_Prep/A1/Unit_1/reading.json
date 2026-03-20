@@ -1,0 +1,29 @@
+{
+  "tef_task_id": "TEF-CA-A1-U01-READ",
+  "clb_target": 1,
+  "strictness_level": "low",
+  "lexical_density": 1.0,
+  "unit_index": 1,
+  "skill": "reading",
+  "passage_type": "affiche",
+  "title_fr": "Café des Amis — Horaires",
+  "content_fr": "CAFÉ DES AMIS\nOuvert tous les jours\n7 h 00 — 18 h 00\n123, rue Ontario Est, Montréal\nWi-Fi gratuit. Merci!",
+  "gloss_en": "Poster: café name, daily hours, address, free Wi‑Fi.",
+  "questions": [
+    {
+      "question_fr": "À quelle heure le café ferme-t-il ?",
+      "options": ["À 7 h", "À 12 h", "À 18 h", "À 20 h"],
+      "answer_index": 2
+    },
+    {
+      "question_fr": "Le café est situé…",
+      "options": ["à Toronto", "à Montréal", "à Québec", "à Ottawa"],
+      "answer_index": 1
+    },
+    {
+      "question_fr": "Que propose le café pour les clients ?",
+      "options": ["un parking", "le Wi‑Fi gratuit", "des cours de français", "la livraison"],
+      "answer_index": 1
+    }
+  ]
+}

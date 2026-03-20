@@ -1,0 +1,25 @@
+{
+  "tef_task_id": "TEF-CA-A1-U08-LISTEN",
+  "clb_target": 3,
+  "strictness_level": "high",
+  "lexical_density": 1.949,
+  "unit_index": 8,
+  "skill": "listening",
+  "scenario": "radio_info_locale",
+  "audio_uri": null,
+  "duration_seconds_approx": 50,
+  "transcript_fr": "Flash local : hier, la bibliothèque municipale a ouvert une nouvelle section pour les enfants. Beaucoup de parents ont visité la section vers quinze heures. Aujourd'hui, des bénévoles ont lu des histoires aux petits après l'école.",
+  "gloss_en": "Library opened kids' section yesterday; volunteers read stories today after school.",
+  "questions": [
+    {
+      "question_fr": "Qu'est-ce qui s'est passé hier à la bibliothèque ?",
+      "options": ["elle a fermé", "nouvelle section enfants", "grève", "incendie"],
+      "answer_index": 1
+    },
+    {
+      "question_fr": "Qui a lu des histoires après l'école aujourd'hui ?",
+      "options": ["les professeurs", "des bénévoles", "le maire", "personne"],
+      "answer_index": 1
+    }
+  ]
+}

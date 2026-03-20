@@ -1,0 +1,29 @@
+{
+  "tef_task_id": "TEF-CA-A1-U05-READ",
+  "clb_target": 2,
+  "strictness_level": "medium",
+  "lexical_density": 1.464,
+  "unit_index": 5,
+  "skill": "reading",
+  "passage_type": "affiche_assoc",
+  "title_fr": "Atelier français — inscription",
+  "content_fr": "CENTRE LE LINGOT\nAtelier gratuit de conversation\nTous les mercredis, 18 h 30 — 20 h\nVous n'avez pas besoin de livre.\nInscription : lelingot.ca ou 418-555-0299",
+  "gloss_en": "Free French conversation workshop Wednesdays; no textbook needed.",
+  "questions": [
+    {
+      "question_fr": "Quel jour a lieu l'atelier ?",
+      "options": ["lundi", "mercredi", "vendredi", "dimanche"],
+      "answer_index": 1
+    },
+    {
+      "question_fr": "Faut-il acheter un livre ?",
+      "options": ["oui, obligatoire", "non, pas besoin", "seulement en ligne", "500 dollars"],
+      "answer_index": 1
+    },
+    {
+      "question_fr": "Comment peut-on s'inscrire ?",
+      "options": ["par courrier seulement", "site web ou téléphone", "en personne uniquement", "impossible"],
+      "answer_index": 1
+    }
+  ]
+}

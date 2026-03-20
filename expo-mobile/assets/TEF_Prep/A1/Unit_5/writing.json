@@ -1,0 +1,17 @@
+{
+  "tef_task_id": "TEF-CA-A1-U05-WRITE",
+  "clb_target": 2,
+  "strictness_level": "medium",
+  "lexical_density": 1.464,
+  "unit_index": 5,
+  "skill": "writing",
+  "section": "A",
+  "task_type": "fait_divers",
+  "genre": "note_avec_negation",
+  "prompt_fr": "Vous laissez un message à un coloc : vous ne mangez pas à la maison ce soir, vous allez chez votre sœur, vous revenez tard. Utilisez « ne … pas » au moins une fois.",
+  "prompt_en": "Roommate note: you're not eating at home tonight; going to sister's; back late—use ne...pas once.",
+  "min_words": 30,
+  "max_words": 60,
+  "constraints_fr": ["Négation correcte autour du verbe conjugué.", "Ton neutre."],
+  "rubric_hints": ["Structure message", "négation"]
+}

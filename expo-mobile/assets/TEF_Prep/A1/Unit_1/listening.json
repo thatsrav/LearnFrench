@@ -1,0 +1,25 @@
+{
+  "tef_task_id": "TEF-CA-A1-U01-LISTEN",
+  "clb_target": 1,
+  "strictness_level": "low",
+  "lexical_density": 1.0,
+  "unit_index": 1,
+  "skill": "listening",
+  "scenario": "annonce_magasin",
+  "audio_uri": null,
+  "duration_seconds_approx": 25,
+  "transcript_fr": "Annonce : Le magasin « Rayon Soleil » ferme à dix-sept heures aujourd'hui. Merci de terminer vos achats avant dix-sept heures. Bonne journée !",
+  "gloss_en": "Store closes at 5 p.m. today; finish shopping before then.",
+  "questions": [
+    {
+      "question_fr": "À quelle heure le magasin ferme-t-il aujourd'hui ?",
+      "options": ["À 15 h", "À 17 h", "À 19 h", "À 20 h"],
+      "answer_index": 1
+    },
+    {
+      "question_fr": "Comment s'appelle le magasin ?",
+      "options": ["Lune bleue", "Rayon Soleil", "Centre-Ville", "Marche Nord"],
+      "answer_index": 1
+    }
+  ]
+}

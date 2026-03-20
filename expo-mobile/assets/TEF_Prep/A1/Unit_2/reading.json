@@ -1,0 +1,29 @@
+{
+  "tef_task_id": "TEF-CA-A1-U02-READ",
+  "clb_target": 1,
+  "strictness_level": "low",
+  "lexical_density": 1.1,
+  "unit_index": 2,
+  "skill": "reading",
+  "passage_type": "petite_annonce",
+  "title_fr": "Vélo à vendre",
+  "content_fr": "À VENDRE : vélo rouge, bon état. 80 dollars. Téléphone : 514-555-0182. Appelez après 18 h.",
+  "gloss_en": "Classified: red bike for sale, $80, call after 6 p.m.",
+  "questions": [
+    {
+      "question_fr": "Combien coûte le vélo ?",
+      "options": ["50 dollars", "80 dollars", "100 dollars", "120 dollars"],
+      "answer_index": 1
+    },
+    {
+      "question_fr": "Quand peut-on téléphoner ?",
+      "options": ["le matin", "à midi", "après 18 h", "à minuit"],
+      "answer_index": 2
+    },
+    {
+      "question_fr": "Quelle couleur est le vélo ?",
+      "options": ["bleu", "vert", "rouge", "noir"],
+      "answer_index": 2
+    }
+  ]
+}

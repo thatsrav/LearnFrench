@@ -1,0 +1,17 @@
+{
+  "tef_task_id": "TEF-CA-A1-U07-WRITE",
+  "clb_target": 2,
+  "strictness_level": "medium",
+  "lexical_density": 1.772,
+  "unit_index": 7,
+  "skill": "writing",
+  "section": "A",
+  "task_type": "fait_divers",
+  "genre": "lettre_courte_situation",
+  "prompt_fr": "Votre voisin fait du bruit le soir. Écrivez un petit mot poli : ce que vous ne supportez pas, le moment (ex. après 22 h), une demande simple. Utilisez « je ne … pas » ou « ne … jamais » si possible.",
+  "prompt_en": "Polite note to noisy neighbor: what bothers you, when, simple request; use negation.",
+  "min_words": 40,
+  "max_words": 85,
+  "constraints_fr": ["Ton assertif mais respectueux.", "Au moins deux verbes au présent."],
+  "rubric_hints": ["Structure TEF A : situation + demande", "variété syntaxique légère"]
+}

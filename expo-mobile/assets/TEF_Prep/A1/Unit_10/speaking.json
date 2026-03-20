@@ -1,0 +1,20 @@
+{
+  "tef_task_id": "TEF-CA-A1-U10-SPEAK",
+  "clb_target": 3,
+  "strictness_level": "high",
+  "lexical_density": 2.358,
+  "unit_index": 10,
+  "skill": "speaking",
+  "section": "A",
+  "task_type": "demander_des_renseignements",
+  "situation_fr": "Simulation TEF section interaction orale type A : vous entrez dans un bureau d'immigration local (scénario d'entraînement). Demandez trois renseignements précis : les heures d'ouverture au public, les documents nécessaires pour une demande de prolongation de séjour (général), et s'il existe un service en ligne pour prendre rendez-vous.",
+  "situation_en": "Training simulation: at immigration office—ask public hours, documents for stay extension (general), online appointment booking.",
+  "cues_oral_fr": [
+    "Bonjour, j'aimerais des renseignements…",
+    "Quels sont les heures d'ouverture au public ?",
+    "Pour une prolongation de séjour, quels documents faut-il en général ?",
+    "Est-ce qu'on peut prendre rendez-vous en ligne ? Merci."
+  ],
+  "target_functions": ["renseignements_administratifs", "clarification"],
+  "evaluation_criteria": ["Trois questions distinctes", "registre soutenu simple", "réactivité"]
+}

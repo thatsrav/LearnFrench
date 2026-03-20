@@ -1,0 +1,19 @@
+{
+  "tef_task_id": "TEF-CA-A1-U09-SPEAK",
+  "clb_target": 3,
+  "strictness_level": "high",
+  "lexical_density": 2.144,
+  "unit_index": 9,
+  "skill": "speaking",
+  "section": "A",
+  "task_type": "demander_des_renseignements",
+  "situation_fr": "Vous vous êtes perdu(e) près d'un festival. Demandez à un agent : où sont les toilettes, où est la sortie la plus proche, et à quelle heure finit le concert principal.",
+  "situation_en": "Lost near festival: ask agent for restrooms, nearest exit, main concert end time.",
+  "cues_oral_fr": [
+    "Excusez-moi, je suis perdu(e)…",
+    "Où sont les toilettes, s'il vous plaît ?",
+    "Où est la sortie ? Le concert finit à quelle heure ?"
+  ],
+  "target_functions": ["orientation", "heure_evenement"],
+  "evaluation_criteria": ["Trois informations", "registre adapté à la foule"]
+}

@@ -1,0 +1,29 @@
+{
+  "tef_task_id": "TEF-CA-A1-U08-READ",
+  "clb_target": 3,
+  "strictness_level": "high",
+  "lexical_density": 1.949,
+  "unit_index": 8,
+  "skill": "reading",
+  "passage_type": "chronique_courte",
+  "title_fr": "Samedi dernier au parc",
+  "content_fr": "Le week-end dernier, beaucoup de familles sont allées au parc Jean-Drapeau. Il a fait beau. Des enfants ont joué au ballon. Puis, vers seize heures, une petite pluie est arrivée, mais les gens sont restés sous les arbres. À dix-huit heures, le parc a fermé normalement.",
+  "gloss_en": "Past-tense style narrative: families at park, rain at 4 p.m., closed at 6.",
+  "questions": [
+    {
+      "question_fr": "Quel jour parle le texte ?",
+      "options": ["lundi prochain", "le week-end dernier", "demain", "tous les jours"],
+      "answer_index": 1
+    },
+    {
+      "question_fr": "Qu'est-ce qui est arrivé vers 16 h ?",
+      "options": ["neige", "une petite pluie", "un accident", "un concert"],
+      "answer_index": 1
+    },
+    {
+      "question_fr": "À quelle heure le parc a-t-il fermé ?",
+      "options": ["16 h", "17 h", "18 h", "20 h"],
+      "answer_index": 2
+    }
+  ]
+}

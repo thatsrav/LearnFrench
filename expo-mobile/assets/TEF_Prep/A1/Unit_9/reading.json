@@ -1,0 +1,29 @@
+{
+  "tef_task_id": "TEF-CA-A1-U09-READ",
+  "clb_target": 3,
+  "strictness_level": "high",
+  "lexical_density": 2.144,
+  "unit_index": 9,
+  "skill": "reading",
+  "passage_type": "courriel_narratif",
+  "title_fr": "Nouvelles de Sarah",
+  "content_fr": "Salut Léo,\nSamedi dernier, nous avons quitté Ottawa tôt. Nous avons pris le train et nous sommes arrivés à Montréal à onze heures. Ensuite, nous avons mangé dans un petit restaurant près du Vieux-Port. Le dimanche, il a plu, donc nous sommes allés au musée. J'ai beaucoup aimé les tableaux.\nÀ bientôt,\nSarah",
+  "gloss_en": "Weekend trip Ottawa–Montreal: train, restaurant, rainy Sunday museum.",
+  "questions": [
+    {
+      "question_fr": "Comment sont-ils allés à Montréal ?",
+      "options": ["en voiture", "en train", "en avion", "à vélo"],
+      "answer_index": 1
+    },
+    {
+      "question_fr": "Qu'ont-ils fait le dimanche à cause de la pluie ?",
+      "options": ["plage", "musée", "ski", "magasinage"],
+      "answer_index": 1
+    },
+    {
+      "question_fr": "Où ont-ils déjeuné samedi ?",
+      "options": ["chez Sarah", "près du Vieux-Port", "à Ottawa", "à l'aéroport"],
+      "answer_index": 1
+    }
+  ]
+}

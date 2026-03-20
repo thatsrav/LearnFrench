@@ -1,0 +1,17 @@
+{
+  "tef_task_id": "TEF-CA-A1-U06-WRITE",
+  "clb_target": 2,
+  "strictness_level": "medium",
+  "lexical_density": 1.611,
+  "unit_index": 6,
+  "skill": "writing",
+  "section": "A",
+  "task_type": "fait_divers",
+  "genre": "reponse_courtoise",
+  "prompt_fr": "Un ami vous invite au restaurant samedi. Vous répondez par courriel : vous ne pouvez pas venir (raison simple), vous proposez un autre jour. Utilisez la négation et « aller » ou « manger ».",
+  "prompt_en": "Email reply: decline Saturday dinner (simple reason), suggest another day; use negation + go/eat.",
+  "min_words": 35,
+  "max_words": 70,
+  "constraints_fr": ["Formule de politesse en ouverture et fermeture.", "Au moins deux phrases avec ne … pas ou équivalent."],
+  "rubric_hints": ["Registre courtois", "proposition alternative"]
+}

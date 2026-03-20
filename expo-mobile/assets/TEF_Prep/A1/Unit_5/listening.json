@@ -1,0 +1,25 @@
+{
+  "tef_task_id": "TEF-CA-A1-U05-LISTEN",
+  "clb_target": 2,
+  "strictness_level": "medium",
+  "lexical_density": 1.464,
+  "unit_index": 5,
+  "skill": "listening",
+  "scenario": "annonce_ecole",
+  "audio_uri": null,
+  "duration_seconds_approx": 38,
+  "transcript_fr": "Écoutez : le cours de français de demain matin n'a pas lieu dans la salle trois. Le cours a lieu dans la salle douze, au deuxième étage. Merci.",
+  "gloss_en": "French class moved from room 3 to room 12, 2nd floor.",
+  "questions": [
+    {
+      "question_fr": "Le cours de demain a-t-il lieu dans la salle trois ?",
+      "options": ["oui", "non", "on ne sait pas", "seulement l'après-midi"],
+      "answer_index": 1
+    },
+    {
+      "question_fr": "Dans quelle salle est le cours maintenant ?",
+      "options": ["salle 5", "salle 12", "salle 2", "salle 30"],
+      "answer_index": 1
+    }
+  ]
+}
