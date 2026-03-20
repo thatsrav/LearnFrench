@@ -2,6 +2,7 @@ import {
   Bell,
   BookMarked,
   BookOpen,
+  ChevronRight,
   Gamepad2,
   GraduationCap,
   Headphones,
@@ -10,7 +11,7 @@ import {
   LogOut,
   Menu,
   Mic,
-  PenLine,
+  Pencil,
   Search,
   Settings,
   Sparkles,
@@ -22,6 +23,7 @@ import { useMemo, useState } from 'react'
 import { NavLink, Outlet, Link, useLocation, useNavigate } from 'react-router-dom'
 import AppFooter from './AppFooter'
 import { useAuth } from '../contexts/AuthContext'
+import { TEF_PREP_HUB, tefPrepSkillPath } from '../lib/tefPrepNav'
 
 const RECENT_SCORES_KEY = 'french_scorer_recent_scores_v1'
 
@@ -42,12 +44,20 @@ function readLastCefr(): string {
 function breadcrumbsForPath(pathname: string): { root: string; mid?: string; leaf?: string } {
   if (pathname === '/' || pathname === '') return { root: 'Dashboard', mid: 'Courses', leaf: 'Overview' }
   if (pathname.startsWith('/syllabus')) return { root: 'Dashboard', mid: 'Courses', leaf: 'Library' }
-  if (pathname.startsWith('/reading-room')) return { root: 'Dashboard', mid: 'The Atelier', leaf: 'Reading Room' }
-  if (pathname.startsWith('/writing')) return { root: 'Dashboard', mid: 'The Atelier', leaf: 'Writing Area' }
-  if (pathname.startsWith('/listening')) return { root: 'Dashboard', mid: 'The Atelier', leaf: 'Listening Area' }
-  if (pathname.startsWith('/speaking')) return { root: 'Dashboard', mid: 'The Atelier', leaf: 'Speaking Area' }
   if (pathname.startsWith('/game')) return { root: 'Dashboard', mid: 'The Atelier', leaf: 'Grammar Games' }
-  if (pathname.startsWith('/tef-prep')) return { root: 'Dashboard', mid: 'TEF Track', leaf: 'Preparation' }
+  if (pathname.startsWith('/tef-prep')) {
+    const skillMatch = pathname.match(/\/(reading|writing|listening|speaking)(?:\/|$|\?)/)
+    const leafBySkill: Record<string, string> = {
+      reading: 'Reading Room',
+      writing: 'Writing Area',
+      listening: 'Listening Area',
+      speaking: 'Speaking Area',
+    }
+    if (skillMatch?.[1] && leafBySkill[skillMatch[1]]) {
+      return { root: 'Dashboard', mid: 'TEF Prep', leaf: leafBySkill[skillMatch[1]] }
+    }
+    return { root: 'Dashboard', mid: 'TEF Prep', leaf: 'Track' }
+  }
   if (pathname.startsWith('/scorer')) return { root: 'Dashboard', mid: 'The Atelier', leaf: 'AI Scorer' }
   if (pathname.startsWith('/leaderboard')) return { root: 'Dashboard', leaf: 'Scores' }
   if (pathname.startsWith('/account')) return { root: 'Account' }
@@ -91,12 +101,29 @@ const navClass = ({ isActive }: { isActive: boolean }) =>
       : 'text-slate-600 hover:bg-slate-100 hover:text-[#1e293b]',
   ].join(' ')
 
+const subNavClass = ({ isActive }: { isActive: boolean }) =>
+  [
+    'relative flex items-center gap-2 rounded-lg py-2.5 pl-3 pr-3 text-sm transition',
+    isActive
+      ? 'bg-indigo-50 font-semibold text-[#1e293b] before:absolute before:left-0 before:top-2 before:bottom-2 before:w-1 before:rounded-r-md before:bg-indigo-600'
+      : 'font-medium text-slate-600 hover:bg-slate-100 hover:text-[#1e293b]',
+  ].join(' ')
+
+const TEF_SUB_LINKS = [
+  { to: tefPrepSkillPath('reading'), label: 'Reading Room', icon: BookOpen },
+  { to: tefPrepSkillPath('writing'), label: 'Writing Area', icon: Pencil },
+  { to: tefPrepSkillPath('listening'), label: 'Listening Area', icon: Headphones },
+  { to: tefPrepSkillPath('speaking'), label: 'Speaking Area', icon: Mic },
+] as const
+
 export default function AppShell() {
   const location = useLocation()
   const navigate = useNavigate()
   const { signOut } = useAuth()
   const [mobileOpen, setMobileOpen] = useState(false)
+  const [tefExpanded, setTefExpanded] = useState(true)
   const crumbs = useMemo(() => breadcrumbsForPath(location.pathname), [location.pathname])
+  const onTefTrack = location.pathname.startsWith('/tef-prep')
 
   const closeMobile = () => setMobileOpen(false)
 
@@ -150,22 +177,52 @@ export default function AppShell() {
             <Library size={20} className="shrink-0 text-indigo-600" />
             <span>Main Syllabus</span>
           </NavLink>
-          <NavLink to="/reading-room" className={navClass} onClick={closeMobile}>
-            <BookOpen size={20} className="shrink-0 text-slate-500" />
-            <span>Reading Room</span>
-          </NavLink>
-          <NavLink to="/writing" className={navClass} onClick={closeMobile}>
-            <PenLine size={20} className="shrink-0 text-slate-500" />
-            <span>Writing Area</span>
-          </NavLink>
-          <NavLink to="/listening" className={navClass} onClick={closeMobile}>
-            <Headphones size={20} className="shrink-0 text-slate-500" />
-            <span>Listening Area</span>
-          </NavLink>
-          <NavLink to="/speaking" className={navClass} onClick={closeMobile}>
-            <Mic size={20} className="shrink-0 text-slate-500" />
-            <span>Speaking Area</span>
-          </NavLink>
+
+          <div className="rounded-xl">
+            <div className="flex items-stretch gap-0.5">
+              <button
+                type="button"
+                onClick={() => setTefExpanded((e) => !e)}
+                className="flex shrink-0 items-center justify-center rounded-lg px-1.5 text-slate-500 hover:bg-slate-100"
+                aria-expanded={tefExpanded}
+                aria-label={tefExpanded ? 'Collapse TEF Prep' : 'Expand TEF Prep'}
+              >
+                <ChevronRight
+                  size={18}
+                  className={['transition-transform', tefExpanded ? 'rotate-90' : ''].join(' ')}
+                />
+              </button>
+              <NavLink
+                to={TEF_PREP_HUB}
+                end
+                onClick={closeMobile}
+                className={({ isActive }) =>
+                  [
+                    'relative flex min-w-0 flex-1 items-center gap-3 rounded-xl px-2 py-3 pr-4 text-sm font-semibold transition',
+                    isActive
+                      ? 'bg-indigo-50 text-[#1e293b] shadow-sm before:absolute before:right-0 before:top-2 before:bottom-2 before:w-1 before:rounded-l-md before:bg-indigo-600'
+                      : onTefTrack
+                        ? 'text-[#1e293b] hover:bg-slate-100'
+                        : 'text-slate-600 hover:bg-slate-100 hover:text-[#1e293b]',
+                  ].join(' ')
+                }
+              >
+                <GraduationCap size={20} className="shrink-0 text-slate-500" />
+                <span className="truncate">TEF Prep</span>
+              </NavLink>
+            </div>
+            {tefExpanded ? (
+              <div className="ml-2 mt-0.5 space-y-0.5 border-l-2 border-slate-100 pl-2">
+                {TEF_SUB_LINKS.map(({ to, label, icon: Icon }) => (
+                  <NavLink key={to} to={to} className={subNavClass} onClick={closeMobile}>
+                    <Icon size={18} className="shrink-0 text-slate-400" />
+                    <span>{label}</span>
+                  </NavLink>
+                ))}
+              </div>
+            ) : null}
+          </div>
+
           <NavLink to="/game" className={navClass} onClick={closeMobile}>
             <Gamepad2 size={20} className="shrink-0 text-slate-500" />
             <span>Game</span>
@@ -176,10 +233,6 @@ export default function AppShell() {
           <NavLink to="/syllabus" className={navClass} onClick={closeMobile}>
             <BookMarked size={20} className="shrink-0 text-slate-500" />
             <span>Course library</span>
-          </NavLink>
-          <NavLink to="/tef-prep" className={navClass} onClick={closeMobile}>
-            <GraduationCap size={20} className="shrink-0 text-slate-500" />
-            <span>TEF Prep</span>
           </NavLink>
           <NavLink to="/scorer" className={navClass} onClick={closeMobile}>
             <Sparkles size={20} className="shrink-0 text-slate-500" />

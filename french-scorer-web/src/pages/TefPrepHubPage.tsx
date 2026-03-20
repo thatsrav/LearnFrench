@@ -1,6 +1,7 @@
 import { ArrowRight, BookOpen, Headphones, Medal, Mic, Pencil, Users } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import { TEF_A1_UNIT_COUNT } from '../lib/tefPrepFetch'
+import { tefPrepSkillPath } from '../lib/tefPrepNav'
 
 const UNIT_BLURBS: Record<number, string> = {
   1: 'Core syntax, verb tenses, and sentence structure essentials.',
@@ -15,10 +16,10 @@ const UNIT_BLURBS: Record<number, string> = {
   10: 'Full-length review and confidence checklist.',
 }
 
-const READING_LINK = '/tef-prep/a1/1/reading'
-const LISTENING_LINK = '/tef-prep/a1/1/listening'
-const WRITING_LINK = '/tef-prep/a1/1/writing'
-const SPEAKING_LINK = '/tef-prep/a1/1/speaking'
+const READING_LINK = tefPrepSkillPath('reading')
+const LISTENING_LINK = tefPrepSkillPath('listening')
+const WRITING_LINK = tefPrepSkillPath('writing')
+const SPEAKING_LINK = tefPrepSkillPath('speaking')
 
 export default function TefPrepHubPage() {
   return (

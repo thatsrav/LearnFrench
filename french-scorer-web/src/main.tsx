@@ -16,11 +16,8 @@ import AccountPage from './pages/AccountPage.tsx'
 import AuthCallbackPage from './pages/AuthCallbackPage.tsx'
 import SyllabusPage from './pages/SyllabusPage.tsx'
 import DashboardHomePage from './pages/DashboardHomePage.tsx'
-import ReadingRoomPage from './pages/ReadingRoomPage.tsx'
-import WritingAreaPage from './pages/WritingAreaPage.tsx'
-import ListeningAreaPage from './pages/ListeningAreaPage.tsx'
-import SpeakingAreaPage from './pages/SpeakingAreaPage.tsx'
 import GrammarAtelierPage from './pages/GrammarAtelierPage.tsx'
+import { tefPrepSkillPath } from './lib/tefPrepNav'
 
 const router = createBrowserRouter([
   {
@@ -35,12 +32,12 @@ const router = createBrowserRouter([
           { path: 'scorer', element: <AIScorerPage /> },
           { path: 'unit/:moduleId', element: <UnitOverviewPage /> },
           { path: 'lesson/:unitId', element: <LessonPage /> },
-          { path: 'reading-room', element: <ReadingRoomPage /> },
-          { path: 'writing', element: <WritingAreaPage /> },
-          { path: 'listening', element: <ListeningAreaPage /> },
-          { path: 'speaking', element: <SpeakingAreaPage /> },
           { path: 'game', element: <GrammarAtelierPage /> },
-          { path: 'reading', element: <Navigate to="/reading-room" replace /> },
+          { path: 'reading-room', element: <Navigate to={tefPrepSkillPath('reading')} replace /> },
+          { path: 'writing', element: <Navigate to={tefPrepSkillPath('writing')} replace /> },
+          { path: 'listening', element: <Navigate to={tefPrepSkillPath('listening')} replace /> },
+          { path: 'speaking', element: <Navigate to={tefPrepSkillPath('speaking')} replace /> },
+          { path: 'reading', element: <Navigate to={tefPrepSkillPath('reading')} replace /> },
           { path: 'leaderboard', element: <LeaderboardPage /> },
           { path: 'tef-prep', element: <TefPrepHubPage /> },
           { path: 'tef-prep/a1/:unit', element: <TefPrepUnitPage /> },
