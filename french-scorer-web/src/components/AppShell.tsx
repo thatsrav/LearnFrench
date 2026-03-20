@@ -24,26 +24,14 @@ import { NavLink, Outlet, Link, useLocation, useNavigate } from 'react-router-do
 import AppFooter from './AppFooter'
 import { useAuth } from '../contexts/AuthContext'
 import { TEF_PREP_HUB, tefPrepSkillPath } from '../lib/tefPrepNav'
-
-const RECENT_SCORES_KEY = 'french_scorer_recent_scores_v1'
-
-function readLastCefr(): string {
-  try {
-    const raw = localStorage.getItem(RECENT_SCORES_KEY)
-    const parsed = raw ? (JSON.parse(raw) as unknown) : []
-    if (!Array.isArray(parsed) || parsed.length === 0) return 'B2'
-    const last = parsed[parsed.length - 1] as { cecr?: string }
-    const c = String(last?.cecr ?? '').trim()
-    return c || 'B2'
-  } catch {
-    return 'B2'
-  }
-}
+import { levelBadgeLabel, readUserCefrLevel } from '../lib/userCefr'
 
 /** Breadcrumbs left of search (design: Dashboard · Courses · Library) */
 function breadcrumbsForPath(pathname: string): { root: string; mid?: string; leaf?: string } {
   if (pathname === '/' || pathname === '') return { root: 'Dashboard', mid: 'Courses', leaf: 'Overview' }
   if (pathname.startsWith('/syllabus')) return { root: 'Dashboard', mid: 'Courses', leaf: 'Library' }
+  if (pathname.startsWith('/reading-room')) return { root: 'Dashboard', mid: 'The Atelier', leaf: 'Reading Room' }
+  if (pathname.startsWith('/writing')) return { root: 'Dashboard', mid: 'The Atelier', leaf: 'Writing Area' }
   if (pathname.startsWith('/game')) return { root: 'Dashboard', mid: 'The Atelier', leaf: 'Grammar Games' }
   if (pathname.startsWith('/tef-prep')) {
     const skillMatch = pathname.match(/\/(reading|writing|listening|speaking)(?:\/|$|\?)/)
@@ -79,7 +67,7 @@ function SidebarFooterLight({ pathname }: { pathname: string }) {
       </div>
     )
   }
-  const level = readLastCefr()
+  const level = readUserCefrLevel()
   return (
     <div className="rounded-2xl border border-slate-200 bg-gradient-to-br from-slate-50 to-indigo-50/40 p-4">
       <p className="text-[10px] font-bold uppercase tracking-[0.15em] text-slate-500">Level</p>
@@ -110,8 +98,8 @@ const subNavClass = ({ isActive }: { isActive: boolean }) =>
   ].join(' ')
 
 const TEF_SUB_LINKS = [
-  { to: tefPrepSkillPath('reading'), label: 'Reading Room', icon: BookOpen },
-  { to: tefPrepSkillPath('writing'), label: 'Writing Area', icon: Pencil },
+  { to: '/reading-room', label: 'Reading Room', icon: BookOpen },
+  { to: '/writing', label: 'Writing Area', icon: Pencil },
   { to: tefPrepSkillPath('listening'), label: 'Listening Area', icon: Headphones },
   { to: tefPrepSkillPath('speaking'), label: 'Speaking Area', icon: Mic },
 ] as const
@@ -124,6 +112,7 @@ export default function AppShell() {
   const [tefExpanded, setTefExpanded] = useState(true)
   const crumbs = useMemo(() => breadcrumbsForPath(location.pathname), [location.pathname])
   const onTefTrack = location.pathname.startsWith('/tef-prep')
+  const headerLevelBadge = levelBadgeLabel(readUserCefrLevel())
 
   const closeMobile = () => setMobileOpen(false)
 
@@ -316,7 +305,7 @@ export default function AppShell() {
 
             <div className="ml-auto flex items-center gap-1 sm:gap-2">
               <span className="mr-1 hidden rounded-full border border-indigo-100 bg-indigo-50 px-3 py-1 text-xs font-bold text-indigo-800 md:inline">
-                B1 Intermediate
+                {headerLevelBadge}
               </span>
               <Link
                 to="/leaderboard"

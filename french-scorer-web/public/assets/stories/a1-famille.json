@@ -1,0 +1,47 @@
+{
+  "id": "a1-famille",
+  "level": "A1",
+  "title": "Ma famille",
+  "chapter": "Mission quotidienne",
+  "audioUrl": null,
+  "sentences": [
+    {
+      "fr": "Je m'appelle Léa. J'ai vingt ans.",
+      "en": "My name is Léa. I am twenty years old.",
+      "start": 0,
+      "end": 4
+    },
+    {
+      "fr": "J'habite à Lyon avec mes parents.",
+      "en": "I live in Lyon with my parents.",
+      "start": 4,
+      "end": 8
+    },
+    {
+      "fr": "Mon frère s'appelle Tom. Il est étudiant.",
+      "en": "My brother is called Tom. He is a student.",
+      "start": 8,
+      "end": 13
+    }
+  ],
+  "grammarMarkers": [
+    {
+      "id": "avoir-age",
+      "sentenceIndex": 0,
+      "label": "Avoir + âge",
+      "explanation": "En français on dit « j'ai vingt ans », pas « je suis vingt »."
+    },
+    {
+      "id": "habiter",
+      "sentenceIndex": 1,
+      "label": "Préposition de lieu",
+      "explanation": "« Habiter à + ville » — Lyon prend « à »."
+    }
+  ],
+  "vocabulary": [
+    { "fr": "les parents", "en": "parents" },
+    { "fr": "le frère", "en": "brother" },
+    { "fr": "étudiant", "en": "student" },
+    { "fr": "habiter", "en": "to live (reside)" }
+  ]
+}

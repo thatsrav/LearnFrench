@@ -392,6 +392,131 @@ const OPENAI_TTS_VOICES = new Set(["alloy", "echo", "fable", "onyx", "nova", "sh
  * OpenAI Text-to-Speech (HD) for French listening / practice.
  * Requires OPENAI_API_KEY. Used by french-scorer-web (VITE_API_BASE_URL) and expo-mobile (EXPO_PUBLIC_API_BASE_URL).
  */
+const WRITING_CEFR_LEVELS = new Set(["A1", "A2", "B1", "B2", "C1"]);
+
+function normalizeWritingCefrLevel(raw) {
+  const u = String(raw || "")
+    .trim()
+    .toUpperCase();
+  if (u.startsWith("A1")) return "A1";
+  if (u.startsWith("A2")) return "A2";
+  if (u.startsWith("B1")) return "B1";
+  if (u.startsWith("B2")) return "B2";
+  if (u.startsWith("C1") || u.startsWith("C2")) return "C1";
+  return "B1";
+}
+
+async function generateDailyWritingTopicGemini({ apiKey, level }) {
+  const modelName = await pickGeminiModel(apiKey);
+  const url = `https://generativelanguage.googleapis.com/v1/${modelName}:generateContent?key=${encodeURIComponent(apiKey)}`;
+
+  const userPrompt = `Generate a French writing prompt for CEFR level ${level}.
+
+Return ONLY valid JSON with exactly these keys (no markdown, no backticks):
+- title (string): a short, engaging title for the writing task (can be in French).
+- description (string): exactly 2 sentences in English describing what the learner should write.
+- grammarFocus (array of exactly 3 objects): each object must have "label" (string, grammar topic name) and "masteryPercent" (integer 45-92) as an illustrative mastery bar value for that focus in this exercise.
+- curatorTip (string): one concise tip in English tied to today's grammar focus (mention at least one focus by name).
+- tags (array of exactly 2 short French theme tags in caps, e.g. "L'ÉTÉ", "TRAVAIL").
+
+Match vocabulary and task complexity strictly to CEFR ${level} standards.`;
+
+  const resp = await fetch(url, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      contents: [
+        {
+          parts: [
+            {
+              text: `System instruction: You are the FrenchLearn curriculum AI. Output ONLY the JSON object requested by the user.\n\nUser request:\n${userPrompt}`,
+            },
+          ],
+        },
+      ],
+      generationConfig: { temperature: 0.65, maxOutputTokens: 1024 },
+    }),
+  });
+
+  const raw = await resp.text();
+  if (!resp.ok) {
+    const err = new Error(`Gemini daily topic HTTP ${resp.status}`);
+    err.status = resp.status;
+    err.details = raw;
+    throw err;
+  }
+
+  const parsed = JSON.parse(raw);
+  const modelText = parsed?.candidates?.[0]?.content?.parts?.[0]?.text ?? "";
+  const jsonText = extractFirstJsonObject(modelText);
+  const data = JSON.parse(jsonText);
+
+  const title = String(data?.title ?? "").trim();
+  const description = String(data?.description ?? "").trim();
+  const curatorTip = String(data?.curatorTip ?? "").trim();
+  const tags = Array.isArray(data?.tags) ? data.tags.map((t) => String(t).trim()).filter(Boolean) : [];
+  let grammarFocus = Array.isArray(data?.grammarFocus) ? data.grammarFocus : [];
+
+  grammarFocus = grammarFocus
+    .map((g) => ({
+      label: String(g?.label ?? "").trim(),
+      masteryPercent: Math.round(Number(g?.masteryPercent)),
+    }))
+    .filter((g) => g.label.length > 0);
+
+  while (grammarFocus.length < 3) {
+    grammarFocus.push({ label: "Structure de phrase", masteryPercent: 70 });
+  }
+  grammarFocus = grammarFocus.slice(0, 3);
+
+  for (const g of grammarFocus) {
+    if (!Number.isFinite(g.masteryPercent)) g.masteryPercent = 70;
+    g.masteryPercent = Math.max(40, Math.min(95, g.masteryPercent));
+  }
+
+  while (tags.length < 2) tags.push("PRATIQUE");
+  const tags2 = tags.slice(0, 2);
+
+  if (!title || !description) {
+    throw new Error("Model returned incomplete daily topic JSON.");
+  }
+
+  return {
+    title,
+    description,
+    grammarFocus,
+    curatorTip: curatorTip || "Relisez votre texte à voix haute pour repérer les accords.",
+    tags: tags2,
+    level,
+  };
+}
+
+/**
+ * Daily level-matched writing topic (Gemini). Used by french-scorer-web Writing Area.
+ * Body: { level?: string } — CEFR band A1–C1 (C2 normalized to C1).
+ */
+app.post("/api/writing/daily-topic", async (req, res) => {
+  try {
+    const level = normalizeWritingCefrLevel(req.body?.level ?? req.body?.userLevel ?? "B1");
+    if (!WRITING_CEFR_LEVELS.has(level)) {
+      return res.status(400).json({ error: "Invalid level (use A1–C1)." });
+    }
+
+    const apiKey = (process.env.GEMINI_API_KEY || "").trim();
+    if (!apiKey) {
+      return res.status(503).json({ error: "GEMINI_API_KEY not configured.", code: "NO_GEMINI" });
+    }
+
+    const topic = await generateDailyWritingTopicGemini({ apiKey, level });
+    return res.json({ topic });
+  } catch (err) {
+    return res.status(Number(err?.status || 500)).json({
+      error: err?.message || String(err),
+      details: err?.details ? String(err.details).slice(0, 500) : undefined,
+    });
+  }
+});
+
 app.post("/api/tts/french", async (req, res) => {
   try {
     const text = (req.body && req.body.text ? String(req.body.text) : "").trim();

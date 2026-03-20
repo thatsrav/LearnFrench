@@ -1,0 +1,79 @@
+{
+  "id": "b1-petit-prince-ch2",
+  "level": "B1",
+  "title": "Le Petit Prince",
+  "chapter": "Chapitre II",
+  "audioUrl": null,
+  "sentences": [
+    {
+      "fr": "Les grandes personnes ne comprennent jamais rien toutes seules, et c'est fatigant, pour les enfants, de toujours et toujours leur donner des explications.",
+      "en": "Grown-ups never understand anything by themselves, and it is exhausting for children to have to provide explanations over and over again.",
+      "start": 0,
+      "end": 8
+    },
+    {
+      "fr": "J'ai donc dû choisir un autre métier et j'ai appris à piloter des avions.",
+      "en": "So I had to choose another profession, and I learned to fly airplanes.",
+      "start": 8,
+      "end": 14
+    },
+    {
+      "fr": "J'ai volé un peu partout dans le monde.",
+      "en": "I have flown a little everywhere in the world.",
+      "start": 14,
+      "end": 18
+    },
+    {
+      "fr": "Et c'est vrai que la géographie m'a servi.",
+      "en": "And it is true that geography was useful to me.",
+      "start": 18,
+      "end": 22
+    },
+    {
+      "fr": "Je savais reconnaître, du premier coup d'œil, la Chine de l'Arizona.",
+      "en": "I could tell at first glance whether it was China or Arizona.",
+      "start": 22,
+      "end": 28
+    }
+  ],
+  "grammarMarkers": [
+    {
+      "id": "neg-jamais",
+      "sentenceIndex": 0,
+      "label": "Négation (ne… jamais)",
+      "explanation": "« Ne… jamais » encadre le verbe « comprennent » et intensifie la fréquence (never)."
+    },
+    {
+      "id": "pc-choisir",
+      "sentenceIndex": 1,
+      "label": "Passé composé (choisir / apprendre)",
+      "explanation": "« J'ai dû », « j'ai appris » : auxiliaire avoir + participe passé pour des actions accomplies dans le passé."
+    },
+    {
+      "id": "pc-voler",
+      "sentenceIndex": 2,
+      "label": "Passé composé (voler)",
+      "explanation": "« J'ai volé » exprime une expérience de vie avec le passé composé."
+    },
+    {
+      "id": "imparfait-servir",
+      "sentenceIndex": 3,
+      "label": "Imparfait vs présent",
+      "explanation": "« M'a servi » (passé composé) : résultat acquis ; contraste avec une habitude qu'on exprimerait à l'imparfait."
+    },
+    {
+      "id": "si-condition",
+      "sentenceIndex": 4,
+      "label": "Infinitif après savoir",
+      "explanation": "« Je savais reconnaître » : savoir + infinitif pour une capacité au passé."
+    }
+  ],
+  "vocabulary": [
+    { "fr": "fatigant", "en": "exhausting / tiring" },
+    { "fr": "explications", "en": "explanations" },
+    { "fr": "métier", "en": "profession / job" },
+    { "fr": "piloter", "en": "to pilot / to fly" },
+    { "fr": "géographie", "en": "geography" },
+    { "fr": "du premier coup d'œil", "en": "at first glance" }
+  ]
+}

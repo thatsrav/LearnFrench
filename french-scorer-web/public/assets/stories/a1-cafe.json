@@ -1,0 +1,54 @@
+{
+  "id": "a1-cafe",
+  "level": "A1",
+  "title": "Au café",
+  "chapter": "Mission quotidienne",
+  "audioUrl": null,
+  "sentences": [
+    {
+      "fr": "Bonjour ! Je voudrais un café, s'il vous plaît.",
+      "en": "Hello! I would like a coffee, please.",
+      "start": 0,
+      "end": 4
+    },
+    {
+      "fr": "Avec du lait ou sans lait ?",
+      "en": "With milk or without milk?",
+      "start": 4,
+      "end": 7
+    },
+    {
+      "fr": "Avec du lait, merci. C'est combien ?",
+      "en": "With milk, thank you. How much is it?",
+      "start": 7,
+      "end": 11
+    },
+    {
+      "fr": "Deux euros cinquante, s'il vous plaît.",
+      "en": "Two euros fifty, please.",
+      "start": 11,
+      "end": 15
+    }
+  ],
+  "grammarMarkers": [
+    {
+      "id": "cond-politesse",
+      "sentenceIndex": 0,
+      "label": "Conditionnel de politesse",
+      "explanation": "« Je voudrais » est plus poli que « je veux » dans un café."
+    },
+    {
+      "id": "svp",
+      "sentenceIndex": 0,
+      "label": "Formule fixe",
+      "explanation": "« S'il vous plaît » — formule standard pour demander poliment."
+    }
+  ],
+  "vocabulary": [
+    { "fr": "un café", "en": "a coffee" },
+    { "fr": "du lait", "en": "milk" },
+    { "fr": "merci", "en": "thank you" },
+    { "fr": "combien", "en": "how much" },
+    { "fr": "euros", "en": "euros" }
+  ]
+}

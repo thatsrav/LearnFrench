@@ -1,0 +1,34 @@
+{
+  "id": "c1-essay",
+  "level": "C1",
+  "title": "La langue comme patrimoine",
+  "chapter": "Essai bref",
+  "audioUrl": null,
+  "sentences": [
+    {
+      "fr": "Préserver une langue ne se résume pas à en figer la grammaire dans le marbre.",
+      "en": "Preserving a language is not reducible to freezing its grammar in stone.",
+      "start": 0,
+      "end": 7
+    },
+    {
+      "fr": "C'est au contraire accepter qu'elle vive, qu'elle se métamorphose sous la pression des usages.",
+      "en": "It is, on the contrary, to accept that it lives, that it metamorphoses under the pressure of usage.",
+      "start": 7,
+      "end": 15
+    }
+  ],
+  "grammarMarkers": [
+    {
+      "id": "ne-pas-reduire",
+      "sentenceIndex": 0,
+      "label": "Ne pas se réduire à",
+      "explanation": "Locution pour nuancer : l'acte dépasse la définition étroite."
+    }
+  ],
+  "vocabulary": [
+    { "fr": "figer", "en": "to freeze / fix" },
+    { "fr": "le marbre", "en": "marble (fig.)" },
+    { "fr": "se métamorphoser", "en": "to metamorphose" }
+  ]
+}

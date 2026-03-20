@@ -1,0 +1,47 @@
+{
+  "id": "b1-metro",
+  "level": "B1",
+  "title": "Dans le métro",
+  "chapter": "Paris",
+  "audioUrl": null,
+  "sentences": [
+    {
+      "fr": "La rame était bondée ; j'ai à peine trouvé une place pour mon sac.",
+      "en": "The train was packed; I barely found a spot for my bag.",
+      "start": 0,
+      "end": 6
+    },
+    {
+      "fr": "Une voix a annoncé : « Attention aux pickpockets. »",
+      "en": "A voice announced: “Watch out for pickpockets.”",
+      "start": 6,
+      "end": 11
+    },
+    {
+      "fr": "Je suis descendu deux arrêts trop tard, mais le quartier valait le détour.",
+      "en": "I got off two stops too late, but the neighborhood was worth the detour.",
+      "start": 11,
+      "end": 18
+    }
+  ],
+  "grammarMarkers": [
+    {
+      "id": "imparfait-ete",
+      "sentenceIndex": 0,
+      "label": "Imparfait (description)",
+      "explanation": "« Était bondée » décrit l'état de la rame au moment du récit."
+    },
+    {
+      "id": "pc-trouver",
+      "sentenceIndex": 0,
+      "label": "Passé composé",
+      "explanation": "« J'ai trouvé » : action ponctuelle dans le passé."
+    }
+  ],
+  "vocabulary": [
+    { "fr": "bondé(e)", "en": "packed / crowded" },
+    { "fr": "à peine", "en": "barely" },
+    { "fr": "un arrêt", "en": "a stop (transit)" },
+    { "fr": "valoir le détour", "en": "to be worth the detour" }
+  ]
+}

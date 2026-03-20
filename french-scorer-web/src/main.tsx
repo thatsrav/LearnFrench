@@ -17,6 +17,8 @@ import AuthCallbackPage from './pages/AuthCallbackPage.tsx'
 import SyllabusPage from './pages/SyllabusPage.tsx'
 import DashboardHomePage from './pages/DashboardHomePage.tsx'
 import GrammarAtelierPage from './pages/GrammarAtelierPage.tsx'
+import ReadingRoomPage from './pages/ReadingRoomPage.tsx'
+import WritingAreaPage from './pages/WritingAreaPage.tsx'
 import { tefPrepSkillPath } from './lib/tefPrepNav'
 
 const router = createBrowserRouter([
@@ -33,8 +35,8 @@ const router = createBrowserRouter([
           { path: 'unit/:moduleId', element: <UnitOverviewPage /> },
           { path: 'lesson/:unitId', element: <LessonPage /> },
           { path: 'game', element: <GrammarAtelierPage /> },
-          { path: 'reading-room', element: <Navigate to={tefPrepSkillPath('reading')} replace /> },
-          { path: 'writing', element: <Navigate to={tefPrepSkillPath('writing')} replace /> },
+          { path: 'reading-room', element: <ReadingRoomPage /> },
+          { path: 'writing', element: <WritingAreaPage /> },
           { path: 'listening', element: <Navigate to={tefPrepSkillPath('listening')} replace /> },
           { path: 'speaking', element: <Navigate to={tefPrepSkillPath('speaking')} replace /> },
           { path: 'reading', element: <Navigate to={tefPrepSkillPath('reading')} replace /> },

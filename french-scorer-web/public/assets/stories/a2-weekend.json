@@ -1,0 +1,46 @@
+{
+  "id": "a2-weekend",
+  "level": "A2",
+  "title": "Le week-end dernier",
+  "chapter": "Récit court",
+  "audioUrl": null,
+  "sentences": [
+    {
+      "fr": "Samedi matin, il a fait beau.",
+      "en": "On Saturday morning, the weather was nice.",
+      "start": 0,
+      "end": 4
+    },
+    {
+      "fr": "Nous sommes allés au parc avec des amis.",
+      "en": "We went to the park with some friends.",
+      "start": 4,
+      "end": 9
+    },
+    {
+      "fr": "Le dimanche, je me suis reposé et j'ai lu un livre.",
+      "en": "On Sunday, I rested and I read a book.",
+      "start": 9,
+      "end": 15
+    }
+  ],
+  "grammarMarkers": [
+    {
+      "id": "il-fait",
+      "sentenceIndex": 0,
+      "label": "Il fait + adjectif (météo)",
+      "explanation": "« Il a fait beau » au passé pour décrire la météo du week-end."
+    },
+    {
+      "id": "aller-etre",
+      "sentenceIndex": 1,
+      "label": "Passé composé (être)",
+      "explanation": "« Nous sommes allés » : verbe de mouvement avec être (accord du participe)."
+    }
+  ],
+  "vocabulary": [
+    { "fr": "le parc", "en": "park" },
+    { "fr": "se reposer", "en": "to rest" },
+    { "fr": "un livre", "en": "a book" }
+  ]
+}

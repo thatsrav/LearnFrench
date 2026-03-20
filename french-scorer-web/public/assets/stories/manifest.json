@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "items": [
+    { "level": "A1", "file": "a1-cafe.json" },
+    { "level": "A1", "file": "a1-famille.json" },
+    { "level": "A2", "file": "a2-weekend.json" },
+    { "level": "B1", "file": "b1-petit-prince-ch2.json" },
+    { "level": "B1", "file": "b1-metro.json" },
+    { "level": "B2", "file": "b2-opinion.json" },
+    { "level": "C1", "file": "c1-essay.json" }
+  ]
+}

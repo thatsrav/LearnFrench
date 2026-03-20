@@ -1,0 +1,34 @@
+{
+  "id": "b2-opinion",
+  "level": "B2",
+  "title": "Médias et attention",
+  "chapter": "Point de vue",
+  "audioUrl": null,
+  "sentences": [
+    {
+      "fr": "Il serait naïf de croire que l'information circule sans biais.",
+      "en": "It would be naive to believe that information circulates without bias.",
+      "start": 0,
+      "end": 6
+    },
+    {
+      "fr": "Pour autant, relativiser systématiquement tout discours mène à une impasse.",
+      "en": "Even so, systematically relativizing every discourse leads to a dead end.",
+      "start": 6,
+      "end": 13
+    }
+  ],
+  "grammarMarkers": [
+    {
+      "id": "cond-necessite",
+      "sentenceIndex": 0,
+      "label": "Conditionnel d'évaluation",
+      "explanation": "« Il serait naïf de + infinitif » structure impersonnelle pour juger une attitude."
+    }
+  ],
+  "vocabulary": [
+    { "fr": "un biais", "en": "bias" },
+    { "fr": "relativiser", "en": "to relativize" },
+    { "fr": "une impasse", "en": "dead end / stalemate" }
+  ]
+}

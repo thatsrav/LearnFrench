@@ -1,9 +1,10 @@
 import { Bot, CheckCircle2, Download, Info, Mic, Sparkles, Type, TrendingUp, AlertTriangle } from 'lucide-react'
-import { useMemo, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useAuth } from '../contexts/AuthContext'
 import { supabase } from '../lib/supabase'
 import { syncWebScoreHistoryToCloud } from '../lib/cloudProgressWeb'
+import { SCORER_PREFILL_FROM_WRITING_KEY } from '../lib/writingAreaStorage'
 import { Bar, BarChart, CartesianGrid, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts'
 
 type FrenchScore = {
@@ -80,6 +81,21 @@ export default function AIScorerPage() {
   const [result, setResult] = useState<FrenchScore | null>(null)
   const [resultProvider, setResultProvider] = useState<string | null>(null)
   const [recentScores, setRecentScores] = useState<StoredScore[]>(() => loadRecentScores())
+  const writingPrefillOnce = useRef(false)
+
+  useEffect(() => {
+    if (writingPrefillOnce.current) return
+    try {
+      const pre = sessionStorage.getItem(SCORER_PREFILL_FROM_WRITING_KEY)
+      if (pre) {
+        writingPrefillOnce.current = true
+        setText(pre)
+        sessionStorage.removeItem(SCORER_PREFILL_FROM_WRITING_KEY)
+      }
+    } catch {
+      /* */
+    }
+  }, [])
 
   const canSubmit = useMemo(() => text.trim().length > 0 && !loading && inputMode === 'text', [text, loading, inputMode])
   const wordCount = useMemo(() => (text.trim() ? text.trim().split(/\s+/).filter(Boolean).length : 0), [text])
