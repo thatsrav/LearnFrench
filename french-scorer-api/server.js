@@ -12,6 +12,11 @@ app.get("/health", (_req, res) => {
   res.json({ ok: true });
 });
 
+/** Render (and some proxies) hit `/` for health checks — keep this lightweight. */
+app.get("/", (_req, res) => {
+  res.json({ ok: true, service: "french-scorer-api" });
+});
+
 function buildPrompt(frenchText) {
   return `You are a strict but helpful French teacher.
 
@@ -380,7 +385,9 @@ app.post("/api/score", async (req, res) => {
 });
 
 const port = Number(process.env.PORT || 8787);
-app.listen(port, () => {
-  console.log(`API listening on http://localhost:${port}`);
+// Render and other hosts need a public bind; localhost-only fails health checks.
+const host = process.env.HOST || "0.0.0.0";
+app.listen(port, host, () => {
+  console.log(`API listening on http://${host}:${port}`);
 });
 
