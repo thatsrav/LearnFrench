@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useAuth } from '../contexts/AuthContext'
-import { getSupabaseProjectHost, supabase } from '../lib/supabase'
+import { getSupabaseProjectHost, getSupabaseSetupDiagnostics, supabase } from '../lib/supabase'
 import {
   downloadWebScoreHistoryFromCloud,
   downloadWebUnitProgress,
@@ -56,18 +56,57 @@ export default function AccountPage() {
   }
 
   if (!configured) {
+    const diag = getSupabaseSetupDiagnostics()
     return (
-      <div className="mx-auto max-w-lg space-y-3">
+      <div className="mx-auto max-w-lg space-y-4">
         <h1 className="text-2xl font-bold text-slate-900">Account</h1>
         <p className="text-sm text-slate-600">
           Set <code className="rounded bg-slate-100 px-1">VITE_SUPABASE_URL</code> and{' '}
           <code className="rounded bg-slate-100 px-1">VITE_SUPABASE_ANON_KEY</code> in{' '}
-          <code className="rounded bg-slate-100 px-1">.env</code>, then restart Vite.
+          <code className="rounded bg-slate-100 px-1">.env</code> locally, or in Vercel for production.
         </p>
-        <p className="text-sm text-amber-800">
-          <strong>Vercel:</strong> add the same variables under Project → Settings → Environment Variables, then{' '}
-          <strong>Redeploy</strong> (Vite bakes them in at build time).
-        </p>
+        <div className="rounded-xl border border-slate-200 bg-slate-50 p-3 text-xs text-slate-600">
+          <p className="font-semibold text-slate-800">What this deployment sees (after build)</p>
+          <ul className="mt-2 list-inside list-disc space-y-1">
+            <li>
+              <code className="rounded bg-white px-1">VITE_SUPABASE_URL</code>:{' '}
+              {diag.urlInBuild ? (
+                <span className="text-emerald-700">present</span>
+              ) : (
+                <span className="text-red-600 font-medium">missing</span>
+              )}
+            </li>
+            <li>
+              <code className="rounded bg-white px-1">VITE_SUPABASE_ANON_KEY</code>:{' '}
+              {diag.keyInBuild ? (
+                <span className="text-emerald-700">present</span>
+              ) : (
+                <span className="text-red-600 font-medium">missing</span>
+              )}
+            </li>
+          </ul>
+        </div>
+        {diag.hint ? (
+          <p className="rounded-xl border border-amber-200 bg-amber-50 p-3 text-sm text-amber-950">{diag.hint}</p>
+        ) : null}
+        <div className="space-y-2 text-sm text-amber-900">
+          <p>
+            <strong>Vercel checklist</strong>
+          </p>
+          <ol className="list-inside list-decimal space-y-1 text-slate-700">
+            <li>
+              <strong>Redeploy</strong> after saving env vars (Deployments → ⋯ → Redeploy). Old builds never pick up new vars.
+            </li>
+            <li>
+              <strong>Root Directory</strong> must be <code className="rounded bg-slate-100 px-1">french-scorer-web</code>{' '}
+              (Project → Settings → General) so Vite runs in the right folder and embeds <code className="px-1">VITE_*</code>.
+            </li>
+            <li>
+              Variables must be enabled for the environment you use: <strong>Preview</strong> and/or{' '}
+              <strong>Production</strong> (&quot;All Environments&quot; covers both).
+            </li>
+          </ol>
+        </div>
       </div>
     )
   }

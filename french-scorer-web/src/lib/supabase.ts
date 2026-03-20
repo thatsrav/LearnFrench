@@ -33,6 +33,57 @@ const url = resolveSupabaseUrl(rawUrl)
 
 export const isSupabaseConfigured = Boolean(url && key)
 
+/** Why the app is not configured (safe to show on Account page — no secrets). */
+export function getSupabaseSetupDiagnostics(): {
+  urlInBuild: boolean
+  keyInBuild: boolean
+  hint: string
+} {
+  const urlInBuild = rawUrl.length > 0
+  const keyInBuild = key.length > 0
+
+  if (!urlInBuild && !keyInBuild) {
+    return {
+      urlInBuild: false,
+      keyInBuild: false,
+      hint: 'This deployment has no Supabase values in the JavaScript bundle. Vercel did not pass them into the Vite build, or you have not redeployed since adding them.',
+    }
+  }
+  if (rawUrl.includes('supabase.com/dashboard')) {
+    return {
+      urlInBuild: true,
+      keyInBuild,
+      hint: 'VITE_SUPABASE_URL looks like a Supabase dashboard link. It must be the Project URL: https://YOUR_REF.supabase.co (Settings → API).',
+    }
+  }
+  if (urlInBuild && !url) {
+    return {
+      urlInBuild: true,
+      keyInBuild,
+      hint: 'VITE_SUPABASE_URL is set but is not a valid API URL. Use https://YOUR_REF.supabase.co exactly.',
+    }
+  }
+  if (!keyInBuild) {
+    return {
+      urlInBuild,
+      keyInBuild: false,
+      hint: 'VITE_SUPABASE_ANON_KEY is missing from this build. Check the name spelling and redeploy.',
+    }
+  }
+  if (!urlInBuild) {
+    return {
+      urlInBuild: false,
+      keyInBuild: true,
+      hint: 'VITE_SUPABASE_URL is missing from this build. Check the name spelling and redeploy.',
+    }
+  }
+  return {
+    urlInBuild: true,
+    keyInBuild: true,
+    hint: '',
+  }
+}
+
 /** Shown on Account page so you can confirm production (Vercel) is using the right project. */
 export function getSupabaseProjectHost(): string | null {
   if (!url) return null
