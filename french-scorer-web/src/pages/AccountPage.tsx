@@ -1,3 +1,4 @@
+import { Cloud, CreditCard, LogOut, Settings, User } from 'lucide-react'
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useAuth } from '../contexts/AuthContext'
@@ -117,157 +118,264 @@ export default function AccountPage() {
 
   if (user) {
     return (
-      <div className="mx-auto max-w-lg space-y-4">
-        <h1 className="text-2xl font-bold text-slate-900">Signed in</h1>
-        <p className="text-sm text-slate-600">{user.email}</p>
-        {syncMsg ? (
-          <p
-            className={`text-sm font-medium ${syncMsg.endsWith('— OK') ? 'text-emerald-700' : 'text-red-600'}`}
-          >
-            {syncMsg}
-          </p>
-        ) : null}
-
-        <div className="flex flex-col gap-2">
-          <button
-            type="button"
-            disabled={busy}
-            onClick={() => void run(() => uploadWebUnitProgress(supabase!, user.id), 'Lesson progress uploaded')}
-            className="rounded-xl bg-blue-600 px-4 py-3 text-sm font-bold text-white hover:bg-blue-700 disabled:opacity-50"
-          >
-            Upload lesson progress → cloud
-          </button>
-          <button
-            type="button"
-            disabled={busy}
-            onClick={() => void run(() => downloadWebUnitProgress(supabase!, user.id), 'Lesson progress downloaded')}
-            className="rounded-xl border border-blue-600 px-4 py-3 text-sm font-bold text-blue-700 hover:bg-blue-50 disabled:opacity-50"
-          >
-            Download cloud → browser
-          </button>
-          <button
-            type="button"
-            disabled={busy}
-            onClick={() =>
-              void run(async () => {
-                const raw = localStorage.getItem(RECENT_SCORES_KEY)
-                const parsed = raw ? (JSON.parse(raw) as StoredScore[]) : []
-                await syncWebScoreHistoryToCloud(supabase!, user.id, Array.isArray(parsed) ? parsed : [])
-              }, 'Scores uploaded')
-            }
-            className="rounded-xl bg-indigo-600 px-4 py-3 text-sm font-bold text-white hover:bg-indigo-700 disabled:opacity-50"
-          >
-            Upload AI score history → cloud
-          </button>
-          <button
-            type="button"
-            disabled={busy}
-            onClick={() =>
-              void run(async () => {
-                const scores = await downloadWebScoreHistoryFromCloud(supabase!, user.id)
-                localStorage.setItem(RECENT_SCORES_KEY, JSON.stringify(scores))
-              }, 'Scores downloaded')
-            }
-            className="rounded-xl border border-indigo-600 px-4 py-3 text-sm font-bold text-indigo-700 hover:bg-indigo-50 disabled:opacity-50"
-          >
-            Download score history from cloud
-          </button>
+      <div className="mx-auto grid max-w-6xl gap-10 lg:grid-cols-2 lg:gap-14">
+        <div>
+          <h1 className="font-display text-3xl font-bold text-slate-900">Bienvenue</h1>
+          <p className="mt-2 text-sm text-slate-600">Continue your journey toward French mastery in our digital atelier.</p>
+          <p className="mt-4 text-sm font-medium text-slate-800">{user.email}</p>
+          {syncMsg ? (
+            <p className={`mt-3 text-sm font-medium ${syncMsg.endsWith('— OK') ? 'text-emerald-700' : 'text-red-600'}`}>
+              {syncMsg}
+            </p>
+          ) : null}
+          <div className="mt-8 flex flex-col gap-3">
+            <button
+              type="button"
+              disabled={busy}
+              onClick={() => void run(() => uploadWebUnitProgress(supabase!, user.id), 'Lesson progress uploaded')}
+              className="rounded-2xl bg-[#2563eb] px-4 py-3.5 text-sm font-bold text-white shadow-md hover:bg-blue-700 disabled:opacity-50"
+            >
+              Upload lesson progress → cloud
+            </button>
+            <button
+              type="button"
+              disabled={busy}
+              onClick={() => void run(() => downloadWebUnitProgress(supabase!, user.id), 'Lesson progress downloaded')}
+              className="rounded-2xl border-2 border-[#2563eb] px-4 py-3.5 text-sm font-bold text-blue-700 hover:bg-blue-50 disabled:opacity-50"
+            >
+              Download cloud → browser
+            </button>
+            <button
+              type="button"
+              disabled={busy}
+              onClick={() =>
+                void run(async () => {
+                  const raw = localStorage.getItem(RECENT_SCORES_KEY)
+                  const parsed = raw ? (JSON.parse(raw) as StoredScore[]) : []
+                  await syncWebScoreHistoryToCloud(supabase!, user.id, Array.isArray(parsed) ? parsed : [])
+                }, 'Scores uploaded')
+              }
+              className="rounded-2xl bg-[#4f46e5] px-4 py-3.5 text-sm font-bold text-white hover:bg-indigo-700 disabled:opacity-50"
+            >
+              Upload AI score history → cloud
+            </button>
+            <button
+              type="button"
+              disabled={busy}
+              onClick={() =>
+                void run(async () => {
+                  const scores = await downloadWebScoreHistoryFromCloud(supabase!, user.id)
+                  localStorage.setItem(RECENT_SCORES_KEY, JSON.stringify(scores))
+                }, 'Scores downloaded')
+              }
+              className="rounded-2xl border-2 border-indigo-600 px-4 py-3.5 text-sm font-bold text-indigo-700 hover:bg-indigo-50 disabled:opacity-50"
+            >
+              Download score history from cloud
+            </button>
+          </div>
         </div>
 
-        <button
-          type="button"
-          disabled={busy}
-          onClick={() => void signOut()}
-          className="mt-6 w-full rounded-xl border border-slate-300 py-3 text-sm font-semibold text-slate-800"
-        >
-          Sign out
-        </button>
+        <div>
+          <h2 className="text-xs font-bold uppercase tracking-widest text-slate-500">Your learning profile</h2>
+          <p className="mt-1 text-sm text-slate-600">Manage credentials and cloud preferences.</p>
+          <div className="mt-6 rounded-[1.75rem] border border-slate-200 bg-gradient-to-b from-slate-100/80 to-slate-50 p-6 shadow-sm">
+            <div className="flex items-center gap-4">
+              <div className="flex h-16 w-16 items-center justify-center rounded-full bg-indigo-100 text-indigo-700">
+                <User className="h-8 w-8" />
+              </div>
+              <div>
+                <p className="font-display text-lg font-bold text-slate-900">Scholar</p>
+                <p className="text-sm text-slate-600">Connected learner</p>
+                <span className="mt-2 inline-block rounded-full bg-violet-100 px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-wide text-violet-800">
+                  Pro member
+                </span>
+              </div>
+            </div>
+            <div className="mt-6 grid grid-cols-2 gap-3">
+              <div className="rounded-xl border border-white/80 bg-white p-4 shadow-sm">
+                <p className="text-[10px] font-bold uppercase text-slate-500">Weekly streak</p>
+                <p className="mt-1 text-xl font-black text-slate-900">—</p>
+              </div>
+              <div className="rounded-xl border border-white/80 bg-white p-4 shadow-sm">
+                <p className="text-[10px] font-bold uppercase text-slate-500">Words learned</p>
+                <p className="mt-1 text-xl font-black text-slate-900">—</p>
+              </div>
+            </div>
+            <button
+              type="button"
+              disabled={busy}
+              className="mt-5 flex w-full items-center justify-center gap-2 rounded-2xl bg-gradient-to-r from-[#6366f1] to-[#4f46e5] py-3.5 text-sm font-bold text-white shadow-lg shadow-indigo-500/20"
+            >
+              <Cloud className="h-4 w-4" />
+              Sync with Cloud
+            </button>
+            <button
+              type="button"
+              disabled={busy}
+              onClick={() => void signOut()}
+              className="mt-3 flex w-full items-center justify-center gap-2 rounded-2xl border border-slate-200 bg-white py-3 text-sm font-semibold text-slate-700 hover:bg-slate-50"
+            >
+              <LogOut className="h-4 w-4" />
+              Sign out
+            </button>
+          </div>
+          <div className="mt-4 space-y-2">
+            <button
+              type="button"
+              className="flex w-full items-center justify-between rounded-2xl border border-slate-200 bg-white px-4 py-4 text-left text-sm font-semibold text-slate-800 shadow-sm hover:bg-slate-50"
+            >
+              <span className="flex items-center gap-3">
+                <Settings className="h-5 w-5 text-slate-400" />
+                Account settings
+              </span>
+              <span className="text-slate-400">›</span>
+            </button>
+            <button
+              type="button"
+              className="flex w-full items-center justify-between rounded-2xl border border-slate-200 bg-white px-4 py-4 text-left text-sm font-semibold text-slate-800 shadow-sm hover:bg-slate-50"
+            >
+              <span className="flex items-center gap-3">
+                <CreditCard className="h-5 w-5 text-slate-400" />
+                Billing history
+              </span>
+              <span className="text-slate-400">›</span>
+            </button>
+          </div>
+        </div>
       </div>
     )
   }
 
   return (
-    <div className="mx-auto max-w-md space-y-4">
-      <h1 className="text-2xl font-bold text-slate-900">Account</h1>
-      <p className="text-sm text-slate-600">Sign in with email or Google to sync progress.</p>
-      <p className="text-xs text-slate-400">
-        Connected to: <code className="rounded bg-slate-100 px-1 text-slate-700">{getSupabaseProjectHost() ?? '—'}</code>{' '}
-        (should end in <code className="text-slate-600">.supabase.co</code>)
-      </p>
-
-      {syncMsg ? (
-        <p
-          className={`rounded-xl px-3 py-2 text-sm font-medium ${
-            syncMsg === 'Signed in.' || syncMsg.includes('Check your email') || syncMsg.includes('Account ready')
-              ? 'bg-emerald-50 text-emerald-800'
-              : 'bg-red-50 text-red-700'
-          }`}
-        >
-          {syncMsg}
+    <div className="mx-auto grid max-w-6xl gap-10 lg:grid-cols-2 lg:gap-14">
+      <div>
+        <h1 className="font-display text-3xl font-bold text-slate-900">Bienvenue</h1>
+        <p className="mt-2 text-sm leading-relaxed text-slate-600">
+          Continue your journey toward French mastery in our digital atelier.
         </p>
-      ) : null}
+        <div className="mt-6 rounded-xl border border-amber-200 bg-[#fffbeb] p-4 text-sm text-amber-950">
+          <strong className="font-semibold">Session tip:</strong> sign in to sync TEF practice and lesson progress across
+          devices.
+        </div>
 
-      <div className="flex rounded-xl bg-slate-200 p-1">
-        <button
-          type="button"
-          onClick={() => setMode('signin')}
-          className={`flex-1 rounded-lg py-2 text-sm font-semibold ${mode === 'signin' ? 'bg-white shadow' : 'text-slate-500'}`}
-        >
-          Sign in
-        </button>
-        <button
-          type="button"
-          onClick={() => setMode('signup')}
-          className={`flex-1 rounded-lg py-2 text-sm font-semibold ${mode === 'signup' ? 'bg-white shadow' : 'text-slate-500'}`}
-        >
-          Sign up
-        </button>
+        {syncMsg ? (
+          <p
+            className={`mt-4 rounded-xl px-3 py-2 text-sm font-medium ${
+              syncMsg === 'Signed in.' || syncMsg.includes('Check your email') || syncMsg.includes('Account ready')
+                ? 'bg-emerald-50 text-emerald-800'
+                : 'bg-red-50 text-red-700'
+            }`}
+          >
+            {syncMsg}
+          </p>
+        ) : null}
+
+        <div className="mt-8 flex rounded-2xl bg-slate-200/90 p-1.5">
+          <button
+            type="button"
+            onClick={() => setMode('signin')}
+            className={`flex-1 rounded-xl py-2.5 text-sm font-bold ${mode === 'signin' ? 'bg-white text-slate-900 shadow-sm' : 'text-slate-500'}`}
+          >
+            Sign in
+          </button>
+          <button
+            type="button"
+            onClick={() => setMode('signup')}
+            className={`flex-1 rounded-xl py-2.5 text-sm font-bold ${mode === 'signup' ? 'bg-white text-slate-900 shadow-sm' : 'text-slate-500'}`}
+          >
+            Sign up
+          </button>
+        </div>
+
+        <div className="mt-8 rounded-[1.75rem] border border-slate-200 bg-white p-6 shadow-sm">
+          <label className="text-[10px] font-bold uppercase tracking-widest text-slate-500">Email address</label>
+          <input
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            type="email"
+            className="mt-2 w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-slate-900 outline-none focus:border-indigo-400"
+            placeholder="you@example.com"
+          />
+          <div className="mt-5 flex items-center justify-between">
+            <label className="text-[10px] font-bold uppercase tracking-widest text-slate-500">Password</label>
+            <button type="button" className="text-xs font-bold text-[#4f46e5] hover:underline">
+              Forgot?
+            </button>
+          </div>
+          <input
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            type="password"
+            className="mt-2 w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-slate-900 outline-none focus:border-indigo-400"
+          />
+          <button
+            type="button"
+            disabled={busy}
+            onClick={() => void submit()}
+            className="mt-8 w-full rounded-2xl bg-[#1a1c2e] py-3.5 text-sm font-bold text-white shadow-lg hover:bg-slate-900"
+          >
+            {mode === 'signin' ? 'Sign in to FrenchLearn' : 'Create your FrenchLearn account'}
+          </button>
+
+          <div className="my-6 flex items-center gap-3">
+            <div className="h-px flex-1 bg-slate-200" />
+            <span className="text-[10px] font-bold uppercase tracking-widest text-slate-400">Or</span>
+            <div className="h-px flex-1 bg-slate-200" />
+          </div>
+
+          <button
+            type="button"
+            disabled={busy}
+            onClick={() => void onGoogle()}
+            className="w-full rounded-2xl border-2 border-slate-200 bg-white py-3.5 text-sm font-bold text-slate-800 hover:bg-slate-50"
+          >
+            Continue with Google
+          </button>
+        </div>
+
+        <p className="mt-6 text-center text-xs text-slate-400">
+          Connected to: <code className="rounded bg-slate-100 px-1 text-slate-700">{getSupabaseProjectHost() ?? '—'}</code>
+        </p>
       </div>
 
-      <label className="block text-xs font-semibold text-slate-500">Email</label>
-      <input
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-        type="email"
-        className="w-full rounded-xl border border-slate-200 px-4 py-3 text-slate-900"
-        placeholder="you@example.com"
-      />
-      <label className="block text-xs font-semibold text-slate-500">Password</label>
-      <input
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-        type="password"
-        className="w-full rounded-xl border border-slate-200 px-4 py-3 text-slate-900"
-      />
-      <button
-        type="button"
-        disabled={busy}
-        onClick={() => void submit()}
-        className="w-full rounded-xl bg-slate-900 py-3 text-sm font-bold text-white hover:bg-slate-800"
-      >
-        {mode === 'signin' ? 'Sign in' : 'Create account'}
-      </button>
-
-      <div className="flex items-center gap-2 py-2">
-        <div className="h-px flex-1 bg-slate-200" />
-        <span className="text-xs text-slate-400">or</span>
-        <div className="h-px flex-1 bg-slate-200" />
+      <div>
+        <h2 className="text-xs font-bold uppercase tracking-widest text-slate-500">Your learning profile</h2>
+        <p className="mt-1 text-sm text-slate-600">Preview of the dashboard after sign-in.</p>
+        <div className="mt-6 rounded-[1.75rem] border border-slate-200 bg-gradient-to-b from-slate-100/80 to-slate-50 p-6 opacity-95 shadow-sm">
+          <div className="flex items-center gap-4">
+            <div className="h-16 w-16 rounded-full bg-gradient-to-br from-indigo-200 to-violet-200" />
+            <div>
+              <p className="font-display text-lg font-bold text-slate-900">Julian Lemaire</p>
+              <p className="text-sm text-slate-600">Advanced B2 Scholar</p>
+              <span className="mt-2 inline-block rounded-full bg-violet-100 px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-wide text-violet-800">
+                Pro member
+              </span>
+            </div>
+          </div>
+          <div className="mt-6 grid grid-cols-2 gap-3">
+            <div className="rounded-xl border border-white/80 bg-white p-4 shadow-sm">
+              <p className="text-[10px] font-bold uppercase text-slate-500">Weekly streak</p>
+              <p className="mt-1 text-xl font-black text-slate-900">14 days</p>
+            </div>
+            <div className="rounded-xl border border-white/80 bg-white p-4 shadow-sm">
+              <p className="text-[10px] font-bold uppercase text-slate-500">Words learned</p>
+              <p className="mt-1 text-xl font-black text-slate-900">2,480</p>
+            </div>
+          </div>
+          <div className="mt-5 flex items-center justify-between rounded-2xl bg-gradient-to-r from-[#6366f1] to-[#4f46e5] px-4 py-3.5 text-sm font-bold text-white shadow-lg">
+            <span className="flex items-center gap-2">
+              <Cloud className="h-4 w-4" />
+              Sync with Cloud
+            </span>
+            <span className="text-xs font-medium text-white/80">Just now</span>
+          </div>
+        </div>
+        <p className="mt-6 text-center text-sm text-slate-500 lg:text-left">
+          <Link to="/" className="font-semibold text-[#2563eb] hover:underline">
+            ← Home
+          </Link>
+        </p>
       </div>
-
-      <button
-        type="button"
-        disabled={busy}
-        onClick={() => void onGoogle()}
-        className="w-full rounded-xl border border-slate-200 bg-white py-3 text-sm font-semibold text-slate-800 hover:bg-slate-50"
-      >
-        Continue with Google
-      </button>
-
-      <p className="text-center text-sm text-slate-500">
-        <Link to="/" className="text-blue-600 hover:underline">
-          Home
-        </Link>
-      </p>
     </div>
   )
 }

@@ -1,149 +1,214 @@
-import { ArrowRight, Award, BookOpen, Bot, Clock, Flag, Target, User } from 'lucide-react'
+import { ArrowRight, BookOpen, Bot, ChevronRight, Flag, Medal, Sparkles, User } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import { CURRICULUM_MODULES, CURRICULUM_STATS } from '../lib/curriculum'
 
+const PATHWAYS = [
+  {
+    n: '01',
+    pill: 'Foundation (A1)',
+    title: 'The First Breath of Language',
+    desc: 'Greetings, numbers, and the rhythm of everyday French — built for confident first steps.',
+  },
+  {
+    n: '02',
+    pill: 'Expansion (A2)',
+    title: 'Stories, Routines, and Real Life',
+    desc: 'Family, work, and past events — expand fluency with structured practice and AI feedback.',
+  },
+  {
+    n: '03',
+    pill: 'Mastery (B1+)',
+    title: 'Argument, Nuance, and TEF Readiness',
+    desc: 'Sharpen comprehension, writing, and oral strategies aligned with exam-style tasks.',
+  },
+] as const
+
 export default function LandingPage() {
   return (
-    <div className="min-h-full bg-[#f8fafc]">
-      {/* Top bar */}
-      <header className="border-b border-white/10 bg-slate-900/5">
-        <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-4 md:px-6">
-          <Link to="/" className="flex items-center gap-2">
-            <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-blue-600 to-indigo-600 text-lg font-bold text-white shadow-lg">
-              F
-            </span>
-            <span className="text-lg font-bold tracking-tight text-slate-900">FrenchLearn</span>
+    <div className="min-h-full bg-[#f9fafb]">
+      <header className="border-b border-slate-200/60 bg-white/90 backdrop-blur-sm">
+        <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 md:px-8">
+          <Link to="/" className="flex items-center gap-3">
+            <span className="font-display text-2xl font-bold text-slate-900">F</span>
+            <span className="text-lg font-semibold tracking-tight text-slate-900">FrenchLearn</span>
           </Link>
-          <div className="flex items-center gap-2">
-            <Link
-              to="/"
-              className="rounded-full px-4 py-2 text-sm font-semibold text-blue-600"
-            >
+          <nav className="hidden items-center gap-8 text-sm font-medium text-slate-600 md:flex">
+            <Link to="/" className="border-b-2 border-[#4f46e5] pb-0.5 text-slate-900">
               Home
             </Link>
-            <Link
-              to="/tef-prep"
-              className="hidden items-center gap-2 rounded-full border border-slate-200 bg-white px-4 py-2 text-sm font-semibold text-red-700 shadow-sm hover:bg-red-50 sm:inline-flex"
-            >
-              <Flag size={18} />
+            <Link to="/scorer" className="transition hover:text-indigo-600">
+              AI Scorer
+            </Link>
+            <Link to="/tef-prep" className="transition hover:text-indigo-600">
               TEF Prep
             </Link>
+            <Link to="/reading" className="transition hover:text-indigo-600">
+              Reading
+            </Link>
+            <Link to="/speaking" className="transition hover:text-indigo-600">
+              Speaking
+            </Link>
+            <Link to="/leaderboard" className="transition hover:text-indigo-600">
+              Scores
+            </Link>
+          </nav>
+          <div className="flex items-center gap-2">
             <Link
               to="/account"
-              className="hidden items-center gap-2 rounded-full border border-slate-200 bg-white px-4 py-2 text-sm font-semibold text-slate-800 shadow-sm hover:bg-slate-50 sm:inline-flex"
+              className="flex h-10 w-10 items-center justify-center rounded-full border border-slate-200 bg-slate-50 text-slate-500 hover:border-indigo-200 hover:text-indigo-700"
             >
-              <User size={18} />
-              Account
+              <User className="h-5 w-5" />
             </Link>
             <Link
               to="/scorer"
-              className="inline-flex items-center gap-2 rounded-full bg-slate-900 px-4 py-2 text-sm font-semibold text-white shadow-md hover:bg-slate-800"
+              className="hidden rounded-full bg-[#4f46e5] px-4 py-2 text-sm font-semibold text-white shadow-md shadow-indigo-500/25 sm:inline-flex"
             >
-              <Bot size={18} />
-              AI Scorer
+              Start
             </Link>
           </div>
         </div>
       </header>
 
-      {/* Hero */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-[#1e3a8a] via-[#4338ca] to-[#7c3aed] px-4 pb-24 pt-16 text-white md:px-6 md:pb-28 md:pt-20">
-        <div className="pointer-events-none absolute -right-24 -top-24 h-96 w-96 rounded-full bg-white/10 blur-3xl" />
-        <div className="pointer-events-none absolute -bottom-32 -left-24 h-80 w-80 rounded-full bg-indigo-400/20 blur-3xl" />
-
-        <div className="relative mx-auto max-w-3xl text-center">
-          <h1 className="text-4xl font-extrabold tracking-tight md:text-5xl">Apprenez le Français</h1>
-          <p className="mx-auto mt-4 max-w-2xl text-lg text-white/90 md:text-xl">
-            Master French with our comprehensive curriculum and AI-powered scoring system. From beginner to intermediate,
-            we&apos;ve got you covered.
+      <section className="mx-auto max-w-7xl px-4 py-16 md:px-8 md:py-24">
+        <div className="max-w-3xl">
+          <h1 className="font-display text-4xl font-bold leading-[1.15] tracking-tight text-[#111827] md:text-5xl lg:text-6xl">
+            Maîtrise le Français avec Élégance
+          </h1>
+          <p className="mt-6 max-w-xl text-lg leading-relaxed text-[#4b5563]">
+            FrenchLearn is your sanctuary for serious study — curriculum, AI scoring, and TEF-aligned practice in one calm,
+            editorial space.
           </p>
-          <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
+          <div className="mt-10 flex flex-wrap items-center gap-4">
             <a
               href="#syllabus"
-              className="inline-flex items-center gap-2 rounded-2xl bg-white px-6 py-3 text-sm font-bold text-blue-700 shadow-lg transition hover:bg-slate-50"
+              className="inline-flex items-center justify-center rounded-lg bg-[#4f46e5] px-8 py-3.5 text-sm font-bold text-white shadow-lg shadow-indigo-500/20 transition hover:bg-indigo-600"
             >
-              Start Learning
-              <ArrowRight size={18} />
+              Start Journey
             </a>
-            <Link
-              to="/scorer"
-              className="inline-flex items-center gap-2 rounded-2xl border-2 border-white/80 bg-transparent px-6 py-3 text-sm font-bold text-white transition hover:bg-white/10"
+            <a
+              href="#pathways"
+              className="text-xs font-bold uppercase tracking-[0.2em] text-slate-800 underline decoration-slate-300 decoration-1 underline-offset-8 transition hover:decoration-indigo-400"
             >
-              <Bot size={18} />
-              Try AI Scorer
-            </Link>
+              Explore Atelier
+            </a>
           </div>
         </div>
 
-        {/* Feature bento overlapping hero */}
-        <div className="relative z-10 mx-auto mt-14 grid max-w-5xl gap-4 md:-mb-8 md:grid-cols-3 md:px-4">
-          <div className="rounded-2xl border border-slate-200/80 bg-white p-5 shadow-xl shadow-slate-900/10">
-            <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-blue-100 text-blue-700">
-              <BookOpen size={24} />
+        <div className="mt-20 grid gap-4 md:grid-cols-6 md:grid-rows-2 lg:gap-5">
+          <Link
+            to="/scorer"
+            className="group relative overflow-hidden rounded-2xl border border-slate-200/80 bg-white p-6 shadow-sm transition hover:shadow-md md:col-span-4 md:row-span-1"
+          >
+            <div className="flex items-center gap-2 text-[#4f46e5]">
+              <Sparkles className="h-5 w-5" />
+              <span className="text-xs font-bold uppercase tracking-wide">Precision AI Scorer</span>
             </div>
-            <p className="mt-4 text-2xl font-bold text-slate-900">{CURRICULUM_STATS.moduleCount} Units</p>
-            <p className="text-sm text-slate-500">Comprehensive curriculum</p>
-          </div>
-          <div className="rounded-2xl border border-slate-200/80 bg-white p-5 shadow-xl shadow-slate-900/10">
-            <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-emerald-100 text-emerald-700">
-              <Target size={24} />
+            <p className="font-display mt-4 text-2xl font-bold text-slate-900">Neural feedback on every sentence</p>
+            <p className="mt-2 max-w-md text-sm text-slate-600">CEFR estimates, corrections, and skill breakdown in seconds.</p>
+            <div className="mt-6 flex h-28 items-center justify-center rounded-xl bg-gradient-to-br from-slate-900 via-slate-800 to-indigo-950 md:h-32">
+              <div className="text-xs font-medium text-white/60">Writing analysis · preview</div>
             </div>
-            <p className="mt-4 text-2xl font-bold text-slate-900">{CURRICULUM_STATS.lessonCount} Lessons</p>
-            <p className="text-sm text-slate-500">Structured learning path</p>
-          </div>
-          <div className="rounded-2xl border border-slate-200/80 bg-white p-5 shadow-xl shadow-slate-900/10">
-            <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-violet-100 text-violet-700">
-              <Award size={24} />
+          </Link>
+
+          <Link
+            to="/reading"
+            className="flex flex-col rounded-2xl border border-slate-200/80 bg-white p-6 shadow-sm transition hover:shadow-md md:col-span-2 md:row-span-2"
+          >
+            <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-indigo-50 text-[#4f46e5]">
+              <BookOpen className="h-6 w-6" />
             </div>
-            <p className="mt-4 text-2xl font-bold text-slate-900">AI Powered</p>
-            <p className="text-sm text-slate-500">Instant feedback</p>
+            <p className="font-display mt-6 text-xl font-bold text-slate-900">Reading Room</p>
+            <p className="mt-2 flex-1 text-sm leading-relaxed text-slate-600">Articles, quizzes, and comprehension at your pace.</p>
+            <span className="mt-6 text-xs font-bold uppercase tracking-wide text-[#4f46e5]">
+              Open library →
+            </span>
+          </Link>
+
+          <Link
+            to="/tef-prep"
+            className="rounded-2xl border border-slate-200/80 bg-white p-6 shadow-sm transition hover:border-red-100 hover:shadow-md md:col-span-2"
+          >
+            <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-red-50 text-red-700">
+              <Medal className="h-6 w-6" />
+            </div>
+            <p className="font-display mt-4 text-lg font-bold text-slate-900">TEF Prep</p>
+            <p className="mt-2 text-sm text-slate-600">A1 skill rooms — listening, reading, writing, speaking.</p>
+            <div className="mt-4 flex gap-2">
+              {(['A1', 'A2', 'B1'] as const).map((lv) => (
+                <span
+                  key={lv}
+                  className="rounded-full bg-slate-100 px-2.5 py-0.5 text-xs font-bold text-slate-600"
+                >
+                  {lv}
+                </span>
+              ))}
+            </div>
+          </Link>
+
+          <div className="relative overflow-hidden rounded-2xl bg-[#4f46e5] p-8 text-white shadow-lg md:col-span-2">
+            <div className="pointer-events-none absolute -right-4 -top-4 font-display text-[120px] font-bold leading-none text-white/10">
+              F
+            </div>
+            <p className="text-xs font-bold uppercase tracking-widest text-white/80">The Atelier Method</p>
+            <p className="font-display relative mt-3 text-xl font-bold">Structured, human, and machine-augmented.</p>
+            <p className="relative mt-2 text-sm leading-relaxed text-white/85">
+              Modules build like chapters — from survival French to exam-ready expression.
+            </p>
+            <a
+              href="#syllabus"
+              className="relative mt-6 inline-flex rounded-lg bg-white px-5 py-2.5 text-sm font-bold text-[#4f46e5] transition hover:bg-slate-50"
+            >
+              View curriculum
+            </a>
           </div>
         </div>
       </section>
 
-      {/* Syllabus grid */}
-      <section id="syllabus" className="scroll-mt-20 px-4 pb-16 pt-28 md:px-6 md:pt-32">
-        <div className="mx-auto max-w-6xl">
-          <h2 className="text-center text-3xl font-bold tracking-tight text-slate-900">French Syllabus</h2>
-          <p className="mx-auto mt-3 max-w-2xl text-center text-slate-600">
-            Our structured curriculum takes you from beginner to intermediate level with carefully designed units.
-          </p>
+      <section id="pathways" className="scroll-mt-24 border-t border-slate-200 bg-white px-4 py-20 md:px-8">
+        <div className="mx-auto max-w-7xl">
+          <h2 className="font-display text-3xl font-bold text-slate-900 md:text-4xl">Structured Pathways Designed as Chapters</h2>
+          <p className="mt-3 max-w-2xl text-slate-600">Each stage deepens autonomy — from recognition to production.</p>
+          <ul className="mt-14 space-y-0 divide-y divide-slate-200">
+            {PATHWAYS.map((row) => (
+              <li key={row.n} className="flex flex-col gap-4 py-10 md:flex-row md:items-center md:gap-8">
+                <span className="font-display text-5xl font-bold text-slate-200 md:w-24">{row.n}</span>
+                <div className="flex-1 md:flex md:items-center md:gap-8">
+                  <span className="inline-block rounded-full bg-indigo-50 px-3 py-1 text-xs font-bold uppercase tracking-wide text-indigo-700">
+                    {row.pill}
+                  </span>
+                  <div className="mt-3 md:mt-0 md:flex-1">
+                    <p className="font-display text-xl font-bold text-slate-900">{row.title}</p>
+                    <p className="mt-1 text-sm text-slate-600 md:max-w-xl">{row.desc}</p>
+                  </div>
+                </div>
+                <ChevronRight className="hidden h-6 w-6 shrink-0 text-slate-300 md:block" />
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
 
+      <section id="syllabus" className="scroll-mt-20 bg-[#f9fafb] px-4 py-20 md:px-8">
+        <div className="mx-auto max-w-7xl">
+          <h2 className="font-display text-center text-3xl font-bold text-slate-900">French Syllabus</h2>
+          <p className="mx-auto mt-3 max-w-2xl text-center text-slate-600">
+            {CURRICULUM_STATS.moduleCount} modules · {CURRICULUM_STATS.lessonCount} lessons — from beginner to intermediate.
+          </p>
           <div className="mt-12 grid gap-6 sm:grid-cols-2 xl:grid-cols-3">
             {CURRICULUM_MODULES.map((m) => (
               <article
                 key={m.id}
-                className="flex flex-col rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition hover:border-blue-200 hover:shadow-md"
+                className="flex flex-col rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition hover:border-indigo-200 hover:shadow-md"
               >
-                <div className="flex items-start justify-between gap-2">
-                  <span className="rounded-full bg-slate-100 px-3 py-1 text-xs font-semibold text-slate-700">{m.levelBadge}</span>
-                  <span className="inline-flex items-center gap-1 text-xs font-medium text-slate-500">
-                    <Clock size={14} />
-                    {m.durationWeeks} weeks
-                  </span>
-                </div>
-                <h3 className="mt-4 text-lg font-bold leading-snug text-slate-900">
-                  {m.frenchTitle}
-                  <span className="block text-base font-semibold text-slate-500">— {m.englishTitle}</span>
-                </h3>
+                <span className="w-fit rounded-full bg-slate-100 px-3 py-1 text-xs font-semibold text-slate-700">{m.levelBadge}</span>
+                <h3 className="font-display mt-4 text-lg font-bold text-slate-900">{m.frenchTitle}</h3>
+                <p className="text-sm font-medium text-slate-500">{m.englishTitle}</p>
                 <p className="mt-3 flex-1 text-sm leading-relaxed text-slate-600">{m.description}</p>
-                <div className="mt-4 flex flex-wrap gap-2">
-                  {m.topics.slice(0, 3).map((t) => (
-                    <span key={t} className="rounded-full bg-slate-100 px-2.5 py-1 text-xs text-slate-600">
-                      {t}
-                    </span>
-                  ))}
-                  {m.topics.length > 3 && (
-                    <span className="rounded-full bg-slate-50 px-2.5 py-1 text-xs text-slate-500">+{m.topics.length - 3} more</span>
-                  )}
-                </div>
-                <p className="mt-4 text-xs font-medium text-slate-500">{m.lessons.length} lessons included</p>
                 <Link
                   to={`/unit/${m.id}`}
-                  className="mt-4 inline-flex w-full items-center justify-center gap-2 rounded-xl border-2 border-slate-200 py-3 text-sm font-bold text-slate-800 transition hover:border-blue-500 hover:text-blue-700"
+                  className="mt-6 inline-flex items-center gap-2 text-sm font-bold text-[#4f46e5] hover:underline"
                 >
-                  View Unit
-                  <ArrowRight size={18} />
+                  View unit <ArrowRight className="h-4 w-4" />
                 </Link>
               </article>
             ))}
@@ -151,24 +216,50 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* CTA */}
-      <section className="border-t border-slate-200 bg-white px-4 py-16 md:px-6">
-        <div className="mx-auto max-w-3xl text-center">
-          <h2 className="text-3xl font-bold text-slate-900">Ready to Test Your French?</h2>
-          <p className="mt-3 text-slate-600">
-            Use our AI-powered French scorer to get instant feedback on your grammar, vocabulary, and writing flow.
-          </p>
-          <Link
-            to="/scorer"
-            className="mt-8 inline-flex items-center gap-2 rounded-2xl bg-gradient-to-r from-blue-600 to-violet-600 px-8 py-4 text-sm font-bold text-white shadow-lg shadow-indigo-500/30 transition hover:opacity-95"
-          >
-            <Bot size={20} />
-            Try AI Scorer Now
-          </Link>
+      <section className="border-t border-slate-200 bg-white px-4 py-16 md:px-8">
+        <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-8 md:flex-row">
+          <div>
+            <h2 className="font-display text-2xl font-bold text-slate-900">Ready when you are</h2>
+            <p className="mt-2 text-slate-600">Try the AI scorer or open TEF listening practice.</p>
+          </div>
+          <div className="flex flex-wrap gap-3">
+            <Link
+              to="/scorer"
+              className="inline-flex items-center gap-2 rounded-xl bg-slate-900 px-6 py-3 text-sm font-bold text-white hover:bg-slate-800"
+            >
+              <Bot className="h-4 w-4" /> AI Scorer
+            </Link>
+            <Link
+              to="/tef-prep"
+              className="inline-flex items-center gap-2 rounded-xl border-2 border-slate-200 px-6 py-3 text-sm font-bold text-red-700 hover:bg-red-50"
+            >
+              <Flag className="h-4 w-4" /> TEF Prep
+            </Link>
+            <Link
+              to="/reading"
+              className="inline-flex items-center gap-2 rounded-xl border-2 border-slate-200 px-6 py-3 text-sm font-bold text-slate-800 hover:bg-slate-50"
+            >
+              <BookOpen className="h-4 w-4" /> Reading
+            </Link>
+          </div>
         </div>
       </section>
 
-      <footer className="border-t border-slate-200 bg-slate-50 py-8 text-center text-xs text-slate-500">FrenchLearn — Modern French</footer>
+      <footer className="border-t border-slate-200 bg-[#f9fafb] px-4 py-12 md:px-8">
+        <div className="mx-auto flex max-w-7xl flex-col gap-6 md:flex-row md:items-center md:justify-between">
+          <p className="font-display text-xl font-semibold text-slate-900">FrenchLearn</p>
+          <nav className="flex flex-wrap gap-6 text-[11px] font-bold uppercase tracking-widest text-slate-500">
+            <span className="cursor-pointer hover:text-indigo-600">Privacy Policy</span>
+            <span className="cursor-pointer hover:text-indigo-600">Terms of Craft</span>
+            <Link to="/account" className="hover:text-indigo-600">
+              Contact Us
+            </Link>
+          </nav>
+        </div>
+        <p className="mx-auto mt-8 max-w-7xl text-center text-[10px] uppercase tracking-wider text-slate-400 md:text-left">
+          © {new Date().getFullYear()} FrenchLearn · The Breathable Atelier
+        </p>
+      </footer>
     </div>
   )
 }

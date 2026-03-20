@@ -1,17 +1,9 @@
-import { Bot, Sparkles } from 'lucide-react'
+import { Bot, Flame, Lightbulb, Mic, Sparkles, Type } from 'lucide-react'
 import { useMemo, useState } from 'react'
 import { useAuth } from '../contexts/AuthContext'
 import { supabase } from '../lib/supabase'
 import { syncWebScoreHistoryToCloud } from '../lib/cloudProgressWeb'
-import {
-  CartesianGrid,
-  Line,
-  LineChart,
-  ResponsiveContainer,
-  Tooltip,
-  XAxis,
-  YAxis,
-} from 'recharts'
+import { Bar, BarChart, CartesianGrid, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts'
 
 type FrenchScore = {
   score: number
@@ -71,13 +63,6 @@ function computeDailyStreak(scores: StoredScore[]): number {
   }
   return streak
 }
-
-const BREAKDOWN_LABELS: { key: keyof Pick<FrenchScore, 'grammar' | 'vocabulary' | 'pronunciation' | 'fluency'>; label: string }[] = [
-  { key: 'grammar', label: 'Grammar' },
-  { key: 'vocabulary', label: 'Vocabulary' },
-  { key: 'pronunciation', label: 'Pronunciation' },
-  { key: 'fluency', label: 'Fluency' },
-]
 
 export default function AIScorerPage() {
   const { user } = useAuth()
@@ -160,40 +145,55 @@ export default function AIScorerPage() {
     [recentScores],
   )
 
+  const barChartData = useMemo(() => {
+    const last = chartData.slice(-7)
+    if (last.length === 0) {
+      return ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'].map((day) => ({ day, score: 0 }))
+    }
+    return last.map((row, i) => ({
+      day: i === last.length - 1 ? 'Today' : row.t,
+      score: row.score,
+    }))
+  }, [chartData])
+
   return (
-    <div className="space-y-8">
-      <div>
-        <p className="text-sm font-semibold text-violet-600">AI French Scorer</p>
-        <h1 className="mt-1 text-3xl font-bold tracking-tight text-slate-900">Writing & language check</h1>
-        <p className="mt-2 max-w-2xl text-slate-600">
-          Paste French text for detailed scoring, CEFR estimate, skill breakdown, and corrections — powered by your secure
-          backend.
+    <div className="space-y-10">
+      <div className="max-w-3xl">
+        <p className="text-xs font-bold uppercase tracking-[0.2em] text-violet-600">Premium linguistic engine</p>
+        <h1 className="font-display mt-3 text-4xl font-bold tracking-tight text-slate-900 md:text-[2.75rem]">
+          Master French with AI Precision
+        </h1>
+        <p className="mt-4 text-base leading-relaxed text-slate-600">
+          Paste your essay or speak your thoughts. Our models analyze syntax, vocabulary depth, and tone in seconds — with a
+          CEFR readout you can trust for practice.
         </p>
       </div>
 
-      <div className="grid gap-6 lg:grid-cols-3">
-        <div className="space-y-4 lg:col-span-2">
-          <div className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
-            <div className="flex gap-2 rounded-xl bg-slate-100 p-1">
+      <div className="grid gap-8 lg:grid-cols-5">
+        <div className="space-y-6 lg:col-span-3">
+          <div className="rounded-[1.75rem] border border-slate-200/90 bg-white p-6 shadow-sm">
+            <div className="flex gap-2 rounded-2xl bg-slate-100 p-1.5">
               <button
                 type="button"
                 onClick={() => setInputMode('text')}
                 className={[
-                  'flex-1 rounded-lg py-2 text-sm font-semibold transition',
-                  inputMode === 'text' ? 'bg-white text-slate-900 shadow-sm' : 'text-slate-600 hover:text-slate-900',
+                  'flex flex-1 items-center justify-center gap-2 rounded-xl py-2.5 text-sm font-bold transition',
+                  inputMode === 'text' ? 'bg-white text-[#2563eb] shadow-sm' : 'text-slate-500 hover:text-slate-800',
                 ].join(' ')}
               >
+                <Type className="h-4 w-4" />
                 Text input
               </button>
               <button
                 type="button"
                 onClick={() => setInputMode('voice')}
                 className={[
-                  'flex-1 rounded-lg py-2 text-sm font-semibold transition',
-                  inputMode === 'voice' ? 'bg-white text-slate-900 shadow-sm' : 'text-slate-600 hover:text-slate-900',
+                  'flex flex-1 items-center justify-center gap-2 rounded-xl py-2.5 text-sm font-bold transition',
+                  inputMode === 'voice' ? 'bg-white text-[#2563eb] shadow-sm' : 'text-slate-500 hover:text-slate-800',
                 ].join(' ')}
               >
-                Voice input (demo)
+                <Mic className="h-4 w-4" />
+                Voice input
               </button>
             </div>
 
@@ -202,9 +202,9 @@ export default function AIScorerPage() {
                 value={text}
                 onChange={(e) => setText(e.target.value)}
                 rows={12}
-                placeholder="Écrivez votre texte en français…"
+                placeholder="Saisissez votre texte ici pour analyse… (min. quelques phrases)"
                 disabled={loading}
-                className="mt-4 w-full resize-y rounded-2xl border border-slate-200 bg-slate-50/80 p-4 text-sm text-slate-900 outline-none ring-0 transition focus:border-indigo-400"
+                className="mt-5 w-full resize-y rounded-2xl border border-slate-200 bg-slate-50 p-5 text-sm text-slate-900 shadow-inner outline-none transition focus:border-indigo-400 focus:ring-1 focus:ring-indigo-100"
               />
             ) : (
               <div className="mt-4 rounded-2xl border border-dashed border-slate-300 bg-slate-50 p-10 text-center text-sm text-slate-500">
@@ -213,23 +213,23 @@ export default function AIScorerPage() {
               </div>
             )}
 
-            <div className="mt-4 flex flex-wrap items-center gap-3">
-              <label className="text-xs font-semibold uppercase tracking-wide text-slate-500">Provider</label>
+            <div className="mt-5 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center">
+              <label className="text-[10px] font-bold uppercase tracking-widest text-slate-500">AI provider</label>
               <select
                 value={provider}
                 onChange={(e) => setProvider(e.target.value as ScoreProvider)}
                 disabled={loading}
-                className="rounded-xl border border-slate-200 bg-white px-3 py-2 text-sm text-slate-800 outline-none focus:border-indigo-500"
+                className="rounded-xl border border-slate-200 bg-white px-4 py-2.5 text-sm font-medium text-slate-800 outline-none focus:border-indigo-500"
               >
-                <option value="auto">Auto</option>
+                <option value="auto">Luminous routing (Auto)</option>
                 <option value="gemini">Gemini</option>
                 <option value="groq">Groq</option>
                 <option value="openai">OpenAI</option>
                 <option value="claude">Claude</option>
               </select>
-              <label className="ml-2 flex cursor-pointer items-center gap-2 text-sm text-slate-700">
+              <label className="flex cursor-pointer items-center gap-2 rounded-xl border border-slate-200 bg-slate-50 px-3 py-2 text-sm text-slate-700">
                 <input type="checkbox" checked={c1Essay} onChange={(e) => setC1Essay(e.target.checked)} disabled={loading} />
-                C1 essay routing
+                Route for C1 / academic scoring
               </label>
             </div>
 
@@ -238,9 +238,9 @@ export default function AIScorerPage() {
               onClick={() => void onScore()}
               disabled={!canSubmit}
               className={[
-                'mt-4 flex w-full items-center justify-center gap-2 rounded-2xl py-3 text-sm font-bold text-white shadow-lg transition',
+                'mt-6 flex w-full items-center justify-center gap-2 rounded-2xl py-4 text-sm font-bold text-white shadow-lg shadow-indigo-500/25 transition',
                 canSubmit
-                  ? 'bg-gradient-to-r from-indigo-600 to-violet-600 hover:opacity-95'
+                  ? 'bg-gradient-to-r from-[#6366f1] via-violet-600 to-[#4f46e5] hover:opacity-95'
                   : 'cursor-not-allowed bg-slate-300',
               ].join(' ')}
             >
@@ -267,47 +267,8 @@ export default function AIScorerPage() {
           )}
 
           {!loading && result && (
-            <div className="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm">
-              <div className="bg-gradient-to-br from-indigo-600 via-violet-600 to-purple-700 p-6 text-white">
-                <div className="flex flex-wrap items-end justify-between gap-4">
-                  <div>
-                    <p className="text-sm font-medium text-white/80">Overall score</p>
-                    <div className="flex items-baseline gap-1">
-                      <span className="text-5xl font-black tracking-tight">{result.score}</span>
-                      <span className="text-lg text-white/80">/100</span>
-                    </div>
-                  </div>
-                  <div className="flex flex-wrap gap-2">
-                    {resultProvider && (
-                      <span className="rounded-full bg-white/20 px-3 py-1 text-xs font-semibold backdrop-blur">{resultProvider}</span>
-                    )}
-                    <span className="rounded-full bg-white px-3 py-1 text-xs font-bold text-violet-800">CEFR {result.cecr}</span>
-                  </div>
-                </div>
-              </div>
-
-              <div className="space-y-5 p-6">
-                <h3 className="text-xs font-bold uppercase tracking-wide text-slate-500">Skill breakdown</h3>
-                {BREAKDOWN_LABELS.map(({ key, label }) => {
-                  const val = Math.max(0, Math.min(100, Number(result[key] ?? result.score)))
-                  return (
-                    <div key={key}>
-                      <div className="mb-1 flex justify-between text-sm">
-                        <span className="font-semibold text-slate-800">{label}</span>
-                        <span className="text-slate-500">{val}%</span>
-                      </div>
-                      <div className="h-3 w-full overflow-hidden rounded-full bg-slate-200">
-                        <div
-                          className="h-full rounded-full bg-gradient-to-r from-indigo-500 via-violet-500 to-fuchsia-500 transition-[width] duration-700"
-                          style={{ width: `${val}%` }}
-                        />
-                      </div>
-                    </div>
-                  )
-                })}
-              </div>
-
-              <div className="grid gap-4 border-t border-slate-100 p-6 md:grid-cols-2">
+            <div className="rounded-[1.75rem] border border-slate-200 bg-white p-6 shadow-sm">
+              <div className="grid gap-6 md:grid-cols-2">
                 <div>
                   <h4 className="text-xs font-bold uppercase text-emerald-700">Strengths</h4>
                   <ul className="mt-2 list-inside list-disc space-y-1 text-sm text-slate-700">
@@ -325,43 +286,131 @@ export default function AIScorerPage() {
                   </ul>
                 </div>
               </div>
-
-              {result.corrected_version && (
-                <div className="border-t border-slate-100 bg-slate-50 p-6">
+              {result.corrected_version ? (
+                <div className="mt-6 rounded-2xl border border-indigo-100 bg-indigo-50/40 p-5">
                   <h4 className="text-xs font-bold uppercase text-indigo-800">Corrected version</h4>
                   <p className="mt-2 text-sm leading-relaxed text-slate-800">{result.corrected_version}</p>
                 </div>
-              )}
+              ) : null}
             </div>
           )}
         </div>
 
-        <div className="space-y-4">
-          <div className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
-            <h3 className="text-sm font-bold text-slate-900">Your streak</h3>
-            <p className="mt-2 text-3xl font-black text-amber-600">{streak} days</p>
-            <p className="text-xs text-slate-500">Uses score history on this device.</p>
-          </div>
-          <div className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
-            <h3 className="text-sm font-bold text-slate-900">Recent trend</h3>
-            <div className="mt-2 h-44">
-              {chartData.length === 0 ? (
-                <div className="flex h-full items-center justify-center rounded-xl bg-slate-50 text-xs text-slate-500">
-                  No scores yet
+        <div className="space-y-5 lg:col-span-2">
+          <div className="rounded-[1.5rem] border border-amber-100 bg-[#fffbeb] p-5 shadow-sm ring-1 ring-amber-100">
+            <div className="flex items-center justify-between gap-3">
+              <div className="flex items-center gap-2">
+                <Flame className="h-6 w-6 text-amber-600" />
+                <div>
+                  <p className="text-[10px] font-bold uppercase tracking-widest text-amber-800/80">Learning streak</p>
+                  <p className="text-xl font-black text-amber-950">{streak} jours</p>
                 </div>
+              </div>
+              <span className="rounded-full bg-amber-200/80 px-3 py-1 text-xs font-bold text-amber-950">+50 XP</span>
+            </div>
+            <p className="mt-2 text-xs text-amber-900/70">Basé sur l’historique des scores sur cet appareil.</p>
+          </div>
+
+          <div className="overflow-hidden rounded-[1.75rem] border border-slate-200 bg-white shadow-sm">
+            <div className="bg-gradient-to-br from-[#6366f1] via-violet-600 to-[#4f46e5] p-6 text-white">
+              <p className="text-[10px] font-bold uppercase tracking-widest text-white/80">Latest analysis</p>
+              {result ? (
+                <>
+                  <div className="mt-2 flex flex-wrap items-end justify-between gap-4">
+                    <div>
+                      <p className="text-5xl font-black tracking-tight">{result.score}</p>
+                      <p className="text-sm font-medium text-white/80">/ 100</p>
+                    </div>
+                    <span className="rounded-full bg-white px-4 py-1.5 text-xs font-bold text-[#2563eb] shadow-sm">
+                      CEFR {result.cecr}
+                    </span>
+                  </div>
+                  {resultProvider ? (
+                    <p className="mt-2 text-xs text-white/70">via {resultProvider}</p>
+                  ) : null}
+                </>
               ) : (
-                <ResponsiveContainer width="100%" height="100%">
-                  <LineChart data={chartData} margin={{ top: 8, right: 8, left: -18, bottom: 0 }}>
-                    <CartesianGrid stroke="#E2E8F0" vertical={false} />
-                    <XAxis dataKey="t" tick={{ fontSize: 10 }} tickLine={false} axisLine={false} />
-                    <YAxis domain={[0, 100]} tick={{ fontSize: 10 }} tickLine={false} axisLine={false} />
-                    <Tooltip />
-                    <Line type="monotone" dataKey="score" stroke="#6366f1" strokeWidth={2} dot={false} />
-                  </LineChart>
-                </ResponsiveContainer>
+                <p className="mt-4 text-sm text-white/85">Analysez un texte pour voir score et niveau ici.</p>
               )}
             </div>
+            <div className="space-y-5 p-6">
+              {result ? (
+                <>
+                  <p className="text-[10px] font-bold uppercase tracking-widest text-slate-500">Skill breakdown</p>
+                  <div className="space-y-4">
+                    <div>
+                      <div className="mb-1 flex justify-between text-sm font-semibold text-slate-800">
+                        <span>Grammar & syntax</span>
+                        <span>{Math.round(result.grammar)}%</span>
+                      </div>
+                      <div className="h-2.5 overflow-hidden rounded-full bg-slate-100">
+                        <div className="h-full rounded-full bg-[#2563eb]" style={{ width: `${result.grammar}%` }} />
+                      </div>
+                    </div>
+                    <div>
+                      <div className="mb-1 flex justify-between text-sm font-semibold text-slate-800">
+                        <span>Vocabulary range</span>
+                        <span>{Math.round(result.vocabulary)}%</span>
+                      </div>
+                      <div className="h-2.5 overflow-hidden rounded-full bg-slate-100">
+                        <div className="h-full rounded-full bg-[#6366f1]" style={{ width: `${result.vocabulary}%` }} />
+                      </div>
+                    </div>
+                    <div>
+                      <div className="mb-1 flex justify-between text-sm font-semibold text-slate-800">
+                        <span>Pronunciation (voice)</span>
+                        <span>{Math.round(result.pronunciation)}%</span>
+                      </div>
+                      <div className="h-2.5 overflow-hidden rounded-full bg-slate-100">
+                        <div className="h-full rounded-full bg-fuchsia-400" style={{ width: `${result.pronunciation}%` }} />
+                      </div>
+                    </div>
+                    <div>
+                      <div className="mb-1 flex justify-between text-sm font-semibold text-slate-800">
+                        <span>Fluency</span>
+                        <span>{Math.round(result.fluency)}%</span>
+                      </div>
+                      <div className="h-2.5 overflow-hidden rounded-full bg-slate-100">
+                        <div className="h-full rounded-full bg-violet-400" style={{ width: `${result.fluency}%` }} />
+                      </div>
+                    </div>
+                  </div>
+                </>
+              ) : (
+                <p className="text-sm text-slate-500">Votre dernière analyse apparaîtra ici.</p>
+              )}
+
+              <div>
+                <p className="text-[10px] font-bold uppercase tracking-widest text-slate-500">Score history</p>
+                <div className="mt-3 h-40">
+                  {chartData.length === 0 ? (
+                    <div className="flex h-full items-center justify-center rounded-xl bg-slate-50 text-xs text-slate-500">
+                      Aucun score pour le graphique
+                    </div>
+                  ) : (
+                    <ResponsiveContainer width="100%" height="100%">
+                      <BarChart data={barChartData} margin={{ top: 4, right: 4, left: -18, bottom: 0 }}>
+                        <CartesianGrid stroke="#f1f5f9" vertical={false} />
+                        <XAxis dataKey="day" tick={{ fontSize: 9 }} tickLine={false} axisLine={false} />
+                        <YAxis domain={[0, 100]} hide />
+                        <Tooltip />
+                        <Bar dataKey="score" radius={[6, 6, 0, 0]} fill="#6366f1" />
+                      </BarChart>
+                    </ResponsiveContainer>
+                  )}
+                </div>
+              </div>
+            </div>
           </div>
+
+          <div className="flex gap-3 rounded-2xl border border-slate-200 bg-slate-50/80 p-4">
+            <Lightbulb className="mt-0.5 h-5 w-5 shrink-0 text-indigo-500" />
+            <p className="text-sm leading-relaxed text-slate-600">
+              Astuce : utiliser le <strong className="text-slate-800">subjonctif</strong> plus souvent dans vos essais vous
+              rapproche du territoire C1.
+            </p>
+          </div>
+
         </div>
       </div>
     </div>

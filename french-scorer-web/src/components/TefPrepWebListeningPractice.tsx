@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-import { FileText, Volume2, X } from 'lucide-react'
+import { Check, ClipboardList, Clock, FileText, Lightbulb, Volume2, X } from 'lucide-react'
 import WebListeningAudioPlayer from './WebListeningAudioPlayer'
 import { getListeningContentForTefUnit } from '../content/listeningContent'
 import { useAuth } from '../contexts/AuthContext'
@@ -62,6 +62,13 @@ export default function TefPrepWebListeningPractice({ tefUnit }: Props) {
   const [answersLog, setAnswersLog] = useState<TefPrepAnswerRecord[]>([])
   const [phase, setPhase] = useState<'practice' | 'summary'>('practice')
   const [reviewOpen, setReviewOpen] = useState(false)
+  const [elapsedSec, setElapsedSec] = useState(0)
+
+  useEffect(() => {
+    if (phase !== 'practice') return
+    const id = window.setInterval(() => setElapsedSec((s) => s + 1), 1000)
+    return () => window.clearInterval(id)
+  }, [phase])
 
   const currentQ: ListeningMcqWithExpl | undefined = questions[qIndex]
 
@@ -134,8 +141,8 @@ export default function TefPrepWebListeningPractice({ tefUnit }: Props) {
 
   if (phase === 'summary') {
     return (
-      <div className="space-y-4 pb-8">
-        <div className="rounded-2xl border border-emerald-200 bg-white p-5 shadow-sm">
+      <div className="space-y-6 pb-8">
+        <div className="rounded-2xl border border-emerald-200/80 bg-white p-8 shadow-sm">
           <h2 className="text-center text-xl font-bold text-slate-900">Bravo !</h2>
           <p className="mt-2 text-center text-3xl font-extrabold text-emerald-700">
             {correctCount}/{questions.length}
@@ -205,37 +212,70 @@ export default function TefPrepWebListeningPractice({ tefUnit }: Props) {
     )
   }
 
+  const timeStr = `${String(Math.floor(elapsedSec / 60)).padStart(2, '0')}:${String(elapsedSec % 60).padStart(2, '0')}`
+
   return (
-    <div className="space-y-4 pb-8">
-      <div className="rounded-xl border border-slate-200 bg-white p-3">
-        <p className="text-xs font-semibold text-slate-500">{content.tef_task_id}</p>
-        <h2 className="mt-2 text-lg font-bold text-slate-900">
-          Unit {tefUnit}: Listening Practice — Duration {formatDuration(content.duration_seconds_approx ?? 60)}
-        </h2>
-        <p className="mt-1 text-sm text-slate-600">
-          Unité {tefUnit} : pratique orale · ~{formatDuration(content.duration_seconds_approx ?? 60)}
-        </p>
-        <p className="mt-1 text-xs text-slate-500">
-          {content.level} · scénario : {content.scenario.replace(/_/g, ' ')}
-        </p>
+    <div className="space-y-8 pb-10">
+      <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+        <div>
+          <h1 className="font-display text-3xl font-bold tracking-tight text-slate-900 md:text-4xl">TEF Listening</h1>
+          <p className="mt-1 text-sm font-medium text-slate-500">
+            Section A · Unité {tefUnit} · ~{formatDuration(content.duration_seconds_approx ?? 60)} d’écoute
+          </p>
+        </div>
+        <div className="flex flex-wrap gap-3">
+          <div className="flex items-center gap-2 rounded-xl border border-emerald-200 bg-white px-4 py-2.5 shadow-sm">
+            <Clock className="h-5 w-5 text-emerald-600" />
+            <div>
+              <p className="text-[10px] font-bold uppercase tracking-wider text-emerald-700">Temps écoulé</p>
+              <p className="text-sm font-bold tabular-nums text-slate-900">{timeStr}</p>
+            </div>
+          </div>
+          <div className="flex items-center gap-2 rounded-xl border border-emerald-200 bg-white px-4 py-2.5 shadow-sm">
+            <ClipboardList className="h-5 w-5 text-emerald-600" />
+            <div>
+              <p className="text-[10px] font-bold uppercase tracking-wider text-emerald-700">Progression</p>
+              <p className="text-sm font-bold text-slate-900">
+                Question {qIndex + 1} / {questions.length}
+              </p>
+            </div>
+          </div>
+        </div>
       </div>
 
       <WebListeningAudioPlayer
         contentId={`${content.tef_task_id}_tef_u${tefUnit}`}
         audioUri={content.audio_uri}
         transcript={content.transcript_fr}
-        title="Écoute"
+        title="Lecteur audio"
         durationHintMs={(content.duration_seconds_approx ?? 60) * 1000}
         initialSpeed={clampPlayerSpeed(content.playback_speed)}
         persistPosition
         answerGate="after_play_started"
         playbackEngagedOverride={ttsEngaged}
-      >
-        {(gate) => (
+        splitLayout
+        accent="tef"
+        showTitle={false}
+        renderLeftColumn={(gate) => (
           <>
+            <div className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
+              <div className="flex items-start gap-3">
+                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-emerald-50 text-emerald-600">
+                  <Volume2 className="h-5 w-5" />
+                </div>
+                <div>
+                  <p className="text-xs font-bold text-slate-500">Enregistrement</p>
+                  <p className="text-sm font-semibold text-slate-900">#{String(tefUnit).padStart(3, '0')}</p>
+                  <p className="mt-1 text-xs leading-relaxed text-slate-600">
+                    Dialogue : {content.scenario.replace(/_/g, ' ')}
+                  </p>
+                </div>
+              </div>
+            </div>
+
             {!content.audio_uri ? (
-              <div className="mt-3 rounded-xl border border-amber-200 bg-amber-50 p-3">
-                <p className="text-xs text-amber-900">Pas de fichier audio : lecture TTS pour simuler l’écoute.</p>
+              <div className="rounded-xl border border-amber-200 bg-amber-50 p-4">
+                <p className="text-xs text-amber-950">Pas de fichier audio : lecture TTS pour simuler l’écoute.</p>
                 <button
                   type="button"
                   onClick={() => {
@@ -243,7 +283,7 @@ export default function TefPrepWebListeningPractice({ tefUnit }: Props) {
                     speakFrCa(content.transcript_fr)
                     setTtsEngaged(true)
                   }}
-                  className="mt-2 inline-flex w-full items-center justify-center gap-2 rounded-xl bg-emerald-600 py-2 font-semibold text-white hover:bg-emerald-700"
+                  className="mt-3 inline-flex w-full items-center justify-center gap-2 rounded-xl bg-emerald-600 py-2.5 text-sm font-bold text-white shadow-sm hover:bg-emerald-700"
                 >
                   <Volume2 className="h-4 w-4" />
                   Lancer la lecture TTS
@@ -252,97 +292,155 @@ export default function TefPrepWebListeningPractice({ tefUnit }: Props) {
             ) : null}
 
             {!gate.hasPlaybackEverStarted ? (
-              <div className="mt-4 rounded-xl bg-slate-100 p-4">
-                <p className="text-center text-sm text-slate-600">
-                  Appuyez sur lecture (ou TTS) pour afficher les questions — format TEF.
+              <div className="rounded-xl bg-slate-100 p-5 text-center">
+                <p className="text-sm leading-relaxed text-slate-600">
+                  Appuyez sur <strong className="text-slate-800">lecture</strong> (ou TTS) pour afficher les questions — format
+                  TEF.
                 </p>
               </div>
-            ) : (
-              <div className="mt-4">
-                <div className="mb-2 flex flex-row items-center justify-between">
-                  <p className="text-sm font-bold text-slate-800">
-                    Question {qIndex + 1} of {questions.length}
-                  </p>
-                  <p className="text-xs font-medium text-slate-600">
-                    {answeredCount}/{questions.length} answered
+            ) : null}
+
+            <div className="rounded-2xl border-l-4 border-amber-400 bg-[#fef3c7]/90 p-4">
+              <div className="flex gap-3">
+                <Lightbulb className="mt-0.5 h-5 w-5 shrink-0 text-amber-600" />
+                <div>
+                  <p className="text-xs font-bold uppercase tracking-wide text-amber-800">Conseil d’écoute</p>
+                  <p className="mt-1 text-sm leading-relaxed text-amber-950/90">
+                    Repérez les <strong className="text-amber-800">mots de liaison</strong> (
+                    <em>cependant</em>, <em>d’ailleurs</em>) — ils annoncent souvent la réponse attendue.
                   </p>
                 </div>
-                <div className="h-2 overflow-hidden rounded-full bg-slate-200">
-                  <div className="h-2 rounded-full bg-blue-600 transition-all" style={{ width: `${progressRatio * 100}%` }} />
-                </div>
+              </div>
+            </div>
+          </>
+        )}
+      >
+        {(gate) =>
+          !gate.hasPlaybackEverStarted ? (
+            <div className="flex min-h-[20rem] flex-col items-center justify-center rounded-2xl border border-dashed border-slate-200 bg-slate-50/90 p-8 text-center">
+              <p className="max-w-xs text-sm text-slate-500">Les questions apparaîtront ici après la première écoute.</p>
+            </div>
+          ) : (
+            <div className="rounded-2xl border border-slate-200 border-t-4 border-t-emerald-500 bg-white p-6 shadow-sm">
+              <p className="text-[11px] font-bold uppercase tracking-widest text-emerald-700">Compréhension orale</p>
+              <div className="mb-4 mt-2 h-1.5 overflow-hidden rounded-full bg-slate-100">
+                <div
+                  className="h-full rounded-full bg-[#2563eb] transition-all duration-300"
+                  style={{ width: `${progressRatio * 100}%` }}
+                />
+              </div>
 
-                {currentQ ? (
-                  <>
-                    <p className="mt-4 text-base font-semibold leading-6 text-slate-900">{currentQ.question_fr}</p>
+              {currentQ ? (
+                <>
+                  <p className="text-lg font-semibold leading-snug text-slate-900">{currentQ.question_fr}</p>
 
-                    <div className="mt-3 flex flex-col gap-2">
-                      {currentQ.options.map((opt, oi) => {
-                        const picked = selected === oi
-                        const locked = !gate.canSelectAnswers || showResult
-                        return (
-                          <button
-                            key={oi}
-                            type="button"
-                            disabled={locked}
-                            onClick={() => {
-                              if (locked) return
-                              setSelected(oi)
-                            }}
-                            className={`flex flex-row items-center gap-3 rounded-xl border px-3 py-3 text-left text-sm transition ${
-                              locked ? 'cursor-not-allowed opacity-50' : ''
-                            } ${picked ? 'border-blue-600 bg-blue-50' : 'border-slate-200 bg-white hover:bg-slate-50'}`}
+                  <div className="mt-5 flex flex-col gap-3">
+                    {currentQ.options.map((opt, oi) => {
+                      const picked = selected === oi
+                      const locked = !gate.canSelectAnswers || showResult
+                      const showCorrect = showResult && selected != null && oi === currentQ.answer_index
+                      return (
+                        <button
+                          key={oi}
+                          type="button"
+                          disabled={locked}
+                          onClick={() => {
+                            if (locked) return
+                            setSelected(oi)
+                          }}
+                          className={`relative flex flex-row items-center gap-3 rounded-2xl border-2 px-4 py-3.5 text-left text-sm transition ${
+                            locked ? 'cursor-not-allowed opacity-60' : ''
+                          } ${
+                            picked
+                              ? 'border-[#2563eb] bg-blue-50/80 shadow-sm'
+                              : 'border-transparent bg-slate-100/80 hover:bg-slate-100'
+                          }`}
+                        >
+                          <span
+                            className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-full border-2 text-sm font-bold ${
+                              picked ? 'border-[#2563eb] bg-[#2563eb] text-white' : 'border-slate-300 bg-white text-slate-600'
+                            }`}
                           >
-                            <span
-                              className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-full border-2 text-sm font-bold ${
-                                picked ? 'border-blue-600 bg-blue-600 text-white' : 'border-slate-300 bg-white text-slate-600'
-                              }`}
-                            >
-                              {LETTERS[oi]}
-                            </span>
-                            <span className="flex-1 text-slate-800">{opt}</span>
-                          </button>
-                        )
-                      })}
-                    </div>
+                            {LETTERS[oi]}
+                          </span>
+                          <span className="flex-1 text-slate-800">{opt}</span>
+                          {picked && showResult && showCorrect ? (
+                            <Check className="h-5 w-5 shrink-0 text-emerald-600" aria-hidden />
+                          ) : null}
+                        </button>
+                      )
+                    })}
+                  </div>
 
-                    {showResult && selected != null ? (
-                      <div
-                        className={`mt-4 rounded-xl border p-4 ${
-                          selected === currentQ.answer_index
-                            ? 'border-emerald-300 bg-emerald-50'
-                            : 'border-rose-300 bg-rose-50'
-                        }`}
-                      >
-                        <p className="text-base font-bold text-slate-900">
-                          {selected === currentQ.answer_index ? 'Correct !' : 'Incorrect'}
-                        </p>
-                        <p className="mt-2 text-sm leading-5 text-slate-700">{currentQ.explanation_fr}</p>
+                  {showResult && selected != null ? (
+                    <div className="mt-6 space-y-4">
+                      <div className="grid gap-4 lg:grid-cols-2">
+                        <div
+                          className={`rounded-2xl border p-4 ${
+                            selected === currentQ.answer_index
+                              ? 'border-emerald-200 bg-emerald-50/90'
+                              : 'border-slate-200 bg-slate-50/80 opacity-70'
+                          }`}
+                        >
+                          <div className="flex items-center gap-2">
+                            <Check className={`h-5 w-5 ${selected === currentQ.answer_index ? 'text-emerald-600' : 'text-slate-400'}`} />
+                            <p className="text-sm font-bold text-slate-900">Excellent travail !</p>
+                          </div>
+                          {selected === currentQ.answer_index ? (
+                            <p className="mt-2 text-sm leading-relaxed text-slate-700">{currentQ.explanation_fr}</p>
+                          ) : (
+                            <p className="mt-2 text-sm text-slate-500">Réponse enregistrée.</p>
+                          )}
+                        </div>
+                        <div
+                          className={`rounded-2xl border p-4 ${
+                            selected !== currentQ.answer_index
+                              ? 'border-amber-200 bg-amber-50/50'
+                              : 'border-slate-100 bg-slate-50/50'
+                          }`}
+                        >
+                          <div className="flex items-center gap-2">
+                            <X className={`h-5 w-5 ${selected !== currentQ.answer_index ? 'text-amber-700' : 'text-slate-300'}`} />
+                            <p className="text-sm font-bold text-slate-800">Pas tout à fait.</p>
+                          </div>
+                          <p className="mt-2 text-sm leading-relaxed text-slate-600">
+                            {selected !== currentQ.answer_index
+                              ? currentQ.explanation_fr
+                              : 'Continuez ainsi — chaque détail compte pour le TEF.'}
+                          </p>
+                        </div>
+                      </div>
+                      <div className="flex justify-end">
                         <button
                           type="button"
                           onClick={onNext}
-                          className="mt-4 w-full rounded-xl bg-slate-900 py-3 text-base font-bold text-white hover:bg-slate-800"
+                          className="rounded-xl bg-slate-900 px-8 py-3 text-sm font-bold text-white shadow-md hover:bg-slate-800"
                         >
                           {qIndex >= questions.length - 1 ? 'Voir le bilan' : 'Question suivante'}
                         </button>
                       </div>
-                    ) : (
+                    </div>
+                  ) : (
+                    <div className="mt-8 flex justify-end">
                       <button
                         type="button"
                         onClick={onSubmit}
                         disabled={selected == null || !gate.canSelectAnswers}
-                        className={`mt-5 w-full rounded-xl py-3.5 text-base font-bold text-white ${
-                          selected == null || !gate.canSelectAnswers ? 'cursor-not-allowed bg-slate-300' : 'bg-blue-600 hover:bg-blue-700'
+                        className={`min-w-[10rem] rounded-xl px-10 py-3.5 text-sm font-bold text-white shadow-lg transition ${
+                          selected == null || !gate.canSelectAnswers
+                            ? 'cursor-not-allowed bg-slate-300'
+                            : 'bg-[#2563eb] hover:bg-blue-700'
                         }`}
                       >
-                        Valider la réponse
+                        Valider
                       </button>
-                    )}
-                  </>
-                ) : null}
-              </div>
-            )}
-          </>
-        )}
+                    </div>
+                  )}
+                </>
+              ) : null}
+            </div>
+          )
+        }
       </WebListeningAudioPlayer>
     </div>
   )

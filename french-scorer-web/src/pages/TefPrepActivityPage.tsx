@@ -99,9 +99,12 @@ export default function TefPrepActivityPage() {
 
   if (skill === 'listening') {
     return (
-      <div className="space-y-4">
-        <Link to={`/tef-prep/a1/${unit}`} className="text-sm font-semibold text-blue-600 hover:underline">
-          ← Unité {unit}
+      <div className="space-y-6">
+        <Link
+          to="/tef-prep"
+          className="inline-flex items-center gap-1 text-sm font-semibold text-[#2563eb] hover:underline"
+        >
+          ← Retour au tableau de bord
         </Link>
         <TefPrepWebListeningPractice tefUnit={unit} />
       </div>

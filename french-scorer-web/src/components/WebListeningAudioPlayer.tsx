@@ -12,7 +12,7 @@ import {
   useState,
   type ReactNode,
 } from 'react'
-import { Pause, Play, SkipBack, Volume2 } from 'lucide-react'
+import { Pause, Play, RotateCcw, RotateCw, SkipBack, Volume2 } from 'lucide-react'
 
 const SPEEDS = [0.8, 1.0, 1.2] as const
 export type PlaybackSpeed = (typeof SPEEDS)[number]
@@ -84,6 +84,13 @@ export type WebListeningAudioPlayerProps = {
   answerGate?: TefAnswerGate
   minActiveListenMs?: number
   playbackEngagedOverride?: boolean
+  /** Two-column layout: player + optional left extras | children (e.g. questions). */
+  splitLayout?: boolean
+  /** Extra blocks under the player in the left column when `splitLayout`. */
+  renderLeftColumn?: (ctx: WebAudioAnswerGateContextValue) => ReactNode
+  /** `tef` = emerald top bar + skip ±10s (mock-aligned). */
+  accent?: 'default' | 'tef'
+  showTitle?: boolean
   children?: ReactNode | ((ctx: WebAudioAnswerGateContextValue) => ReactNode)
 }
 
@@ -98,6 +105,10 @@ export default function WebListeningAudioPlayer({
   answerGate = 'listen_or_memory',
   minActiveListenMs = 3000,
   playbackEngagedOverride = false,
+  splitLayout = false,
+  renderLeftColumn,
+  accent = 'default',
+  showTitle = true,
   children,
 }: WebListeningAudioPlayerProps) {
   const audioRef = useRef<HTMLAudioElement | null>(null)
@@ -303,6 +314,16 @@ export default function WebListeningAudioPlayer({
     void savePosition(Math.floor(sec * 1000))
   }
 
+  const skipSeconds = (delta: number) => {
+    const el = audioRef.current
+    if (!el || loadState !== 'ready') return
+    const max = el.duration || durationMs / 1000
+    const next = Math.max(0, Math.min(max, el.currentTime + delta))
+    el.currentTime = next
+    setPositionMs(Math.floor(next * 1000))
+    void savePosition(Math.floor(next * 1000))
+  }
+
   const memoryOk = loadState === 'no_source' || naturalCompleteOnce || accumulatedListenMs >= minActiveListenMs
 
   const playbackStarted = playbackEngagedOverride || hasPlaybackEverStarted
@@ -339,20 +360,14 @@ export default function WebListeningAudioPlayer({
 
   const childNode = typeof children === 'function' ? children(gateCtx) : children
 
-  return (
-    <WebAudioAnswerGateContext.Provider value={gateCtx}>
-      <audio
-        ref={audioRef}
-        className="hidden"
-        playsInline
-        onTimeUpdate={onTimeUpdate}
-        onPlay={onPlay}
-        onPause={onPause}
-        onEnded={onEnded}
-      />
+  const playerShell =
+    accent === 'tef'
+      ? 'rounded-2xl border-x border-b border-slate-200 border-t-4 border-t-emerald-500 bg-white p-5 shadow-sm'
+      : 'rounded-2xl border border-slate-200 bg-white p-4 shadow-sm'
 
-      <div className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
-        <p className="text-base font-bold text-slate-900">{title}</p>
+  const playerCard = (
+    <div className={playerShell}>
+      {showTitle ? <p className="text-base font-bold text-slate-900">{title}</p> : null}
 
         {loadState === 'loading' ? (
           <p className="mt-3 text-sm text-slate-600">Chargement de l’audio…</p>
@@ -373,23 +388,48 @@ export default function WebListeningAudioPlayer({
 
         {loadState === 'ready' ? (
           <>
-            <div className="mt-3 flex flex-row items-center justify-center gap-4">
-              <button
-                type="button"
-                onClick={() => replay()}
-                className="flex h-12 w-12 items-center justify-center rounded-full bg-slate-200 hover:bg-slate-300"
-                aria-label="Rejouer depuis le début"
-              >
-                <SkipBack className="h-5 w-5 text-slate-900" />
-              </button>
+            <div
+              className={`mt-3 flex flex-row items-center justify-center ${accent === 'tef' ? 'gap-2' : 'gap-4'}`}
+            >
+              {accent === 'tef' ? (
+                <button
+                  type="button"
+                  onClick={() => skipSeconds(-10)}
+                  className="flex h-10 flex-col items-center justify-center rounded-xl bg-slate-100 px-2 py-1 text-[10px] font-bold text-slate-600 hover:bg-slate-200"
+                  aria-label="Reculer de 10 secondes"
+                >
+                  <RotateCcw className="h-4 w-4" />
+                  10s
+                </button>
+              ) : (
+                <button
+                  type="button"
+                  onClick={() => replay()}
+                  className="flex h-12 w-12 items-center justify-center rounded-full bg-slate-200 hover:bg-slate-300"
+                  aria-label="Rejouer depuis le début"
+                >
+                  <SkipBack className="h-5 w-5 text-slate-900" />
+                </button>
+              )}
               <button
                 type="button"
                 onClick={() => void togglePlay()}
-                className="flex h-16 w-16 items-center justify-center rounded-full bg-emerald-600 hover:bg-emerald-700"
+                className="flex h-16 w-16 items-center justify-center rounded-full bg-emerald-600 shadow-md shadow-emerald-600/25 hover:bg-emerald-700"
                 aria-label={playing ? 'Pause' : 'Lecture'}
               >
                 {playing ? <Pause className="h-8 w-8 text-white" /> : <Play className="h-8 w-8 pl-1 text-white" />}
               </button>
+              {accent === 'tef' ? (
+                <button
+                  type="button"
+                  onClick={() => skipSeconds(10)}
+                  className="flex h-10 flex-col items-center justify-center rounded-xl bg-slate-100 px-2 py-1 text-[10px] font-bold text-slate-600 hover:bg-slate-200"
+                  aria-label="Avancer de 10 secondes"
+                >
+                  <RotateCw className="h-4 w-4" />
+                  10s
+                </button>
+              ) : null}
             </div>
             <div className="mt-2 flex flex-row justify-center gap-2">
               {SPEEDS.map((sp) => {
@@ -469,9 +509,40 @@ export default function WebListeningAudioPlayer({
             ))}
           </div>
         ) : null}
-      </div>
+    </div>
+  )
 
+  const leftStack = (
+    <div className="space-y-4">
+      {playerCard}
+      {renderLeftColumn ? renderLeftColumn(gateCtx) : null}
+    </div>
+  )
+
+  const mainContent = splitLayout ? (
+    <div className="grid items-start gap-8 lg:grid-cols-2">
+      {leftStack}
+      <div className="min-h-[12rem]">{childNode}</div>
+    </div>
+  ) : (
+    <>
+      {playerCard}
       {childNode}
+    </>
+  )
+
+  return (
+    <WebAudioAnswerGateContext.Provider value={gateCtx}>
+      <audio
+        ref={audioRef}
+        className="hidden"
+        playsInline
+        onTimeUpdate={onTimeUpdate}
+        onPlay={onPlay}
+        onPause={onPause}
+        onEnded={onEnded}
+      />
+      {mainContent}
     </WebAudioAnswerGateContext.Provider>
   )
 }
