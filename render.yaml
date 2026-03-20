@@ -1,0 +1,12 @@
+# Render Blueprint (repo root). Sets correct service type so PORT is injected.
+# Dashboard alternative: create a **Web Service** with Root Directory = `french-scorer-api`.
+# https://render.com/docs/web-services#port-binding
+services:
+  - type: web
+    name: french-scorer-api
+    runtime: node
+    rootDir: french-scorer-api
+    plan: free
+    buildCommand: npm install
+    startCommand: npm start
+    healthCheckPath: /health

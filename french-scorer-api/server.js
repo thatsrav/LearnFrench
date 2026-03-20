@@ -1,3 +1,5 @@
+// Preserve host-assigned PORT (Render, Fly, etc.) — dotenv must not override it.
+const PORT_FROM_PLATFORM = process.env.PORT;
 require("dotenv").config();
 
 const express = require("express");
@@ -384,10 +386,15 @@ app.post("/api/score", async (req, res) => {
   }
 });
 
-const port = Number(process.env.PORT || 8787);
+const port = Number(PORT_FROM_PLATFORM || process.env.PORT) || 8787;
 // Render and other hosts need a public bind; localhost-only fails health checks.
 const host = process.env.HOST || "0.0.0.0";
 app.listen(port, host, () => {
   console.log(`API listening on http://${host}:${port}`);
+  if (process.env.RENDER && !PORT_FROM_PLATFORM) {
+    console.error(
+      "[Render] PORT was not set by the platform. Use a Web Service (not a Background Worker), or set PORT in the service Environment tab.",
+    );
+  }
 });
 
