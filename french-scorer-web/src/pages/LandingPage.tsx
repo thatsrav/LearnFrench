@@ -25,7 +25,7 @@ const PATHWAYS = [
 
 export default function LandingPage() {
   return (
-    <div className="min-h-full bg-[#f9fafb]">
+    <div className="min-h-full bg-[var(--fl-bg)]">
       <header className="border-b border-slate-200/60 bg-white/90 backdrop-blur-sm">
         <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 md:px-8">
           <Link to="/" className="flex items-center gap-3">
@@ -150,12 +150,12 @@ export default function LandingPage() {
             <p className="relative mt-2 text-sm leading-relaxed text-white/85">
               Modules build like chapters — from survival French to exam-ready expression.
             </p>
-            <a
-              href="#syllabus"
+            <Link
+              to="/syllabus"
               className="relative mt-6 inline-flex rounded-lg bg-white px-5 py-2.5 text-sm font-bold text-[#4f46e5] transition hover:bg-slate-50"
             >
               View curriculum
-            </a>
+            </Link>
           </div>
         </div>
       </section>
@@ -184,7 +184,7 @@ export default function LandingPage() {
         </div>
       </section>
 
-      <section id="syllabus" className="scroll-mt-20 bg-[#f9fafb] px-4 py-20 md:px-8">
+      <section id="syllabus" className="scroll-mt-20 bg-[var(--fl-bg)] px-4 py-20 md:px-8">
         <div className="mx-auto max-w-7xl">
           <h2 className="font-display text-center text-3xl font-bold text-slate-900">Study units · core curriculum</h2>
           <p className="mx-auto mt-3 max-w-2xl text-center text-slate-600">
@@ -248,7 +248,7 @@ export default function LandingPage() {
         </div>
       </section>
 
-      <footer className="border-t border-slate-200 bg-[#f9fafb] px-4 py-12 md:px-8">
+      <footer className="border-t border-slate-200 bg-[var(--fl-bg)] px-4 py-12 md:px-8">
         <div className="mx-auto flex max-w-7xl flex-col gap-6 md:flex-row md:items-center md:justify-between">
           <p className="font-display text-xl font-semibold text-slate-900">FrenchLearn</p>
           <nav className="flex flex-wrap gap-6 text-[11px] font-bold uppercase tracking-widest text-slate-500">

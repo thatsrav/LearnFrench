@@ -134,7 +134,7 @@ export default function HomeDashboardPage() {
               value={provider}
               onChange={(e) => setProvider(e.target.value as 'auto' | 'gemini' | 'groq')}
               disabled={loading}
-              className="rounded-xl border border-slate-200 bg-white px-3 py-2 text-sm text-slate-700 outline-none focus:border-[#2955B8]"
+              className="rounded-xl border border-slate-200 bg-white px-3 py-2 text-sm text-slate-700 outline-none focus:border-[#2563eb]"
             >
               <option value="auto">Auto</option>
               <option value="gemini">Gemini</option>
@@ -146,7 +146,7 @@ export default function HomeDashboardPage() {
               disabled={!canSubmit}
               className={[
                 'rounded-xl px-4 py-2 text-sm font-semibold text-white transition',
-                canSubmit ? 'bg-[#2955B8] hover:bg-[#244a9e]' : 'bg-slate-300',
+                canSubmit ? 'bg-[#2563eb] hover:bg-[#1d4ed8]' : 'bg-slate-300',
               ].join(' ')}
             >
               Score My French
@@ -159,7 +159,7 @@ export default function HomeDashboardPage() {
           onChange={(e) => setText(e.target.value)}
           rows={10}
           placeholder="Ecrivez votre texte en francais..."
-          className="mt-4 w-full resize-y rounded-2xl border border-white/80 bg-white/70 p-4 text-sm text-slate-800 shadow-inner backdrop-blur-md outline-none placeholder:text-slate-400 focus:border-[#2955B8]"
+          className="mt-4 w-full resize-y rounded-2xl border border-white/80 bg-white/70 p-4 text-sm text-slate-800 shadow-inner backdrop-blur-md outline-none placeholder:text-slate-400 focus:border-[#2563eb]"
         />
 
         {error && <div className="mt-4 rounded-xl border border-[#F27166]/40 bg-[#F27166]/10 p-3 text-sm text-[#8f2a22]"><span className="font-semibold">Error:</span> {error}</div>}
@@ -195,7 +195,7 @@ export default function HomeDashboardPage() {
         <h2 className="text-lg font-semibold text-slate-900">Stats</h2>
         <p className="text-sm text-slate-500">Current level and daily consistency.</p>
         <div className="mt-6 flex flex-col items-center gap-5">
-          <div className="rounded-full bg-[#2955B8] px-8 py-6 text-center text-white shadow-[0_0_45px_rgba(41,85,184,0.35)]">
+          <div className="rounded-full bg-[#2563eb] px-8 py-6 text-center text-white shadow-[0_0_45px_rgba(37,99,235,0.35)]">
             <div className="text-xs uppercase tracking-wide text-white/80">CEFR Level</div>
             <div className="text-4xl font-extrabold">{latestCecr}</div>
           </div>
@@ -213,7 +213,7 @@ export default function HomeDashboardPage() {
           {dailyVocab.map((word) => (
             <div key={word} className="flex items-center justify-between rounded-xl border border-slate-200 bg-slate-50 px-3 py-2">
               <span className="font-medium text-slate-700">{word}</span>
-              <button type="button" className="inline-flex items-center gap-1 rounded-lg bg-white px-2 py-1 text-xs text-[#2955B8] ring-1 ring-slate-200 hover:bg-slate-100">
+              <button type="button" className="inline-flex items-center gap-1 rounded-lg bg-white px-2 py-1 text-xs text-[#2563eb] ring-1 ring-slate-200 hover:bg-slate-100">
                 <PlayCircle size={14} />
                 Listen
               </button>
@@ -242,7 +242,7 @@ export default function HomeDashboardPage() {
                 <XAxis dataKey="t" tick={{ fill: '#64748B', fontSize: 12 }} tickLine={false} axisLine={false} />
                 <YAxis domain={[0, 100]} tick={{ fill: '#64748B', fontSize: 12 }} tickLine={false} axisLine={false} />
                 <Tooltip contentStyle={{ borderRadius: 12, border: '1px solid #E2E8F0', background: 'white', color: '#1E293B' }} />
-                <Line type="monotone" dataKey="score" stroke="#2955B8" strokeWidth={3} dot={false} />
+                <Line type="monotone" dataKey="score" stroke="#2563eb" strokeWidth={3} dot={false} />
               </LineChart>
             </ResponsiveContainer>
           )}

@@ -12,7 +12,7 @@ const navLinkClass = ({ isActive }: { isActive: boolean }) =>
 
 export default function AppShell() {
   return (
-    <div className="flex min-h-full flex-col bg-[#f8f9fb]">
+    <div className="flex min-h-full flex-col bg-[var(--fl-bg)]">
       <header className="sticky top-0 z-20 border-b border-slate-200/90 bg-white/95 shadow-sm backdrop-blur-md">
         <div className="mx-auto flex max-w-7xl items-center gap-4 px-4 py-3 md:px-6">
           <NavLink to="/" className="flex shrink-0 items-center gap-2">

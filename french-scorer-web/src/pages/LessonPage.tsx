@@ -15,7 +15,7 @@ export default function LessonPage() {
 
   const goBack = () => {
     if (moduleId) navigate(`/unit/${moduleId}`)
-    else navigate('/#syllabus')
+    else navigate('/syllabus')
   }
   const [answers, setAnswers] = useState<Record<number, number>>({})
   const [done, setDone] = useState<{ score: number; unlocked: string | null } | null>(null)
@@ -37,7 +37,7 @@ export default function LessonPage() {
         <h2 className="text-xl font-semibold text-slate-900">Lesson not found</h2>
         <button
           onClick={goBack}
-          className="mt-4 rounded-xl bg-[#2955B8] px-4 py-2 text-sm font-semibold text-white"
+          className="mt-4 rounded-xl bg-[#2563eb] px-4 py-2 text-sm font-semibold text-white hover:bg-[#1d4ed8]"
         >
           Back
         </button>
@@ -61,7 +61,7 @@ export default function LessonPage() {
     <section className="rounded-2xl border border-slate-200/70 bg-white p-5 shadow-sm">
       <div className="mb-4 flex items-center justify-between">
         <div>
-          <div className="text-xs font-medium uppercase tracking-wide text-[#2955B8]">
+          <div className="text-xs font-medium uppercase tracking-wide text-[#2563eb]">
             {unit.level} - Unit {unit.orderIndex}
           </div>
           <h2 className="text-xl font-semibold text-slate-900">{unit.title}</h2>
@@ -104,7 +104,7 @@ export default function LessonPage() {
                     className={[
                       'w-full rounded-xl border px-3 py-2 text-left text-sm',
                       selected
-                        ? 'border-[#2955B8] bg-blue-50 text-[#2955B8]'
+                        ? 'border-[#2563eb] bg-blue-50 text-[#2563eb]'
                         : 'border-slate-200 bg-white text-slate-700',
                     ].join(' ')}
                   >
@@ -124,7 +124,7 @@ export default function LessonPage() {
         </div>
         <button
           onClick={submit}
-          className="w-full rounded-xl bg-[#2955B8] px-4 py-3 text-sm font-semibold text-white hover:bg-[#244a9e]"
+          className="w-full rounded-xl bg-[#2563eb] px-4 py-3 text-sm font-semibold text-white hover:bg-[#1d4ed8]"
         >
           Submit lesson
         </button>

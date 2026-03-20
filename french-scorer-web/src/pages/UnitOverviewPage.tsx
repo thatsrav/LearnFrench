@@ -33,8 +33,8 @@ export default function UnitOverviewPage() {
     return (
       <div className="rounded-2xl border border-slate-200 bg-white p-8 text-center shadow-sm">
         <p className="font-semibold text-slate-900">Unit not found</p>
-        <Link to="/" className="mt-4 inline-block text-blue-600 hover:underline">
-          Back home
+        <Link to="/syllabus" className="mt-4 inline-block font-semibold text-[#2563eb] hover:underline">
+          Back to study units
         </Link>
       </div>
     )
@@ -43,8 +43,8 @@ export default function UnitOverviewPage() {
   return (
     <div className="space-y-8">
       <Link
-        to="/#syllabus"
-        className="inline-flex items-center gap-1 text-sm font-semibold text-blue-600 hover:text-blue-800"
+        to="/syllabus"
+        className="inline-flex items-center gap-1 text-sm font-semibold text-[#2563eb] hover:text-[#1d4ed8]"
       >
         <ChevronLeft size={18} />
         Back to All Units

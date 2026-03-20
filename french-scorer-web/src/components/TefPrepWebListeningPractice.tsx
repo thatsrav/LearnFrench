@@ -162,7 +162,7 @@ export default function TefPrepWebListeningPractice({ tefUnit }: Props) {
                 Leçon suggérée : événements passés (A2)
               </button>
               <Link
-                to="/#syllabus"
+                to="/syllabus"
                 className="mt-2 flex w-full items-center justify-center rounded-xl border border-amber-300 bg-white py-2.5 text-sm font-bold text-amber-900 hover:bg-amber-50"
               >
                 Ouvrir le syllabus

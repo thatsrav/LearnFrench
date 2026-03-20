@@ -38,7 +38,7 @@ export default function App() {
 
         <main className="flex-1 overflow-auto p-4 md:p-6">
           <header className="mb-5">
-            <p className="text-sm font-medium text-[#2955B8]">Modern French</p>
+            <p className="text-sm font-medium text-[#2563eb]">Modern French</p>
             <h1 className="text-2xl font-semibold tracking-tight text-slate-900">Bento Dashboard</h1>
           </header>
           <Outlet />
