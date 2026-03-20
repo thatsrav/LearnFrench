@@ -1,0 +1,41 @@
+{
+  "id": "a1-u3",
+  "level": "A1",
+  "unit_index": 3,
+  "phase": "ultra_beginner",
+  "theme": "Je suis — identity (3-word patterns)",
+  "lexical_density": 1.21,
+  "grammar_rule_text": "Use être with je: je suis = I am. Pattern: Je suis + noun/adjective (nationality, student). Keep utterances to about three words: Je suis étudiant / Je suis français. Tu es = you are (informal). Recognition and minimal completion only.",
+  "vocab_list": [
+    "je", "tu", "suis", "es", "etudiant", "etudiante", "professeur", "francais", "francaise",
+    "anglais", "anglaise", "content", "contente", "ici", "la", "ami", "amie"
+  ],
+  "quiz": [
+    {
+      "question": "Which phrase means My name is Paul?",
+      "options": ["Je suis Paul", "Je m appelle Paul", "Tu es Paul", "Il va Paul"],
+      "answer_index": 1
+    },
+    {
+      "question": "Which means I am (identity), e.g. I am a student?",
+      "options": ["Je m appelle", "Je suis", "Je vais", "Je mange"],
+      "answer_index": 1
+    },
+    {
+      "question": "Match: 'You are' informal",
+      "options": ["il est", "tu es", "nous sommes", "vous êtes"],
+      "answer_index": 1
+    },
+    {
+      "question": "Complete: 'Je suis ___ .' (female student)",
+      "options": ["étudiant", "étudiante", "professeur", "français"],
+      "answer_index": 1
+    },
+    {
+      "question": "Which is correct for 'I am French' (man)?",
+      "options": ["Je suis française", "Je suis français", "Je suis des français", "Je suis un français"],
+      "answer_index": 1
+    }
+  ],
+  "production_task": null
+}

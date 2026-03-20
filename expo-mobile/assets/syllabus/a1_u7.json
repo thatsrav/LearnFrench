@@ -1,0 +1,74 @@
+{
+  "id": "a1-u7",
+  "level": "A1",
+  "unit_index": 7,
+  "phase": "developing_a1",
+  "theme": "Solidifying verbs, negation, and time",
+  "lexical_density": 1.772,
+  "grammar_rule_text": "Integrate present + negation + time adverbs (souvent, toujours, jamais). 'Je ne vais jamais au restaurant le lundi.' Distinguish pas vs jamais. Build toward 8–10 word mini paragraphs mentally; production task asks for one rich sentence or two short ones.",
+  "vocab_list": [
+    "jamais", "toujours", "souvent", "quelquefois", "deja", "bientot",
+    "lundi", "mardi", "mercredi", "jeudi", "vendredi", "samedi", "dimanche",
+    "vacances", "travail", "famille", "amis", "ensemble", "seul", "content"
+  ],
+  "quiz": [
+    {
+      "question": "Which means 'I never eat fish'?",
+      "options": [
+        "Je ne mange jamais de poisson.",
+        "Je mange jamais ne de poisson.",
+        "Je jamais ne mange poisson.",
+        "Je ne jamais mange de poisson."
+      ],
+      "answer_index": 0
+    },
+    {
+      "question": "Pick the correct sentence (about going to school).",
+      "options": [
+        "Elle va toujours à l école en bus.",
+        "Elle toujours va en bus école.",
+        "Elle va en bus toujours à l école à.",
+        "Elle à l école va toujours en bus."
+      ],
+      "answer_index": 0
+    },
+    {
+      "question": "They often don't work late — natural French.",
+      "options": [
+        "Ils ne travaillent pas souvent tard.",
+        "Ils travaillent souvent ne pas tard.",
+        "Souvent ils tard ne travaillent pas.",
+        "Ils ne souvent travaillent pas tard."
+      ],
+      "answer_index": 0
+    },
+    {
+      "question": "Choose the grammatically perfect line.",
+      "options": [
+        "Nous n allons jamais au cinéma le mardi.",
+        "Nous allons jamais ne au cinéma mardi.",
+        "Nous le mardi n allons jamais cinéma au.",
+        "Nous ne jamais allons au cinéma le mardi."
+      ],
+      "answer_index": 0
+    },
+    {
+      "question": "You (vous) do not always take the train — correct form.",
+      "options": [
+        "Vous ne prenez pas toujours le train.",
+        "Vous prenez toujours ne pas le train.",
+        "Vous ne pas prenez toujours le train.",
+        "Vous le train ne prenez pas toujours."
+      ],
+      "answer_index": 0
+    }
+  ],
+  "production_task": {
+    "type": "short_writing",
+    "instructions_en": "Write 8–10 words using jamais, souvent, or toujours + one verb you studied.",
+    "prompt_fr": "Parlez d une habitude: utilisez un adverbe de fréquence et ne ... pas ou une phrase affirmative.",
+    "min_words": 8,
+    "max_words": 10,
+    "rubric_hints": ["Frequency adverb", "Coherent mini message"]
+  }
+}

@@ -1,0 +1,59 @@
+{
+  "id": "a1-u5",
+  "level": "A1",
+  "unit_index": 5,
+  "phase": "developing_a1",
+  "theme": "Basic negation: ne ... pas",
+  "lexical_density": 1.464,
+  "grammar_rule_text": "Negation frame: ne + verb + pas. With subject pronouns: Je ne mange pas, Tu ne vas pas, Il ne travaille pas. In spoken French 'ne' often drops; in learning tasks keep both parts. Negation wraps the conjugated verb only.",
+  "vocab_list": [
+    "ne", "pas", "plus", "jamais", "rien", "personne", "non", "encore",
+    "manger", "aller", "faire", "aimer", "vouloir", "pouvoir", "savoir",
+    "maintenant", "aujourd hui", "bien", "mal", "beaucoup", "un peu"
+  ],
+  "quiz": [
+    {
+      "question": "Negate: 'Je mange.' →",
+      "options": ["Je ne mange pas", "Je mange ne pas", "Ne je mange pas", "Je pas mange"],
+      "answer_index": 0
+    },
+    {
+      "question": "Which sentence means 'She does not work here'?",
+      "options": [
+        "Elle ne travaille pas ici.",
+        "Elle travaille pas ne ici.",
+        "Elle pas ne travaille ici.",
+        "Ne elle travaille pas ici."
+      ],
+      "answer_index": 0
+    },
+    {
+      "question": "Fill in: Nous ne ___ pas fatigués. (verb être)",
+      "options": ["sommes", "êtes", "sont", "est"],
+      "answer_index": 0
+    },
+    {
+      "question": "They are not going — choose correct French.",
+      "options": ["Ils ne vont pas", "Ils vont ne pas", "Ils n aller pas", "Ils pas vont"],
+      "answer_index": 0
+    },
+    {
+      "question": "You (informal) don't like coffee — pick the best line.",
+      "options": [
+        "Tu n aimes pas le café.",
+        "Tu aimes pas le café ne.",
+        "Tu ne pas aimes le café.",
+        "Tu le café n aimes pas."
+      ],
+      "answer_index": 0
+    }
+  ],
+  "production_task": {
+    "type": "short_writing",
+    "instructions_en": "Write 5–10 words. Use ne ... pas once.",
+    "prompt_fr": "Dites ce que vous ne faites pas aujourd hui (sport, travail, etc.).",
+    "min_words": 5,
+    "max_words": 10,
+    "rubric_hints": ["ne + verb + pas", "Present tense"]
+  }
+}

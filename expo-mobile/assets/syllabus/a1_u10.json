@@ -1,0 +1,80 @@
+{
+  "id": "a1-u10",
+  "level": "A1",
+  "unit_index": 10,
+  "phase": "solid_a1",
+  "theme": "Capstone — Mini-TEF Section A style (simple event)",
+  "lexical_density": 2.358,
+  "grammar_rule_text": "TEF-style Section A (niveau débutant): write a short message about a concrete situation (invitation, excuse, past weekend, simple problem). Use passé composé (avoir or être as learned), present for habits, and basic connectors. Target 20–30 words; stay clear and simple—examiners reward communication over complexity.",
+  "vocab_list": [
+    "cher", "chers", "excuse", "desole", "desolee", "invitation", "fete",
+    "rendez vous", "retard", "probleme", "train", "bus", "hier", "demain",
+    "parce que", "donc", "alors", "ensuite", "beaucoup", "tres", "content",
+    "passé composé", "message", "écrire", "répondre", "question", "situation"
+  ],
+  "quiz": [
+    {
+      "question": "Which opening fits a short formal message?",
+      "options": [
+        "Salut mec j ai super faim lol",
+        "Bonjour, je vous écris concernant notre rendez-vous.",
+        "Yo hier j ai mangé",
+        "Cc tu vas bien"
+      ],
+      "answer_index": 1
+    },
+    {
+      "question": "Mini-TEF skill: You missed the bus this morning — natural past tense.",
+      "options": [
+        "J ai raté le bus ce matin.",
+        "Je rate le bus ce matin.",
+        "J ai rater le bus ce matin.",
+        "Je suis raté le bus ce matin."
+      ],
+      "answer_index": 0
+    },
+    {
+      "question": "Choose the most coherent past narrative (one sentence).",
+      "options": [
+        "Hier j ai visité ma grand-mère et nous avons mangé un gâteau.",
+        "Hier je visite ma grand-mère et nous mangeons gâteau.",
+        "Hier j ai visité ma grand-mère et nous mange un gâteau.",
+        "Hier je visité ma grand-mère et nous avons mangé."
+      ],
+      "answer_index": 0
+    },
+    {
+      "question": "Which uses passé composé + negation correctly?",
+      "options": [
+        "Je n ai pas pu venir à la fête.",
+        "Je ne pas ai pu venir à la fête.",
+        "Je n ai pu pas venir à la fête.",
+        "Je pas ai pu venir à la fête."
+      ],
+      "answer_index": 0
+    },
+    {
+      "question": "For 'She arrived late' — être verb in passé composé.",
+      "options": [
+        "Elle est arrivée en retard.",
+        "Elle a arrivé en retard.",
+        "Elle est arrivé en retard.",
+        "Elle a arrivée en retard."
+      ],
+      "answer_index": 0
+    }
+  ],
+  "production_task": {
+    "type": "mini_tef_section_a",
+    "instructions_en": "Write 20–30 words in French. Describe a simple real or imaginary event (weekend, small accident, nice meal). Use at least one passé composé verb.",
+    "prompt_fr": "Situation: Racontez brièvement ce qui s est passé le week-end dernier (sortie, famille, sport, ou petit problème). Style court, comme un message ou un paragraphe d examen.",
+    "min_words": 20,
+    "max_words": 30,
+    "rubric_hints": [
+      "20–30 words",
+      "At least one passé composé",
+      "Logical order (time + events)",
+      "Appropriate register (neutral / slightly formal OK)"
+    ]
+  }
+}

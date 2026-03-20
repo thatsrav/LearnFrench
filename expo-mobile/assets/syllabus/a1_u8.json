@@ -1,0 +1,69 @@
+{
+  "id": "a1-u8",
+  "level": "A1",
+  "unit_index": 8,
+  "phase": "solid_a1",
+  "theme": "Passé composé — introduction (avoir + participe passé)",
+  "lexical_density": 1.949,
+  "grammar_rule_text": "Passé composé with auxiliary avoir: j'ai parlé, tu as mangé, il a fini. Regular -er verbs: drop -er, add -é (parler → parlé, manger → mangé with spelling note). Word order: subject + avoir + past participle. Negation: je n'ai pas mangé. Use time words: hier, ce matin (often with passé composé).",
+  "vocab_list": [
+    "hier", "ce matin", "ce soir", "avoir", "ai", "as", "a", "avons", "avez", "ont",
+    "parle", "parlé", "mangé", "aimé", "travaillé", "regardé", "acheté", "visité",
+    "film", "repas", "vacances", "weekend", "ensemble", "seul", "vite", "alors"
+  ],
+  "quiz": [
+    {
+      "question": "Past participle of parler?",
+      "options": ["parlait", "parlé", "parlant", "parle"],
+      "answer_index": 1
+    },
+    {
+      "question": "Choose correct passé composé: I ate a sandwich.",
+      "options": [
+        "J ai mangé un sandwich.",
+        "Je mange un sandwich.",
+        "J ai manger un sandwich.",
+        "Je mangé un sandwich."
+      ],
+      "answer_index": 0
+    },
+    {
+      "question": "They worked yesterday — pick the right line.",
+      "options": [
+        "Ils ont travaillé hier.",
+        "Ils travaillent hier.",
+        "Ils ont travailler hier.",
+        "Ils sont travaillé hier."
+      ],
+      "answer_index": 0
+    },
+    {
+      "question": "Negate in passé composé: She didn't watch TV.",
+      "options": [
+        "Elle n a pas regardé la télé.",
+        "Elle ne regarde pas la télé.",
+        "Elle n a regardé pas la télé.",
+        "Elle pas a regardé la télé."
+      ],
+      "answer_index": 0
+    },
+    {
+      "question": "We visited Paris — correct auxiliary + participle.",
+      "options": [
+        "Nous avons visité Paris.",
+        "Nous sommes visité Paris.",
+        "Nous avons visiter Paris.",
+        "Nous visitons Paris."
+      ],
+      "answer_index": 0
+    }
+  ],
+  "production_task": {
+    "type": "short_writing",
+    "instructions_en": "Write 10–14 words in French using passé composé with avoir at least once.",
+    "prompt_fr": "Racontez une chose simple que vous avez fait hier (manger, regarder, travailler…).",
+    "min_words": 10,
+    "max_words": 14,
+    "rubric_hints": ["avoir + participe passé", "Time expression optional"]
+  }
+}

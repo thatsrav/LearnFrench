@@ -1,0 +1,42 @@
+{
+  "id": "a1-u2",
+  "level": "A1",
+  "unit_index": 2,
+  "phase": "ultra_beginner",
+  "theme": "Numbers 1–20 (recognition)",
+  "lexical_density": 1.1,
+  "grammar_rule_text": "Recognize French number words 1–20: un, deux, trois, quatre, cinq, six, sept, huit, neuf, dix, onze, douze, treize, quatorze, quinze, seize, dix-sept, dix-huit, dix-neuf, vingt. Tasks are matching only—no calculations.",
+  "vocab_list": [
+    "un", "deux", "trois", "quatre", "cinq", "six", "sept", "huit", "neuf", "dix",
+    "onze", "douze", "treize", "quatorze", "quinze", "seize", "dix-sept", "dix-huit", "dix-neuf", "vingt",
+    "nombre", "combien"
+  ],
+  "quiz": [
+    {
+      "question": "Match the digit: 5",
+      "options": ["six", "cinq", "sept", "quatre"],
+      "answer_index": 1
+    },
+    {
+      "question": "Which word is 12?",
+      "options": ["onze", "douze", "treize", "dix"],
+      "answer_index": 1
+    },
+    {
+      "question": "How do you say I am three years old?",
+      "options": ["J ai trois ans.", "J ai treize ans.", "J ai trois jour.", "J suis trois ans."],
+      "answer_index": 0
+    },
+    {
+      "question": "Match: 18",
+      "options": ["dix-huit", "dix-neuf", "vingt", "huit"],
+      "answer_index": 0
+    },
+    {
+      "question": "Which is 0 in French (bonus recognition)?",
+      "options": ["zero", "un", "dix", "cent"],
+      "answer_index": 0
+    }
+  ],
+  "production_task": null
+}

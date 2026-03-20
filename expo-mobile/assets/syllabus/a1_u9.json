@@ -1,0 +1,65 @@
+{
+  "id": "a1-u9",
+  "level": "A1",
+  "unit_index": 9,
+  "phase": "solid_a1",
+  "theme": "Passé composé — mini storytelling",
+  "lexical_density": 2.144,
+  "grammar_rule_text": "Chain two events in the past: 'D abord j ai pris le bus, puis j ai vu mon ami.' Agreement of past participle with AVOIR object BEFORE verb comes at higher levels—for A1 keep objects after verb. Use connectors: puis, ensuite, alors, et, mais.",
+  "vocab_list": [
+    "d abord", "puis", "ensuite", "alors", "apres", "avant",
+    "bus", "train", "metro", "ami", "rendez vous", "fete", "anniversaire",
+    "acheter", "acheté", "voir", "vu", "prendre", "pris", "faire", "fait",
+    "aller", "allé", "arriver", "arrivé", "content", "fatigue", "super"
+  ],
+  "quiz": [
+    {
+      "question": "Past participle of faire?",
+      "options": ["fais", "fait", "faite", "faisant"],
+      "answer_index": 1
+    },
+    {
+      "question": "Pick the best mini-story opening.",
+      "options": [
+        "Samedi matin j ai pris le métro et j ai rendez-vous.",
+        "Samedi matin j ai pris le métro, puis j ai vu Lucie.",
+        "Samedi matin je prends le métro puis je vois Lucie.",
+        "Samedi matin j ai prendre le métro puis vu Lucie."
+      ],
+      "answer_index": 1
+    },
+    {
+      "question": "I went to the cinema yesterday — aller uses être in passé composé.",
+      "options": [
+        "Je suis allé au cinéma hier.",
+        "J ai allé au cinéma hier.",
+        "Je suis aller au cinéma hier.",
+        "J ai été au cinéma hier."
+      ],
+      "answer_index": 0
+    },
+    {
+      "question": "They did their homework last night.",
+      "options": [
+        "Ils ont fait leurs devoirs hier soir.",
+        "Ils font leurs devoirs hier soir.",
+        "Ils ont faits leurs devoirs hier soir.",
+        "Ils sont fait leurs devoirs hier soir."
+      ],
+      "answer_index": 0
+    },
+    {
+      "question": "Which connector fits: 'J ai mangé ___ j ai dormi.'",
+      "options": ["puis", "demain", "toujours", "ne"],
+      "answer_index": 0
+    }
+  ],
+  "production_task": {
+    "type": "short_writing",
+    "instructions_en": "Write 15–18 words: two past actions with puis or ensuite.",
+    "prompt_fr": "Racontez votre samedi ou dimanche: au moins deux actions au passé composé.",
+    "min_words": 15,
+    "max_words": 18,
+    "rubric_hints": ["Two PC verbs", "Connector", "Coherent order"]
+  }
+}

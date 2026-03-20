@@ -1,0 +1,41 @@
+{
+  "id": "a1-u1",
+  "level": "A1",
+  "unit_index": 1,
+  "phase": "ultra_beginner",
+  "theme": "Greetings & recognition",
+  "lexical_density": 1.0,
+  "grammar_rule_text": "Ultra-beginner recognition only. Match greetings: bonjour (day), bonsoir (evening), salut (informal hi/bye), au revoir (goodbye). Say 'thank you' with merci and 'please' with s'il vous plaît. No long sentences yet.",
+  "vocab_list": [
+    "bonjour", "bonsoir", "salut", "au revoir", "merci", "s il vous plait",
+    "oui", "non", "bonne nuit", "a bientot", "a demain", "enchanté", "enchantée"
+  ],
+  "quiz": [
+    {
+      "question": "Match: Which word means 'good morning / hello' in daytime?",
+      "options": ["bonsoir", "bonjour", "au revoir", "merci"],
+      "answer_index": 1
+    },
+    {
+      "question": "Match: Informal 'hi' between friends?",
+      "options": ["monsieur", "salut", "bonsoir", "madame"],
+      "answer_index": 1
+    },
+    {
+      "question": "Complete the three-word idea: '___ revoir' = goodbye.",
+      "options": ["bon", "au", "merci", "salut"],
+      "answer_index": 1
+    },
+    {
+      "question": "Which is 'thank you'?",
+      "options": ["de rien", "merci", "pardon", "bonjour"],
+      "answer_index": 1
+    },
+    {
+      "question": "Match: Polite 'please' (formal).",
+      "options": ["oui", "s il vous plait", "non", "salut"],
+      "answer_index": 1
+    }
+  ],
+  "production_task": null
+}

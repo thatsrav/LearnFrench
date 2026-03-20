@@ -1,0 +1,54 @@
+{
+  "id": "a1-u4",
+  "level": "A1",
+  "unit_index": 4,
+  "phase": "developing_a1",
+  "theme": "Action verbs: manger, aller, travailler",
+  "lexical_density": 1.331,
+  "grammar_rule_text": "Present tense of key irregular/regular verbs: manger (je mange, tu manges…), aller (je vais, tu vas…) + à + place, travailler (je travaille…). Build short sentences of 5–10 words: subject + verb + complement. Word order: SVO like English for these patterns.",
+  "vocab_list": [
+    "manger", "boire", "aller", "venir", "travailler", "etudier", "habiter",
+    "maison", "ecole", "bureau", "restaurant", "au", "a la", "chez",
+    "maintenant", "demain", "aujourd hui", "avec", "pour", "parce que"
+  ],
+  "quiz": [
+    {
+      "question": "Conjugate: 'Nous ___ au restaurant ce soir.' (aller)",
+      "options": ["allons", "allez", "vont", "vais"],
+      "answer_index": 0
+    },
+    {
+      "question": "Which sentence is correct (5–8 words idea)?",
+      "options": [
+        "Je mange une pomme maintenant.",
+        "Je mange une.",
+        "Mange je pomme.",
+        "Une je mange pomme."
+      ],
+      "answer_index": 0
+    },
+    {
+      "question": "Fill in: 'Elle ___ dans une école.' (travailler, elle)",
+      "options": ["travailles", "travaille", "travaillons", "travaillent"],
+      "answer_index": 1
+    },
+    {
+      "question": "Choose the best answer: Where are you going? (Tu ___ à la bibliothèque.)",
+      "options": ["vas", "va", "allons", "allez"],
+      "answer_index": 0
+    },
+    {
+      "question": "They work in Paris — pick the correct form.",
+      "options": ["Ils travaille", "Ils travaillent", "Ils travaillons", "Ils travailles"],
+      "answer_index": 1
+    }
+  ],
+  "production_task": {
+    "type": "short_writing",
+    "instructions_en": "Write 5–10 words in French. Use manger, aller, or travailler in the present.",
+    "prompt_fr": "Décrivez votre journée: où vous allez et ce que vous mangez ou où vous travaillez.",
+    "min_words": 5,
+    "max_words": 10,
+    "rubric_hints": ["Present tense", "One clear verb", "Subject + verb + object"]
+  }
+}
