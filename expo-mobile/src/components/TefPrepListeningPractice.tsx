@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import {
+  Alert,
   Modal,
   Pressable,
   ScrollView,
@@ -23,7 +24,12 @@ import {
 import { getModuleIdForContentUnit } from '../lib/curriculum'
 import type { RootStackParamList } from '../navigation/AppNavigator'
 import { useStackScreenBottomPadding } from '../lib/screenPadding'
-import { listeningAccentToBcp47, speakFrenchListening, stopFrenchExpoTts } from '../lib/frenchExpoTts'
+import {
+  FRENCH_CLOUD_TTS_SETUP_HINT,
+  isFrenchCloudTtsConfigured,
+  speakFrenchListening,
+  stopFrenchExpoTts,
+} from '../lib/frenchExpoTts'
 
 const LETTERS = ['A', 'B', 'C', 'D'] as const
 
@@ -284,28 +290,50 @@ export default function TefPrepListeningPractice({ tefUnit }: Props) {
           <>
             {!content.audio_uri ? (
               <View className="mt-3 rounded-xl border border-amber-200 bg-amber-50 p-3">
-                <Text className="font-sans text-xs text-amber-950">Pas de fichier audio : lecture TTS pour simuler l’écoute.</Text>
-                <Pressable
-                  onPress={() => {
-                    void (async () => {
-                      await stopFrenchExpoTts()
-                      setTtsEngaged(true)
-                      await speakFrenchListening(content.transcript_fr, listeningAccentToBcp47(content.accent))
-                    })()
-                  }}
-                  className="mt-3 flex-row items-center justify-center gap-2 rounded-xl bg-emerald-600 py-2.5 active:bg-emerald-700"
-                >
-                  <Ionicons name="volume-high" size={18} color="#fff" />
-                  <Text className="font-sans-bold text-white">Lancer la lecture TTS</Text>
-                </Pressable>
+                <Text className="font-sans text-xs text-amber-950">
+                  Pas de fichier audio intégré. Voix naturelle = API OpenAI (EXPO_PUBLIC_API_BASE_URL) — pas de synthèse
+                  système.
+                </Text>
+                {isFrenchCloudTtsConfigured() ? (
+                  <Pressable
+                    onPress={() => {
+                      void (async () => {
+                        await stopFrenchExpoTts()
+                        try {
+                          setTtsEngaged(true)
+                          await speakFrenchListening(content.transcript_fr)
+                        } catch (e) {
+                          setTtsEngaged(false)
+                          Alert.alert('Écoute', e instanceof Error ? e.message : String(e))
+                        }
+                      })()
+                    }}
+                    className="mt-3 flex-row items-center justify-center gap-2 rounded-xl bg-emerald-600 py-2.5 active:bg-emerald-700"
+                  >
+                    <Ionicons name="volume-high" size={18} color="#fff" />
+                    <Text className="font-sans-bold text-white">Écouter (voix API)</Text>
+                  </Pressable>
+                ) : (
+                  <>
+                    <Text className="font-sans mt-2 text-xs leading-5 text-amber-900">{FRENCH_CLOUD_TTS_SETUP_HINT}</Text>
+                    <Pressable
+                      onPress={() => setTtsEngaged(true)}
+                      className="mt-3 flex-row items-center justify-center gap-2 rounded-xl border-2 border-amber-700/50 bg-white py-2.5 active:bg-amber-50"
+                    >
+                      <Ionicons name="document-text-outline" size={18} color="#92400e" />
+                      <Text className="font-sans-bold text-amber-950">J’ai lu la transcription — continuer</Text>
+                    </Pressable>
+                  </>
+                )}
               </View>
             ) : null}
 
             {!gate.hasPlaybackEverStarted ? (
               <View className="mt-4 rounded-xl bg-slate-100 p-4">
                 <Text className="text-center font-sans text-sm leading-5 text-slate-600">
-                  Appuyez sur <Text className="font-sans-bold text-slate-800">lecture</Text> (ou TTS) pour afficher les questions
-                  — format TEF.
+                  Appuyez sur <Text className="font-sans-bold text-slate-800">lecture</Text>, sur{' '}
+                  <Text className="font-sans-bold text-slate-800">voix API</Text>, ou indiquez avoir lu la transcription — format
+                  TEF.
                 </Text>
               </View>
             ) : null}

@@ -1,55 +1,30 @@
 /**
- * French TTS for Expo: optional OpenAI MP3 via `EXPO_PUBLIC_API_BASE_URL` + `/api/tts/french`,
- * otherwise `expo-speech` with the best installed French voice and calmer rate/pitch.
+ * French TTS — cloud only (OpenAI HD MP3 via french-scorer-api).
+ * No expo-speech: on-device voices rarely sound natural.
+ *
+ * Set EXPO_PUBLIC_API_BASE_URL (e.g. http://192.168.x.x:8787); server needs OPENAI_API_KEY.
  */
 
 import { Audio } from 'expo-av'
 import { File, Paths } from 'expo-file-system'
-import * as Speech from 'expo-speech'
 
 export type FrenchBcp47 = 'fr-FR' | 'fr-CA'
 
+/** @deprecated Reserved for future server-side accent; cloud path ignores today. */
 export function listeningAccentToBcp47(accent: 'france' | 'quebec'): FrenchBcp47 {
   return accent === 'quebec' ? 'fr-CA' : 'fr-FR'
 }
 
-let voicesCache: Speech.Voice[] | null = null
-let voicesPromise: Promise<Speech.Voice[]> | null = null
-
-async function getVoices(): Promise<Speech.Voice[]> {
-  if (voicesCache) return voicesCache
-  if (!voicesPromise) {
-    voicesPromise = Speech.getAvailableVoicesAsync().then((v) => {
-      voicesCache = v
-      return v
-    })
-  }
-  return voicesPromise
-}
-
-function pickVoiceIdentifier(voices: Speech.Voice[], prefer: FrenchBcp47): string | undefined {
-  const p = prefer.toLowerCase().replace(/_/g, '-')
-  const fr = voices.filter((v) => (v.language || '').toLowerCase().startsWith('fr'))
-  const exact = fr.filter((v) => (v.language || '').toLowerCase().replace(/_/g, '-').startsWith(p))
-  const pool = exact.length ? exact : fr
-  if (!pool.length) return undefined
-
-  const score = (v: Speech.Voice) => {
-    let s = 0
-    const lang = (v.language || '').toLowerCase().replace(/_/g, '-')
-    if (lang.startsWith(p)) s += 100
-    const name = `${v.name || ''} ${v.quality || ''}`.toLowerCase()
-    if (name.includes('enhanced') || name.includes('premium')) s += 45
-    return s
-  }
-
-  return [...pool].sort((a, b) => score(b) - score(a))[0]?.identifier
-}
-
 let cloudSound: Audio.Sound | null = null
 
+export const FRENCH_CLOUD_TTS_SETUP_HINT =
+  'Voix naturelle : définissez EXPO_PUBLIC_API_BASE_URL vers french-scorer-api et OPENAI_API_KEY sur le serveur.'
+
+export function isFrenchCloudTtsConfigured(): boolean {
+  return Boolean(process.env.EXPO_PUBLIC_API_BASE_URL?.trim())
+}
+
 async function speakOpenAiFromApi(text: string, apiBase: string): Promise<void> {
-  Speech.stop()
   if (cloudSound) {
     try {
       await cloudSound.unloadAsync()
@@ -105,7 +80,6 @@ async function speakOpenAiFromApi(text: string, apiBase: string): Promise<void> 
 }
 
 export async function stopFrenchExpoTts(): Promise<void> {
-  Speech.stop()
   if (cloudSound) {
     try {
       await cloudSound.stopAsync()
@@ -119,32 +93,20 @@ export async function stopFrenchExpoTts(): Promise<void> {
 
 const MAX_TTS_CHARS = 4096
 
-export async function speakFrenchListening(text: string, prefer: FrenchBcp47): Promise<void> {
+/**
+ * Play French text via OpenAI TTS on your backend. Throws if not configured or request fails.
+ */
+export async function speakFrenchListening(text: string, _prefer?: FrenchBcp47): Promise<void> {
   const trimmed = text.trim()
   if (!trimmed) return
 
   const apiBase = process.env.EXPO_PUBLIC_API_BASE_URL?.trim()
-  if (apiBase && trimmed.length <= MAX_TTS_CHARS) {
-    try {
-      await speakOpenAiFromApi(trimmed, apiBase)
-      return
-    } catch (e) {
-      console.warn('[frenchExpoTts] Cloud TTS failed, using device speech.', e)
-    }
+  if (!apiBase) {
+    throw new Error(FRENCH_CLOUD_TTS_SETUP_HINT)
+  }
+  if (trimmed.length > MAX_TTS_CHARS) {
+    throw new Error(`Texte trop long (max ${MAX_TTS_CHARS} caractères).`)
   }
 
-  const voices = await getVoices()
-  const voice = pickVoiceIdentifier(voices, prefer)
-
-  return new Promise((resolve) => {
-    Speech.speak(trimmed, {
-      language: prefer,
-      voice,
-      pitch: 1,
-      rate: 0.92,
-      onDone: () => resolve(),
-      onStopped: () => resolve(),
-      onError: () => resolve(),
-    })
-  })
+  await speakOpenAiFromApi(trimmed, apiBase)
 }

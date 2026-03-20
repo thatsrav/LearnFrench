@@ -3,18 +3,16 @@ import { Link, useParams } from 'react-router-dom'
 import { Volume2 } from 'lucide-react'
 import TefPrepWebListeningPractice from '../components/TefPrepWebListeningPractice'
 import { fetchTefA1Skill, type TefSkill } from '../lib/tefPrepFetch'
+import {
+  FRENCH_CLOUD_TTS_SETUP_HINT,
+  isFrenchCloudTtsConfigured,
+  speakFrenchListening,
+  stopFrenchWebTts,
+} from '../lib/frenchWebTts'
 
 type Mcq = { question_fr: string; options: string[]; answer_index: number }
 type LetterOpt = { letter: string; text_fr: string }
 type ReadingItem = { item_number: number; question_fr: string; options: LetterOpt[]; answer_index: number }
-
-function speakFrCa(text: string) {
-  if (typeof window === 'undefined' || !window.speechSynthesis) return
-  const u = new SpeechSynthesisUtterance(text)
-  u.lang = 'fr-CA'
-  window.speechSynthesis.cancel()
-  window.speechSynthesis.speak(u)
-}
 
 function wordCount(s: string) {
   return s.trim().split(/\s+/).filter(Boolean).length
@@ -244,7 +242,16 @@ export default function TefPrepActivityPage() {
           <li key={i}>
             <button
               type="button"
-              onClick={() => speakFrCa(line)}
+              onClick={() => {
+                if (!isFrenchCloudTtsConfigured()) {
+                  window.alert(FRENCH_CLOUD_TTS_SETUP_HINT)
+                  return
+                }
+                stopFrenchWebTts()
+                void speakFrenchListening(line).catch((e) =>
+                  window.alert(e instanceof Error ? e.message : String(e)),
+                )
+              }}
               className="flex w-full items-center gap-2 rounded-xl border border-slate-200 bg-white px-3 py-2 text-left text-sm hover:bg-slate-50"
             >
               <Volume2 className="h-4 w-4 shrink-0 text-orange-600" />

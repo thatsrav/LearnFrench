@@ -1,6 +1,7 @@
 import { useCallback, useMemo, useRef, useState } from 'react'
 import {
   ActivityIndicator,
+  Alert,
   KeyboardAvoidingView,
   Platform,
   Pressable,
@@ -23,7 +24,12 @@ import type { NativeStackNavigationProp } from '@react-navigation/native-stack'
 import type { BottomTabNavigationProp } from '@react-navigation/bottom-tabs'
 import { LinearGradient } from 'expo-linear-gradient'
 import { Ionicons } from '@expo/vector-icons'
-import { speakFrenchListening, stopFrenchExpoTts } from '../lib/frenchExpoTts'
+import {
+  FRENCH_CLOUD_TTS_SETUP_HINT,
+  isFrenchCloudTtsConfigured,
+  speakFrenchListening,
+  stopFrenchExpoTts,
+} from '../lib/frenchExpoTts'
 import { recordScoreEvent } from '../database/database'
 import { scoreFrench, type FrenchScore, type ScoreProvider } from '../api/scoreFrench'
 import { computeDailyStreak, loadRecentScores, saveRecentScores, type StoredScore } from '../lib/history'
@@ -620,7 +626,9 @@ export default function HomeScreen() {
       {/* Daily vocab + TTS */}
       <View className="mt-4 rounded-2xl border border-slate-200 bg-white p-3 shadow-sm">
         <Text className="text-base font-bold text-slate-900">Daily vocab</Text>
-        <Text className="mt-1 text-sm text-slate-500">Tap listen for French TTS (device offline may vary).</Text>
+        <Text className="mt-1 text-sm text-slate-500">
+          Écoute = voix API (OpenAI). Définissez EXPO_PUBLIC_API_BASE_URL vers french-scorer-api.
+        </Text>
         <View className="mt-3 gap-2">
           {dailyVocab.map((word) => (
             <View
@@ -631,8 +639,16 @@ export default function HomeScreen() {
               <Pressable
                 onPress={() => {
                   void (async () => {
+                    if (!isFrenchCloudTtsConfigured()) {
+                      Alert.alert('Écoute', FRENCH_CLOUD_TTS_SETUP_HINT)
+                      return
+                    }
                     await stopFrenchExpoTts()
-                    await speakFrenchListening(word, 'fr-FR')
+                    try {
+                      await speakFrenchListening(word, 'fr-FR')
+                    } catch (e) {
+                      Alert.alert('Écoute', e instanceof Error ? e.message : String(e))
+                    }
                   })()
                 }}
                 className="rounded-lg border border-slate-200 bg-white px-3 py-2 active:bg-slate-100"

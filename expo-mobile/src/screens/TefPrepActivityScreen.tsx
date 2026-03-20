@@ -1,7 +1,12 @@
 import { useMemo, useState } from 'react'
-import { Pressable, ScrollView, Text, TextInput, View } from 'react-native'
+import { Alert, Pressable, ScrollView, Text, TextInput, View } from 'react-native'
 import { useRoute } from '@react-navigation/native'
-import { speakFrenchListening, stopFrenchExpoTts } from '../lib/frenchExpoTts'
+import {
+  FRENCH_CLOUD_TTS_SETUP_HINT,
+  isFrenchCloudTtsConfigured,
+  speakFrenchListening,
+  stopFrenchExpoTts,
+} from '../lib/frenchExpoTts'
 import { Ionicons } from '@expo/vector-icons'
 import TefPrepListeningPractice from '../components/TefPrepListeningPractice'
 import type { TefSkill, TefReadingJson } from '../content/tefPrepA1'
@@ -178,8 +183,16 @@ export default function TefPrepActivityScreen() {
           key={i}
           onPress={() => {
             void (async () => {
+              if (!isFrenchCloudTtsConfigured()) {
+                Alert.alert('Écoute', FRENCH_CLOUD_TTS_SETUP_HINT)
+                return
+              }
               await stopFrenchExpoTts()
-              await speakFrenchListening(line, 'fr-FR')
+              try {
+                await speakFrenchListening(line, 'fr-FR')
+              } catch (e) {
+                Alert.alert('Écoute', e instanceof Error ? e.message : String(e))
+              }
             })()
           }}
           className="mt-2 flex-row items-center gap-2 rounded-xl border border-slate-200 bg-white px-3 py-2"

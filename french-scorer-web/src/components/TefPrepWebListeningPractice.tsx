@@ -14,7 +14,12 @@ import {
 import { getModuleIdForContentUnit } from '../lib/curriculum'
 import { persistTefPrepListeningAttempt, type TefPrepAnswerRecord } from '../lib/tefPrepProgressWeb'
 import { supabase } from '../lib/supabase'
-import { listeningAccentToBcp47, speakFrenchListening, stopFrenchWebTts } from '../lib/frenchWebTts'
+import {
+  FRENCH_CLOUD_TTS_SETUP_HINT,
+  isFrenchCloudTtsConfigured,
+  speakFrenchListening,
+  stopFrenchWebTts,
+} from '../lib/frenchWebTts'
 
 const LETTERS = ['A', 'B', 'C', 'D'] as const
 
@@ -268,29 +273,50 @@ export default function TefPrepWebListeningPractice({ tefUnit }: Props) {
 
             {!content.audio_uri ? (
               <div className="rounded-xl border border-amber-200 bg-amber-50 p-4">
-                <p className="text-xs text-amber-950">Pas de fichier audio : lecture TTS pour simuler l’écoute.</p>
-                <button
-                  type="button"
-                  onClick={() => {
-                    stopFrenchWebTts()
-                    void speakFrenchListening(content.transcript_fr, listeningAccentToBcp47(content.accent)).then(
-                      () => {},
-                    )
-                    setTtsEngaged(true)
-                  }}
-                  className="mt-3 inline-flex w-full items-center justify-center gap-2 rounded-xl bg-emerald-600 py-2.5 text-sm font-bold text-white shadow-sm hover:bg-emerald-700"
-                >
-                  <Volume2 className="h-4 w-4" />
-                  Lancer la lecture TTS
-                </button>
+                <p className="text-xs text-amber-950">
+                  Pas de fichier audio intégré. La voix naturelle passe par votre API (OpenAI sur french-scorer-api) — pas de
+                  synthèse navigateur.
+                </p>
+                {isFrenchCloudTtsConfigured() ? (
+                  <button
+                    type="button"
+                    onClick={() => {
+                      stopFrenchWebTts()
+                      void (async () => {
+                        try {
+                          setTtsEngaged(true)
+                          await speakFrenchListening(content.transcript_fr)
+                        } catch (e) {
+                          setTtsEngaged(false)
+                          window.alert(e instanceof Error ? e.message : String(e))
+                        }
+                      })()
+                    }}
+                    className="mt-3 inline-flex w-full items-center justify-center gap-2 rounded-xl bg-emerald-600 py-2.5 text-sm font-bold text-white shadow-sm hover:bg-emerald-700"
+                  >
+                    <Volume2 className="h-4 w-4" />
+                    Écouter (voix API)
+                  </button>
+                ) : (
+                  <>
+                    <p className="mt-2 text-xs leading-relaxed text-amber-900/90">{FRENCH_CLOUD_TTS_SETUP_HINT}</p>
+                    <button
+                      type="button"
+                      onClick={() => setTtsEngaged(true)}
+                      className="mt-3 inline-flex w-full items-center justify-center gap-2 rounded-xl border-2 border-amber-700/40 bg-white py-2.5 text-sm font-bold text-amber-950 shadow-sm hover:bg-amber-100/80"
+                    >
+                      J’ai lu la transcription — continuer
+                    </button>
+                  </>
+                )}
               </div>
             ) : null}
 
             {!gate.hasPlaybackEverStarted ? (
               <div className="rounded-xl bg-slate-100 p-5 text-center">
                 <p className="text-sm leading-relaxed text-slate-600">
-                  Appuyez sur <strong className="text-slate-800">lecture</strong> (ou TTS) pour afficher les questions — format
-                  TEF.
+                  Appuyez sur <strong className="text-slate-800">lecture</strong>, sur <strong className="text-slate-800">voix API</strong>, ou
+                  indiquez avoir lu la transcription — format TEF.
                 </p>
               </div>
             ) : null}
