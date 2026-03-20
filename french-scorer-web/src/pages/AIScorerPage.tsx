@@ -1,5 +1,6 @@
 import { Bot, Flame, Lightbulb, Mic, Sparkles, Type } from 'lucide-react'
 import { useMemo, useState } from 'react'
+import { Link } from 'react-router-dom'
 import { useAuth } from '../contexts/AuthContext'
 import { supabase } from '../lib/supabase'
 import { syncWebScoreHistoryToCloud } from '../lib/cloudProgressWeb'
@@ -158,14 +159,29 @@ export default function AIScorerPage() {
 
   return (
     <div className="space-y-10">
+      <div className="rounded-2xl border border-slate-200 bg-slate-50/90 px-4 py-3 text-sm leading-relaxed text-slate-700 md:px-5">
+        <span className="font-semibold text-slate-900">Main study:</span>{' '}
+        <Link to="/tef-prep" className="font-semibold text-red-700 underline-offset-2 hover:underline">
+          TEF Prep
+        </Link>
+        {' · '}
+        <Link to="/syllabus" className="font-semibold text-indigo-700 underline-offset-2 hover:underline">
+          Study units
+        </Link>
+        <span className="text-slate-600">
+          {' '}
+          — this page is optional feedback on drafts, not the primary course.
+        </span>
+      </div>
+
       <div className="max-w-3xl">
-        <p className="text-xs font-bold uppercase tracking-[0.2em] text-violet-600">Premium linguistic engine</p>
+        <p className="text-xs font-bold uppercase tracking-[0.2em] text-violet-600">Writing lab · optional</p>
         <h1 className="font-display mt-3 text-4xl font-bold tracking-tight text-slate-900 md:text-[2.75rem]">
-          Master French with AI Precision
+          AI feedback on French text
         </h1>
         <p className="mt-4 text-base leading-relaxed text-slate-600">
-          Paste your essay or speak your thoughts. Our models analyze syntax, vocabulary depth, and tone in seconds — with a
-          CEFR readout you can trust for practice.
+          Paste an essay or paragraph when you want a second pass: syntax, vocabulary, and a CEFR-style readout. Use it
+          alongside your TEF prep and unit lessons.
         </p>
       </div>
 

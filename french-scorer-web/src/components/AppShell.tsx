@@ -1,4 +1,4 @@
-import { BookOpen, Bot, Flag, Home, Mic, Trophy, User } from 'lucide-react'
+import { BookOpen, Bot, Flag, Home, Trophy, User } from 'lucide-react'
 import { NavLink, Outlet } from 'react-router-dom'
 import AppFooter from './AppFooter'
 
@@ -27,25 +27,21 @@ export default function AppShell() {
               <Home size={17} />
               <span>Home</span>
             </NavLink>
-            <NavLink to="/scorer" className={navLinkClass}>
-              <Bot size={17} />
-              <span>AI Scorer</span>
-            </NavLink>
             <NavLink to="/tef-prep" className={navLinkClass}>
               <Flag size={17} />
               <span>TEF Prep</span>
             </NavLink>
-            <NavLink to="/reading" className={navLinkClass}>
+            <NavLink to="/syllabus" className={navLinkClass}>
               <BookOpen size={17} />
-              <span>Reading</span>
-            </NavLink>
-            <NavLink to="/speaking" className={navLinkClass}>
-              <Mic size={17} />
-              <span>Speaking</span>
+              <span>Study units</span>
             </NavLink>
             <NavLink to="/leaderboard" className={navLinkClass}>
               <Trophy size={17} />
               <span>Scores</span>
+            </NavLink>
+            <NavLink to="/scorer" className={navLinkClass}>
+              <Bot size={17} />
+              <span>AI Scorer</span>
             </NavLink>
           </nav>
 
@@ -54,20 +50,17 @@ export default function AppShell() {
               <NavLink to="/" end className={(p) => `${navLinkClass(p)} shrink-0 snap-start px-2.5`}>
                 <Home size={16} />
               </NavLink>
-              <NavLink to="/scorer" className={(p) => `${navLinkClass(p)} shrink-0 snap-start px-2.5`}>
-                <Bot size={16} />
-              </NavLink>
               <NavLink to="/tef-prep" className={(p) => `${navLinkClass(p)} shrink-0 snap-start px-2.5`}>
                 <Flag size={16} />
               </NavLink>
-              <NavLink to="/reading" className={(p) => `${navLinkClass(p)} shrink-0 snap-start px-2.5`}>
+              <NavLink to="/syllabus" className={(p) => `${navLinkClass(p)} shrink-0 snap-start px-2.5`}>
                 <BookOpen size={16} />
-              </NavLink>
-              <NavLink to="/speaking" className={(p) => `${navLinkClass(p)} shrink-0 snap-start px-2.5`}>
-                <Mic size={16} />
               </NavLink>
               <NavLink to="/leaderboard" className={(p) => `${navLinkClass(p)} shrink-0 snap-start px-2.5`}>
                 <Trophy size={16} />
+              </NavLink>
+              <NavLink to="/scorer" className={(p) => `${navLinkClass(p)} shrink-0 snap-start px-2.5`}>
+                <Bot size={16} />
               </NavLink>
             </nav>
             <NavLink

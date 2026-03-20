@@ -1,12 +1,10 @@
-import { BookOpen, Home, Mic, PenSquare, Trophy } from 'lucide-react'
+import { BookOpen, Home, PenSquare, Trophy } from 'lucide-react'
 import { NavLink, Outlet } from 'react-router-dom'
 
 const navItems = [
   { label: 'Home', icon: Home, to: '/' },
   { label: 'Writing Lab', icon: PenSquare, to: '/' },
-  { label: 'Reading Room', icon: BookOpen, to: '/reading' },
   { label: 'Syllabus', icon: BookOpen, to: '/syllabus' },
-  { label: 'Speaking Coach', icon: Mic, to: '/speaking' },
   { label: 'Leaderboard', icon: Trophy, to: '/leaderboard' },
 ]
 

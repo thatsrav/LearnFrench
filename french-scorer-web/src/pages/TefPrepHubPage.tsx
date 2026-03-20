@@ -30,8 +30,12 @@ export default function TefPrepHubPage() {
           <p className="text-xs font-bold uppercase tracking-[0.2em] text-red-700">TEF Canada</p>
           <h1 className="font-display mt-2 text-4xl font-bold tracking-tight text-slate-900 md:text-5xl">Mastering Proficiency.</h1>
           <p className="mt-4 text-base leading-relaxed text-slate-600">
-            Prepare for your journey with structured A1 skill rooms — reading, writing, listening, and speaking. Content loads
-            from bundled JSON; listening uses our extended catalog for six-question TEF-style practice.
+            This is the main exam-prep track: structured A1 skill rooms for reading, writing, listening, and speaking. Pair it
+            with{' '}
+            <Link to="/syllabus" className="font-semibold text-indigo-700 underline-offset-2 hover:underline">
+              study units
+            </Link>{' '}
+            for the full curriculum path. Listening uses our extended catalog for six-question TEF-style practice.
           </p>
         </div>
         <div className="flex flex-wrap gap-4">

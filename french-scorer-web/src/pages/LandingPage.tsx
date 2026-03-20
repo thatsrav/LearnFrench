@@ -1,4 +1,4 @@
-import { ArrowRight, BookOpen, Bot, ChevronRight, Flag, Medal, Sparkles, User } from 'lucide-react'
+import { ArrowRight, BookOpen, Bot, ChevronRight, Flag, Sparkles, Trophy, User } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import { CURRICULUM_MODULES, CURRICULUM_STATS } from '../lib/curriculum'
 
@@ -13,7 +13,7 @@ const PATHWAYS = [
     n: '02',
     pill: 'Expansion (A2)',
     title: 'Stories, Routines, and Real Life',
-    desc: 'Family, work, and past events — expand fluency with structured practice and AI feedback.',
+    desc: 'Family, work, and past events — expand fluency with structured units; add AI feedback on drafts when you want it.',
   },
   {
     n: '03',
@@ -36,20 +36,17 @@ export default function LandingPage() {
             <Link to="/" className="border-b-2 border-[#4f46e5] pb-0.5 text-slate-900">
               Home
             </Link>
-            <Link to="/scorer" className="transition hover:text-indigo-600">
-              AI Scorer
-            </Link>
-            <Link to="/tef-prep" className="transition hover:text-indigo-600">
+            <Link to="/tef-prep" className="transition hover:text-red-700">
               TEF Prep
             </Link>
-            <Link to="/reading" className="transition hover:text-indigo-600">
-              Reading
-            </Link>
-            <Link to="/speaking" className="transition hover:text-indigo-600">
-              Speaking
+            <Link to="/syllabus" className="transition hover:text-indigo-600">
+              Study units
             </Link>
             <Link to="/leaderboard" className="transition hover:text-indigo-600">
               Scores
+            </Link>
+            <Link to="/scorer" className="transition hover:text-indigo-600">
+              AI Scorer
             </Link>
           </nav>
           <div className="flex items-center gap-2">
@@ -60,10 +57,10 @@ export default function LandingPage() {
               <User className="h-5 w-5" />
             </Link>
             <Link
-              to="/scorer"
-              className="hidden rounded-full bg-[#4f46e5] px-4 py-2 text-sm font-semibold text-white shadow-md shadow-indigo-500/25 sm:inline-flex"
+              to="/tef-prep"
+              className="hidden rounded-full bg-red-700 px-4 py-2 text-sm font-semibold text-white shadow-md shadow-red-900/20 sm:inline-flex"
             >
-              Start
+              Start TEF
             </Link>
           </div>
         </div>
@@ -72,77 +69,76 @@ export default function LandingPage() {
       <section className="mx-auto max-w-7xl px-4 py-16 md:px-8 md:py-24">
         <div className="max-w-3xl">
           <h1 className="font-display text-4xl font-bold leading-[1.15] tracking-tight text-[#111827] md:text-5xl lg:text-6xl">
-            Maîtrise le Français avec Élégance
+            TEF prep & structured French units — first.
           </h1>
           <p className="mt-6 max-w-xl text-lg leading-relaxed text-[#4b5563]">
-            FrenchLearn is your sanctuary for serious study — curriculum, AI scoring, and TEF-aligned practice in one calm,
-            editorial space.
+            Build with exam-style TEF Canada skill rooms and a full module syllabus (lessons from A1 upward). Use the AI writing
+            scorer when you want feedback on a draft — it supports the main track; it isn’t the starting point.
           </p>
           <div className="mt-10 flex flex-wrap items-center gap-4">
-            <a
-              href="#syllabus"
-              className="inline-flex items-center justify-center rounded-lg bg-[#4f46e5] px-8 py-3.5 text-sm font-bold text-white shadow-lg shadow-indigo-500/20 transition hover:bg-indigo-600"
+            <Link
+              to="/tef-prep"
+              className="inline-flex items-center justify-center rounded-lg bg-red-700 px-8 py-3.5 text-sm font-bold text-white shadow-lg shadow-red-900/25 transition hover:bg-red-800"
             >
-              Start Journey
-            </a>
+              Open TEF Prep
+            </Link>
+            <Link
+              to="/syllabus"
+              className="inline-flex items-center justify-center rounded-lg border-2 border-slate-300 bg-white px-8 py-3.5 text-sm font-bold text-slate-900 shadow-sm transition hover:border-indigo-300 hover:bg-slate-50"
+            >
+              Browse study units
+            </Link>
             <a
               href="#pathways"
               className="text-xs font-bold uppercase tracking-[0.2em] text-slate-800 underline decoration-slate-300 decoration-1 underline-offset-8 transition hover:decoration-indigo-400"
             >
-              Explore Atelier
+              Pathways
             </a>
           </div>
         </div>
 
         <div className="mt-20 grid gap-4 md:grid-cols-6 md:grid-rows-2 lg:gap-5">
           <Link
-            to="/scorer"
-            className="group relative overflow-hidden rounded-2xl border border-slate-200/80 bg-white p-6 shadow-sm transition hover:shadow-md md:col-span-4 md:row-span-1"
+            to="/tef-prep"
+            className="group relative overflow-hidden rounded-2xl border border-red-100 bg-white p-6 shadow-sm transition hover:border-red-200 hover:shadow-md md:col-span-4 md:row-span-1"
           >
-            <div className="flex items-center gap-2 text-[#4f46e5]">
-              <Sparkles className="h-5 w-5" />
-              <span className="text-xs font-bold uppercase tracking-wide">Precision AI Scorer</span>
+            <div className="flex items-center gap-2 text-red-700">
+              <Flag className="h-5 w-5" />
+              <span className="text-xs font-bold uppercase tracking-wide">TEF Canada · main track</span>
             </div>
-            <p className="font-display mt-4 text-2xl font-bold text-slate-900">Neural feedback on every sentence</p>
-            <p className="mt-2 max-w-md text-sm text-slate-600">CEFR estimates, corrections, and skill breakdown in seconds.</p>
-            <div className="mt-6 flex h-28 items-center justify-center rounded-xl bg-gradient-to-br from-slate-900 via-slate-800 to-indigo-950 md:h-32">
-              <div className="text-xs font-medium text-white/60">Writing analysis · preview</div>
+            <p className="font-display mt-4 text-2xl font-bold text-slate-900">Exam-style skill rooms</p>
+            <p className="mt-2 max-w-md text-sm text-slate-600">
+              Reading, writing, listening, and speaking in structured A1 units — start here for TEF-aligned practice.
+            </p>
+            <div className="mt-6 flex h-28 items-center justify-center rounded-xl bg-gradient-to-br from-red-900/90 via-red-800 to-slate-900 md:h-32">
+              <div className="text-xs font-medium text-white/80">Listening · reading · writing · speaking</div>
             </div>
           </Link>
 
           <Link
-            to="/reading"
-            className="flex flex-col rounded-2xl border border-slate-200/80 bg-white p-6 shadow-sm transition hover:shadow-md md:col-span-2 md:row-span-2"
+            to="/syllabus"
+            className="flex flex-col rounded-2xl border border-slate-200/80 bg-white p-6 shadow-sm transition hover:border-indigo-200 hover:shadow-md md:col-span-2 md:row-span-1"
           >
             <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-indigo-50 text-[#4f46e5]">
               <BookOpen className="h-6 w-6" />
             </div>
-            <p className="font-display mt-6 text-xl font-bold text-slate-900">Reading Room</p>
-            <p className="mt-2 flex-1 text-sm leading-relaxed text-slate-600">Articles, quizzes, and comprehension at your pace.</p>
-            <span className="mt-6 text-xs font-bold uppercase tracking-wide text-[#4f46e5]">
-              Open library →
-            </span>
+            <p className="font-display mt-6 text-xl font-bold text-slate-900">Study units</p>
+            <p className="mt-2 flex-1 text-sm leading-relaxed text-slate-600">
+              {CURRICULUM_STATS.moduleCount} modules · {CURRICULUM_STATS.lessonCount} lessons — your core curriculum path.
+            </p>
+            <span className="mt-6 text-xs font-bold uppercase tracking-wide text-[#4f46e5]">Open syllabus →</span>
           </Link>
 
           <Link
-            to="/tef-prep"
-            className="rounded-2xl border border-slate-200/80 bg-white p-6 shadow-sm transition hover:border-red-100 hover:shadow-md md:col-span-2"
+            to="/scorer"
+            className="rounded-2xl border border-slate-200/80 bg-white p-6 shadow-sm transition hover:border-violet-200 hover:shadow-md md:col-span-4 md:row-span-1"
           >
-            <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-red-50 text-red-700">
-              <Medal className="h-6 w-6" />
+            <div className="flex items-center gap-2 text-violet-600">
+              <Sparkles className="h-5 w-5" />
+              <span className="text-xs font-bold uppercase tracking-wide">Extra · AI writing feedback</span>
             </div>
-            <p className="font-display mt-4 text-lg font-bold text-slate-900">TEF Prep</p>
-            <p className="mt-2 text-sm text-slate-600">A1 skill rooms — listening, reading, writing, speaking.</p>
-            <div className="mt-4 flex gap-2">
-              {(['A1', 'A2', 'B1'] as const).map((lv) => (
-                <span
-                  key={lv}
-                  className="rounded-full bg-slate-100 px-2.5 py-0.5 text-xs font-bold text-slate-600"
-                >
-                  {lv}
-                </span>
-              ))}
-            </div>
+            <p className="font-display mt-4 text-lg font-bold text-slate-900">Paste a draft for CEFR-style scoring</p>
+            <p className="mt-2 text-sm text-slate-600">Corrections and breakdown when you’re polishing text — after your lessons.</p>
           </Link>
 
           <div className="relative overflow-hidden rounded-2xl bg-[#4f46e5] p-8 text-white shadow-lg md:col-span-2">
@@ -190,9 +186,10 @@ export default function LandingPage() {
 
       <section id="syllabus" className="scroll-mt-20 bg-[#f9fafb] px-4 py-20 md:px-8">
         <div className="mx-auto max-w-7xl">
-          <h2 className="font-display text-center text-3xl font-bold text-slate-900">French Syllabus</h2>
+          <h2 className="font-display text-center text-3xl font-bold text-slate-900">Study units · core curriculum</h2>
           <p className="mx-auto mt-3 max-w-2xl text-center text-slate-600">
-            {CURRICULUM_STATS.moduleCount} modules · {CURRICULUM_STATS.lessonCount} lessons — from beginner to intermediate.
+            {CURRICULUM_STATS.moduleCount} modules · {CURRICULUM_STATS.lessonCount} lessons — work through units alongside TEF
+            prep.
           </p>
           <div className="mt-12 grid gap-6 sm:grid-cols-2 xl:grid-cols-3">
             {CURRICULUM_MODULES.map((m) => (
@@ -219,27 +216,33 @@ export default function LandingPage() {
       <section className="border-t border-slate-200 bg-white px-4 py-16 md:px-8">
         <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-8 md:flex-row">
           <div>
-            <h2 className="font-display text-2xl font-bold text-slate-900">Ready when you are</h2>
-            <p className="mt-2 text-slate-600">Try the AI scorer or open TEF listening practice.</p>
+            <h2 className="font-display text-2xl font-bold text-slate-900">Start with structure</h2>
+            <p className="mt-2 text-slate-600">TEF prep and study units first; AI scoring when you’re revising a piece of writing.</p>
           </div>
           <div className="flex flex-wrap gap-3">
             <Link
-              to="/scorer"
-              className="inline-flex items-center gap-2 rounded-xl bg-slate-900 px-6 py-3 text-sm font-bold text-white hover:bg-slate-800"
-            >
-              <Bot className="h-4 w-4" /> AI Scorer
-            </Link>
-            <Link
               to="/tef-prep"
-              className="inline-flex items-center gap-2 rounded-xl border-2 border-slate-200 px-6 py-3 text-sm font-bold text-red-700 hover:bg-red-50"
+              className="inline-flex items-center gap-2 rounded-xl bg-red-700 px-6 py-3 text-sm font-bold text-white shadow-sm hover:bg-red-800"
             >
               <Flag className="h-4 w-4" /> TEF Prep
             </Link>
             <Link
-              to="/reading"
+              to="/syllabus"
+              className="inline-flex items-center gap-2 rounded-xl border-2 border-indigo-200 bg-white px-6 py-3 text-sm font-bold text-indigo-800 hover:bg-indigo-50"
+            >
+              <BookOpen className="h-4 w-4" /> Study units
+            </Link>
+            <Link
+              to="/scorer"
               className="inline-flex items-center gap-2 rounded-xl border-2 border-slate-200 px-6 py-3 text-sm font-bold text-slate-800 hover:bg-slate-50"
             >
-              <BookOpen className="h-4 w-4" /> Reading
+              <Bot className="h-4 w-4" /> AI Scorer
+            </Link>
+            <Link
+              to="/leaderboard"
+              className="inline-flex items-center gap-2 rounded-xl border-2 border-slate-200 px-6 py-3 text-sm font-bold text-slate-800 hover:bg-slate-50"
+            >
+              <Trophy className="h-4 w-4" /> Scores
             </Link>
           </div>
         </div>

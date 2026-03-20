@@ -8,8 +8,6 @@ import AIScorerPage from './pages/AIScorerPage.tsx'
 import LandingPage from './pages/LandingPage.tsx'
 import LeaderboardPage from './pages/LeaderboardPage.tsx'
 import LessonPage from './pages/LessonPage.tsx'
-import ReadingRoomPage from './pages/ReadingRoomPage.tsx'
-import SpeakingCoachPage from './pages/SpeakingCoachPage.tsx'
 import UnitOverviewPage from './pages/UnitOverviewPage.tsx'
 import TefPrepHubPage from './pages/TefPrepHubPage.tsx'
 import TefPrepUnitPage from './pages/TefPrepUnitPage.tsx'
@@ -29,8 +27,8 @@ const router = createBrowserRouter([
           { path: 'scorer', element: <AIScorerPage /> },
           { path: 'unit/:moduleId', element: <UnitOverviewPage /> },
           { path: 'lesson/:unitId', element: <LessonPage /> },
-          { path: 'reading', element: <ReadingRoomPage /> },
-          { path: 'speaking', element: <SpeakingCoachPage /> },
+          { path: 'reading', element: <Navigate to="/tef-prep" replace /> },
+          { path: 'speaking', element: <Navigate to="/tef-prep" replace /> },
           { path: 'leaderboard', element: <LeaderboardPage /> },
           { path: 'tef-prep', element: <TefPrepHubPage /> },
           { path: 'tef-prep/a1/:unit', element: <TefPrepUnitPage /> },
