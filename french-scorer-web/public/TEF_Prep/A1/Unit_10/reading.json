@@ -1,0 +1,63 @@
+{
+  "tef_task_id": "TEF-CA-A1-U10-READ",
+  "clb_target": 3,
+  "strictness_level": "high",
+  "lexical_density": 2.358,
+  "unit_index": 10,
+  "skill": "reading",
+  "passage_type": "tef_style_multiple_choice_cluster",
+  "exam_style_note": "Mirrors TEF Canada paper layout: global instructions + one document + independent MC items.",
+  "instructions_fr": "Lisez le texte suivant, puis répondez aux questions 1 à 4. Pour chaque question, choisissez la meilleure réponse (A, B, C ou D).",
+  "instructions_en": "Read the text, then answer questions 1–4. Choose the best answer (A–D).",
+  "document": {
+    "label_fr": "Texte — Affiche municipale",
+    "body_fr": "AVIS AU PUBLIC — Ville de Gatineau\n\nFermeture exceptionnelle de la piscine du centre sportif : mardi 12 mai, travaux de sécurité de 8 h à 17 h. Les cours du matin sont annulés ce jour-là. Les cours du soir (18 h 30) auront lieu normalement à la piscine Satellite, 890 boulevard Maloney. Les usagers doivent présenter leur carte d'abonnement. Pour plus d'informations : 819-555-0300.\n\nMerci de votre compréhension."
+  },
+  "items": [
+    {
+      "item_number": 1,
+      "question_fr": "Quel équipement est fermé une partie de la journée le 12 mai ?",
+      "options": [
+        { "letter": "A", "text_fr": "La bibliothèque" },
+        { "letter": "B", "text_fr": "La piscine du centre sportif" },
+        { "letter": "C", "text_fr": "Le stade extérieur" },
+        { "letter": "D", "text_fr": "La patinoire Satellite" }
+      ],
+      "answer_index": 1
+    },
+    {
+      "item_number": 2,
+      "question_fr": "Pourquoi y a-t-il une fermeture ?",
+      "options": [
+        { "letter": "A", "text_fr": "Fête nationale" },
+        { "letter": "B", "text_fr": "Travaux de sécurité" },
+        { "letter": "C", "text_fr": "Grève du personnel" },
+        { "letter": "D", "text_fr": "Compétition scolaire" }
+      ],
+      "answer_index": 1
+    },
+    {
+      "item_number": 3,
+      "question_fr": "Où se déroulent les cours du soir ce jour-là ?",
+      "options": [
+        { "letter": "A", "text_fr": "Au centre sportif principal" },
+        { "letter": "B", "text_fr": "À la piscine Satellite" },
+        { "letter": "C", "text_fr": "À l'école secondaire" },
+        { "letter": "D", "text_fr": "Au parc de la rivière" }
+      ],
+      "answer_index": 1
+    },
+    {
+      "item_number": 4,
+      "question_fr": "Que doivent montrer les usagers ?",
+      "options": [
+        { "letter": "A", "text_fr": "Un passeport" },
+        { "letter": "B", "text_fr": "Une facture" },
+        { "letter": "C", "text_fr": "Leur carte d'abonnement" },
+        { "letter": "D", "text_fr": "Un billet de transport" }
+      ],
+      "answer_index": 2
+    }
+  ],
+  "scoring_note_fr": "Une bonne réponse par item ; total brut convertible selon grille officielle en situation d'examen."
+}

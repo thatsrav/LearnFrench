@@ -1,0 +1,29 @@
+{
+  "tef_task_id": "TEF-CA-A1-U03-READ",
+  "clb_target": 1,
+  "strictness_level": "low",
+  "lexical_density": 1.21,
+  "unit_index": 3,
+  "skill": "reading",
+  "passage_type": "courriel",
+  "title_fr": "Courriel — inscription cours de français",
+  "content_fr": "Objet : cours du samedi\nBonjour Marie,\nJe suis Anna Kovacs. Je suis nouvelle étudiante. Mon téléphone est 613-555-0144.\nMerci,\nAnna",
+  "gloss_en": "Email to Marie: Anna introduces herself as new student, leaves phone.",
+  "questions": [
+    {
+      "question_fr": "Comment s'appelle l'expéditrice ?",
+      "options": ["Marie", "Anna Kovacs", "Sonia", "Julie"],
+      "answer_index": 1
+    },
+    {
+      "question_fr": "Anna est…",
+      "options": ["professeure", "nouvelle étudiante", "directrice", "bibliothécaire"],
+      "answer_index": 1
+    },
+    {
+      "question_fr": "Que donne Anna à la fin ?",
+      "options": ["une adresse", "son numéro de téléphone", "un lien web", "une photo"],
+      "answer_index": 1
+    }
+  ]
+}

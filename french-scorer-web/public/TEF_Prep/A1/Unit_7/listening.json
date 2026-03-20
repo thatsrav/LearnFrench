@@ -1,0 +1,25 @@
+{
+  "tef_task_id": "TEF-CA-A1-U07-LISTEN",
+  "clb_target": 2,
+  "strictness_level": "medium",
+  "lexical_density": 1.772,
+  "unit_index": 7,
+  "skill": "listening",
+  "scenario": "dialogue_travail",
+  "audio_uri": null,
+  "duration_seconds_approx": 48,
+  "transcript_fr": "— Tu travailles toujours le samedi ?\n— Non, je ne travaille jamais le samedi maintenant. Je travaille lundi à vendredi.\n— C'est bien ! Tu vas au cinéma ce week-end ?\n— Oui, samedi soir j'y vais avec mon frère.",
+  "gloss_en": "Work schedule: never Saturdays now; cinema Saturday with brother.",
+  "questions": [
+    {
+      "question_fr": "Travaille-t-elle le samedi ?",
+      "options": ["toujours", "jamais maintenant", "parfois", "le dimanche seulement"],
+      "answer_index": 1
+    },
+    {
+      "question_fr": "Avec qui va-t-elle au cinéma ?",
+      "options": ["son père", "son frère", "sa chef", "seule"],
+      "answer_index": 1
+    }
+  ]
+}

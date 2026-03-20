@@ -1,0 +1,19 @@
+{
+  "tef_task_id": "TEF-CA-A1-U08-SPEAK",
+  "clb_target": 3,
+  "strictness_level": "high",
+  "lexical_density": 1.949,
+  "unit_index": 8,
+  "skill": "speaking",
+  "section": "A",
+  "task_type": "demander_des_renseignements",
+  "situation_fr": "Vous appelez une garderie : vous demandez s'il y a de la place pour un enfant de trois ans, les heures d'accueil et le coût par jour.",
+  "situation_en": "Call daycare: space for 3-year-old, hours, cost per day.",
+  "cues_oral_fr": [
+    "Bonjour, je téléphone pour des renseignements…",
+    "Il reste de la place pour un enfant de trois ans ?",
+    "Quelles sont les heures ? Et le prix par jour ?"
+  ],
+  "target_functions": ["triple_demande", "reformulation"],
+  "evaluation_criteria": ["Complétude des questions", "fluidité A1+"]
+}

@@ -1,0 +1,17 @@
+{
+  "tef_task_id": "TEF-CA-A1-U09-WRITE",
+  "clb_target": 3,
+  "strictness_level": "high",
+  "lexical_density": 2.144,
+  "unit_index": 9,
+  "skill": "writing",
+  "section": "A",
+  "task_type": "fait_divers",
+  "genre": "chronologie_deux_evenements",
+  "prompt_fr": "Écrivez un paragraphe de type « fait divers personnel » : deux actions au passé composé reliées par puis, ensuite ou alors (ex. sortie, retard, rencontre). Contexte canadien possible (transport, ville).",
+  "prompt_en": "Personal mini-story: two PC events + connector; Canadian context optional.",
+  "min_words": 55,
+  "max_words": 110,
+  "constraints_fr": ["Deux auxiliaires différents si possible (avoir / être).", "Un connecteur obligatoire."],
+  "rubric_hints": ["Narration claire", "variété verbale"]
+}

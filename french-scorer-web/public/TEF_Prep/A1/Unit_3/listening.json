@@ -1,0 +1,25 @@
+{
+  "tef_task_id": "TEF-CA-A1-U03-LISTEN",
+  "clb_target": 1,
+  "strictness_level": "low",
+  "lexical_density": 1.21,
+  "unit_index": 3,
+  "skill": "listening",
+  "scenario": "dialogue_service",
+  "audio_uri": null,
+  "duration_seconds_approx": 35,
+  "transcript_fr": "— Bonjour, je suis l'employé.\n— Bonjour, je suis cliente. Je suis de Vancouver. Je suis ici pour un formulaire.\n— D'accord, voici le formulaire.",
+  "gloss_en": "Short exchange: client from Vancouver asks for a form.",
+  "questions": [
+    {
+      "question_fr": "D'où vient la cliente ?",
+      "options": ["Montréal", "Vancouver", "Calgary", "Halifax"],
+      "answer_index": 1
+    },
+    {
+      "question_fr": "Que veut la cliente ?",
+      "options": ["un café", "un formulaire", "un billet", "un rendez-vous"],
+      "answer_index": 1
+    }
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "tef_task_id": "TEF-CA-A1-U08-WRITE",
+  "clb_target": 3,
+  "strictness_level": "high",
+  "lexical_density": 1.949,
+  "unit_index": 8,
+  "skill": "writing",
+  "section": "A",
+  "task_type": "fait_divers",
+  "genre": "recit_passe_compose",
+  "prompt_fr": "Racontez brièvement un événement réel ou imaginaire qui s'est passé hier : où vous êtes allé(e), ce que vous avez mangé ou vu, et une réaction (content(e) / fatigué(e)). Utilisez au moins deux verbes au passé composé.",
+  "prompt_en": "Short past narrative: yesterday—where you went, what you ate/saw, reaction; 2+ passé composé verbs.",
+  "min_words": 45,
+  "max_words": 90,
+  "constraints_fr": ["Temps passé obligatoire pour l'événement principal.", "Cohérence temporelle."],
+  "rubric_hints": ["auxiliaire correct (A1)", "ordre des idées"]
+}

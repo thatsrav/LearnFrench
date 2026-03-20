@@ -1,0 +1,19 @@
+{
+  "tef_task_id": "TEF-CA-A1-U03-SPEAK",
+  "clb_target": 1,
+  "strictness_level": "low",
+  "lexical_density": 1.21,
+  "unit_index": 3,
+  "skill": "speaking",
+  "section": "A",
+  "task_type": "demander_des_renseignements",
+  "situation_fr": "À l'accueil d'un centre communautaire, vous demandez où se trouve la salle de cours de français.",
+  "situation_en": "At a community centre front desk, ask where the French class room is.",
+  "cues_oral_fr": [
+    "Bonjour, excusez-moi…",
+    "Où est le cours de français, s'il vous plaît ?",
+    "C'est au bâtiment A ? Merci."
+  ],
+  "target_functions": ["localisation", "confirmation"],
+  "evaluation_criteria": ["Question directe", "compréhension probable du répondant"]
+}

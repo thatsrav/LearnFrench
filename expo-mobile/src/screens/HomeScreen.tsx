@@ -12,6 +12,7 @@ import {
 } from 'react-native'
 import { useHeaderHeight } from '@react-navigation/elements'
 import { useFocusEffect, useNavigation } from '@react-navigation/native'
+import type { NativeStackNavigationProp } from '@react-navigation/native-stack'
 import type { BottomTabNavigationProp } from '@react-navigation/bottom-tabs'
 import { LinearGradient } from 'expo-linear-gradient'
 import { Ionicons } from '@expo/vector-icons'
@@ -21,7 +22,7 @@ import { computeDailyStreak, loadRecentScores, saveRecentScores, type StoredScor
 import { CURRICULUM_STATS } from '../lib/curriculum'
 import { getDailyVocab } from '../lib/vocab'
 import { getApiBaseUrl } from '../lib/config'
-import type { MainTabParamList } from '../navigation/AppNavigator'
+import type { MainTabParamList, RootStackParamList } from '../navigation/AppNavigator'
 import { useTabScreenBottomPadding } from '../lib/screenPadding'
 
 const PROVIDERS: { value: ScoreProvider; label: string; short: string }[] = [
@@ -48,6 +49,7 @@ export default function HomeScreen() {
   const scrollRef = useRef<ScrollView>(null)
   const [scorerOffsetY, setScorerOffsetY] = useState(0)
   const tabNav = useNavigation<BottomTabNavigationProp<MainTabParamList>>()
+  const rootNav = tabNav.getParent<NativeStackNavigationProp<RootStackParamList>>()
 
   const [inputMode, setInputMode] = useState<'text' | 'voice'>('text')
   const [text, setText] = useState('')
@@ -207,6 +209,23 @@ export default function HomeScreen() {
       <Text className="mt-2 px-1 text-center text-sm leading-5 text-slate-600">
         Our structured curriculum takes you from beginner to intermediate level with carefully designed units.
       </Text>
+
+      <Pressable
+        onPress={() => rootNav?.navigate('TefPrepHub')}
+        className="mt-6 rounded-2xl border-2 border-red-200 bg-red-50 p-4 active:opacity-90"
+      >
+        <View className="flex-row items-center gap-3">
+          <View className="h-11 w-11 items-center justify-center rounded-xl bg-red-600">
+            <Ionicons name="flag-outline" size={22} color="#ffffff" />
+          </View>
+          <View className="min-w-0 flex-1">
+            <Text className="text-sm font-bold uppercase text-red-800">TEF Canada</Text>
+            <Text className="text-base font-bold text-red-950">Préparation A1</Text>
+            <Text className="text-xs text-red-800">10 unités · lecture, écriture, oral, compréhension</Text>
+          </View>
+          <Ionicons name="chevron-forward" size={20} color="#b91c1c" />
+        </View>
+      </Pressable>
 
       <Text className="mt-8 text-base font-bold text-slate-900">AI French Scorer</Text>
       <Text className="mt-1 text-sm text-slate-500">

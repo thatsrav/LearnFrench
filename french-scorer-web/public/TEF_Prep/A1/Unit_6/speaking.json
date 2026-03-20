@@ -1,0 +1,19 @@
+{
+  "tef_task_id": "TEF-CA-A1-U06-SPEAK",
+  "clb_target": 2,
+  "strictness_level": "medium",
+  "lexical_density": 1.611,
+  "unit_index": 6,
+  "skill": "speaking",
+  "section": "A",
+  "task_type": "demander_des_renseignements",
+  "situation_fr": "Vous téléphonez à une piscine municipale : vous demandez les heures d'ouverture du week-end et le prix d'une entrée adulte.",
+  "situation_en": "Call a municipal pool: weekend hours and adult admission price.",
+  "cues_oral_fr": [
+    "Allô, bonjour…",
+    "Quelles sont les heures samedi et dimanche ?",
+    "C'est combien pour un adulte ?"
+  ],
+  "target_functions": ["double_question", "chiffres"],
+  "evaluation_criteria": ["Deux informations demandées", "compréhension"]
+}

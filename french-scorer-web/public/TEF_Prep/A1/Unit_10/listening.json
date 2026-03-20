@@ -1,0 +1,30 @@
+{
+  "tef_task_id": "TEF-CA-A1-U10-LISTEN",
+  "clb_target": 3,
+  "strictness_level": "high",
+  "lexical_density": 2.358,
+  "unit_index": 10,
+  "skill": "listening",
+  "scenario": "message_officiel_resumé",
+  "audio_uri": null,
+  "duration_seconds_approx": 60,
+  "transcript_fr": "Bonjour. Ici la bibliothèque centrale d'Edmonton. Hier après-midi, nous avons fermé tôt à cause d'une panne d'électricité. Nous avons rouvert ce matin à neuf heures. Plusieurs personnes ont réservé des ordinateurs : vos réservations d'hier sont toujours valides aujourd'hui. Merci.",
+  "gloss_en": "Library: closed early yesterday (power); reopened 9 a.m.; yesterday's computer bookings still valid.",
+  "questions": [
+    {
+      "question_fr": "Pourquoi la bibliothèque a-t-elle fermé hier après-midi ?",
+      "options": ["vacances", "panne d'électricité", "grève", "inondation"],
+      "answer_index": 1
+    },
+    {
+      "question_fr": "À quelle heure a-t-elle rouvert ce matin ?",
+      "options": ["8 h", "9 h", "10 h", "midi"],
+      "answer_index": 1
+    },
+    {
+      "question_fr": "Qu'est-ce qui est valide aujourd'hui ?",
+      "options": ["les amendes", "les réservations d'ordinateurs d'hier", "les cours de yoga", "les vidéos"],
+      "answer_index": 1
+    }
+  ]
+}

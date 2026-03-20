@@ -1,0 +1,25 @@
+{
+  "tef_task_id": "TEF-CA-A1-U02-LISTEN",
+  "clb_target": 1,
+  "strictness_level": "low",
+  "lexical_density": 1.1,
+  "unit_index": 2,
+  "skill": "listening",
+  "scenario": "annonce_transport",
+  "audio_uri": null,
+  "duration_seconds_approx": 30,
+  "transcript_fr": "Attention, passagers : le train pour Ottawa part à quatorze heures trente, voie numéro deux. Je répète : quatorze heures trente, voie deux.",
+  "gloss_en": "Train to Ottawa departs 14:30, platform 2.",
+  "questions": [
+    {
+      "question_fr": "À quelle heure part le train ?",
+      "options": ["14 h 00", "14 h 30", "15 h 00", "16 h 30"],
+      "answer_index": 1
+    },
+    {
+      "question_fr": "Sur quelle voie ?",
+      "options": ["voie 1", "voie 2", "voie 3", "voie 4"],
+      "answer_index": 1
+    }
+  ]
+}

@@ -1,0 +1,29 @@
+{
+  "tef_task_id": "TEF-CA-A1-U06-READ",
+  "clb_target": 2,
+  "strictness_level": "medium",
+  "lexical_density": 1.611,
+  "unit_index": 6,
+  "skill": "reading",
+  "passage_type": "annonce_web",
+  "title_fr": "Colocation — annonce en ligne",
+  "content_fr": "Cherche coloc calme. Appartement près de l'université. Je travaille le soir. Je ne fume pas. Pas d'animaux, désolé. Loyer : 650 $ par mois. Écrivez à coloc.vancouver@email.ca",
+  "gloss_en": "Roommate wanted: near university, works evenings, non-smoking, no pets, $650/mo.",
+  "questions": [
+    {
+      "question_fr": "La personne travaille quand ?",
+      "options": ["le matin", "l'après-midi", "le soir", "jamais"],
+      "answer_index": 2
+    },
+    {
+      "question_fr": "Est-ce qu'elle accepte les animaux ?",
+      "options": ["oui", "non", "seulement les chats", "seulement les chiens"],
+      "answer_index": 1
+    },
+    {
+      "question_fr": "Combien coûte le loyer ?",
+      "options": ["450 $", "550 $", "650 $", "750 $"],
+      "answer_index": 2
+    }
+  ]
+}

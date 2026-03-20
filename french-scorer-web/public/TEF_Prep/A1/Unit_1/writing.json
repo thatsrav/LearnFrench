@@ -1,0 +1,20 @@
+{
+  "tef_task_id": "TEF-CA-A1-U01-WRITE",
+  "clb_target": 1,
+  "strictness_level": "low",
+  "lexical_density": 1.0,
+  "unit_index": 1,
+  "skill": "writing",
+  "section": "A",
+  "task_type": "fait_divers",
+  "genre": "petite_annonce_simple",
+  "prompt_fr": "Vous perdez un cabas bleu dans le métro. Écrivez une annonce très courte : lieu, date, votre téléphone.",
+  "prompt_en": "You lost a blue bag on the metro. Write a very short notice: place, date, your phone.",
+  "min_words": 12,
+  "max_words": 25,
+  "constraints_fr": [
+    "Utilisez le présent ou le passé récent simple (hier, ce matin).",
+    "Une ou deux phrases seulement."
+  ],
+  "rubric_hints": ["Clarté du message", "Nom / objet / contact"]
+}

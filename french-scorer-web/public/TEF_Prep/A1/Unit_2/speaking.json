@@ -1,0 +1,19 @@
+{
+  "tef_task_id": "TEF-CA-A1-U02-SPEAK",
+  "clb_target": 1,
+  "strictness_level": "low",
+  "lexical_density": 1.1,
+  "unit_index": 2,
+  "skill": "speaking",
+  "section": "A",
+  "task_type": "demander_des_renseignements",
+  "situation_fr": "Au marché, vous demandez le prix des tomates.",
+  "situation_en": "At the market, you ask the price of tomatoes.",
+  "cues_oral_fr": [
+    "Excusez-moi…",
+    "C'est combien, les tomates ?",
+    "C'est tout, merci."
+  ],
+  "target_functions": ["interruption_polie", "question_prix", "clôture"],
+  "evaluation_criteria": ["Intelligibilité", "formule de politesse"]
+}

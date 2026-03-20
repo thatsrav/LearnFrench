@@ -1,0 +1,17 @@
+{
+  "tef_task_id": "TEF-CA-A1-U03-WRITE",
+  "clb_target": 1,
+  "strictness_level": "low",
+  "lexical_density": 1.21,
+  "unit_index": 3,
+  "skill": "writing",
+  "section": "A",
+  "task_type": "fait_divers",
+  "genre": "presentation_breve",
+  "prompt_fr": "Vous écrivez sur un forum : présentez-vous en 2 phrases (nom, ville où vous habitez au Canada, une activité que vous aimez). Utilisez « Je suis » ou « J'habite ».",
+  "prompt_en": "Forum intro: your name, Canadian city you live in, one thing you like — 2 sentences.",
+  "min_words": 15,
+  "max_words": 35,
+  "constraints_fr": ["Au moins une fois « je suis » ou « j'habite ».", "Présent."],
+  "rubric_hints": ["identité", "cohérence"]
+}

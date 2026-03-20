@@ -10,11 +10,18 @@ import SpeakingCoachScreen from '../screens/SpeakingCoachScreen'
 import LeaderboardScreen from '../screens/LeaderboardScreen'
 import LessonScreen from '../screens/LessonScreen'
 import FrenchLearnLogo from '../components/FrenchLearnLogo'
+import TefPrepHubScreen from '../screens/TefPrepHubScreen'
+import TefPrepUnitScreen from '../screens/TefPrepUnitScreen'
+import TefPrepActivityScreen from '../screens/TefPrepActivityScreen'
+import type { TefSkill } from '../content/tefPrepA1'
 
 export type RootStackParamList = {
   MainTabs: undefined
   UnitOverviewScreen: { moduleId: string }
   LessonScreen: { unitId: string; level: 'A1' | 'A2' | 'B1' | 'B2' | 'C1'; moduleId?: string }
+  TefPrepHub: undefined
+  TefPrepUnit: { unit: number }
+  TefPrepActivity: { unit: number; skill: TefSkill }
 }
 
 export type MainTabParamList = {
@@ -113,6 +120,15 @@ export default function AppNavigator() {
         <Stack.Screen name="MainTabs" component={MainTabs} options={{ headerShown: false }} />
         <Stack.Screen name="UnitOverviewScreen" component={UnitOverviewScreen} options={{ title: 'Unit' }} />
         <Stack.Screen name="LessonScreen" component={LessonScreen} options={{ title: 'Lesson' }} />
+        <Stack.Screen name="TefPrepHub" component={TefPrepHubScreen} options={{ title: 'TEF Canada Prep' }} />
+        <Stack.Screen name="TefPrepUnit" component={TefPrepUnitScreen} options={{ title: 'TEF — Unit' }} />
+        <Stack.Screen
+          name="TefPrepActivity"
+          component={TefPrepActivityScreen}
+          options={({ route }) => ({
+            title: `${route.params.skill} · U${route.params.unit}`,
+          })}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   )

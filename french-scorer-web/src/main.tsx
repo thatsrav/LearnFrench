@@ -11,6 +11,9 @@ import LessonPage from './pages/LessonPage.tsx'
 import ReadingRoomPage from './pages/ReadingRoomPage.tsx'
 import SpeakingCoachPage from './pages/SpeakingCoachPage.tsx'
 import UnitOverviewPage from './pages/UnitOverviewPage.tsx'
+import TefPrepHubPage from './pages/TefPrepHubPage.tsx'
+import TefPrepUnitPage from './pages/TefPrepUnitPage.tsx'
+import TefPrepActivityPage from './pages/TefPrepActivityPage.tsx'
 
 const router = createBrowserRouter([
   {
@@ -27,6 +30,9 @@ const router = createBrowserRouter([
           { path: 'reading', element: <ReadingRoomPage /> },
           { path: 'speaking', element: <SpeakingCoachPage /> },
           { path: 'leaderboard', element: <LeaderboardPage /> },
+          { path: 'tef-prep', element: <TefPrepHubPage /> },
+          { path: 'tef-prep/a1/:unit', element: <TefPrepUnitPage /> },
+          { path: 'tef-prep/a1/:unit/:skill', element: <TefPrepActivityPage /> },
           { path: 'syllabus', element: <Navigate to="/#syllabus" replace /> },
         ],
       },

@@ -37,6 +37,20 @@ export default function SyllabusScreen() {
       contentContainerStyle={{ paddingHorizontal: 16, paddingTop: 12, paddingBottom: scrollBottomPad }}
       keyboardShouldPersistTaps="handled"
     >
+      <Pressable
+        onPress={() => rootNav?.navigate('TefPrepHub')}
+        className="mb-4 rounded-2xl border border-red-200 bg-red-50 px-4 py-3 active:bg-red-100"
+      >
+        <View className="flex-row items-center justify-between gap-2">
+          <View className="flex-row items-center gap-2">
+            <Ionicons name="flag" size={20} color="#b91c1c" />
+            <Text className="text-sm font-bold text-red-900">TEF Canada Prep (A1)</Text>
+          </View>
+          <Ionicons name="chevron-forward" size={18} color="#b91c1c" />
+        </View>
+        <Text className="mt-1 text-xs text-red-800">Hors syllabus principal · 4 salles par unité</Text>
+      </Pressable>
+
       {/* AI banner — Figma top card */}
       <View className="mb-5 flex-row items-center gap-3 rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
         <View className="h-11 w-11 items-center justify-center rounded-full bg-violet-100">

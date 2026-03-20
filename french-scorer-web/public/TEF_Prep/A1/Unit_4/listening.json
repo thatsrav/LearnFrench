@@ -1,0 +1,30 @@
+{
+  "tef_task_id": "TEF-CA-A1-U04-LISTEN",
+  "clb_target": 2,
+  "strictness_level": "medium",
+  "lexical_density": 1.331,
+  "unit_index": 4,
+  "skill": "listening",
+  "scenario": "dialogue_lieu",
+  "audio_uri": null,
+  "duration_seconds_approx": 40,
+  "transcript_fr": "— Tu vas au cinéma ce soir ?\n— Non, je ne vais pas au cinéma. Je vais travailler tard.\n— Ah d'accord. Et demain ?\n— Demain je vais au musée avec Léa.",
+  "gloss_en": "Plans: not cinema tonight, working late; tomorrow museum with Léa.",
+  "questions": [
+    {
+      "question_fr": "Ce soir, la personne va-t-elle au cinéma ?",
+      "options": ["oui", "non", "peut-être", "avec Léa"],
+      "answer_index": 1
+    },
+    {
+      "question_fr": "Pourquoi ne va-t-elle pas au cinéma ?",
+      "options": ["elle est malade", "elle travaille tard", "elle n'aime pas le cinéma", "le cinéma est fermé"],
+      "answer_index": 1
+    },
+    {
+      "question_fr": "Où va-t-elle demain ?",
+      "options": ["au parc", "au musée", "à la banque", "au stade"],
+      "answer_index": 1
+    }
+  ]
+}

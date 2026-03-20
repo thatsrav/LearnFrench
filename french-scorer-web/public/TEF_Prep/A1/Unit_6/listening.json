@@ -1,0 +1,25 @@
+{
+  "tef_task_id": "TEF-CA-A1-U06-LISTEN",
+  "clb_target": 2,
+  "strictness_level": "medium",
+  "lexical_density": 1.611,
+  "unit_index": 6,
+  "skill": "listening",
+  "scenario": "dialogue_resto",
+  "audio_uri": null,
+  "duration_seconds_approx": 45,
+  "transcript_fr": "— On mange au restaurant ce midi ?\n— Non, je ne mange pas au restaurant aujourd'hui, je n'ai pas assez d'argent.\n— Pas de problème, je travaille de l'autre côté de la rue. On peut aller au café.\n— Super, allons au café.",
+  "gloss_en": "Lunch plans: no restaurant—money; go to café instead.",
+  "questions": [
+    {
+      "question_fr": "Pourquoi ne mange-t-on pas au restaurant ?",
+      "options": ["fermé", "pas assez d'argent", "allergie", "pas faim"],
+      "answer_index": 1
+    },
+    {
+      "question_fr": "Où vont-ils finalement ?",
+      "options": ["au cinéma", "au café", "chez lui", "au bureau"],
+      "answer_index": 1
+    }
+  ]
+}

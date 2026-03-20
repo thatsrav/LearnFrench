@@ -2,7 +2,8 @@
 
 This repo contains:
 - `french-scorer-api/` (Express backend): holds your AI API keys and scores French writing (overall + grammar/vocab/pronunciation/fluency breakdown)
-- `french-scorer-web/` (Vite + React frontend): **FrenchLearn** landing page, curriculum units (Figma-style), and AI Scorer
+- `french-scorer-web/` (Vite + React frontend): **FrenchLearn** landing page, curriculum units (Figma-style), AI Scorer, and **TEF Canada Prep** (A1 skill rooms)
+- `expo-mobile/` (Expo / React Native): same product on device, including **TEF Prep** stack screens (JSON bundled from `assets/TEF_Prep/`)
 
 ## Setup
 
@@ -74,6 +75,9 @@ The `/api/score` JSON `result` includes **`grammar`**, **`vocabulary`**, **`pron
 - `/unit/:moduleId` — Unit overview (progress card, topics, lesson list with Review/Start/Locked)
 - `/lesson/:unitId` — Quiz lesson (optional `?module=` for back navigation)
 - `/reading`, `/speaking`, `/leaderboard` — Practice extras
+- `/tef-prep` — **TEF Canada** A1 hub (10 units)
+- `/tef-prep/a1/:unit` — Pick reading / writing / listening / speaking for that unit
+- `/tef-prep/a1/:unit/:skill` — Activity (`skill` = `reading` | `writing` | `listening` | `speaking`). Static JSON is served from `public/TEF_Prep/` (copy stays in sync with `expo-mobile/assets/TEF_Prep`).
 
 ## Deploy notes (fixing 404 online)
 

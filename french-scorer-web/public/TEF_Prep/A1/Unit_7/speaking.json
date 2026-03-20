@@ -1,0 +1,19 @@
+{
+  "tef_task_id": "TEF-CA-A1-U07-SPEAK",
+  "clb_target": 2,
+  "strictness_level": "medium",
+  "lexical_density": 1.772,
+  "unit_index": 7,
+  "skill": "speaking",
+  "section": "A",
+  "task_type": "demander_des_renseignements",
+  "situation_fr": "À l'agence d'emploi, vous demandez comment postuler en ligne et quels documents sont nécessaires (CV, pièce d'identité).",
+  "situation_en": "At employment office: how to apply online and required documents.",
+  "cues_oral_fr": [
+    "Bonjour, je voudrais des renseignements…",
+    "Est-ce que je peux postuler en ligne ?",
+    "J'ai besoin de quels documents ? Merci."
+  ],
+  "target_functions": ["procédure", "liste_implicite"],
+  "evaluation_criteria": ["Enchaînement logique", "précision"]
+}
