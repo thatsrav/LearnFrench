@@ -6,22 +6,94 @@
   "audioUrl": null,
   "sentences": [
     {
-      "fr": "Je m'appelle Léa. J'ai vingt ans.",
-      "en": "My name is Léa. I am twenty years old.",
+      "fr": "Je m'appelle Léa et j'ai vingt ans ; je suis étudiante en lettres dans une grande ville de France.",
+      "en": "My name is Léa and I am twenty; I am a literature student in a large city in France.",
       "start": 0,
-      "end": 4
+      "end": 9.1
     },
     {
-      "fr": "J'habite à Lyon avec mes parents.",
-      "en": "I live in Lyon with my parents.",
-      "start": 4,
-      "end": 8
+      "fr": "J'habite à Lyon avec mes parents, dans un appartement lumineux au troisième étage sans ascenseur bruyant.",
+      "en": "I live in Lyon with my parents, in a bright apartment on the third floor without a noisy lift.",
+      "start": 9.1,
+      "end": 16.8
     },
     {
-      "fr": "Mon frère s'appelle Tom. Il est étudiant.",
-      "en": "My brother is called Tom. He is a student.",
-      "start": 8,
-      "end": 13
+      "fr": "Mon père travaille dans un bureau près de la gare ; il prend souvent le tram pour éviter les embouteillages du matin.",
+      "en": "My father works in an office near the station; he often takes the tram to avoid morning traffic jams.",
+      "start": 16.8,
+      "end": 27.4
+    },
+    {
+      "fr": "Ma mère est infirmière dans un petit hôpital ; ses horaires changent chaque semaine selon les équipes de nuit.",
+      "en": "My mother is a nurse in a small hospital; her hours change every week depending on the night teams.",
+      "start": 27.4,
+      "end": 36.5
+    },
+    {
+      "fr": "Mon frère s'appelle Tom ; il est plus jeune que moi et il prépare un diplôme en informatique à l'université.",
+      "en": "My brother is called Tom; he is younger than me and he is working toward a degree in computer science at university.",
+      "start": 36.5,
+      "end": 46.1
+    },
+    {
+      "fr": "Tom est sympa mais un peu distrait : il oublie parfois ses clés sur la table de la cuisine.",
+      "en": "Tom is nice but a little absent-minded: he sometimes forgets his keys on the kitchen table.",
+      "start": 46.1,
+      "end": 55.2
+    },
+    {
+      "fr": "Le week-end, nous essayons de déjeuner ensemble le dimanche après une matinée calme avec du pain frais.",
+      "en": "At the weekend, we try to have lunch together on Sunday after a quiet morning with fresh bread.",
+      "start": 55.2,
+      "end": 63.4
+    },
+    {
+      "fr": "Ma grand-mère habite encore dans le village où ma mère a grandi, à environ deux heures en train de Lyon.",
+      "en": "My grandmother still lives in the village where my mother grew up, about two hours by train from Lyon.",
+      "start": 63.4,
+      "end": 73
+    },
+    {
+      "fr": "Nous lui téléphonons chaque mercredi pour prendre des nouvelles et raconter nos petites victoires du jour.",
+      "en": "We phone her every Wednesday to catch up and tell her about our small successes of the day.",
+      "start": 73,
+      "end": 80.6
+    },
+    {
+      "fr": "J'ai aussi une cousine qui vit au Canada ; nous envoyons des messages vocaux pour pratiquer notre accent.",
+      "en": "I also have a cousin who lives in Canada; we send voice messages to practise our accent.",
+      "start": 80.6,
+      "end": 89.3
+    },
+    {
+      "fr": "Dans ma famille, on se parle franchement mais avec respect quand nous ne sommes pas d'accord sur un sujet.",
+      "en": "In my family, we speak frankly but with respect when we disagree about something.",
+      "start": 89.3,
+      "end": 98.4
+    },
+    {
+      "fr": "Mes parents disent que l'école est importante, mais qu'il faut aussi dormir assez et faire du sport dehors.",
+      "en": "My parents say school is important, but that you also have to sleep enough and do sport outside.",
+      "start": 98.4,
+      "end": 107
+    },
+    {
+      "fr": "L'été dernier, nous sommes allés tous les cinq au bord de la mer en Normandie pour une semaine de vacances simples.",
+      "en": "Last summer, all five of us went to the seaside in Normandy for a week of simple holidays.",
+      "start": 107,
+      "end": 117.1
+    },
+    {
+      "fr": "Nous avons marché sur la plage, mangé des glaces et ri quand le vent a renversé notre parasol sur le sable.",
+      "en": "We walked on the beach, ate ice creams and laughed when the wind blew our parasol over on the sand.",
+      "start": 117.1,
+      "end": 127.2
+    },
+    {
+      "fr": "Pour moi, la famille ce n'est pas seulement le sang : ce sont les personnes qui vous écoutent vraiment quand vous avez peur.",
+      "en": "For me, family isn’t only blood: it’s the people who really listen to you when you are afraid.",
+      "start": 127.2,
+      "end": 138.2
     }
   ],
   "grammarMarkers": [
@@ -34,14 +106,40 @@
     {
       "id": "habiter",
       "sentenceIndex": 1,
-      "label": "Préposition de lieu",
-      "explanation": "« Habiter à + ville » — Lyon prend « à »."
+      "label": "Habiter à + ville",
+      "explanation": "« J'habite à Lyon » : la préposition « à » devant le nom de la ville."
+    },
+    {
+      "id": "aller-etre",
+      "sentenceIndex": 12,
+      "label": "Passé composé (être) — aller",
+      "explanation": "« Nous sommes allés » : accord du participe avec le sujet « nous »."
     }
   ],
   "vocabulary": [
-    { "fr": "les parents", "en": "parents" },
-    { "fr": "le frère", "en": "brother" },
-    { "fr": "étudiant", "en": "student" },
-    { "fr": "habiter", "en": "to live (reside)" }
+    {
+      "fr": "les parents",
+      "en": "parents"
+    },
+    {
+      "fr": "le frère",
+      "en": "brother"
+    },
+    {
+      "fr": "la grand-mère",
+      "en": "grandmother"
+    },
+    {
+      "fr": "un cousin / une cousine",
+      "en": "cousin"
+    },
+    {
+      "fr": "habiter",
+      "en": "to live (reside)"
+    },
+    {
+      "fr": "être fière",
+      "en": "to be proud (f.)"
+    }
   ]
 }

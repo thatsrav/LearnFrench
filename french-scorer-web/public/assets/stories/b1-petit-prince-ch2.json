@@ -1,79 +1,111 @@
 {
   "id": "b1-petit-prince-ch2",
   "level": "B1",
-  "title": "Le Petit Prince",
-  "chapter": "Chapitre II",
+  "title": "Regarder le monde",
+  "chapter": "Récit personnel",
   "audioUrl": null,
   "sentences": [
     {
-      "fr": "Les grandes personnes ne comprennent jamais rien toutes seules, et c'est fatigant, pour les enfants, de toujours et toujours leur donner des explications.",
-      "en": "Grown-ups never understand anything by themselves, and it is exhausting for children to have to provide explanations over and over again.",
+      "fr": "Quand j'étais enfant, j'adorais observer les adultes sans qu'ils s'en aperçoivent, surtout dans les files d'attente interminables.",
+      "en": "When I was a child, I loved watching adults without their noticing, especially in endless queues.",
       "start": 0,
-      "end": 8
+      "end": 8.2
     },
     {
-      "fr": "J'ai donc dû choisir un autre métier et j'ai appris à piloter des avions.",
-      "en": "So I had to choose another profession, and I learned to fly airplanes.",
-      "start": 8,
-      "end": 14
+      "fr": "Je trouvais leurs conversations répétitives : toujours la météo, le travail, le prix de l'essence ou les impôts locaux.",
+      "en": "I found their conversations repetitive: always the weather, work, the price of petrol or local taxes.",
+      "start": 8.2,
+      "end": 17.3
     },
     {
-      "fr": "J'ai volé un peu partout dans le monde.",
-      "en": "I have flown a little everywhere in the world.",
-      "start": 14,
-      "end": 18
+      "fr": "Un jour, mon oncle m'a expliqué que les grandes personnes oublient souvent d'où vient leur propre curiosité d'autrefois.",
+      "en": "One day, my uncle explained to me that grown-ups often forget where their own curiosity of long ago came from.",
+      "start": 17.3,
+      "end": 25.9
     },
     {
-      "fr": "Et c'est vrai que la géographie m'a servi.",
-      "en": "And it is true that geography was useful to me.",
-      "start": 18,
-      "end": 22
+      "fr": "J'ai donc décidé de noter dans un carnet les phrases bizarres que j'entendais, comme un petit ethnologue du quotidien.",
+      "en": "So I decided to jot down in a notebook the odd phrases I heard, like a little ethnographer of everyday life.",
+      "start": 25.9,
+      "end": 35
     },
     {
-      "fr": "Je savais reconnaître, du premier coup d'œil, la Chine de l'Arizona.",
-      "en": "I could tell at first glance whether it was China or Arizona.",
-      "start": 22,
-      "end": 28
+      "fr": "Plus tard, ce carnet m'a servi quand j'ai choisi d'apprendre à piloter des avions légers au club de ma région.",
+      "en": "Later, that notebook was useful when I chose to learn to fly light aircraft at the club in my area.",
+      "start": 35,
+      "end": 44.6
+    },
+    {
+      "fr": "J'ai volé un peu partout dans le monde, mais la géographie ne m'a jamais semblée aussi vivante que vue du hublot.",
+      "en": "I have flown a little everywhere in the world, but geography never seemed as alive as seen from the porthole.",
+      "start": 44.6,
+      "end": 54.7
+    },
+    {
+      "fr": "Du ciel, une forêt ne ressemble pas à une carte ; une ville industrielle ne ressemble pas à un simple point rouge.",
+      "en": "From the sky, a forest doesn’t look like a map; an industrial city doesn’t look like a simple red dot.",
+      "start": 54.7,
+      "end": 65.3
+    },
+    {
+      "fr": "Et c'est vrai que la géographie m'a servi, mais surtout pour comprendre que les frontières sont aussi des histoires humaines.",
+      "en": "And it is true that geography was useful to me, but mainly to understand that borders are also human stories.",
+      "start": 65.3,
+      "end": 74.9
+    },
+    {
+      "fr": "Je savais reconnaître, du premier coup d'œil, la différence entre une plaine enneigée et un désert minéral sous le soleil blanc.",
+      "en": "I could tell at first glance the difference between a snowy plain and a mineral desert under the white sun.",
+      "start": 74.9,
+      "end": 85
+    },
+    {
+      "fr": "Aujourd'hui, je ne pilote plus chaque semaine, mais je garde cette habitude : regarder le monde avec des yeux d'enfant quand je peux.",
+      "en": "Today, I no longer fly every week, but I keep this habit: looking at the world with a child’s eyes when I can.",
+      "start": 85,
+      "end": 96
     }
   ],
   "grammarMarkers": [
     {
-      "id": "neg-jamais",
+      "id": "imparfait",
       "sentenceIndex": 0,
-      "label": "Négation (ne… jamais)",
-      "explanation": "« Ne… jamais » encadre le verbe « comprennent » et intensifie la fréquence (never)."
+      "label": "Imparfait (histoire)",
+      "explanation": "« Quand j'étais enfant », « je trouvais » : fond du récit au passé."
     },
     {
       "id": "pc-choisir",
-      "sentenceIndex": 1,
-      "label": "Passé composé (choisir / apprendre)",
-      "explanation": "« J'ai dû », « j'ai appris » : auxiliaire avoir + participe passé pour des actions accomplies dans le passé."
-    },
-    {
-      "id": "pc-voler",
-      "sentenceIndex": 2,
-      "label": "Passé composé (voler)",
-      "explanation": "« J'ai volé » exprime une expérience de vie avec le passé composé."
-    },
-    {
-      "id": "imparfait-servir",
       "sentenceIndex": 3,
-      "label": "Imparfait vs présent",
-      "explanation": "« M'a servi » (passé composé) : résultat acquis ; contraste avec une habitude qu'on exprimerait à l'imparfait."
+      "label": "Passé composé enchaîné",
+      "explanation": "« J'ai décidé », « j'ai noté » : suite d'actions accomplies."
     },
     {
-      "id": "si-condition",
-      "sentenceIndex": 4,
-      "label": "Infinitif après savoir",
-      "explanation": "« Je savais reconnaître » : savoir + infinitif pour une capacité au passé."
+      "id": "savoir-inf",
+      "sentenceIndex": 8,
+      "label": "Savoir + infinitif",
+      "explanation": "« Je savais reconnaître » : capacité au passé."
     }
   ],
   "vocabulary": [
-    { "fr": "fatigant", "en": "exhausting / tiring" },
-    { "fr": "explications", "en": "explanations" },
-    { "fr": "métier", "en": "profession / job" },
-    { "fr": "piloter", "en": "to pilot / to fly" },
-    { "fr": "géographie", "en": "geography" },
-    { "fr": "du premier coup d'œil", "en": "at first glance" }
+    {
+      "fr": "une curiosité",
+      "en": "curiosity"
+    },
+    {
+      "fr": "un carnet",
+      "en": "notebook"
+    },
+    {
+      "fr": "piloter",
+      "en": "to pilot / fly"
+    },
+    {
+      "fr": "un hublot",
+      "en": "porthole / small window (plane)"
+    },
+    {
+      "fr": "du premier coup d’œil",
+      "en": "at first glance"
+    }
   ]
 }

@@ -6,42 +6,100 @@
   "audioUrl": null,
   "sentences": [
     {
-      "fr": "La rame était bondée ; j'ai à peine trouvé une place pour mon sac.",
-      "en": "The train was packed; I barely found a spot for my bag.",
+      "fr": "Ce matin-là, la rame de métro était bondée comme après un concert ou une grève surprise sur la ligne quatre.",
+      "en": "That morning, the metro train was as packed as after a concert or a surprise strike on line four.",
       "start": 0,
-      "end": 6
+      "end": 9.6
     },
     {
-      "fr": "Une voix a annoncé : « Attention aux pickpockets. »",
-      "en": "A voice announced: “Watch out for pickpockets.”",
-      "start": 6,
-      "end": 11
+      "fr": "J'ai à peine trouvé une place pour mon sac entre deux valises massives qui bloquaient le couloir central.",
+      "en": "I barely found a spot for my bag between two massive suitcases that blocked the central aisle.",
+      "start": 9.6,
+      "end": 18.2
     },
     {
-      "fr": "Je suis descendu deux arrêts trop tard, mais le quartier valait le détour.",
-      "en": "I got off two stops too late, but the neighborhood was worth the detour.",
-      "start": 11,
-      "end": 18
+      "fr": "Les voyageurs poussaient doucement mais fermement, sans vraiment s'excuser, comme si la politesse avait disparu sous terre.",
+      "en": "Passengers pushed gently but firmly, without really apologising, as if politeness had disappeared underground.",
+      "start": 18.2,
+      "end": 26.4
+    },
+    {
+      "fr": "Une voix métallique a annoncé : « Attention aux pickpockets : gardez vos affaires près de vous. »",
+      "en": "A metallic voice announced: “Watch out for pickpockets: keep your belongings close to you.”",
+      "start": 26.4,
+      "end": 35
+    },
+    {
+      "fr": "Plusieurs personnes ont vérifié leur portefeuille avec un geste nerveux, puis ont baissé les yeux sur leur téléphone.",
+      "en": "Several people checked their wallet with a nervous gesture, then looked down at their phone.",
+      "start": 35,
+      "end": 43.7
+    },
+    {
+      "fr": "Je me suis demandé si je devais descendre à la prochaine station pour respirer un peu d'air, même pollué, de la rue.",
+      "en": "I wondered whether I should get off at the next station to breathe a little street air, even if it was polluted.",
+      "start": 43.7,
+      "end": 54.2
+    },
+    {
+      "fr": "Finalement, distrait par un podcast, je suis descendu deux arrêts trop tard sans m'en rendre compte tout de suite.",
+      "en": "In the end, distracted by a podcast, I got off two stops too late without realising it straight away.",
+      "start": 54.2,
+      "end": 63.4
+    },
+    {
+      "fr": "Le quartier ne correspondait pas du tout à mon plan habituel, mais les façades colorées valaient largement le détour.",
+      "en": "The neighbourhood didn’t match my usual route at all, but the colourful façades were well worth the detour.",
+      "start": 63.4,
+      "end": 72.5
+    },
+    {
+      "fr": "J'ai marché dix minutes pour rejoindre une ligne plus calme, en observant les boutiques qui ouvraient leurs rideaux métalliques.",
+      "en": "I walked ten minutes to reach a calmer line, watching shops open their metal shutters.",
+      "start": 72.5,
+      "end": 81.6
+    },
+    {
+      "fr": "Ce contretemps m'a rappelé que Paris n'est jamais tout à fait prévisible, même quand on croit connaître son trajet par cœur.",
+      "en": "That mishap reminded me that Paris is never quite predictable, even when you think you know your route by heart.",
+      "start": 81.6,
+      "end": 91.7
     }
   ],
   "grammarMarkers": [
     {
       "id": "imparfait-ete",
       "sentenceIndex": 0,
-      "label": "Imparfait (description)",
-      "explanation": "« Était bondée » décrit l'état de la rame au moment du récit."
+      "label": "Imparfait / passé composé",
+      "explanation": "« Était bondée » décrit l'état ; les actions ponctuelles utilisent le passé composé."
     },
     {
-      "id": "pc-trouver",
-      "sentenceIndex": 0,
-      "label": "Passé composé",
-      "explanation": "« J'ai trouvé » : action ponctuelle dans le passé."
+      "id": "subjonctif-ou",
+      "sentenceIndex": 5,
+      "label": "Se demander si + indicatif",
+      "explanation": "Après « se demander si », l'indicatif exprime une interrogation réelle au passé."
     }
   ],
   "vocabulary": [
-    { "fr": "bondé(e)", "en": "packed / crowded" },
-    { "fr": "à peine", "en": "barely" },
-    { "fr": "un arrêt", "en": "a stop (transit)" },
-    { "fr": "valoir le détour", "en": "to be worth the detour" }
+    {
+      "fr": "bondé(e)",
+      "en": "packed / crowded"
+    },
+    {
+      "fr": "à peine",
+      "en": "barely"
+    },
+    {
+      "fr": "un arrêt",
+      "en": "a stop (transit)"
+    },
+    {
+      "fr": "valoir le détour",
+      "en": "to be worth the detour"
+    },
+    {
+      "fr": "un pickpocket",
+      "en": "pickpocket"
+    }
   ]
 }

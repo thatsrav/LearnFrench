@@ -6,41 +6,100 @@
   "audioUrl": null,
   "sentences": [
     {
-      "fr": "Samedi matin, il a fait beau.",
-      "en": "On Saturday morning, the weather was nice.",
+      "fr": "Le week-end dernier, le temps était enfin agréable après plusieurs jours de pluie froide et de vent désagréable.",
+      "en": "Last weekend, the weather was finally pleasant after several days of cold rain and unpleasant wind.",
       "start": 0,
-      "end": 4
+      "end": 8.6
     },
     {
-      "fr": "Nous sommes allés au parc avec des amis.",
-      "en": "We went to the park with some friends.",
-      "start": 4,
-      "end": 9
+      "fr": "Samedi matin, il a fait beau ; le ciel était bleu et les oiseaux chantaient dans les arbres du jardin public.",
+      "en": "On Saturday morning, the weather was nice; the sky was blue and birds were singing in the trees of the public garden.",
+      "start": 8.6,
+      "end": 18.7
     },
     {
-      "fr": "Le dimanche, je me suis reposé et j'ai lu un livre.",
-      "en": "On Sunday, I rested and I read a book.",
-      "start": 9,
-      "end": 15
+      "fr": "Nous sommes allés au parc avec des amis de l'université pour organiser un pique-nique simple sur l'herbe.",
+      "en": "We went to the park with friends from university to organise a simple picnic on the grass.",
+      "start": 18.7,
+      "end": 26.9
+    },
+    {
+      "fr": "Chacun avait apporté quelque chose : du fromage, des tomates, du pain complet et une bouteille d'eau gazeuse.",
+      "en": "Everyone had brought something: cheese, tomatoes, wholemeal bread and a bottle of sparkling water.",
+      "start": 26.9,
+      "end": 35.5
+    },
+    {
+      "fr": "Nous avons joué au frisbee pendant une heure, puis nous nous sommes assis pour discuter de nos projets d'été.",
+      "en": "We played frisbee for an hour, then we sat down to talk about our summer plans.",
+      "start": 35.5,
+      "end": 44.6
+    },
+    {
+      "fr": "Un ami a proposé de louer une maison près de la montagne en juillet, mais les prix semblaient un peu élevés pour nous.",
+      "en": "A friend suggested renting a house near the mountains in July, but the prices seemed a little high for us.",
+      "start": 44.6,
+      "end": 55.7
+    },
+    {
+      "fr": "Le dimanche, je me suis reposé chez moi : j'ai lu un roman policier et j'ai fait une longue sieste l'après-midi.",
+      "en": "On Sunday, I rested at home: I read a detective novel and I took a long nap in the afternoon.",
+      "start": 55.7,
+      "end": 65.8
+    },
+    {
+      "fr": "Le soir, nous avons regardé un film en version française avec des sous-titres pour ne pas perdre une seule réplique.",
+      "en": "In the evening, we watched a film in French with subtitles so as not to miss a single line.",
+      "start": 65.8,
+      "end": 75.4
+    },
+    {
+      "fr": "Ce week-end m'a rappelé qu'il ne faut pas attendre les grandes vacances pour profiter des petits plaisirs du quotidien.",
+      "en": "That weekend reminded me that you shouldn’t wait for the big holidays to enjoy the small pleasures of daily life.",
+      "start": 75.4,
+      "end": 84.5
     }
   ],
   "grammarMarkers": [
     {
       "id": "il-fait",
-      "sentenceIndex": 0,
+      "sentenceIndex": 1,
       "label": "Il fait + adjectif (météo)",
       "explanation": "« Il a fait beau » au passé pour décrire la météo du week-end."
     },
     {
       "id": "aller-etre",
-      "sentenceIndex": 1,
-      "label": "Passé composé (être)",
-      "explanation": "« Nous sommes allés » : verbe de mouvement avec être (accord du participe)."
+      "sentenceIndex": 2,
+      "label": "Passé composé (être) — aller",
+      "explanation": "« Nous sommes allés » : accord du participe avec le sujet."
+    },
+    {
+      "id": "se-reposer",
+      "sentenceIndex": 6,
+      "label": "Pronominal — se reposer",
+      "explanation": "« Je me suis reposé » : verbe pronominal au passé composé avec être."
     }
   ],
   "vocabulary": [
-    { "fr": "le parc", "en": "park" },
-    { "fr": "se reposer", "en": "to rest" },
-    { "fr": "un livre", "en": "a book" }
+    {
+      "fr": "le parc",
+      "en": "park"
+    },
+    {
+      "fr": "un pique-nique",
+      "en": "picnic"
+    },
+    {
+      "fr": "se reposer",
+      "en": "to rest"
+    },
+    {
+      "fr": "un roman",
+      "en": "a novel"
+    },
+    {
+      "fr": "les sous-titres",
+      "en": "subtitles"
+    }
   ]
 }

@@ -6,16 +6,52 @@
   "audioUrl": null,
   "sentences": [
     {
-      "fr": "Préserver une langue ne se résume pas à en figer la grammaire dans le marbre.",
-      "en": "Preserving a language is not reducible to freezing its grammar in stone.",
+      "fr": "Préserver une langue ne se résume pas à en figer la grammaire dans le marbre d'un manuel scolaire figé dans le temps.",
+      "en": "Preserving a language is not reducible to freezing its grammar in the marble of a school manual stuck in time.",
       "start": 0,
-      "end": 7
+      "end": 10.6
     },
     {
-      "fr": "C'est au contraire accepter qu'elle vive, qu'elle se métamorphose sous la pression des usages.",
-      "en": "It is, on the contrary, to accept that it lives, that it metamorphoses under the pressure of usage.",
-      "start": 7,
-      "end": 15
+      "fr": "C'est au contraire accepter qu'elle vive, qu'elle se métamorphose sous la pression des usages, des migrations et des innovations numériques.",
+      "en": "It is, on the contrary, to accept that it lives, that it metamorphoses under the pressure of usage, migration and digital innovations.",
+      "start": 10.6,
+      "end": 20.2
+    },
+    {
+      "fr": "Les puristes redoutent souvent l'anglicisation lexicale, tandis que les linguistes descriptifs insistent sur la vitalité des emprunts maîtrisés.",
+      "en": "Purists often dread lexical Anglicisation, while descriptive linguists insist on the vitality of controlled borrowings.",
+      "start": 20.2,
+      "end": 28.8
+    },
+    {
+      "fr": "La question n'est donc pas de choisir entre tradition et modernité comme entre deux camps ennemis irréconciliables.",
+      "en": "The question, then, is not to choose between tradition and modernity as between two irreconcilable enemy camps.",
+      "start": 28.8,
+      "end": 37
+    },
+    {
+      "fr": "Il s'agit plutôt de débattre publiquement des normes : qui décide du « bon » usage, avec quels critères, et au bénéfice de quels locuteurs ?",
+      "en": "It is rather to debate norms publicly: who decides “good” usage, with what criteria, and for the benefit of which speakers?",
+      "start": 37,
+      "end": 49.4
+    },
+    {
+      "fr": "Tant que ces arbitrages restent opaques, la défense du patrimoine linguistique risque de sonner comme une gatekeeperie élitiste déconnectée des classes populaires.",
+      "en": "As long as these trade-offs remain opaque, defending linguistic heritage risks sounding like elitist gatekeeping disconnected from working-class communities.",
+      "start": 49.4,
+      "end": 60
+    },
+    {
+      "fr": "Une politique linguistique crédible devrait articuler école, médias et espaces numériques sans nier les créoles, les langues régionales ni les pratiques orales minorées.",
+      "en": "A credible language policy should articulate school, media and digital spaces without denying creoles, regional languages or minoritised oral practices.",
+      "start": 60,
+      "end": 71
+    },
+    {
+      "fr": "En somme, la langue comme patrimoine, c'est un processus collectif de transmission critique — jamais un musée silencieux.",
+      "en": "In short, language as heritage is a collective process of critical transmission — never a silent museum.",
+      "start": 71,
+      "end": 79.7
     }
   ],
   "grammarMarkers": [
@@ -23,12 +59,35 @@
       "id": "ne-pas-reduire",
       "sentenceIndex": 0,
       "label": "Ne pas se réduire à",
-      "explanation": "Locution pour nuancer : l'acte dépasse la définition étroite."
+      "explanation": "Structure pour nuancer : l'acte dépasse la définition étroite."
+    },
+    {
+      "id": "tant-que",
+      "sentenceIndex": 5,
+      "label": "Tant que + indicatif",
+      "explanation": "Condition temporelle ou causale : tant que l'opacité dure, le risque persiste."
     }
   ],
   "vocabulary": [
-    { "fr": "figer", "en": "to freeze / fix" },
-    { "fr": "le marbre", "en": "marble (fig.)" },
-    { "fr": "se métamorphoser", "en": "to metamorphose" }
+    {
+      "fr": "figer",
+      "en": "to freeze / fix"
+    },
+    {
+      "fr": "un emprunt",
+      "en": "loanword / borrowing"
+    },
+    {
+      "fr": "une gatekeeperie",
+      "en": "gatekeeping (anglicism in text — discuss register)"
+    },
+    {
+      "fr": "minoré",
+      "en": "minoritised / downplayed"
+    },
+    {
+      "fr": "en somme",
+      "en": "in short / to sum up"
+    }
   ]
 }

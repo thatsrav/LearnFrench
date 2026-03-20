@@ -6,16 +6,52 @@
   "audioUrl": null,
   "sentences": [
     {
-      "fr": "Il serait naïf de croire que l'information circule sans biais.",
-      "en": "It would be naive to believe that information circulates without bias.",
+      "fr": "Il serait naïf de croire que l'information circule aujourd'hui sans biais, sans cadre éditorial et sans logique d'audience commerciale.",
+      "en": "It would be naive to believe that information today circulates without bias, editorial framing or commercial audience logic.",
       "start": 0,
-      "end": 6
+      "end": 9.1
     },
     {
-      "fr": "Pour autant, relativiser systématiquement tout discours mène à une impasse.",
-      "en": "Even so, systematically relativizing every discourse leads to a dead end.",
-      "start": 6,
-      "end": 13
+      "fr": "Les réseaux sociaux accélèrent la diffusion des faits vérifiés comme des rumeurs, au même rythme et parfois avec la même apparence visuelle.",
+      "en": "Social networks speed up the spread of verified facts like rumours, at the same pace and sometimes with the same visual appearance.",
+      "start": 9.1,
+      "end": 19.7
+    },
+    {
+      "fr": "Pour autant, relativiser systématiquement tout discours mène à une impasse : on finit par douter même des preuves solides.",
+      "en": "Even so, systematically relativising every discourse leads to a dead end: you end up doubting even solid evidence.",
+      "start": 19.7,
+      "end": 28.8
+    },
+    {
+      "fr": "La voie responsable consiste à croiser les sources, à identifier les conflits d'intérêts et à accepter la complexité des dossiers techniques.",
+      "en": "The responsible path is to cross-check sources, identify conflicts of interest and accept the complexity of technical issues.",
+      "start": 28.8,
+      "end": 38.9
+    },
+    {
+      "fr": "Les citoyens ne sont pas tenus d'être des experts, mais ils peuvent exiger des médias des méthodes de correction transparentes.",
+      "en": "Citizens are not required to be experts, but they can demand transparent correction methods from the media.",
+      "start": 38.9,
+      "end": 48.5
+    },
+    {
+      "fr": "Sans ce minimum d'exigence, la confiance publique continue de s'éroder, et la démocratie délibérative perd son terrain le plus précieux : le temps partagé.",
+      "en": "Without this minimum requirement, public trust keeps eroding, and deliberative democracy loses its most precious ground: shared time.",
+      "start": 48.5,
+      "end": 60
+    },
+    {
+      "fr": "Les rédactions qui publient des rectifications visibles regagnent lentement du crédit, même lorsque la première version avait fait du bruit.",
+      "en": "Newsrooms that publish visible corrections slowly regain credibility, even when the first version had caused a stir.",
+      "start": 60,
+      "end": 69.6
+    },
+    {
+      "fr": "À l'inverse, effacer discrètement une erreur sans explication renforce l'idée que « tout est manipulation », au détriment du débat factuel.",
+      "en": "Conversely, quietly erasing a mistake without explanation reinforces the idea that “everything is manipulation,” to the detriment of factual debate.",
+      "start": 69.6,
+      "end": 79.7
     }
   ],
   "grammarMarkers": [
@@ -23,12 +59,35 @@
       "id": "cond-necessite",
       "sentenceIndex": 0,
       "label": "Conditionnel d'évaluation",
-      "explanation": "« Il serait naïf de + infinitif » structure impersonnelle pour juger une attitude."
+      "explanation": "« Il serait naïf de + infinitif » : jugement impersonnel nuancé."
+    },
+    {
+      "id": "subjonctif-apres-exiger",
+      "sentenceIndex": 4,
+      "label": "Exiger que — subjonctif",
+      "explanation": "« Exiger des médias des méthodes » : construction infinitive ici ; variante « exiger que + subjonctif » fréquente."
     }
   ],
   "vocabulary": [
-    { "fr": "un biais", "en": "bias" },
-    { "fr": "relativiser", "en": "to relativize" },
-    { "fr": "une impasse", "en": "dead end / stalemate" }
+    {
+      "fr": "un biais",
+      "en": "bias"
+    },
+    {
+      "fr": "relativiser",
+      "en": "to relativize"
+    },
+    {
+      "fr": "une impasse",
+      "en": "dead end"
+    },
+    {
+      "fr": "croiser les sources",
+      "en": "to cross-check sources"
+    },
+    {
+      "fr": "la confiance publique",
+      "en": "public trust"
+    }
   ]
 }

@@ -4,6 +4,7 @@
  */
 
 import { getApiBaseUrl } from './apiBase'
+import { LISTENING_FALLBACK_SCENARIOS } from './listeningFallbackScripts'
 import { localDateKey } from './readingRoomMissionStorage'
 import { normalizeWritingLevel } from './WritingService'
 
@@ -126,66 +127,8 @@ export async function ensureDailySpeakingPrompt(userLevelRaw: string): Promise<D
 }
 
 function buildFallbackListening(level: string, _err?: string): DailyListeningMission {
-  const scenarios: Record<string, { title: string; mod: string; script: string; q: ListeningQuestion[] }> = {
-    A1: {
-      title: 'Au téléphone',
-      mod: 'Module 01: Everyday calls',
-      script:
-        'Bonjour, je suis Marie. J’appelle pour confirmer mon rendez-vous demain à quinze heures. Est-ce toujours possible ? Merci beaucoup.',
-      q: [
-        {
-          questionEn: 'What is Marie trying to do?',
-          options: ['Cancel an appointment', 'Confirm a time', 'Complain about service', 'Ask for a refund'],
-          correctIndex: 1,
-        },
-        {
-          questionEn: 'How would you describe her tone?',
-          options: ['Angry', 'Polite and practical', 'Sarcastic', 'Confused'],
-          correctIndex: 1,
-        },
-        {
-          questionEn: 'When is her appointment?',
-          options: ['This morning', 'Tomorrow at 3 p.m.', 'Next week', 'She does not say'],
-          correctIndex: 1,
-        },
-      ],
-    },
-    B2: {
-      title: 'Appel technique',
-      mod: 'Module 03: Professional discourse',
-      script:
-        'Allô, service technique, Lucas à l’appareil. Je vois que votre connexion a sauté trois fois cette semaine. Nous allons envoyer un technicien demain matin entre neuf heures et midi. Pouvez-vous confirmer l’adresse au quarante-deux rue des Lilas ? Parfait. Je note aussi que vous préférez être prévenu dix minutes avant.',
-      q: [
-        {
-          questionEn: 'What is the underlying problem?',
-          options: ['Billing dispute', 'Unstable internet connection', 'Wrong address', 'Late delivery'],
-          correctIndex: 1,
-        },
-        {
-          questionEn: 'What does the technician imply about the user?',
-          options: [
-            'They refused help',
-            'They need a visit window and notice before arrival',
-            'They want a refund',
-            'They are moving house',
-          ],
-          correctIndex: 1,
-        },
-        {
-          questionEn: 'Which tone best matches Lucas?',
-          options: ['Dismissive', 'Procedural and reassuring', 'Aggressive', 'Overly casual'],
-          correctIndex: 1,
-        },
-        {
-          questionEn: 'When will the technician come?',
-          options: ['Tonight', 'Tomorrow morning between 9 and 12', 'Next month', 'Only if the user calls back'],
-          correctIndex: 1,
-        },
-      ],
-    },
-  }
-
-  const core = scenarios[level] ?? scenarios.B2
+  const L = normalizeWritingLevel(level)
+  const core = LISTENING_FALLBACK_SCENARIOS[L] ?? LISTENING_FALLBACK_SCENARIOS.B2
   return {
     scenarioTitle: core.title,
     moduleLabel: core.mod,
@@ -193,7 +136,7 @@ function buildFallbackListening(level: string, _err?: string): DailyListeningMis
     questions: core.q,
     audioBase64: null,
     mime: 'audio/mpeg',
-    level,
+    level: L,
   }
 }
 

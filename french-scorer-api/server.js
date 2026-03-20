@@ -520,7 +520,7 @@ app.post("/api/writing/daily-topic", async (req, res) => {
 const ORAL_CEFR_LEVELS = WRITING_CEFR_LEVELS;
 const normalizeOralLevel = normalizeWritingCefrLevel;
 
-async function generateDailyListeningScriptGemini({ apiKey, level }) {
+async function generateDailyListeningScriptGemini({ apiKey, level, extraUserBlock = "" }) {
   const modelName = await pickGeminiModel(apiKey);
   const url = `https://generativelanguage.googleapis.com/v1/${modelName}:generateContent?key=${encodeURIComponent(apiKey)}`;
 
@@ -529,10 +529,11 @@ async function generateDailyListeningScriptGemini({ apiKey, level }) {
 Return ONLY valid JSON (no markdown):
 - scenarioTitle (string, French): short title for the scenario.
 - moduleLabel (string, English): e.g. "Module 03: Professional Discourse".
-- scriptFr (string): French audio script only, natural spoken French. Length: A1-A2 about 60-90 words; B1-B2 about 90-140 words; C1 about 140-200 words. Use a clear scenario (e.g. phone call, service desk, workplace). Can be monologue or short dialogue; if dialogue, use labels like "A:" "B:" lines.
+- scriptFr (string): French audio script only, natural spoken French. **Length requirement (all levels): between 150 and 300 French words inclusive — count every word before returning.** Shorter scripts are invalid. Use a clear scenario (e.g. phone call, service desk, workplace, public announcement). Can be monologue or short dialogue; if dialogue, use labels like "A:" "B:" lines.
 - questions (array of 4 or 5 objects): each has "questionEn" (string, English), "options" (array of exactly 4 strings in English), "correctIndex" (integer 0-3). Questions must test inference, tone, speaker intention, implied meaning — not trivial vocabulary from one word heard.
 
-Match vocabulary and speed expectations to ${level}.`;
+Match vocabulary and complexity to ${level}, but always respect the 150–300 word length for scriptFr.
+${extraUserBlock ? `\n${extraUserBlock}` : ""}`;
 
   const resp = await fetch(url, {
     method: "POST",
@@ -563,6 +564,23 @@ Match vocabulary and speed expectations to ${level}.`;
   const modelText = parsed?.candidates?.[0]?.content?.parts?.[0]?.text ?? "";
   const jsonText = extractFirstJsonObject(modelText);
   return JSON.parse(jsonText);
+}
+
+async function generateDailyListeningPayloadWithRetry({ apiKey, level }) {
+  let raw = await generateDailyListeningScriptGemini({ apiKey, level });
+  let payload = normalizeListeningPayload(raw, level);
+  let n = countFrenchWords(payload.scriptFr);
+  if (n >= 150 && n <= 320) return payload;
+
+  const retryHint =
+    "Your previous answer was outside the required length. Regenerate scriptFr so it contains AT LEAST 150 French words and AT MOST 300. Reply with full valid JSON again.";
+  raw = await generateDailyListeningScriptGemini({ apiKey, level, extraUserBlock: retryHint });
+  payload = normalizeListeningPayload(raw, level);
+  n = countFrenchWords(payload.scriptFr);
+  if (n < 150) {
+    console.warn("[oral] daily-listening scriptFr still short after retry:", n, "words (target 150–300)");
+  }
+  return payload;
 }
 
 async function generateDailySpeakingPromptGemini({ apiKey, level }) {
@@ -648,6 +666,13 @@ async function synthesizeOpenAiMp3French(text) {
   return Buffer.from(await r.arrayBuffer());
 }
 
+function countFrenchWords(text) {
+  return String(text || "")
+    .trim()
+    .split(/\s+/)
+    .filter(Boolean).length;
+}
+
 function normalizeListeningPayload(raw, level) {
   const scenarioTitle = String(raw?.scenarioTitle ?? "Scénario du jour").trim();
   const moduleLabel = String(raw?.moduleLabel ?? "Daily listening").trim();
@@ -687,8 +712,7 @@ app.post("/api/oral/daily-listening", async (req, res) => {
       return res.status(503).json({ error: "GEMINI_API_KEY not configured.", code: "NO_GEMINI" });
     }
 
-    const raw = await generateDailyListeningScriptGemini({ apiKey: geminiKey, level });
-    const payload = normalizeListeningPayload(raw, level);
+    const payload = await generateDailyListeningPayloadWithRetry({ apiKey: geminiKey, level });
     if (!payload.scriptFr) {
       return res.status(500).json({ error: "Model returned empty script." });
     }

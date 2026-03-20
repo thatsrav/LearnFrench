@@ -6,49 +6,136 @@
   "audioUrl": null,
   "sentences": [
     {
-      "fr": "Bonjour ! Je voudrais un café, s'il vous plaît.",
-      "en": "Hello! I would like a coffee, please.",
+      "fr": "Léa habite dans une rue calme près d'une petite place où il y a des arbres et un banc public.",
+      "en": "Léa lives on a quiet street near a small square where there are trees and a public bench.",
       "start": 0,
-      "end": 4
+      "end": 9.6
     },
     {
-      "fr": "Avec du lait ou sans lait ?",
-      "en": "With milk or without milk?",
-      "start": 4,
-      "end": 7
+      "fr": "Ce matin, elle décide de prendre son petit-déjeuner au café du coin, comme elle le fait souvent le mardi.",
+      "en": "This morning, she decides to have breakfast at the corner café, as she often does on Tuesdays.",
+      "start": 9.6,
+      "end": 18.7
     },
     {
-      "fr": "Avec du lait, merci. C'est combien ?",
-      "en": "With milk, thank you. How much is it?",
-      "start": 7,
-      "end": 11
+      "fr": "Elle pousse la porte en verre et dit « Bonjour » à la serveuse qui range des tasses près de la machine à café.",
+      "en": "She pushes the glass door and says “Hello” to the waitress who is putting cups away near the coffee machine.",
+      "start": 18.7,
+      "end": 30.2
     },
     {
-      "fr": "Deux euros cinquante, s'il vous plaît.",
-      "en": "Two euros fifty, please.",
-      "start": 11,
-      "end": 15
+      "fr": "La serveuse répond avec le sourire et lui propose une table libre près de la fenêtre, en face de la rue.",
+      "en": "The waitress answers with a smile and offers her a free table near the window, facing the street.",
+      "start": 30.2,
+      "end": 40.3
+    },
+    {
+      "fr": "Léa s'assoit et lit rapidement le menu écrit à la craie sur le tableau noir au-dessus du comptoir.",
+      "en": "Léa sits down and quickly reads the menu written in chalk on the blackboard above the counter.",
+      "start": 40.3,
+      "end": 49
+    },
+    {
+      "fr": "La serveuse arrive avec un petit carnet et demande poliment : « Vous désirez ? »",
+      "en": "The waitress arrives with a small notepad and asks politely: “What would you like?”",
+      "start": 49,
+      "end": 56.6
+    },
+    {
+      "fr": "Léa répond : « Je voudrais un grand café crème, s'il vous plaît », parce que cette formule est plus polie que « je veux ».",
+      "en": "Léa answers: “I would like a large coffee with milk, please,” because that wording is more polite than “I want.”",
+      "start": 56.6,
+      "end": 69.1
+    },
+    {
+      "fr": "Elle ajoute : « Et un croissant, s'il vous plaît », puis elle range son téléphone dans son sac.",
+      "en": "She adds: “And a croissant, please,” then she puts her phone away in her bag.",
+      "start": 69.1,
+      "end": 78.2
+    },
+    {
+      "fr": "« Avec du lait dedans, merci », répond Léa en regardant les passants qui marchent vite sur le trottoir.",
+      "en": "“With milk inside, thanks,” Léa replies, watching passers-by walking quickly on the sidewalk.",
+      "start": 78.2,
+      "end": 87.4
+    },
+    {
+      "fr": "Le serveur apporte une tasse blanche fumante et une assiette avec le croissant doré et croustillant.",
+      "en": "The waiter brings a steaming white cup and a plate with a golden, crispy croissant.",
+      "start": 87.4,
+      "end": 95
+    },
+    {
+      "fr": "« C'est trois euros quatre-vingts », répond le serveur gentiment, puis il retourne vers la cuisine.",
+      "en": "“It’s three euros eighty,” the waiter answers kindly, then he goes back toward the kitchen.",
+      "start": 95,
+      "end": 102.7
+    },
+    {
+      "fr": "Léa paie avec sa carte bancaire et dit « Merci beaucoup » parce qu'elle est contente du service.",
+      "en": "Léa pays with her bank card and says “Thank you very much” because she is happy with the service.",
+      "start": 102.7,
+      "end": 111.4
+    },
+    {
+      "fr": "Elle mange lentement, dit « Au revoir » à la serveuse, puis sort alors que la ville s'anime avec les bus et les vélos.",
+      "en": "She eats slowly, says “Goodbye” to the waitress, then leaves as the city comes alive with buses and bicycles.",
+      "start": 111.4,
+      "end": 122.9
     }
   ],
   "grammarMarkers": [
     {
       "id": "cond-politesse",
-      "sentenceIndex": 0,
+      "sentenceIndex": 6,
       "label": "Conditionnel de politesse",
-      "explanation": "« Je voudrais » est plus poli que « je veux » dans un café."
+      "explanation": "« Je voudrais » est plus poli que « je veux » dans un café ou un restaurant."
     },
     {
       "id": "svp",
-      "sentenceIndex": 0,
+      "sentenceIndex": 7,
       "label": "Formule fixe",
-      "explanation": "« S'il vous plaît » — formule standard pour demander poliment."
+      "explanation": "« S'il vous plaît » accompagne une demande courtoise."
+    },
+    {
+      "id": "combien",
+      "sentenceIndex": 10,
+      "label": "Le prix",
+      "explanation": "On associe souvent « combien ? » à ce type de réponse (« trois euros quatre-vingts »)."
     }
   ],
   "vocabulary": [
-    { "fr": "un café", "en": "a coffee" },
-    { "fr": "du lait", "en": "milk" },
-    { "fr": "merci", "en": "thank you" },
-    { "fr": "combien", "en": "how much" },
-    { "fr": "euros", "en": "euros" }
+    {
+      "fr": "un café",
+      "en": "a coffee / a café"
+    },
+    {
+      "fr": "du lait",
+      "en": "milk"
+    },
+    {
+      "fr": "un croissant",
+      "en": "a croissant"
+    },
+    {
+      "fr": "s’il vous plaît",
+      "en": "please (formal)"
+    },
+    {
+      "fr": "merci",
+      "en": "thank you"
+    },
+    {
+      "fr": "combien",
+      "en": "how much"
+    },
+    {
+      "fr": "le trottoir",
+      "en": "the sidewalk"
+    },
+    {
+      "fr": "payer",
+      "en": "to pay"
+    }
   ]
 }
