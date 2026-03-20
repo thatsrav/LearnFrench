@@ -1,18 +1,11 @@
-import {
-  ExternalLink,
-  Flame,
-  GraduationCap,
-  Play,
-  Plus,
-  Sparkles,
-  Trophy,
-} from 'lucide-react'
+import { Flame, GraduationCap, Play, Plus, Sparkles, Trophy } from 'lucide-react'
 import { useMemo } from 'react'
 import { Link } from 'react-router-dom'
 import { Bar, BarChart, CartesianGrid, Cell, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts'
 import { useAuth } from '../contexts/AuthContext'
 import { countModuleProgress, getModuleById } from '../lib/curriculum'
 import { getSyllabusData, getUnitById } from '../lib/syllabus'
+import MotDuJourCard from '../components/motDuJour/MotDuJourCard'
 import TefTrackFooterBar from '../components/tef/TefTrackFooterBar'
 
 const RECENT_SCORES_KEY = 'french_scorer_recent_scores_v1'
@@ -267,34 +260,7 @@ export default function DashboardHomePage() {
         </Link>
       </div>
 
-      <section className="overflow-hidden rounded-2xl bg-[#1A1B4B] text-white shadow-xl">
-        <div className="grid md:grid-cols-2 md:items-stretch">
-          <div className="p-8 md:p-10">
-            <span className="text-[10px] font-bold uppercase tracking-[0.25em] text-indigo-200/90">Mot du jour</span>
-            <p className="font-display mt-4 text-4xl font-bold md:text-5xl">« Éphémère »</p>
-            <p className="mt-2 font-mono text-sm text-indigo-200/90">/e.fe.mɛʁ/</p>
-            <p className="mt-4 text-sm leading-relaxed text-white/85">
-              Short-lived or fleeting. Used in literature to describe the beauty of nature or the passing of time.
-            </p>
-            <a
-              href="https://fr.wikipedia.org/wiki/%C3%89ph%C3%A9m%C3%A8re"
-              target="_blank"
-              rel="noreferrer"
-              className="mt-6 inline-flex items-center gap-2 text-sm font-bold text-indigo-200 underline-offset-4 hover:underline"
-            >
-              Explore cultural context <ExternalLink className="h-4 w-4" />
-            </a>
-          </div>
-          <div className="relative min-h-[220px] bg-slate-900 md:min-h-0">
-            <img
-              src="https://images.unsplash.com/photo-1502602898657-3e91760cbb34?auto=format&fit=crop&w=800&q=80"
-              alt="Paris skyline — cultural context"
-              className="h-full w-full object-cover opacity-90"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-[#1A1B4B]/80 to-transparent md:bg-gradient-to-l" />
-          </div>
-        </div>
-      </section>
+      <MotDuJourCard />
 
       <section className="space-y-3">
         <p className="text-[10px] font-bold uppercase tracking-widest text-slate-500">TEF track pulse</p>
