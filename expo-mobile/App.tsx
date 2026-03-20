@@ -1,10 +1,12 @@
 import './global.css'
 import { StatusBar } from 'expo-status-bar'
 import { ActivityIndicator, Text, View } from 'react-native'
+import WordOfDayScheduler from './src/components/WordOfDayScheduler'
 import { GestureHandlerRootView } from 'react-native-gesture-handler'
 import { NavigationContainer } from '@react-navigation/native'
 import { SafeAreaProvider } from 'react-native-safe-area-context'
 import AppNavigator from './src/navigation/AppNavigator'
+import { rootNavigationRef } from './src/navigation/rootNavigation'
 import { AuthProvider } from './src/contexts/AuthContext'
 import { useDatabase } from './src/database'
 import { useAppFonts } from './src/theme/fonts'
@@ -54,9 +56,10 @@ export default function App() {
   return (
     <GestureHandlerRootView style={{ flex: 1 }}>
       <SafeAreaProvider>
-        <NavigationContainer>
+        <NavigationContainer ref={rootNavigationRef}>
           <AuthProvider>
             <AppNavigator />
+            <WordOfDayScheduler />
             <StatusBar style="dark" />
           </AuthProvider>
         </NavigationContainer>

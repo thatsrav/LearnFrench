@@ -96,8 +96,6 @@ export default function JournalEntryDetailScreen() {
     return getPracticeLessonsForFeedback(blob)
   }, [feedback?.feedbackText])
 
-  const rootNav = navigation.getParent<NativeStackNavigationProp<RootStackParamList>>()
-
   const onRescore = async () => {
     setRescoring(true)
     try {
@@ -234,7 +232,7 @@ export default function JournalEntryDetailScreen() {
               <Pressable
                 key={l.unitId + l.title}
                 onPress={() =>
-                  rootNav?.navigate('LessonScreen', {
+                  navigation.navigate('LessonScreen', {
                     unitId: l.unitId,
                     level: l.level,
                     ...(moduleId ? { moduleId } : {}),

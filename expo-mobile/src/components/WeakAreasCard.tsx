@@ -1,12 +1,10 @@
 import { useCallback, useState } from 'react'
 import { ActivityIndicator, Pressable, Text, View } from 'react-native'
-import { useFocusEffect, useNavigation } from '@react-navigation/native'
-import type { NativeStackNavigationProp } from '@react-navigation/native-stack'
-import type { NavigationProp, ParamListBase } from '@react-navigation/native'
+import { useFocusEffect } from '@react-navigation/native'
 import { Ionicons } from '@expo/vector-icons'
 import { useAuth } from '../contexts/AuthContext'
 import { getModuleIdForContentUnit } from '../lib/curriculum'
-import type { RootStackParamList } from '../navigation/AppNavigator'
+import { navigateRoot } from '../navigation/rootNavigation'
 import {
   getRecurringMistakes,
   type RecurringMistake,
@@ -23,8 +21,6 @@ type Props = {
 export default function WeakAreasCard({ userId: userIdProp }: Props) {
   const { user } = useAuth()
   const uid = userIdProp ?? user?.id ?? ''
-  const navigation = useNavigation<NavigationProp<ParamListBase>>()
-  const rootNav = navigation.getParent<NativeStackNavigationProp<RootStackParamList>>()
   const [loading, setLoading] = useState(true)
   const [mistakes, setMistakes] = useState<RecurringMistake[]>([])
 
@@ -102,7 +98,7 @@ export default function WeakAreasCard({ userId: userIdProp }: Props) {
               key={m.errorType}
               onPress={() => {
                 if (!first) return
-                rootNav?.navigate('LessonScreen', {
+                navigateRoot('LessonScreen', {
                   unitId: first.unitId,
                   level: first.level,
                   ...(moduleId ? { moduleId } : {}),

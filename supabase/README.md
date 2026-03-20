@@ -5,9 +5,13 @@
 1. [supabase.com](https://supabase.com) → New project  
 2. Copy **Project URL** and **anon public** key (Settings → API).
 
-## 2. Run the migration
+## 2. Run migrations
 
-In **SQL Editor**, paste and run `migrations/001_user_progress_and_auth.sql`.
+In **SQL Editor**, run in order:
+
+1. `migrations/001_user_progress_and_auth.sql` (required for auth + progress)
+2. `002_writing_journal.sql`, `003_tef_prep_progress.sql` if you use those features
+3. **`004_profiles_study_cefr.sql`** (optional) — adds `profiles.study_cefr` so the Expo app can sync **Word of the Day** level across devices when signed in.
 
 ## 3. Auth providers
 

@@ -20,7 +20,6 @@ import {
   recordRecommendationEngagement,
   type DailyLessonPlan,
 } from '../services/recommendationEngine'
-import type { NativeStackNavigationProp } from '@react-navigation/native-stack'
 import type { BottomTabNavigationProp } from '@react-navigation/bottom-tabs'
 import { LinearGradient } from 'expo-linear-gradient'
 import { Ionicons } from '@expo/vector-icons'
@@ -35,11 +34,14 @@ import { scoreFrench, type FrenchScore, type ScoreProvider } from '../api/scoreF
 import { computeDailyStreak, loadRecentScores, saveRecentScores, type StoredScore } from '../lib/history'
 import { CURRICULUM_STATS } from '../lib/curriculum'
 import { getDailyVocab } from '../lib/vocab'
+import { getStudyCefrLevel } from '../lib/studyLevelPreference'
+import { getWordOfTheDayForDate, type StudyCefrLevel } from '../content/wordOfTheDay'
 import { getApiBaseUrl } from '../lib/config'
 import { useAuth } from '../contexts/AuthContext'
 import { supabase } from '../lib/supabase'
 import { syncScoreHistoryToCloud } from '../services/cloudProgress'
-import type { MainTabParamList, RootStackParamList } from '../navigation/AppNavigator'
+import type { MainTabParamList } from '../navigation/AppNavigator'
+import { navigateRoot } from '../navigation/rootNavigation'
 import { useTabScreenBottomPadding } from '../lib/screenPadding'
 
 const PROVIDERS: { value: ScoreProvider; label: string; short: string }[] = [
@@ -66,7 +68,6 @@ export default function HomeScreen() {
   const scrollRef = useRef<ScrollView>(null)
   const [scorerOffsetY, setScorerOffsetY] = useState(0)
   const tabNav = useNavigation<BottomTabNavigationProp<MainTabParamList>>()
-  const rootNav = tabNav.getParent<NativeStackNavigationProp<RootStackParamList>>()
   const { user } = useAuth()
 
   const [inputMode, setInputMode] = useState<'text' | 'voice'>('text')
@@ -81,6 +82,7 @@ export default function HomeScreen() {
   const [recentScores, setRecentScores] = useState<StoredScore[]>([])
   const [dueReviewCount, setDueReviewCount] = useState(0)
   const [dailyPlan, setDailyPlan] = useState<DailyLessonPlan | null>(null)
+  const [studyLevel, setStudyLevel] = useState<StudyCefrLevel>('A1')
 
   const refreshHistory = useCallback(async () => {
     const rows = await loadRecentScores()
@@ -91,6 +93,12 @@ export default function HomeScreen() {
     useCallback(() => {
       void refreshHistory()
     }, [refreshHistory]),
+  )
+
+  useFocusEffect(
+    useCallback(() => {
+      void getStudyCefrLevel().then(setStudyLevel)
+    }, []),
   )
 
   useFocusEffect(
@@ -164,7 +172,8 @@ export default function HomeScreen() {
 
   const streak = useMemo(() => computeDailyStreak(recentScores), [recentScores])
   const latestCecr = result?.cecr ?? recentScores.at(-1)?.cecr ?? '—'
-  const dailyVocab = useMemo(() => getDailyVocab(latestCecr), [latestCecr])
+  const wordOfDay = useMemo(() => getWordOfTheDayForDate(studyLevel, new Date()), [studyLevel])
+  const dailyVocab = useMemo(() => getDailyVocab(studyLevel), [studyLevel])
 
   const chartBars = useMemo(() => {
     return recentScores.map((s) => ({
@@ -239,9 +248,12 @@ export default function HomeScreen() {
           { n: '02', t: 'Expansion (A2)', d: 'Stories, routines, and real life.' },
           { n: '03', t: 'Mastery (B1+)', d: 'TEF readiness and nuance.' },
         ].map((row, i) => (
-          <View
+          <Pressable
             key={row.n}
-            className={['flex-row items-center gap-3 border-t border-slate-100 py-3', i === 0 ? 'border-t-0 pt-0' : ''].join(
+            onPress={() => tabNav.navigate('Syllabus')}
+            accessibilityRole="button"
+            accessibilityLabel={`Open syllabus: ${row.t}`}
+            className={['flex-row items-center gap-3 border-t border-slate-100 py-3 active:bg-slate-50', i === 0 ? 'border-t-0 pt-0' : ''].join(
               ' ',
             )}
           >
@@ -251,12 +263,12 @@ export default function HomeScreen() {
               <Text className="font-sans mt-0.5 text-xs text-slate-600">{row.d}</Text>
             </View>
             <Ionicons name="chevron-forward" size={18} color="#cbd5e1" />
-          </View>
+          </Pressable>
         ))}
       </View>
 
       <Pressable
-        onPress={() => rootNav?.navigate('WritingJournal')}
+        onPress={() => navigateRoot('WritingJournal')}
         className="mb-4 rounded-2xl border border-violet-200 bg-violet-50 p-4 active:opacity-90"
       >
         <View className="flex-row items-center gap-3">
@@ -275,7 +287,7 @@ export default function HomeScreen() {
 
       {dueReviewCount > 0 ? (
         <Pressable
-          onPress={() => rootNav?.navigate('SpacedReview', { maxItems: 5 })}
+          onPress={() => navigateRoot('SpacedReview', { maxItems: 5 })}
           className="mb-4 rounded-2xl border border-indigo-200 bg-indigo-50 p-4 active:opacity-90"
         >
           <View className="flex-row items-center gap-3">
@@ -315,7 +327,7 @@ export default function HomeScreen() {
               onPress={() => {
                 const planDate = dailyPlan.dateKey
                 void recordRecommendationEngagement(user?.id ?? null, planDate, item.lessonId, 'opened')
-                rootNav?.navigate('LessonScreen', {
+                navigateRoot('LessonScreen', {
                   unitId: item.lessonId,
                   level: item.level,
                   fromRecommendation: true,
@@ -345,7 +357,12 @@ export default function HomeScreen() {
 
       {/* Feature cards — Figma */}
       <View className="gap-3">
-        <View className="flex-row items-center gap-3 rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
+        <Pressable
+          onPress={() => tabNav.navigate('Syllabus')}
+          accessibilityRole="button"
+          accessibilityLabel="Open syllabus, curriculum units"
+          className="flex-row items-center gap-3 rounded-2xl border border-slate-200 bg-white p-4 shadow-sm active:bg-slate-50"
+        >
           <View className="h-12 w-12 items-center justify-center rounded-full bg-blue-100">
             <Ionicons name="layers-outline" size={24} color="#1d4ed8" />
           </View>
@@ -353,8 +370,14 @@ export default function HomeScreen() {
             <Text className="text-base font-bold text-slate-900">{CURRICULUM_STATS.moduleCount} Units</Text>
             <Text className="text-sm text-slate-500">Comprehensive Curriculum</Text>
           </View>
-        </View>
-        <View className="flex-row items-center gap-3 rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
+          <Ionicons name="chevron-forward" size={18} color="#cbd5e1" />
+        </Pressable>
+        <Pressable
+          onPress={() => tabNav.navigate('Syllabus')}
+          accessibilityRole="button"
+          accessibilityLabel="Open syllabus, lessons"
+          className="flex-row items-center gap-3 rounded-2xl border border-slate-200 bg-white p-4 shadow-sm active:bg-slate-50"
+        >
           <View className="h-12 w-12 items-center justify-center rounded-full bg-emerald-100">
             <Ionicons name="book-outline" size={24} color="#047857" />
           </View>
@@ -362,8 +385,14 @@ export default function HomeScreen() {
             <Text className="text-base font-bold text-slate-900">{CURRICULUM_STATS.lessonCount} Lessons</Text>
             <Text className="text-sm text-slate-500">Structured Learning Path</Text>
           </View>
-        </View>
-        <View className="flex-row items-center gap-3 rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
+          <Ionicons name="chevron-forward" size={18} color="#cbd5e1" />
+        </Pressable>
+        <Pressable
+          onPress={scrollToScorer}
+          accessibilityRole="button"
+          accessibilityLabel="Scroll to AI French scorer"
+          className="flex-row items-center gap-3 rounded-2xl border border-slate-200 bg-white p-4 shadow-sm active:bg-slate-50"
+        >
           <View className="h-12 w-12 items-center justify-center rounded-full bg-violet-100">
             <Ionicons name="sparkles" size={22} color="#6d28d9" />
           </View>
@@ -371,7 +400,8 @@ export default function HomeScreen() {
             <Text className="text-base font-bold text-slate-900">AI Powered</Text>
             <Text className="text-sm text-slate-500">Instant Feedback</Text>
           </View>
-        </View>
+          <Ionicons name="chevron-forward" size={18} color="#cbd5e1" />
+        </Pressable>
       </View>
 
       <Text className="mt-8 text-center text-xl font-bold text-slate-900">French Syllabus</Text>
@@ -380,7 +410,7 @@ export default function HomeScreen() {
       </Text>
 
       <Pressable
-        onPress={() => rootNav?.navigate('TefPrepHub')}
+        onPress={() => navigateRoot('TefPrepHub')}
         className="mt-6 rounded-2xl border-2 border-red-200 bg-red-50 p-4 active:opacity-90"
       >
         <View className="flex-row items-center gap-3">
@@ -623,11 +653,53 @@ export default function HomeScreen() {
         </View>
       </View>
 
-      {/* Daily vocab + TTS */}
+      {/* Word of the day (level from Account) */}
+      <View className="mt-4 rounded-2xl border border-indigo-200 bg-indigo-50/90 p-4 shadow-sm">
+        <View className="flex-row items-center justify-between gap-2">
+          <Text className="font-sans text-xs font-bold uppercase tracking-widest text-indigo-800">
+            Mot du jour · {studyLevel}
+          </Text>
+          <Pressable
+            onPress={() => tabNav.navigate('Account')}
+            hitSlop={12}
+            accessibilityRole="button"
+            accessibilityLabel="Open account and word of the day settings"
+            className="rounded-lg px-2 py-2 active:bg-indigo-100/80"
+          >
+            <Text className="font-sans text-xs font-semibold text-indigo-700">Account</Text>
+          </Pressable>
+        </View>
+        <Text className="font-display mt-2 text-3xl font-bold text-slate-900">{wordOfDay.fr}</Text>
+        <Text className="font-sans mt-1 text-sm text-slate-700">{wordOfDay.en}</Text>
+        <Pressable
+          onPress={() => {
+            void (async () => {
+              if (!isFrenchCloudTtsConfigured()) {
+                Alert.alert('Écoute', FRENCH_CLOUD_TTS_SETUP_HINT)
+                return
+              }
+              await stopFrenchExpoTts()
+              try {
+                await speakFrenchListening(wordOfDay.fr, 'fr-FR')
+              } catch (e) {
+                Alert.alert('Écoute', e instanceof Error ? e.message : String(e))
+              }
+            })()
+          }}
+          className="mt-3 self-start rounded-xl bg-indigo-600 px-4 py-2 active:bg-indigo-700"
+        >
+          <Text className="font-sans-bold text-sm text-white">Listen</Text>
+        </Pressable>
+        <Text className="font-sans mt-2 text-xs text-slate-600">
+          Daily push: enable in Account. Same level picks the notification word.
+        </Text>
+      </View>
+
+      {/* Extra vocab + TTS */}
       <View className="mt-4 rounded-2xl border border-slate-200 bg-white p-3 shadow-sm">
-        <Text className="text-base font-bold text-slate-900">Daily vocab</Text>
+        <Text className="text-base font-bold text-slate-900">More practice words</Text>
         <Text className="mt-1 text-sm text-slate-500">
-          Écoute = voix API (OpenAI). Définissez EXPO_PUBLIC_API_BASE_URL vers french-scorer-api.
+          Same level ({studyLevel}). Écoute = voix API — EXPO_PUBLIC_API_BASE_URL.
         </Text>
         <View className="mt-3 gap-2">
           {dailyVocab.map((word) => (

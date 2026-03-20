@@ -1,13 +1,13 @@
 import { useMemo, useState } from 'react'
 import { Pressable, ScrollView, Text, View } from 'react-native'
 import { useNavigation } from '@react-navigation/native'
-import type { NativeStackNavigationProp } from '@react-navigation/native-stack'
 import type { BottomTabNavigationProp } from '@react-navigation/bottom-tabs'
 import { Ionicons } from '@expo/vector-icons'
 import WeakAreasCard from '../components/WeakAreasCard'
 import { CURRICULUM_MODULES, type CEFRLevel } from '../lib/curriculum'
 import { useTabScreenBottomPadding } from '../lib/screenPadding'
-import type { MainTabParamList, RootStackParamList } from '../navigation/AppNavigator'
+import type { MainTabParamList } from '../navigation/AppNavigator'
+import { navigateRoot } from '../navigation/rootNavigation'
 
 const LEVEL_FILTER: { label: string; value: CEFRLevel | 'all' }[] = [
   { label: 'All', value: 'all' },
@@ -23,7 +23,6 @@ const TOPIC_PREVIEW = 3
  */
 export default function SyllabusScreen() {
   const navigation = useNavigation<BottomTabNavigationProp<MainTabParamList, 'Syllabus'>>()
-  const rootNav = navigation.getParent<NativeStackNavigationProp<RootStackParamList>>()
   const scrollBottomPad = useTabScreenBottomPadding(28)
   const [filter, setFilter] = useState<CEFRLevel | 'all'>('all')
 
@@ -39,7 +38,7 @@ export default function SyllabusScreen() {
       keyboardShouldPersistTaps="handled"
     >
       <Pressable
-        onPress={() => rootNav?.navigate('TefPrepHub')}
+        onPress={() => navigateRoot('TefPrepHub')}
         className="mb-4 rounded-2xl border border-red-200 bg-red-50 px-4 py-3 active:bg-red-100"
       >
         <View className="flex-row items-center justify-between gap-2">
@@ -101,7 +100,7 @@ export default function SyllabusScreen() {
           return (
             <Pressable
               key={m.id}
-              onPress={() => rootNav?.navigate('UnitOverviewScreen', { moduleId: m.id })}
+              onPress={() => navigateRoot('UnitOverviewScreen', { moduleId: m.id })}
               className="rounded-3xl border border-slate-200 bg-white p-4 shadow-sm active:bg-slate-50"
             >
               <View className="flex-row items-center justify-between gap-2">

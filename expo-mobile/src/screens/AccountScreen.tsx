@@ -21,6 +21,7 @@ import {
 } from '../services/cloudProgress'
 import { loadRecentScores, saveRecentScores } from '../lib/history'
 import { useTabScreenBottomPadding } from '../lib/screenPadding'
+import WordOfDaySettingsCard from '../components/WordOfDaySettingsCard'
 
 export default function AccountScreen() {
   const { user, loading, configured, signInWithEmail, signUpWithEmail, signInWithGoogle, signOut } = useAuth()
@@ -90,7 +91,11 @@ export default function AccountScreen() {
 
   if (!configured) {
     return (
-      <ScrollView className="flex-1 bg-[#f8f9fb]" contentContainerStyle={{ padding: 16, paddingBottom: bottomPad }}>
+      <ScrollView
+        className="flex-1 bg-[#f8f9fb]"
+        contentContainerStyle={{ padding: 16, paddingBottom: bottomPad }}
+        keyboardShouldPersistTaps="handled"
+      >
         <Text className="font-display text-xl text-slate-900">Account</Text>
         <Text className="font-sans mt-2 text-sm text-slate-600">
           Add <Text className="font-mono">EXPO_PUBLIC_SUPABASE_URL</Text> and{' '}
@@ -111,7 +116,11 @@ export default function AccountScreen() {
 
   if (user) {
     return (
-      <ScrollView className="flex-1 bg-[#f8f9fb]" contentContainerStyle={{ padding: 16, paddingBottom: bottomPad }}>
+      <ScrollView
+        className="flex-1 bg-[#f8f9fb]"
+        contentContainerStyle={{ padding: 16, paddingBottom: bottomPad }}
+        keyboardShouldPersistTaps="handled"
+      >
         <Text className="font-display text-3xl text-slate-900">Bienvenue</Text>
         <Text className="font-sans mt-2 text-sm text-slate-600">Cloud sync and credentials.</Text>
         <Text className="font-sans-semibold mt-4 text-slate-800">{user.email}</Text>
@@ -120,6 +129,8 @@ export default function AccountScreen() {
         </Text>
 
         {syncMsg ? <Text className="font-sans-semibold mt-3 text-sm text-emerald-700">{syncMsg}</Text> : null}
+
+        <WordOfDaySettingsCard userId={user.id} />
 
         <View className="mt-6 rounded-[1.5rem] border border-slate-200 bg-white p-5 shadow-sm">
           <View className="flex-row items-center gap-3">
@@ -186,7 +197,10 @@ export default function AccountScreen() {
       className="flex-1 bg-[#f8f9fb]"
       style={{ flex: 1 }}
     >
-      <ScrollView contentContainerStyle={{ padding: 16, paddingBottom: bottomPad }}>
+      <ScrollView
+        contentContainerStyle={{ padding: 16, paddingBottom: bottomPad }}
+        keyboardShouldPersistTaps="handled"
+      >
         <Text className="font-display text-3xl text-slate-900">Bienvenue</Text>
         <Text className="font-sans mt-2 text-sm leading-5 text-slate-600">
           Continue your journey toward French mastery in our digital atelier.
@@ -238,7 +252,19 @@ export default function AccountScreen() {
           />
           <View className="mt-4 flex-row items-center justify-between">
             <Text className="font-sans text-[10px] font-bold uppercase tracking-widest text-slate-500">Password</Text>
-            <Text className="font-sans-bold text-xs text-[#4f46e5]">Forgot?</Text>
+            <Pressable
+              onPress={() =>
+                Alert.alert(
+                  'Reset password',
+                  'Use the “Forgot password” link on your Supabase project’s hosted auth page, or add a password reset flow in the app. If you use email sign-in, check your project’s Authentication → Email templates for the reset link.',
+                )
+              }
+              hitSlop={8}
+              accessibilityRole="button"
+              accessibilityLabel="Password reset help"
+            >
+              <Text className="font-sans-bold text-xs text-[#4f46e5]">Forgot?</Text>
+            </Pressable>
           </View>
           <TextInput
             value={password}
@@ -274,6 +300,8 @@ export default function AccountScreen() {
             <Text className="font-sans-bold text-slate-800">Continue with Google</Text>
           </Pressable>
         </View>
+
+        <WordOfDaySettingsCard />
 
         <View className="mt-8 rounded-[1.5rem] border border-slate-200 bg-slate-100/80 p-5">
           <Text className="font-sans text-[10px] font-bold uppercase tracking-widest text-slate-500">Preview</Text>
