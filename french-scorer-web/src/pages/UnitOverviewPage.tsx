@@ -77,7 +77,7 @@ export default function UnitOverviewPage() {
           </p>
           <div className="mt-4 h-3 w-full overflow-hidden rounded-full bg-slate-200">
             <div
-              className="h-full rounded-full bg-gradient-to-r from-blue-600 to-indigo-500 transition-[width] duration-500"
+              className="h-full rounded-full bg-[var(--atelier-navy-deep)] transition-[width] duration-500"
               style={{ width: `${progress.percent}%` }}
             />
           </div>
@@ -123,7 +123,7 @@ export default function UnitOverviewPage() {
                 key={lesson.id}
                 className={[
                   'flex flex-col gap-4 rounded-2xl border bg-white p-4 shadow-sm sm:flex-row sm:items-center sm:justify-between',
-                  isActive ? 'border-blue-400 ring-2 ring-blue-100' : 'border-slate-200',
+                  isActive ? 'border-sky-400 ring-2 ring-sky-100' : 'border-slate-200',
                   isLocked || isSoon ? 'opacity-70' : '',
                 ].join(' ')}
               >
@@ -134,7 +134,7 @@ export default function UnitOverviewPage() {
                         <CheckCircle2 size={22} />
                       </div>
                     ) : isActive ? (
-                      <div className="flex h-10 w-10 items-center justify-center rounded-full bg-blue-100 text-blue-600">
+                      <div className="flex h-10 w-10 items-center justify-center rounded-full bg-sky-100 text-[var(--atelier-navy-deep)]">
                         <PlayCircle size={22} />
                       </div>
                     ) : (

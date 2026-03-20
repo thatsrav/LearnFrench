@@ -1,4 +1,4 @@
-import { ArrowRight, BookOpen, Flame, Headphones, Mic, Pencil, Sparkles, Star } from 'lucide-react'
+import { ArrowRight, BookOpen, Headphones, Medal, Mic, Pencil, Users } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import { TEF_A1_UNIT_COUNT } from '../lib/tefPrepFetch'
 
@@ -15,126 +15,171 @@ const UNIT_BLURBS: Record<number, string> = {
   10: 'Full-length review and confidence checklist.',
 }
 
-const SKILLS_ROW = [
-  { icon: BookOpen, title: 'Reading', sub: 'Compréhension écrite', to: '/tef-prep/a1/1/reading' },
-  { icon: Pencil, title: 'Writing', sub: 'Expression écrite', to: '/tef-prep/a1/1/writing' },
-  { icon: Headphones, title: 'Listening', sub: 'Compréhension orale', to: '/tef-prep/a1/1/listening' },
-  { icon: Mic, title: 'Speaking', sub: 'Expression orale', to: '/tef-prep/a1/1/speaking' },
-] as const
+const READING_LINK = '/tef-prep/a1/1/reading'
+const LISTENING_LINK = '/tef-prep/a1/1/listening'
+const WRITING_LINK = '/tef-prep/a1/1/writing'
+const SPEAKING_LINK = '/tef-prep/a1/1/speaking'
 
 export default function TefPrepHubPage() {
   return (
-    <div className="space-y-12 pb-8">
-      <div className="flex flex-col gap-8 lg:flex-row lg:items-start lg:justify-between">
-        <div className="max-w-2xl">
-          <p className="text-xs font-bold uppercase tracking-[0.2em] text-red-700">TEF Canada</p>
-          <h1 className="font-display mt-2 text-4xl font-bold tracking-tight text-slate-900 md:text-5xl">Mastering Proficiency.</h1>
-          <p className="mt-4 text-base leading-relaxed text-slate-600">
-            This is the main exam-prep track: structured A1 skill rooms for reading, writing, listening, and speaking. Pair it
-            with{' '}
-            <Link to="/syllabus" className="font-semibold text-indigo-700 underline-offset-2 hover:underline">
-              study units
-            </Link>{' '}
-            for the full curriculum path. Listening uses our extended catalog for six-question TEF-style practice.
-          </p>
-        </div>
-        <div className="flex flex-wrap gap-4">
-          <div className="rounded-2xl border border-slate-200 bg-white px-5 py-4 shadow-sm">
-            <div className="flex items-center gap-2 text-violet-600">
-              <Flame className="h-5 w-5" />
-              <span className="text-xs font-bold uppercase text-slate-500">Streak</span>
-            </div>
-            <p className="mt-1 text-2xl font-black text-slate-900">12</p>
-          </div>
-          <div className="rounded-2xl border border-slate-200 bg-white px-5 py-4 shadow-sm">
-            <p className="text-xs font-bold uppercase text-slate-500">Days to exam</p>
-            <p className="mt-1 text-2xl font-black text-slate-900">45</p>
-          </div>
-        </div>
-      </div>
-
-      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-        {SKILLS_ROW.map(({ icon: Icon, title, sub, to }) => (
-          <Link
-            key={title}
-            to={to}
-            className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition hover:border-blue-200 hover:shadow-md"
-          >
-            <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-blue-50 text-[#2563eb]">
-              <Icon className="h-5 w-5" />
-            </div>
-            <p className="mt-4 font-display text-lg font-bold text-slate-900">{title}</p>
-            <p className="mt-1 text-sm capitalize text-slate-500">{sub}</p>
+    <div className="space-y-10 pb-8">
+      <header className="max-w-3xl">
+        <p className="text-xs font-bold uppercase tracking-[0.2em] text-[var(--atelier-navy-deep)]">TEF Canada · Academic pathway</p>
+        <h1 className="font-display mt-3 text-3xl font-bold leading-tight tracking-tight text-[var(--atelier-navy-deep)] md:text-4xl lg:text-[2.75rem]">
+          Excellence through <em className="not-italic text-sky-700">Academic Discipline.</em>
+        </h1>
+        <p className="mt-4 text-base leading-relaxed text-slate-600">
+          Welcome to the Prep Atelier. Select a skill room to begin high-stakes simulation — reading, writing, listening, and
+          speaking — then deepen with{' '}
+          <Link to="/syllabus" className="font-semibold text-[var(--fl-blue)] underline-offset-2 hover:underline">
+            syllabus units
           </Link>
-        ))}
+          .
+        </p>
+      </header>
+
+      <div className="grid gap-5 md:grid-cols-2">
+        <Link
+          to={READING_LINK}
+          className="group flex flex-col rounded-2xl border border-slate-200/90 bg-white p-6 shadow-sm transition hover:border-sky-200 hover:shadow-md"
+        >
+          <div className="flex items-center justify-between gap-3">
+            <span className="rounded-full bg-violet-100 px-3 py-1 text-[10px] font-bold uppercase tracking-wide text-violet-800">
+              Compréhension écrite
+            </span>
+            <BookOpen className="h-6 w-6 text-[var(--atelier-navy-deep)] opacity-80" />
+          </div>
+          <h2 className="font-display mt-5 text-xl font-bold text-[var(--atelier-navy-deep)]">Reading room</h2>
+          <p className="mt-2 flex-1 text-sm leading-relaxed text-slate-600">
+            Exam-style texts and questions — build speed and inference under time pressure.
+          </p>
+          <p className="mt-4 text-xs font-semibold text-slate-500">Sample track · Unit 1</p>
+          <span className="mt-6 inline-flex w-fit items-center gap-2 rounded-xl bg-[var(--atelier-navy-deep)] px-5 py-3 text-sm font-bold text-white transition group-hover:bg-[#001438]">
+            Start practice <ArrowRight className="h-4 w-4" />
+          </span>
+        </Link>
+
+        <Link
+          to={LISTENING_LINK}
+          className="group flex flex-col rounded-2xl border border-slate-200/90 bg-white p-6 shadow-sm transition hover:border-sky-200 hover:shadow-md"
+        >
+          <div className="flex items-center justify-between">
+            <Headphones className="h-8 w-8 text-[var(--atelier-navy-deep)]" />
+          </div>
+          <h2 className="font-display mt-5 text-xl font-bold text-[var(--atelier-navy-deep)]">Listening room</h2>
+          <p className="mt-2 flex-1 text-sm leading-relaxed text-slate-600">
+            Simulate real-world audio with TEF-style six-question sets and instant feedback.
+          </p>
+          <p className="mt-4 text-xs font-semibold text-slate-500">Activities · extended catalog</p>
+          <span className="mt-6 text-sm font-bold text-[var(--fl-blue)] group-hover:underline">Start practice →</span>
+        </Link>
+
+        <Link
+          to={WRITING_LINK}
+          className="group flex flex-col rounded-2xl border border-slate-200/60 bg-slate-100/80 p-6 shadow-sm transition hover:border-slate-300 hover:bg-slate-100"
+        >
+          <Pencil className="h-8 w-8 text-slate-600" />
+          <h2 className="font-display mt-5 text-xl font-bold text-[var(--atelier-navy-deep)]">Writing room</h2>
+          <p className="mt-2 flex-1 text-sm leading-relaxed text-slate-600">
+            Section A & B formats with AI-assisted structural analysis and grammar feedback.
+          </p>
+          <p className="mt-4 text-xs font-semibold text-slate-500">12+ activity templates</p>
+          <span className="mt-6 inline-flex w-fit rounded-xl border-2 border-white bg-white px-5 py-3 text-sm font-bold text-[var(--atelier-navy-deep)] shadow-sm transition group-hover:bg-slate-50">
+            Start practice
+          </span>
+        </Link>
+
+        <Link
+          to={SPEAKING_LINK}
+          className="group relative flex flex-col overflow-hidden rounded-2xl bg-[var(--atelier-navy-deep)] p-6 text-white shadow-xl shadow-slate-900/20"
+        >
+          <div className="absolute -right-6 -top-6 h-32 w-32 rounded-full bg-white/5" />
+          <Mic className="relative h-8 w-8 text-sky-200" />
+          <h2 className="font-display relative mt-5 text-xl font-bold">Speaking lab</h2>
+          <p className="relative mt-2 flex-1 text-sm leading-relaxed text-white/85">
+            Record Section A & B-style responses. Scoring aligns with TEF descriptors (where enabled).
+          </p>
+          <div className="relative mt-4 flex items-center gap-2 text-xs text-white/70">
+            <div className="flex -space-x-2">
+              {[0, 1, 2].map((i) => (
+                <span key={i} className="inline-flex h-7 w-7 items-center justify-center rounded-full border-2 border-[var(--atelier-navy-deep)] bg-sky-400/90 text-[10px] font-bold text-[var(--atelier-navy-deep)]">
+                  {String.fromCharCode(65 + i)}
+                </span>
+              ))}
+            </div>
+            <span className="font-semibold">+42 atelier learners</span>
+          </div>
+          <span className="relative mt-6 inline-flex w-full items-center justify-center rounded-xl bg-sky-200 py-3.5 text-sm font-bold text-[var(--atelier-navy-deep)] transition group-hover:bg-white">
+            Enter lab
+          </span>
+        </Link>
       </div>
 
-      <div>
-        <div className="mb-6 flex items-center gap-3">
-          <span className="h-1 w-10 rounded-full bg-[#2563eb]" />
-          <h2 className="font-display text-2xl font-bold text-slate-900">Preparation Pathway</h2>
+      <div className="flex flex-col gap-6 rounded-2xl border border-slate-200/80 bg-slate-100/60 px-6 py-5 md:flex-row md:items-center md:justify-between">
+        <div className="flex items-start gap-4">
+          <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-amber-100 text-amber-700">
+            <Medal className="h-6 w-6" />
+          </div>
+          <div>
+            <p className="text-sm font-bold text-[var(--atelier-navy-deep)]">Target score: CLB 9</p>
+            <p className="text-xs text-slate-600">Based on your recent speaking & writing mocks (illustrative).</p>
+          </div>
+        </div>
+        <div className="flex flex-wrap gap-8 text-sm">
+          <div>
+            <p className="text-[10px] font-bold uppercase tracking-widest text-slate-500">Mocks taken</p>
+            <p className="mt-1 font-display text-xl font-bold text-[var(--atelier-navy-deep)]">08</p>
+          </div>
+          <div>
+            <p className="text-[10px] font-bold uppercase tracking-widest text-slate-500">Total hours</p>
+            <p className="mt-1 font-display text-xl font-bold text-[var(--atelier-navy-deep)]">124h</p>
+          </div>
+          <div>
+            <p className="text-[10px] font-bold uppercase tracking-widest text-slate-500">Accuracy</p>
+            <p className="mt-1 font-display text-xl font-bold text-[var(--atelier-navy-deep)]">82%</p>
+          </div>
+        </div>
+      </div>
+
+      <section>
+        <div className="mb-5 flex items-center gap-3">
+          <span className="h-1 w-10 rounded-full bg-[var(--atelier-navy-deep)]" />
+          <h2 className="font-display text-xl font-bold text-[var(--atelier-navy-deep)]">Unit pathway · A1</h2>
         </div>
         <ul className="space-y-3">
           {Array.from({ length: TEF_A1_UNIT_COUNT }, (_, i) => i + 1).map((unit) => (
             <li key={unit}>
               <Link
                 to={`/tef-prep/a1/${unit}`}
-                className="flex flex-col gap-4 rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition hover:border-red-100 hover:bg-red-50/30 sm:flex-row sm:items-center sm:justify-between"
+                className="flex flex-col gap-4 rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition hover:border-sky-200/80 hover:shadow-md sm:flex-row sm:items-center sm:justify-between"
               >
                 <div className="flex items-start gap-4">
                   <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full border-2 border-slate-200 bg-slate-50 text-sm font-black text-slate-700">
                     {String(unit).padStart(2, '0')}
                   </span>
                   <div>
-                    <p className="font-display text-lg font-bold text-slate-900">
-                      Unité {unit} — TEF A1 foundations
-                    </p>
-                    <p className="mt-1 max-w-xl text-sm text-slate-600">
-                      {UNIT_BLURBS[unit] ?? 'Skill-room practice for this unit.'}
-                    </p>
+                    <p className="font-display text-lg font-bold text-slate-900">Unité {unit} — TEF A1</p>
+                    <p className="mt-1 max-w-xl text-sm text-slate-600">{UNIT_BLURBS[unit] ?? 'Skill-room practice.'}</p>
                   </div>
                 </div>
-                <span className="inline-flex items-center gap-1 text-sm font-bold text-red-700 sm:shrink-0">
-                  Ouvrir <ArrowRight className="h-4 w-4" />
+                <span className="inline-flex items-center gap-1 text-sm font-bold text-[var(--fl-blue)] sm:shrink-0">
+                  Open <ArrowRight className="h-4 w-4" />
                 </span>
               </Link>
             </li>
           ))}
         </ul>
-      </div>
+      </section>
 
-      <div className="grid gap-6 lg:grid-cols-2">
-        <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-slate-900 via-slate-800 to-indigo-950 p-8 text-white shadow-xl">
-          <Sparkles className="h-8 w-8 text-indigo-300" />
-          <p className="mt-4 text-xs font-bold uppercase tracking-widest text-white/70">AI score prediction</p>
-          <p className="font-display mt-2 text-2xl font-bold">Need a benchmark?</p>
-          <p className="mt-2 max-w-sm text-sm leading-relaxed text-white/80">
-            Paste French writing for CEFR-style scoring and breakdowns — a useful complement to TEF prep.
+      <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
+        <div className="flex flex-wrap items-center gap-3">
+          <Users className="h-5 w-5 text-slate-400" />
+          <p className="text-sm text-slate-600">
+            Need a writing benchmark?{' '}
+            <Link to="/scorer" className="font-bold text-[var(--atelier-navy-deep)] underline-offset-2 hover:underline">
+              Open AI Scorer
+            </Link>
           </p>
-          <Link
-            to="/scorer"
-            className="mt-6 inline-flex rounded-full bg-white px-6 py-2.5 text-sm font-bold text-slate-900 hover:bg-slate-100"
-          >
-            Try AI Scorer
-          </Link>
-        </div>
-        <div className="rounded-2xl border border-slate-200 bg-white p-8 shadow-sm">
-          <div className="flex gap-1 text-red-500">
-            {Array.from({ length: 5 }).map((_, i) => (
-              <Star key={i} className="h-5 w-5 fill-current" />
-            ))}
-          </div>
-          <p className="font-display mt-4 text-xl font-bold text-slate-900">&ldquo;The best preparation tool I used.&rdquo;</p>
-          <p className="mt-3 text-sm leading-relaxed text-slate-600">
-            Structured units plus listening practice that feels like the real exam — I moved from CLB 5 to CLB 9 with daily use.
-          </p>
-          <div className="mt-6 flex items-center gap-3">
-            <div className="h-10 w-10 rounded-full bg-slate-200" />
-            <div>
-              <p className="text-sm font-bold text-slate-900">Marc-André V.</p>
-              <p className="text-xs font-semibold uppercase tracking-wide text-emerald-700">Successfully immigrated</p>
-            </div>
-          </div>
         </div>
       </div>
     </div>

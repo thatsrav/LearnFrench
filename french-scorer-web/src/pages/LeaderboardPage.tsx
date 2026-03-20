@@ -25,9 +25,10 @@ export default function LeaderboardPage() {
   }, [scores])
 
   return (
-    <section className="rounded-2xl border border-slate-200/70 bg-white p-5 shadow-sm">
-      <h2 className="text-xl font-semibold text-slate-900">Leaderboard</h2>
-      <p className="mt-1 text-sm text-slate-500">Your best writing scores and performance summary.</p>
+    <section className="rounded-2xl border border-slate-200/70 bg-white p-6 shadow-sm md:p-8">
+      <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-slate-500">Academic scores</p>
+      <h2 className="font-display mt-2 text-2xl font-bold text-[var(--atelier-navy-deep)]">Leaderboard</h2>
+      <p className="mt-2 text-sm text-slate-600">Your best AI writing scores on this device.</p>
 
       <div className="mt-4 grid grid-cols-1 gap-3 md:grid-cols-3">
         <div className="rounded-xl border border-slate-200 bg-slate-50 p-3">

@@ -1,4 +1,4 @@
-import { Bot, Flame, Lightbulb, Mic, Sparkles, Type } from 'lucide-react'
+import { Bot, CheckCircle2, Download, Info, Mic, Sparkles, Type, TrendingUp, AlertTriangle } from 'lucide-react'
 import { useMemo, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useAuth } from '../contexts/AuthContext'
@@ -65,12 +65,16 @@ function computeDailyStreak(scores: StoredScore[]): number {
   return streak
 }
 
+const TONE_OPTIONS = ['Formal Academic', 'Professional', 'Creative'] as const
+
 export default function AIScorerPage() {
   const { user } = useAuth()
   const [inputMode, setInputMode] = useState<'text' | 'voice'>('text')
   const [text, setText] = useState('')
   const [provider, setProvider] = useState<ScoreProvider>('auto')
   const [c1Essay, setC1Essay] = useState(false)
+  const [examType, setExamType] = useState('DELF / DALF Standard')
+  const [tone, setTone] = useState<(typeof TONE_OPTIONS)[number]>('Formal Academic')
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
   const [result, setResult] = useState<FrenchScore | null>(null)
@@ -78,6 +82,7 @@ export default function AIScorerPage() {
   const [recentScores, setRecentScores] = useState<StoredScore[]>(() => loadRecentScores())
 
   const canSubmit = useMemo(() => text.trim().length > 0 && !loading && inputMode === 'text', [text, loading, inputMode])
+  const wordCount = useMemo(() => (text.trim() ? text.trim().split(/\s+/).filter(Boolean).length : 0), [text])
 
   const apiBase =
     (import.meta.env.VITE_API_BASE_URL as string | undefined)?.trim() ||
@@ -157,59 +162,71 @@ export default function AIScorerPage() {
     }))
   }, [chartData])
 
+  const structuralPct = result
+    ? Math.round((result.grammar + result.vocabulary + result.fluency) / 3)
+    : 0
+
   return (
-    <div className="space-y-10">
-      <div className="rounded-2xl border border-slate-200 bg-slate-50/90 px-4 py-3 text-sm leading-relaxed text-slate-700 md:px-5">
-        <span className="font-semibold text-slate-900">Main study:</span>{' '}
-        <Link to="/tef-prep" className="font-semibold text-red-700 underline-offset-2 hover:underline">
+    <div className="space-y-8 pb-6">
+      <p className="text-xs text-slate-500">
+        <span className="font-semibold text-[var(--atelier-navy-deep)]">Study first:</span>{' '}
+        <Link to="/tef-prep" className="font-semibold text-sky-800 underline-offset-2 hover:underline">
           TEF Prep
         </Link>
         {' · '}
-        <Link to="/syllabus" className="font-semibold text-indigo-700 underline-offset-2 hover:underline">
-          Study units
+        <Link to="/syllabus" className="font-semibold text-[var(--fl-blue)] underline-offset-2 hover:underline">
+          Syllabus
         </Link>
-        <span className="text-slate-600">
-          {' '}
-          — this page is optional feedback on drafts, not the primary course.
-        </span>
-      </div>
+        <span className="text-slate-500"> — optional draft feedback.</span>
+      </p>
 
-      <div className="max-w-3xl">
-        <p className="text-xs font-bold uppercase tracking-[0.2em] text-violet-600">Writing lab · optional</p>
-        <h1 className="font-display mt-3 text-4xl font-bold tracking-tight text-slate-900 md:text-[2.75rem]">
-          AI feedback on French text
-        </h1>
-        <p className="mt-4 text-base leading-relaxed text-slate-600">
-          Paste an essay or paragraph when you want a second pass: syntax, vocabulary, and a CEFR-style readout. Use it
-          alongside your TEF prep and unit lessons.
+      {/* Hero */}
+      <div className="relative overflow-hidden rounded-2xl bg-[var(--atelier-navy-deep)] px-8 py-10 text-white shadow-xl md:px-12 md:py-12">
+        <div className="absolute -right-4 top-1/2 hidden -translate-y-1/2 md:block">
+          <div className="flex h-36 w-36 items-center justify-center rounded-full border border-white/20 bg-white/10">
+            <Bot className="h-16 w-16 text-sky-200" strokeWidth={1.25} />
+          </div>
+        </div>
+        <p className="text-[10px] font-bold uppercase tracking-[0.25em] text-sky-200/90">L-AI Core</p>
+        <h1 className="font-display mt-3 max-w-xl text-3xl font-bold leading-tight md:text-4xl">The Academic Scorer</h1>
+        <p className="mt-4 max-w-xl text-sm leading-relaxed text-white/85">
+          Multi-dimensional evaluation: proficiency banding, grammar & syntax, lexical range, and structural coherence — aligned
+          with academic French descriptors.
         </p>
       </div>
 
-      <div className="grid gap-8 lg:grid-cols-5">
-        <div className="space-y-6 lg:col-span-3">
-          <div className="rounded-[1.75rem] border border-slate-200/90 bg-white p-6 shadow-sm">
-            <div className="flex gap-2 rounded-2xl bg-slate-100 p-1.5">
+      <div className="grid gap-8 xl:grid-cols-3">
+        <div className="space-y-6 xl:col-span-2">
+          <div className="rounded-2xl border border-slate-200/90 bg-white p-6 shadow-sm md:p-8">
+            <div className="flex flex-wrap items-start justify-between gap-3">
+              <h2 className="font-display text-lg font-bold text-[var(--atelier-navy-deep)]">Composition input</h2>
+              <span className="rounded-full bg-slate-100 px-3 py-1 text-[10px] font-bold uppercase tracking-wide text-slate-600">
+                Target: B2 upper intermediate
+              </span>
+            </div>
+
+            <div className="mt-4 flex gap-2 rounded-xl bg-slate-100 p-1">
               <button
                 type="button"
                 onClick={() => setInputMode('text')}
                 className={[
-                  'flex flex-1 items-center justify-center gap-2 rounded-xl py-2.5 text-sm font-bold transition',
-                  inputMode === 'text' ? 'bg-white text-[#2563eb] shadow-sm' : 'text-slate-500 hover:text-slate-800',
+                  'flex flex-1 items-center justify-center gap-2 rounded-lg py-2.5 text-sm font-bold transition',
+                  inputMode === 'text' ? 'bg-white text-[var(--atelier-navy-deep)] shadow-sm' : 'text-slate-500',
                 ].join(' ')}
               >
                 <Type className="h-4 w-4" />
-                Text input
+                Text
               </button>
               <button
                 type="button"
                 onClick={() => setInputMode('voice')}
                 className={[
-                  'flex flex-1 items-center justify-center gap-2 rounded-xl py-2.5 text-sm font-bold transition',
-                  inputMode === 'voice' ? 'bg-white text-[#2563eb] shadow-sm' : 'text-slate-500 hover:text-slate-800',
+                  'flex flex-1 items-center justify-center gap-2 rounded-lg py-2.5 text-sm font-bold transition',
+                  inputMode === 'voice' ? 'bg-white text-[var(--atelier-navy-deep)] shadow-sm' : 'text-slate-500',
                 ].join(' ')}
               >
                 <Mic className="h-4 w-4" />
-                Voice input
+                Voice (demo)
               </button>
             </div>
 
@@ -217,15 +234,15 @@ export default function AIScorerPage() {
               <textarea
                 value={text}
                 onChange={(e) => setText(e.target.value)}
-                rows={12}
-                placeholder="Saisissez votre texte ici pour analyse… (min. quelques phrases)"
+                rows={14}
+                placeholder="Collez votre composition en français…"
                 disabled={loading}
-                className="mt-5 w-full resize-y rounded-2xl border border-slate-200 bg-slate-50 p-5 text-sm text-slate-900 shadow-inner outline-none transition focus:border-indigo-400 focus:ring-1 focus:ring-indigo-100"
+                className="mt-5 w-full resize-y rounded-2xl border border-slate-200 bg-slate-50 p-5 text-sm text-slate-900 shadow-inner outline-none transition focus:border-sky-300 focus:bg-white focus:ring-2 focus:ring-sky-100"
               />
             ) : (
-              <div className="mt-4 rounded-2xl border border-dashed border-slate-300 bg-slate-50 p-10 text-center text-sm text-slate-500">
-                <Bot className="mx-auto mb-3 text-slate-400" size={36} />
-                Voice capture is a UI placeholder — use <strong>Text input</strong> for real AI grading.
+              <div className="mt-5 rounded-2xl border border-dashed border-slate-300 bg-slate-50 p-10 text-center text-sm text-slate-500">
+                <Bot className="mx-auto mb-2 h-10 w-10 text-slate-400" />
+                Voice capture is a placeholder — use <strong>Text</strong> for live scoring.
               </div>
             )}
 
@@ -235,9 +252,9 @@ export default function AIScorerPage() {
                 value={provider}
                 onChange={(e) => setProvider(e.target.value as ScoreProvider)}
                 disabled={loading}
-                className="rounded-xl border border-slate-200 bg-white px-4 py-2.5 text-sm font-medium text-slate-800 outline-none focus:border-indigo-500"
+                className="rounded-xl border border-slate-200 bg-white px-4 py-2.5 text-sm font-medium text-slate-800 outline-none focus:border-sky-400"
               >
-                <option value="auto">Luminous routing (Auto)</option>
+                <option value="auto">Auto routing</option>
                 <option value="gemini">Gemini</option>
                 <option value="groq">Groq</option>
                 <option value="openai">OpenAI</option>
@@ -245,188 +262,277 @@ export default function AIScorerPage() {
               </select>
               <label className="flex cursor-pointer items-center gap-2 rounded-xl border border-slate-200 bg-slate-50 px-3 py-2 text-sm text-slate-700">
                 <input type="checkbox" checked={c1Essay} onChange={(e) => setC1Essay(e.target.checked)} disabled={loading} />
-                Route for C1 / academic scoring
+                C1 essay routing
               </label>
             </div>
 
-            <button
-              type="button"
-              onClick={() => void onScore()}
-              disabled={!canSubmit}
-              className={[
-                'mt-6 flex w-full items-center justify-center gap-2 rounded-2xl py-4 text-sm font-bold text-white shadow-lg shadow-indigo-500/25 transition',
-                canSubmit
-                  ? 'bg-gradient-to-r from-[#6366f1] via-violet-600 to-[#4f46e5] hover:opacity-95'
-                  : 'cursor-not-allowed bg-slate-300',
-              ].join(' ')}
-            >
-              <Sparkles size={18} />
-              Analyze my French
-            </button>
+            <div className="mt-6 flex justify-end">
+              <button
+                type="button"
+                onClick={() => void onScore()}
+                disabled={!canSubmit}
+                className={[
+                  'inline-flex items-center gap-2 rounded-xl px-8 py-3.5 text-sm font-bold text-white shadow-lg transition',
+                  canSubmit ? 'bg-[var(--atelier-navy-deep)] hover:bg-[#001438]' : 'cursor-not-allowed bg-slate-300',
+                ].join(' ')}
+              >
+                <Sparkles size={18} />
+                Score my text
+              </button>
+            </div>
 
-            {error && (
+            {error ? (
               <div className="mt-4 rounded-xl border border-rose-200 bg-rose-50 p-3 text-sm text-rose-800">
                 <span className="font-semibold">Error:</span> {error}
               </div>
-            )}
+            ) : null}
           </div>
 
-          {loading && (
+          {loading ? (
             <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
-              <p className="text-sm font-semibold text-slate-700">Analyzing with AI…</p>
+              <p className="text-sm font-semibold text-slate-700">Evaluating with L-AI Core…</p>
               <div className="mt-4 animate-pulse space-y-3">
-                <div className="h-10 rounded-lg bg-gradient-to-r from-indigo-100 to-violet-100" />
+                <div className="h-10 rounded-lg bg-slate-200" />
                 <div className="h-3 w-4/5 rounded bg-slate-200" />
-                <div className="h-3 w-3/5 rounded bg-slate-200" />
               </div>
             </div>
-          )}
+          ) : null}
 
-          {!loading && result && (
-            <div className="rounded-[1.75rem] border border-slate-200 bg-white p-6 shadow-sm">
-              <div className="grid gap-6 md:grid-cols-2">
-                <div>
-                  <h4 className="text-xs font-bold uppercase text-emerald-700">Strengths</h4>
-                  <ul className="mt-2 list-inside list-disc space-y-1 text-sm text-slate-700">
-                    {result.strengths.map((s, i) => (
-                      <li key={i}>{s}</li>
-                    ))}
-                  </ul>
-                </div>
-                <div>
-                  <h4 className="text-xs font-bold uppercase text-amber-800">Suggestions</h4>
-                  <ul className="mt-2 list-inside list-disc space-y-1 text-sm text-slate-700">
-                    {result.improvements.map((s, i) => (
-                      <li key={i}>{s}</li>
-                    ))}
-                  </ul>
-                </div>
-              </div>
-              {result.corrected_version ? (
-                <div className="mt-6 rounded-2xl border border-indigo-100 bg-indigo-50/40 p-5">
-                  <h4 className="text-xs font-bold uppercase text-indigo-800">Corrected version</h4>
-                  <p className="mt-2 text-sm leading-relaxed text-slate-800">{result.corrected_version}</p>
-                </div>
-              ) : null}
-            </div>
-          )}
-        </div>
-
-        <div className="space-y-5 lg:col-span-2">
-          <div className="rounded-[1.5rem] border border-amber-100 bg-[#fffbeb] p-5 shadow-sm ring-1 ring-amber-100">
-            <div className="flex items-center justify-between gap-3">
-              <div className="flex items-center gap-2">
-                <Flame className="h-6 w-6 text-amber-600" />
-                <div>
-                  <p className="text-[10px] font-bold uppercase tracking-widest text-amber-800/80">Learning streak</p>
-                  <p className="text-xl font-black text-amber-950">{streak} jours</p>
-                </div>
-              </div>
-              <span className="rounded-full bg-amber-200/80 px-3 py-1 text-xs font-bold text-amber-950">+50 XP</span>
-            </div>
-            <p className="mt-2 text-xs text-amber-900/70">Basé sur l’historique des scores sur cet appareil.</p>
-          </div>
-
-          <div className="overflow-hidden rounded-[1.75rem] border border-slate-200 bg-white shadow-sm">
-            <div className="bg-gradient-to-br from-[#6366f1] via-violet-600 to-[#4f46e5] p-6 text-white">
-              <p className="text-[10px] font-bold uppercase tracking-widest text-white/80">Latest analysis</p>
-              {result ? (
-                <>
-                  <div className="mt-2 flex flex-wrap items-end justify-between gap-4">
-                    <div>
-                      <p className="text-5xl font-black tracking-tight">{result.score}</p>
-                      <p className="text-sm font-medium text-white/80">/ 100</p>
-                    </div>
-                    <span className="rounded-full bg-white px-4 py-1.5 text-xs font-bold text-[#2563eb] shadow-sm">
-                      CEFR {result.cecr}
-                    </span>
-                  </div>
+          {!loading && result ? (
+            <>
+              <div className="grid gap-5 md:grid-cols-2">
+                <div className="rounded-2xl bg-[var(--atelier-navy-deep)] p-6 text-white shadow-lg md:col-span-1">
+                  <p className="text-[10px] font-bold uppercase tracking-widest text-white/60">Overall proficiency</p>
+                  <p className="font-display mt-3 text-4xl font-bold">{result.cecr || '—'}</p>
+                  <p className="mt-2 text-sm text-white/80">Holistic band from your latest submission.</p>
+                  <p className="mt-4 text-xs leading-relaxed text-white/70">
+                    Score {result.score}/100 — grammar, lexis, and discourse weighted per provider rubric.
+                  </p>
                   {resultProvider ? (
-                    <p className="mt-2 text-xs text-white/70">via {resultProvider}</p>
-                  ) : null}
-                </>
-              ) : (
-                <p className="mt-4 text-sm text-white/85">Analysez un texte pour voir score et niveau ici.</p>
-              )}
-            </div>
-            <div className="space-y-5 p-6">
-              {result ? (
-                <>
-                  <p className="text-[10px] font-bold uppercase tracking-widest text-slate-500">Skill breakdown</p>
-                  <div className="space-y-4">
-                    <div>
-                      <div className="mb-1 flex justify-between text-sm font-semibold text-slate-800">
-                        <span>Grammar & syntax</span>
-                        <span>{Math.round(result.grammar)}%</span>
-                      </div>
-                      <div className="h-2.5 overflow-hidden rounded-full bg-slate-100">
-                        <div className="h-full rounded-full bg-[#2563eb]" style={{ width: `${result.grammar}%` }} />
-                      </div>
-                    </div>
-                    <div>
-                      <div className="mb-1 flex justify-between text-sm font-semibold text-slate-800">
-                        <span>Vocabulary range</span>
-                        <span>{Math.round(result.vocabulary)}%</span>
-                      </div>
-                      <div className="h-2.5 overflow-hidden rounded-full bg-slate-100">
-                        <div className="h-full rounded-full bg-[#6366f1]" style={{ width: `${result.vocabulary}%` }} />
-                      </div>
-                    </div>
-                    <div>
-                      <div className="mb-1 flex justify-between text-sm font-semibold text-slate-800">
-                        <span>Pronunciation (voice)</span>
-                        <span>{Math.round(result.pronunciation)}%</span>
-                      </div>
-                      <div className="h-2.5 overflow-hidden rounded-full bg-slate-100">
-                        <div className="h-full rounded-full bg-fuchsia-400" style={{ width: `${result.pronunciation}%` }} />
-                      </div>
-                    </div>
-                    <div>
-                      <div className="mb-1 flex justify-between text-sm font-semibold text-slate-800">
-                        <span>Fluency</span>
-                        <span>{Math.round(result.fluency)}%</span>
-                      </div>
-                      <div className="h-2.5 overflow-hidden rounded-full bg-slate-100">
-                        <div className="h-full rounded-full bg-violet-400" style={{ width: `${result.fluency}%` }} />
-                      </div>
-                    </div>
-                  </div>
-                </>
-              ) : (
-                <p className="text-sm text-slate-500">Votre dernière analyse apparaîtra ici.</p>
-              )}
-
-              <div>
-                <p className="text-[10px] font-bold uppercase tracking-widest text-slate-500">Score history</p>
-                <div className="mt-3 h-40">
-                  {chartData.length === 0 ? (
-                    <div className="flex h-full items-center justify-center rounded-xl bg-slate-50 text-xs text-slate-500">
-                      Aucun score pour le graphique
-                    </div>
+                    <p className="mt-3 text-[10px] font-semibold uppercase tracking-wide text-sky-200/90">
+                      Validated by {resultProvider}
+                    </p>
                   ) : (
-                    <ResponsiveContainer width="100%" height="100%">
-                      <BarChart data={barChartData} margin={{ top: 4, right: 4, left: -18, bottom: 0 }}>
-                        <CartesianGrid stroke="#f1f5f9" vertical={false} />
-                        <XAxis dataKey="day" tick={{ fontSize: 9 }} tickLine={false} axisLine={false} />
-                        <YAxis domain={[0, 100]} hide />
-                        <Tooltip />
-                        <Bar dataKey="score" radius={[6, 6, 0, 0]} fill="#6366f1" />
-                      </BarChart>
-                    </ResponsiveContainer>
+                    <p className="mt-3 text-[10px] font-semibold uppercase tracking-wide text-sky-200/90">L-AI Core</p>
                   )}
                 </div>
+
+                <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
+                  <h3 className="text-sm font-bold text-[var(--atelier-navy-deep)]">Grammar & syntax</h3>
+                  <div className="mt-3 h-2 overflow-hidden rounded-full bg-slate-100">
+                    <div className="h-full rounded-full bg-[var(--fl-blue)]" style={{ width: `${result.grammar}%` }} />
+                  </div>
+                  <p className="mt-2 text-right text-xs font-bold text-slate-600">{Math.round(result.grammar)}%</p>
+                  <ul className="mt-4 space-y-2 text-sm text-slate-700">
+                    {result.strengths.slice(0, 2).map((s, i) => (
+                      <li key={i} className="flex gap-2">
+                        <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-emerald-600" />
+                        {s}
+                      </li>
+                    ))}
+                    {result.improvements[0] ? (
+                      <li className="flex gap-2 text-amber-900">
+                        <AlertTriangle className="mt-0.5 h-4 w-4 shrink-0 text-amber-600" />
+                        {result.improvements[0]}
+                      </li>
+                    ) : null}
+                  </ul>
+                </div>
+
+                <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
+                  <h3 className="text-sm font-bold text-[var(--atelier-navy-deep)]">Lexical range</h3>
+                  <div className="mt-3 h-2 overflow-hidden rounded-full bg-slate-100">
+                    <div className="h-full rounded-full bg-sky-500" style={{ width: `${result.vocabulary}%` }} />
+                  </div>
+                  <p className="mt-2 text-right text-xs font-bold text-slate-600">{Math.round(result.vocabulary)}%</p>
+                  <ul className="mt-4 space-y-2 text-sm text-slate-700">
+                    {result.strengths.slice(2, 4).map((s, i) => (
+                      <li key={i} className="flex gap-2">
+                        <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-emerald-600" />
+                        {s}
+                      </li>
+                    ))}
+                    {result.improvements[1] ? (
+                      <li className="flex gap-2 text-sky-900">
+                        <Info className="mt-0.5 h-4 w-4 shrink-0 text-sky-600" />
+                        {result.improvements[1]}
+                      </li>
+                    ) : null}
+                  </ul>
+                </div>
+
+                <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
+                  <h3 className="text-sm font-bold text-[var(--atelier-navy-deep)]">Structural coherence</h3>
+                  <p className="mt-2 text-sm leading-relaxed text-slate-600">
+                    Argument flow and paragraphing inferred from fluency & grammar signals in this pass.
+                  </p>
+                  <div className="relative mx-auto mt-4 h-[7.5rem] w-[7.5rem]">
+                    <svg className="h-full w-full -rotate-90" viewBox="0 0 100 100" aria-hidden>
+                      <circle cx="50" cy="50" r="42" fill="none" stroke="#fecaca" strokeWidth="10" />
+                      <circle
+                        cx="50"
+                        cy="50"
+                        r="42"
+                        fill="none"
+                        stroke="#7f1d1d"
+                        strokeWidth="10"
+                        strokeLinecap="round"
+                        strokeDasharray={`${(264 * structuralPct) / 100} 264`}
+                      />
+                    </svg>
+                    <span className="absolute inset-0 flex items-center justify-center font-display text-xl font-bold text-[#7f1d1d]">
+                      {structuralPct}%
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+              <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
+                <div className="flex flex-wrap items-center justify-between gap-3">
+                  <h3 className="font-display text-lg font-bold text-[var(--atelier-navy-deep)]">
+                    Granular corrections (
+                    {Math.min(4, result.improvements.length || (result.corrected_version ? 1 : 0))} highlighted)
+                  </h3>
+                  <button
+                    type="button"
+                    className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wide text-[var(--fl-blue)] hover:underline"
+                    onClick={() => {
+                      const blob = new Blob(
+                        [result.corrected_version || result.improvements.join('\n')],
+                        { type: 'text/plain' },
+                      )
+                      const a = document.createElement('a')
+                      a.href = URL.createObjectURL(blob)
+                      a.download = 'frenchlearn-feedback.txt'
+                      a.click()
+                    }}
+                  >
+                    <Download className="h-4 w-4" />
+                    Export feedback
+                  </button>
+                </div>
+                <ul className="mt-6 space-y-4">
+                  {(result.improvements.length
+                    ? result.improvements.slice(0, 4)
+                    : ['Review agreement and tense consistency.']
+                  ).map((imp, i) => (
+                      <li
+                        key={i}
+                        className="grid gap-3 rounded-xl border border-slate-100 bg-slate-50/80 p-4 md:grid-cols-[auto_1fr_1fr]"
+                      >
+                        <span className="flex h-8 w-8 items-center justify-center rounded-full bg-[var(--atelier-navy-deep)] text-xs font-bold text-white">
+                          {i + 1}
+                        </span>
+                        <div>
+                          <p className="text-[10px] font-bold uppercase tracking-wide text-slate-500">Original context</p>
+                          <p className="mt-1 text-sm text-rose-800 line-clamp-3">{text.trim().slice(0, 120) || '—'}…</p>
+                        </div>
+                        <div>
+                          <p className="text-[10px] font-bold uppercase tracking-wide text-slate-500">Suggestion</p>
+                          <p className="mt-1 text-sm font-medium text-[var(--fl-blue)]">{imp}</p>
+                          <span className="mt-2 inline-block rounded-md bg-slate-200/80 px-2 py-0.5 text-[10px] font-bold uppercase text-slate-600">
+                            Enhancement
+                          </span>
+                        </div>
+                      </li>
+                    ))}
+                </ul>
+                {result.corrected_version ? (
+                  <div className="mt-6 rounded-xl border border-sky-100 bg-sky-50/50 p-4">
+                    <p className="text-[10px] font-bold uppercase text-sky-900">Full corrected version</p>
+                    <p className="mt-2 text-sm leading-relaxed text-slate-800">{result.corrected_version}</p>
+                  </div>
+                ) : null}
+              </div>
+            </>
+          ) : null}
+        </div>
+
+        {/* Context column */}
+        <div className="space-y-5">
+          <div className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
+            <label className="text-[10px] font-bold uppercase tracking-widest text-slate-500">Exam type</label>
+            <select
+              value={examType}
+              onChange={(e) => setExamType(e.target.value)}
+              className="mt-2 w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm font-semibold text-slate-800 outline-none focus:border-sky-300"
+            >
+              <option>DELF / DALF Standard</option>
+              <option>TEF Canada (writing focus)</option>
+              <option>Academic placement</option>
+            </select>
+            <p className="mt-2 text-xs text-slate-500">UI context only — API uses provider + optional C1 flag.</p>
+          </div>
+
+          <div className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
+            <p className="text-[10px] font-bold uppercase tracking-widest text-slate-500">Desired tone</p>
+            <div className="mt-3 flex flex-wrap gap-2">
+              {TONE_OPTIONS.map((t) => (
+                <button
+                  key={t}
+                  type="button"
+                  onClick={() => setTone(t)}
+                  className={[
+                    'rounded-full px-4 py-2 text-xs font-bold transition',
+                    tone === t
+                      ? 'bg-[var(--atelier-navy-deep)] text-white'
+                      : 'bg-slate-100 text-slate-600 hover:bg-slate-200',
+                  ].join(' ')}
+                >
+                  {t}
+                </button>
+              ))}
+            </div>
+          </div>
+
+          <div className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
+            <p className="text-[10px] font-bold uppercase tracking-widest text-slate-500">Quick insights</p>
+            <div className="mt-4 grid grid-cols-2 gap-3">
+              <div className="rounded-xl bg-slate-50 py-4 text-center">
+                <p className="font-display text-2xl font-bold text-[var(--atelier-navy-deep)]">{wordCount}</p>
+                <p className="text-[10px] font-bold uppercase text-slate-500">Words</p>
+              </div>
+              <div className="rounded-xl bg-slate-50 py-4 text-center">
+                <p className="font-display text-2xl font-bold text-[var(--atelier-navy-deep)]">
+                  {result ? result.improvements.length : 0}
+                </p>
+                <p className="text-[10px] font-bold uppercase text-slate-500">Focus points</p>
               </div>
             </div>
           </div>
 
-          <div className="flex gap-3 rounded-2xl border border-slate-200 bg-slate-50/80 p-4">
-            <Lightbulb className="mt-0.5 h-5 w-5 shrink-0 text-indigo-500" />
-            <p className="text-sm leading-relaxed text-slate-600">
-              Astuce : utiliser le <strong className="text-slate-800">subjonctif</strong> plus souvent dans vos essais vous
-              rapproche du territoire C1.
-            </p>
+          <div className="rounded-2xl border border-amber-100 bg-amber-50/80 p-5 shadow-sm">
+            <div className="flex items-center gap-2">
+              <TrendingUp className="h-5 w-5 text-amber-600" />
+              <p className="text-[10px] font-bold uppercase tracking-widest text-amber-900/80">Streak</p>
+            </div>
+            <p className="mt-2 font-display text-2xl font-bold text-amber-950">{streak} days</p>
+            <p className="mt-1 text-xs text-amber-900/70">From scores on this device.</p>
           </div>
 
+          <div className="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm">
+            <div className="bg-[var(--atelier-navy-deep)] p-5 text-white">
+              <p className="text-[10px] font-bold uppercase tracking-widest text-white/60">History</p>
+              {result ? (
+                <p className="mt-2 font-display text-3xl font-bold">{result.score}</p>
+              ) : (
+                <p className="mt-2 text-sm text-white/75">Run a score to populate.</p>
+              )}
+            </div>
+            <div className="p-4">
+              <div className="h-36">
+                <ResponsiveContainer width="100%" height="100%">
+                  <BarChart data={barChartData} margin={{ top: 4, right: 4, left: -18, bottom: 0 }}>
+                    <CartesianGrid stroke="#f1f5f9" vertical={false} />
+                    <XAxis dataKey="day" tick={{ fontSize: 9 }} tickLine={false} axisLine={false} />
+                    <YAxis domain={[0, 100]} hide />
+                    <Tooltip />
+                    <Bar dataKey="score" radius={[6, 6, 0, 0]} fill="var(--atelier-navy-deep)" />
+                  </BarChart>
+                </ResponsiveContainer>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>

@@ -1,84 +1,228 @@
-import { BookOpen, Bot, Flag, Home, Trophy, User } from 'lucide-react'
-import { NavLink, Outlet } from 'react-router-dom'
+import {
+  Bell,
+  BookOpen,
+  Bot,
+  GraduationCap,
+  Menu,
+  Search,
+  TrendingUp,
+  Trophy,
+  User,
+  X,
+} from 'lucide-react'
+import { useMemo, useState } from 'react'
+import { NavLink, Outlet, Link, useLocation } from 'react-router-dom'
 import AppFooter from './AppFooter'
 
-const navLinkClass = ({ isActive }: { isActive: boolean }) =>
+const RECENT_SCORES_KEY = 'french_scorer_recent_scores_v1'
+
+function readLastCefr(): string {
+  try {
+    const raw = localStorage.getItem(RECENT_SCORES_KEY)
+    const parsed = raw ? (JSON.parse(raw) as unknown) : []
+    if (!Array.isArray(parsed) || parsed.length === 0) return 'B2'
+    const last = parsed[parsed.length - 1] as { cecr?: string }
+    const c = String(last?.cecr ?? '').trim()
+    return c || 'B2'
+  } catch {
+    return 'B2'
+  }
+}
+
+function breadcrumbForPath(pathname: string): string {
+  if (pathname.startsWith('/tef-prep')) return 'TEF Canada Academic Pathway'
+  if (pathname.startsWith('/scorer')) return 'Dashboard / AI Scorer'
+  if (pathname.startsWith('/syllabus')) return 'Dashboard / Syllabus Atelier'
+  if (pathname.startsWith('/account')) return 'Account'
+  if (pathname.startsWith('/leaderboard')) return 'Dashboard / Scores'
+  if (pathname.startsWith('/unit/')) return 'Syllabus / Module overview'
+  if (pathname.startsWith('/lesson/')) return 'Syllabus / Lesson'
+  return 'Dashboard'
+}
+
+function SidebarFooter({ pathname }: { pathname: string }) {
+  if (pathname.startsWith('/tef-prep')) {
+    return (
+      <div className="rounded-2xl border border-white/10 bg-white/[0.06] p-4">
+        <p className="text-[10px] font-bold uppercase tracking-[0.15em] text-sky-300/90">Exam countdown</p>
+        <p className="mt-2 font-display text-2xl font-bold text-white">14</p>
+        <p className="text-xs font-medium text-white/55">Days to TEF</p>
+        <div className="mt-3 h-1.5 overflow-hidden rounded-full bg-white/10">
+          <div className="h-full w-[62%] rounded-full bg-sky-400" />
+        </div>
+      </div>
+    )
+  }
+  if (pathname.startsWith('/scorer')) {
+    return (
+      <div className="rounded-2xl border border-white/10 bg-[#071428] p-4">
+        <p className="text-[10px] font-bold uppercase tracking-[0.15em] text-white/60">Pro plan</p>
+        <p className="mt-1 text-sm font-semibold text-white">Active</p>
+        <div className="mt-3 h-1.5 overflow-hidden rounded-full bg-white/10">
+          <div className="h-full w-[75%] rounded-full bg-emerald-400" />
+        </div>
+        <p className="mt-2 text-xs text-white/50">750 / 1000 AI credits</p>
+      </div>
+    )
+  }
+  const level = readLastCefr()
+  return (
+    <div className="rounded-2xl border border-white/10 bg-gradient-to-br from-[#152a52] to-[#0a1628] p-4">
+      <p className="text-[10px] font-bold uppercase tracking-[0.15em] text-white/55">Academic status</p>
+      <p className="mt-2 font-display text-lg font-bold text-white">
+        {level} · Scholar track
+      </p>
+      <p className="mt-1 text-xs leading-relaxed text-white/45">Inferred from your latest AI scores on this device.</p>
+    </div>
+  )
+}
+
+const navItemClass = ({ isActive }: { isActive: boolean }) =>
   [
-    'inline-flex items-center gap-2 rounded-full px-3 py-2 text-sm font-semibold transition md:px-4',
+    'relative flex items-center gap-3 rounded-xl px-3 py-3 pl-4 text-sm font-semibold transition',
     isActive
-      ? 'bg-[#2563eb] text-white shadow-md shadow-blue-600/20'
-      : 'text-slate-600 hover:bg-slate-100 hover:text-slate-900',
+      ? 'bg-[var(--atelier-accent-soft)] text-white before:absolute before:left-0 before:top-2 before:bottom-2 before:w-1 before:rounded-r-md before:bg-sky-400'
+      : 'text-white/75 hover:bg-white/[0.06] hover:text-white',
   ].join(' ')
 
 export default function AppShell() {
+  const location = useLocation()
+  const [mobileOpen, setMobileOpen] = useState(false)
+  const crumb = useMemo(() => breadcrumbForPath(location.pathname), [location.pathname])
+
+  const closeMobile = () => setMobileOpen(false)
+
   return (
-    <div className="flex min-h-full flex-col bg-[var(--fl-bg)]">
-      <header className="sticky top-0 z-20 border-b border-slate-200/90 bg-white/95 shadow-sm backdrop-blur-md">
-        <div className="mx-auto flex max-w-7xl items-center gap-4 px-4 py-3 md:px-6">
-          <NavLink to="/" className="flex shrink-0 items-center gap-2">
-            <span className="font-display flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-[#2563eb] to-[#4f46e5] text-lg font-bold text-white shadow-md">
-              F
-            </span>
-            <span className="hidden text-lg font-bold tracking-tight text-slate-900 sm:inline">FrenchLearn</span>
-          </NavLink>
+    <div className="flex min-h-full bg-[var(--atelier-surface)]">
+      {/* Mobile overlay */}
+      {mobileOpen ? (
+        <button
+          type="button"
+          aria-label="Close menu"
+          className="fixed inset-0 z-40 bg-slate-900/50 lg:hidden"
+          onClick={closeMobile}
+        />
+      ) : null}
 
-          <nav className="mx-auto hidden flex-1 flex-wrap items-center justify-center gap-0.5 md:flex lg:gap-1">
-            <NavLink to="/" end className={navLinkClass}>
-              <Home size={17} />
-              <span>Home</span>
-            </NavLink>
-            <NavLink to="/tef-prep" className={navLinkClass}>
-              <Flag size={17} />
-              <span>TEF Prep</span>
-            </NavLink>
-            <NavLink to="/syllabus" className={navLinkClass}>
-              <BookOpen size={17} />
-              <span>Study units</span>
-            </NavLink>
-            <NavLink to="/leaderboard" className={navLinkClass}>
-              <Trophy size={17} />
-              <span>Scores</span>
-            </NavLink>
-            <NavLink to="/scorer" className={navLinkClass}>
-              <Bot size={17} />
-              <span>AI Scorer</span>
-            </NavLink>
-          </nav>
-
-          <div className="ml-auto flex items-center gap-2">
-            <nav className="-mx-1 flex max-w-[58vw] snap-x snap-mandatory gap-0.5 overflow-x-auto pb-0.5 md:hidden">
-              <NavLink to="/" end className={(p) => `${navLinkClass(p)} shrink-0 snap-start px-2.5`}>
-                <Home size={16} />
-              </NavLink>
-              <NavLink to="/tef-prep" className={(p) => `${navLinkClass(p)} shrink-0 snap-start px-2.5`}>
-                <Flag size={16} />
-              </NavLink>
-              <NavLink to="/syllabus" className={(p) => `${navLinkClass(p)} shrink-0 snap-start px-2.5`}>
-                <BookOpen size={16} />
-              </NavLink>
-              <NavLink to="/leaderboard" className={(p) => `${navLinkClass(p)} shrink-0 snap-start px-2.5`}>
-                <Trophy size={16} />
-              </NavLink>
-              <NavLink to="/scorer" className={(p) => `${navLinkClass(p)} shrink-0 snap-start px-2.5`}>
-                <Bot size={16} />
-              </NavLink>
-            </nav>
-            <NavLink
-              to="/account"
-              className="flex h-10 w-10 items-center justify-center rounded-full border border-slate-200 bg-slate-50 text-slate-600 transition hover:border-indigo-200 hover:bg-indigo-50 hover:text-indigo-700"
-              aria-label="Account"
-            >
-              <User size={20} />
-            </NavLink>
-          </div>
+      {/* Sidebar */}
+      <aside
+        className={[
+          'fixed inset-y-0 left-0 z-50 flex w-[min(18rem,88vw)] flex-col border-r border-white/5 bg-[var(--atelier-sidebar)] shadow-2xl transition-transform duration-200 lg:static lg:z-0 lg:w-64 lg:translate-x-0 lg:shadow-none xl:w-72',
+          mobileOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0',
+        ].join(' ')}
+      >
+        <div className="flex items-center justify-between border-b border-white/10 px-5 py-5 lg:block">
+          <Link to="/" onClick={closeMobile} className="block">
+            <p className="font-display text-xl font-bold leading-tight text-white">FrenchLearn</p>
+            <p className="mt-1 text-[10px] font-bold uppercase tracking-[0.2em] text-white/45">The Academic Atelier</p>
+          </Link>
+          <button
+            type="button"
+            className="rounded-lg p-2 text-white/80 hover:bg-white/10 lg:hidden"
+            onClick={closeMobile}
+            aria-label="Close"
+          >
+            <X size={22} />
+          </button>
         </div>
-      </header>
 
-      <main className="mx-auto w-full max-w-7xl flex-1 px-4 py-8 md:px-6 md:py-10">
-        <Outlet />
-      </main>
+        <nav className="flex flex-1 flex-col gap-0.5 overflow-y-auto px-3 py-4">
+          <NavLink to="/syllabus" className={navItemClass} onClick={closeMobile}>
+            <BookOpen size={20} className="shrink-0 opacity-90" />
+            <span>Syllabus</span>
+          </NavLink>
+          <NavLink to="/tef-prep" className={navItemClass} onClick={closeMobile}>
+            <GraduationCap size={20} className="shrink-0 opacity-90" />
+            <span>TEF Prep</span>
+          </NavLink>
+          <NavLink to="/scorer" className={navItemClass} onClick={closeMobile}>
+            <Bot size={20} className="shrink-0 opacity-90" />
+            <span>AI Scorer</span>
+          </NavLink>
+          <NavLink to="/leaderboard" className={navItemClass} onClick={closeMobile}>
+            <Trophy size={20} className="shrink-0 opacity-90" />
+            <span>Scores</span>
+          </NavLink>
+          <NavLink to="/account" className={navItemClass} onClick={closeMobile}>
+            <User size={20} className="shrink-0 opacity-90" />
+            <span>Account</span>
+          </NavLink>
+        </nav>
 
-      <AppFooter />
+        <div className="mt-auto border-t border-white/10 p-4">
+          <SidebarFooter pathname={location.pathname} />
+        </div>
+      </aside>
+
+      {/* Main column */}
+      <div className="flex min-w-0 flex-1 flex-col">
+        <header className="sticky top-0 z-30 border-b border-slate-200/80 bg-white/95 shadow-sm backdrop-blur-md">
+          <div className="flex items-center gap-3 px-4 py-3 md:px-6">
+            <button
+              type="button"
+              className="rounded-xl border border-slate-200 bg-slate-50 p-2.5 text-slate-700 lg:hidden"
+              onClick={() => setMobileOpen(true)}
+              aria-label="Open menu"
+            >
+              <Menu size={20} />
+            </button>
+
+            <p className="hidden min-w-0 truncate text-sm font-semibold text-[var(--atelier-navy-deep)] sm:block md:max-w-[200px] lg:max-w-none">
+              {crumb}
+            </p>
+
+            <div className="mx-auto hidden max-w-xl flex-1 px-4 md:flex">
+              <label className="relative w-full">
+                <Search
+                  className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400"
+                  aria-hidden
+                />
+                <input
+                  type="search"
+                  placeholder="Search modules, grammar rules, or vocabulary…"
+                  className="w-full rounded-full border border-slate-200 bg-slate-50 py-2.5 pl-10 pr-4 text-sm text-slate-800 outline-none transition placeholder:text-slate-400 focus:border-sky-300 focus:bg-white focus:ring-2 focus:ring-sky-100"
+                  readOnly
+                />
+              </label>
+            </div>
+
+            <div className="ml-auto flex items-center gap-1 sm:gap-2">
+              <button
+                type="button"
+                className="hidden rounded-full p-2.5 text-slate-500 hover:bg-slate-100 sm:inline-flex"
+                aria-label="Analytics"
+              >
+                <TrendingUp size={20} />
+              </button>
+              <button
+                type="button"
+                className="hidden rounded-full p-2.5 text-slate-500 hover:bg-slate-100 sm:inline-flex"
+                aria-label="Notifications"
+              >
+                <Bell size={20} />
+              </button>
+              <Link
+                to="/account"
+                className="flex items-center gap-2 rounded-full border border-slate-200 bg-slate-50 py-1 pl-1 pr-3 transition hover:border-sky-200 hover:bg-white"
+              >
+                <span className="flex h-9 w-9 items-center justify-center rounded-full bg-[var(--atelier-navy-deep)] text-xs font-bold text-white">
+                  FL
+                </span>
+                <span className="hidden text-left text-xs leading-tight lg:block">
+                  <span className="block font-bold text-slate-900">Scholar</span>
+                  <span className="text-[10px] font-medium text-slate-500">Academic lead</span>
+                </span>
+              </Link>
+            </div>
+          </div>
+        </header>
+
+        <main className="flex-1 overflow-auto px-4 py-6 md:px-8 md:py-8">
+          <Outlet />
+        </main>
+
+        <AppFooter />
+      </div>
     </div>
   )
 }
