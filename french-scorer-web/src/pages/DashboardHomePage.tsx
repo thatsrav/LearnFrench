@@ -121,6 +121,8 @@ export default function DashboardHomePage() {
 
   return (
     <div className="relative space-y-8 pb-24">
+      <MotDuJourCard />
+
       <header>
         <h1 className="font-display text-3xl font-bold tracking-tight text-[#1A1B4B] md:text-4xl">
           Bienvenue, {name}!
@@ -259,8 +261,6 @@ export default function DashboardHomePage() {
           Quick practice
         </Link>
       </div>
-
-      <MotDuJourCard />
 
       <section className="space-y-3">
         <p className="text-[10px] font-bold uppercase tracking-widest text-slate-500">TEF track pulse</p>

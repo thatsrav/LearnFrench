@@ -205,6 +205,48 @@ export default function HomeScreen() {
       keyboardShouldPersistTaps="handled"
       keyboardDismissMode="on-drag"
     >
+      {/* Mot du jour — top of home (level from Account) */}
+      <View className="mb-4 rounded-2xl border border-indigo-200 bg-indigo-50/90 p-4 shadow-sm">
+        <View className="flex-row items-center justify-between gap-2">
+          <Text className="font-sans text-xs font-bold uppercase tracking-widest text-indigo-800">
+            Mot du jour · {studyLevel}
+          </Text>
+          <Pressable
+            onPress={() => tabNav.navigate('Account')}
+            hitSlop={12}
+            accessibilityRole="button"
+            accessibilityLabel="Open account and word of the day settings"
+            className="rounded-lg px-2 py-2 active:bg-indigo-100/80"
+          >
+            <Text className="font-sans text-xs font-semibold text-indigo-700">Account</Text>
+          </Pressable>
+        </View>
+        <Text className="font-display mt-2 text-3xl font-bold text-slate-900">{wordOfDay.fr}</Text>
+        <Text className="font-sans mt-1 text-sm text-slate-700">{wordOfDay.en}</Text>
+        <Pressable
+          onPress={() => {
+            void (async () => {
+              if (!isFrenchCloudTtsConfigured()) {
+                Alert.alert('Écoute', FRENCH_CLOUD_TTS_SETUP_HINT)
+                return
+              }
+              await stopFrenchExpoTts()
+              try {
+                await speakFrenchListening(wordOfDay.fr, 'fr-FR')
+              } catch (e) {
+                Alert.alert('Écoute', e instanceof Error ? e.message : String(e))
+              }
+            })()
+          }}
+          className="mt-3 self-start rounded-xl bg-indigo-600 px-4 py-2 active:bg-indigo-700"
+        >
+          <Text className="font-sans-bold text-sm text-white">Listen</Text>
+        </Pressable>
+        <Text className="font-sans mt-2 text-xs text-slate-600">
+          Daily push: enable in Account. Same level picks the notification word.
+        </Text>
+      </View>
+
       {/* Hero — Figma: blue → violet gradient, centered */}
       <LinearGradient
         colors={['#1d4ed8', '#4f46e5', '#7c3aed']}
@@ -651,48 +693,6 @@ export default function HomeScreen() {
             <Text className="mt-1 text-2xl font-bold text-amber-900">{streak} days</Text>
           </View>
         </View>
-      </View>
-
-      {/* Word of the day (level from Account) */}
-      <View className="mt-4 rounded-2xl border border-indigo-200 bg-indigo-50/90 p-4 shadow-sm">
-        <View className="flex-row items-center justify-between gap-2">
-          <Text className="font-sans text-xs font-bold uppercase tracking-widest text-indigo-800">
-            Mot du jour · {studyLevel}
-          </Text>
-          <Pressable
-            onPress={() => tabNav.navigate('Account')}
-            hitSlop={12}
-            accessibilityRole="button"
-            accessibilityLabel="Open account and word of the day settings"
-            className="rounded-lg px-2 py-2 active:bg-indigo-100/80"
-          >
-            <Text className="font-sans text-xs font-semibold text-indigo-700">Account</Text>
-          </Pressable>
-        </View>
-        <Text className="font-display mt-2 text-3xl font-bold text-slate-900">{wordOfDay.fr}</Text>
-        <Text className="font-sans mt-1 text-sm text-slate-700">{wordOfDay.en}</Text>
-        <Pressable
-          onPress={() => {
-            void (async () => {
-              if (!isFrenchCloudTtsConfigured()) {
-                Alert.alert('Écoute', FRENCH_CLOUD_TTS_SETUP_HINT)
-                return
-              }
-              await stopFrenchExpoTts()
-              try {
-                await speakFrenchListening(wordOfDay.fr, 'fr-FR')
-              } catch (e) {
-                Alert.alert('Écoute', e instanceof Error ? e.message : String(e))
-              }
-            })()
-          }}
-          className="mt-3 self-start rounded-xl bg-indigo-600 px-4 py-2 active:bg-indigo-700"
-        >
-          <Text className="font-sans-bold text-sm text-white">Listen</Text>
-        </Pressable>
-        <Text className="font-sans mt-2 text-xs text-slate-600">
-          Daily push: enable in Account. Same level picks the notification word.
-        </Text>
       </View>
 
       {/* Extra vocab + TTS */}
