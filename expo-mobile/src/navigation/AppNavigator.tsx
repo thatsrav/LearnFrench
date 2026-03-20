@@ -16,6 +16,7 @@ import AccountScreen from '../screens/AccountScreen'
 import SpacedReviewScreen from '../screens/SpacedReviewScreen'
 import WritingJournalScreen from '../screens/WritingJournalScreen'
 import JournalEntryDetailScreen from '../screens/JournalEntryDetailScreen'
+import AtelierScreen from '../screens/AtelierScreen'
 import type { TefSkill } from '../content/tefPrepA1'
 
 export type RootStackParamList = {
@@ -34,6 +35,7 @@ export type RootStackParamList = {
   TefPrepHub: undefined
   TefPrepUnit: { unit: number }
   TefPrepActivity: { unit: number; skill: TefSkill }
+  GrammarAtelier: undefined
 }
 
 export type MainTabParamList = {
@@ -155,6 +157,17 @@ export default function AppNavigator() {
               ? 'TEF Listening'
               : `${route.params.skill} · U${route.params.unit}`,
         })}
+      />
+      <Stack.Screen
+        name="GrammarAtelier"
+        component={AtelierScreen}
+        options={{
+          title: 'Grammar Atelier',
+          headerStyle: { backgroundColor: '#1e293b' },
+          headerTintColor: '#f8fafc',
+          headerTitleStyle: { color: '#f8fafc', fontWeight: '700' },
+          contentStyle: { backgroundColor: '#e2e8f0' },
+        }}
       />
     </Stack.Navigator>
   )

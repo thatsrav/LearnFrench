@@ -1,15 +1,19 @@
 import {
   Bell,
+  BookMarked,
   BookOpen,
-  Bot,
+  Gamepad2,
   GraduationCap,
+  Headphones,
   HelpCircle,
-  Home,
+  Library,
   LogOut,
   Menu,
+  Mic,
+  PenLine,
   Search,
   Settings,
-  TrendingUp,
+  Sparkles,
   Trophy,
   User,
   X,
@@ -34,77 +38,57 @@ function readLastCefr(): string {
   }
 }
 
-function breadcrumbForPath(pathname: string): string {
-  if (pathname === '/' || pathname === '') return 'Home'
-  if (pathname.startsWith('/tef-prep')) return 'TEF Canada Academic Pathway'
-  if (pathname.startsWith('/scorer')) return 'Dashboard / AI Scorer'
-  if (pathname.startsWith('/syllabus')) return 'Dashboard / Syllabus Atelier'
-  if (pathname.startsWith('/account')) return 'Account'
-  if (pathname.startsWith('/leaderboard')) return 'Dashboard / Scores'
-  if (pathname.startsWith('/unit/')) return 'Syllabus / Module overview'
-  if (pathname.startsWith('/lesson/')) return 'Syllabus / Lesson'
-  return 'Dashboard'
+/** Breadcrumbs left of search (design: Dashboard · Courses · Library) */
+function breadcrumbsForPath(pathname: string): { root: string; mid?: string; leaf?: string } {
+  if (pathname === '/' || pathname === '') return { root: 'Dashboard', mid: 'Courses', leaf: 'Overview' }
+  if (pathname.startsWith('/syllabus')) return { root: 'Dashboard', mid: 'Courses', leaf: 'Library' }
+  if (pathname.startsWith('/reading-room')) return { root: 'Dashboard', mid: 'The Atelier', leaf: 'Reading Room' }
+  if (pathname.startsWith('/writing')) return { root: 'Dashboard', mid: 'The Atelier', leaf: 'Writing Area' }
+  if (pathname.startsWith('/listening')) return { root: 'Dashboard', mid: 'The Atelier', leaf: 'Listening Area' }
+  if (pathname.startsWith('/speaking')) return { root: 'Dashboard', mid: 'The Atelier', leaf: 'Speaking Area' }
+  if (pathname.startsWith('/game')) return { root: 'Dashboard', mid: 'The Atelier', leaf: 'Grammar Games' }
+  if (pathname.startsWith('/tef-prep')) return { root: 'Dashboard', mid: 'TEF Track', leaf: 'Preparation' }
+  if (pathname.startsWith('/scorer')) return { root: 'Dashboard', mid: 'The Atelier', leaf: 'AI Scorer' }
+  if (pathname.startsWith('/leaderboard')) return { root: 'Dashboard', leaf: 'Scores' }
+  if (pathname.startsWith('/account')) return { root: 'Account' }
+  if (pathname.startsWith('/unit/')) return { root: 'Dashboard', mid: 'Courses', leaf: 'Module' }
+  if (pathname.startsWith('/lesson/')) return { root: 'Dashboard', mid: 'Courses', leaf: 'Lesson' }
+  return { root: 'Dashboard' }
 }
 
-function SidebarFooter({ pathname }: { pathname: string }) {
-  if (pathname === '/' || pathname === '') {
-    return (
-      <div className="rounded-2xl border border-white/10 bg-[#1A1B4B] p-4">
-        <p className="text-[10px] font-bold uppercase tracking-[0.15em] text-indigo-200/90">Pro access</p>
-        <p className="mt-2 text-xs leading-relaxed text-white/75">
-          Unlock advanced phonetics and expanded AI feedback.
-        </p>
-        <Link
-          to="/account"
-          className="mt-4 block w-full rounded-xl bg-[#4F46E5] py-2.5 text-center text-xs font-bold text-white shadow-md transition hover:bg-[#4338ca]"
-        >
-          Upgrade to Premium
-        </Link>
-      </div>
-    )
-  }
+function SidebarFooterLight({ pathname }: { pathname: string }) {
   if (pathname.startsWith('/tef-prep')) {
     return (
-      <div className="rounded-2xl border border-white/10 bg-white/[0.06] p-4">
-        <p className="text-[10px] font-bold uppercase tracking-[0.15em] text-sky-300/90">Exam countdown</p>
-        <p className="mt-2 font-display text-2xl font-bold text-white">14</p>
-        <p className="text-xs font-medium text-white/55">Days to TEF</p>
-        <div className="mt-3 h-1.5 overflow-hidden rounded-full bg-white/10">
-          <div className="h-full w-[62%] rounded-full bg-sky-400" />
+      <div className="rounded-2xl border border-slate-200 bg-slate-50 p-4">
+        <p className="text-[10px] font-bold uppercase tracking-[0.15em] text-slate-500">Exam countdown</p>
+        <p className="font-display mt-2 text-2xl font-bold text-[#1e293b]">14</p>
+        <p className="text-xs font-medium text-slate-600">Days to TEF</p>
+        <div className="mt-3 h-1.5 overflow-hidden rounded-full bg-slate-200">
+          <div className="h-full w-[62%] rounded-full bg-indigo-500" />
         </div>
-      </div>
-    )
-  }
-  if (pathname.startsWith('/scorer')) {
-    return (
-      <div className="rounded-2xl border border-white/10 bg-[#071428] p-4">
-        <p className="text-[10px] font-bold uppercase tracking-[0.15em] text-white/60">Pro plan</p>
-        <p className="mt-1 text-sm font-semibold text-white">Active</p>
-        <div className="mt-3 h-1.5 overflow-hidden rounded-full bg-white/10">
-          <div className="h-full w-[75%] rounded-full bg-emerald-400" />
-        </div>
-        <p className="mt-2 text-xs text-white/50">750 / 1000 AI credits</p>
       </div>
     )
   }
   const level = readLastCefr()
   return (
-    <div className="rounded-2xl border border-white/10 bg-gradient-to-br from-[#152a52] to-[#0a1628] p-4">
-      <p className="text-[10px] font-bold uppercase tracking-[0.15em] text-white/55">Academic status</p>
-      <p className="mt-2 font-display text-lg font-bold text-white">
-        {level} · Scholar track
+    <div className="rounded-2xl border border-slate-200 bg-gradient-to-br from-slate-50 to-indigo-50/40 p-4">
+      <p className="text-[10px] font-bold uppercase tracking-[0.15em] text-slate-500">Level</p>
+      <p className="font-display mt-2 text-lg font-bold text-[#1e293b]">
+        {level} · Upper track
       </p>
-      <p className="mt-1 text-xs leading-relaxed text-white/45">Inferred from your latest AI scores on this device.</p>
+      <p className="mt-1 text-xs leading-relaxed text-slate-600">From your latest scores on this device.</p>
     </div>
   )
 }
 
-const navItemClass = ({ isActive }: { isActive: boolean }) =>
+const navy = '#1e293b'
+
+const navClass = ({ isActive }: { isActive: boolean }) =>
   [
-    'relative flex items-center gap-3 rounded-xl px-3 py-3 pl-4 text-sm font-semibold transition',
+    'relative flex items-center gap-3 rounded-xl px-3 py-3 pr-4 text-sm font-semibold transition',
     isActive
-      ? 'bg-[var(--atelier-accent-soft)] text-white before:absolute before:left-0 before:top-2 before:bottom-2 before:w-1 before:rounded-r-md before:bg-sky-400'
-      : 'text-white/75 hover:bg-white/[0.06] hover:text-white',
+      ? 'bg-indigo-50 text-[#1e293b] shadow-sm before:absolute before:right-0 before:top-2 before:bottom-2 before:w-1 before:rounded-l-md before:bg-indigo-600'
+      : 'text-slate-600 hover:bg-slate-100 hover:text-[#1e293b]',
   ].join(' ')
 
 export default function AppShell() {
@@ -112,7 +96,7 @@ export default function AppShell() {
   const navigate = useNavigate()
   const { signOut } = useAuth()
   const [mobileOpen, setMobileOpen] = useState(false)
-  const crumb = useMemo(() => breadcrumbForPath(location.pathname), [location.pathname])
+  const crumbs = useMemo(() => breadcrumbsForPath(location.pathname), [location.pathname])
 
   const closeMobile = () => setMobileOpen(false)
 
@@ -123,32 +107,34 @@ export default function AppShell() {
   }
 
   return (
-    <div className="flex min-h-full bg-[var(--atelier-surface)]">
-      {/* Mobile overlay */}
+    <div className="flex min-h-full bg-[#f1f5f9]">
       {mobileOpen ? (
         <button
           type="button"
           aria-label="Close menu"
-          className="fixed inset-0 z-40 bg-slate-900/50 lg:hidden"
+          className="fixed inset-0 z-40 bg-slate-900/40 lg:hidden"
           onClick={closeMobile}
         />
       ) : null}
 
-      {/* Sidebar */}
       <aside
         className={[
-          'fixed inset-y-0 left-0 z-50 flex w-[min(18rem,88vw)] flex-col border-r border-white/5 bg-[var(--atelier-sidebar)] shadow-2xl transition-transform duration-200 lg:static lg:z-0 lg:w-64 lg:translate-x-0 lg:shadow-none xl:w-72',
+          'fixed inset-y-0 left-0 z-50 flex w-[min(18rem,88vw)] flex-col border-r border-slate-200 bg-white shadow-xl transition-transform duration-200 lg:static lg:z-0 lg:w-64 lg:translate-x-0 lg:shadow-none xl:w-72',
           mobileOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0',
         ].join(' ')}
       >
-        <div className="flex items-center justify-between border-b border-white/10 px-5 py-5 lg:block">
+        <div className="flex items-center justify-between border-b border-slate-100 px-5 py-5">
           <Link to="/" onClick={closeMobile} className="block">
-            <p className="font-display text-xl font-bold leading-tight text-white">FrenchLearn</p>
-            <p className="mt-1 text-[10px] font-bold uppercase tracking-[0.2em] text-white/45">The Academic Atelier</p>
+            <p className="font-display text-xl font-bold italic leading-tight" style={{ color: navy }}>
+              FrenchLearn
+            </p>
+            <p className="mt-1 text-[10px] font-bold uppercase tracking-[0.2em] text-slate-500">
+              The Academic Atelier
+            </p>
           </Link>
           <button
             type="button"
-            className="rounded-lg p-2 text-white/80 hover:bg-white/10 lg:hidden"
+            className="rounded-lg p-2 text-slate-600 hover:bg-slate-100 lg:hidden"
             onClick={closeMobile}
             aria-label="Close"
           >
@@ -156,39 +142,65 @@ export default function AppShell() {
           </button>
         </div>
 
-        <nav className="flex flex-1 flex-col gap-0.5 overflow-y-auto px-3 py-4">
-          <NavLink to="/" end className={navItemClass} onClick={closeMobile}>
-            <Home size={20} className="shrink-0 opacity-90" />
-            <span>Home</span>
+        <p className="px-5 pt-3 text-[10px] font-bold uppercase tracking-widest text-indigo-600">The Atelier</p>
+        <p className="px-5 pb-2 text-[11px] text-slate-500">Level: B2 upper intermediate</p>
+
+        <nav className="flex flex-1 flex-col gap-0.5 overflow-y-auto px-3 py-2">
+          <NavLink to="/" end className={navClass} onClick={closeMobile}>
+            <Library size={20} className="shrink-0 text-indigo-600" />
+            <span>Main Syllabus</span>
           </NavLink>
-          <NavLink to="/syllabus" className={navItemClass} onClick={closeMobile}>
-            <BookOpen size={20} className="shrink-0 opacity-90" />
-            <span>Syllabus</span>
+          <NavLink to="/reading-room" className={navClass} onClick={closeMobile}>
+            <BookOpen size={20} className="shrink-0 text-slate-500" />
+            <span>Reading Room</span>
           </NavLink>
-          <NavLink to="/tef-prep" className={navItemClass} onClick={closeMobile}>
-            <GraduationCap size={20} className="shrink-0 opacity-90" />
+          <NavLink to="/writing" className={navClass} onClick={closeMobile}>
+            <PenLine size={20} className="shrink-0 text-slate-500" />
+            <span>Writing Area</span>
+          </NavLink>
+          <NavLink to="/listening" className={navClass} onClick={closeMobile}>
+            <Headphones size={20} className="shrink-0 text-slate-500" />
+            <span>Listening Area</span>
+          </NavLink>
+          <NavLink to="/speaking" className={navClass} onClick={closeMobile}>
+            <Mic size={20} className="shrink-0 text-slate-500" />
+            <span>Speaking Area</span>
+          </NavLink>
+          <NavLink to="/game" className={navClass} onClick={closeMobile}>
+            <Gamepad2 size={20} className="shrink-0 text-slate-500" />
+            <span>Game</span>
+          </NavLink>
+
+          <div className="my-3 border-t border-slate-100" />
+
+          <NavLink to="/syllabus" className={navClass} onClick={closeMobile}>
+            <BookMarked size={20} className="shrink-0 text-slate-500" />
+            <span>Course library</span>
+          </NavLink>
+          <NavLink to="/tef-prep" className={navClass} onClick={closeMobile}>
+            <GraduationCap size={20} className="shrink-0 text-slate-500" />
             <span>TEF Prep</span>
           </NavLink>
-          <NavLink to="/scorer" className={navItemClass} onClick={closeMobile}>
-            <Bot size={20} className="shrink-0 opacity-90" />
+          <NavLink to="/scorer" className={navClass} onClick={closeMobile}>
+            <Sparkles size={20} className="shrink-0 text-slate-500" />
             <span>AI Scorer</span>
-          </NavLink>
-          <NavLink to="/leaderboard" className={navItemClass} onClick={closeMobile}>
-            <Trophy size={20} className="shrink-0 opacity-90" />
-            <span>Scores</span>
-          </NavLink>
-          <NavLink to="/account" className={navItemClass} onClick={closeMobile}>
-            <User size={20} className="shrink-0 opacity-90" />
-            <span>Account</span>
           </NavLink>
         </nav>
 
-        <div className="mt-auto space-y-3 border-t border-white/10 p-4">
-          <SidebarFooter pathname={location.pathname} />
-          <div className="flex flex-col gap-1 border-t border-white/5 pt-3">
+        <div className="mt-auto space-y-3 border-t border-slate-100 p-4">
+          <Link
+            to="/game"
+            onClick={closeMobile}
+            className="block w-full rounded-2xl py-3.5 text-center text-sm font-bold text-white shadow-md transition hover:opacity-95"
+            style={{ backgroundColor: navy }}
+          >
+            Daily Challenge
+          </Link>
+          <SidebarFooterLight pathname={location.pathname} />
+          <div className="flex flex-col gap-1 border-t border-slate-100 pt-3">
             <Link
               to="/welcome"
-              className="flex items-center gap-2 rounded-lg px-2 py-2 text-xs font-semibold text-white/60 transition hover:bg-white/[0.06] hover:text-white"
+              className="flex items-center gap-2 rounded-lg px-2 py-2 text-xs font-semibold text-slate-600 transition hover:bg-slate-100"
               onClick={closeMobile}
             >
               <HelpCircle size={16} />
@@ -197,7 +209,7 @@ export default function AppShell() {
             <button
               type="button"
               onClick={() => void onLogout()}
-              className="flex w-full items-center gap-2 rounded-lg px-2 py-2 text-left text-xs font-semibold text-white/60 transition hover:bg-white/[0.06] hover:text-white"
+              className="flex w-full items-center gap-2 rounded-lg px-2 py-2 text-left text-xs font-semibold text-slate-600 transition hover:bg-slate-100"
             >
               <LogOut size={16} />
               Log out
@@ -206,10 +218,9 @@ export default function AppShell() {
         </div>
       </aside>
 
-      {/* Main column */}
       <div className="flex min-w-0 flex-1 flex-col">
-        <header className="sticky top-0 z-30 border-b border-slate-200/80 bg-white/95 shadow-sm backdrop-blur-md">
-          <div className="flex items-center gap-3 px-4 py-3 md:px-6">
+        <header className="sticky top-0 z-30 border-b border-slate-200/90 bg-white/95 shadow-sm backdrop-blur-md">
+          <div className="flex flex-wrap items-center gap-3 px-4 py-3 md:px-6">
             <button
               type="button"
               className="rounded-xl border border-slate-200 bg-slate-50 p-2.5 text-slate-700 lg:hidden"
@@ -219,11 +230,23 @@ export default function AppShell() {
               <Menu size={20} />
             </button>
 
-            <p className="hidden min-w-0 truncate text-sm font-semibold text-[var(--atelier-navy-deep)] sm:block md:max-w-[200px] lg:max-w-none">
-              {crumb}
-            </p>
+            <nav className="hidden min-w-0 flex-1 items-center gap-2 text-sm font-medium text-slate-500 sm:flex">
+              <span className="font-semibold text-[#1e293b]">{crumbs.root}</span>
+              {crumbs.mid ? (
+                <>
+                  <span className="text-slate-300">/</span>
+                  <span className={crumbs.leaf ? '' : 'font-semibold text-[#1e293b]'}>{crumbs.mid}</span>
+                </>
+              ) : null}
+              {crumbs.leaf ? (
+                <>
+                  <span className="text-slate-300">/</span>
+                  <span className="font-semibold text-[#1e293b]">{crumbs.leaf}</span>
+                </>
+              ) : null}
+            </nav>
 
-            <div className="mx-auto hidden max-w-xl flex-1 px-4 md:flex">
+            <div className="mx-auto hidden max-w-md flex-1 px-2 md:flex lg:max-w-xl">
               <label className="relative w-full">
                 <Search
                   className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400"
@@ -232,45 +255,39 @@ export default function AppShell() {
                 <input
                   type="search"
                   placeholder="Search lessons, grammar rules…"
-                  className="w-full rounded-full border border-slate-200 bg-slate-50 py-2.5 pl-10 pr-4 text-sm text-slate-800 outline-none transition placeholder:text-slate-400 focus:border-sky-300 focus:bg-white focus:ring-2 focus:ring-sky-100"
+                  className="w-full rounded-full border border-slate-200 bg-slate-50 py-2.5 pl-10 pr-4 text-sm text-slate-800 outline-none transition placeholder:text-slate-400 focus:border-indigo-300 focus:bg-white focus:ring-2 focus:ring-indigo-100"
                   readOnly
                 />
               </label>
             </div>
 
             <div className="ml-auto flex items-center gap-1 sm:gap-2">
-              <button
-                type="button"
-                className="hidden rounded-full p-2.5 text-slate-500 hover:bg-slate-100 sm:inline-flex"
-                aria-label="Analytics"
+              <span className="mr-1 hidden rounded-full border border-indigo-100 bg-indigo-50 px-3 py-1 text-xs font-bold text-indigo-800 md:inline">
+                B1 Intermediate
+              </span>
+              <Link
+                to="/leaderboard"
+                className="rounded-full p-2.5 text-slate-500 hover:bg-slate-100"
+                aria-label="Scores"
               >
-                <TrendingUp size={20} />
-              </button>
-              <button
-                type="button"
-                className="hidden rounded-full p-2.5 text-slate-500 hover:bg-slate-100 sm:inline-flex"
-                aria-label="Notifications"
-              >
+                <Trophy size={20} />
+              </Link>
+              <button type="button" className="rounded-full p-2.5 text-slate-500 hover:bg-slate-100" aria-label="Notifications">
                 <Bell size={20} />
               </button>
               <Link
                 to="/account"
-                className="hidden rounded-full p-2.5 text-slate-500 hover:bg-slate-100 sm:inline-flex"
+                className="rounded-full p-2.5 text-slate-500 hover:bg-slate-100"
                 aria-label="Settings"
               >
                 <Settings size={20} />
               </Link>
               <Link
                 to="/account"
-                className="flex items-center gap-2 rounded-full border border-slate-200 bg-slate-50 py-1 pl-1 pr-3 transition hover:border-sky-200 hover:bg-white"
+                className="flex h-10 w-10 items-center justify-center overflow-hidden rounded-full border-2 border-slate-200 bg-gradient-to-br from-indigo-100 to-slate-100"
+                aria-label="Account"
               >
-                <span className="flex h-9 w-9 items-center justify-center rounded-full bg-[var(--atelier-navy-deep)] text-xs font-bold text-white">
-                  FL
-                </span>
-                <span className="hidden text-left text-xs leading-tight lg:block">
-                  <span className="block font-bold text-slate-900">Scholar</span>
-                  <span className="text-[10px] font-medium text-slate-500">Academic lead</span>
-                </span>
+                <User size={20} className="text-indigo-800" />
               </Link>
             </div>
           </div>

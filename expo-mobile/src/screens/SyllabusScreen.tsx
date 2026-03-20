@@ -53,6 +53,25 @@ export default function SyllabusScreen() {
 
       <WeakAreasCard />
 
+      <Pressable
+        onPress={() => navigateRoot('GrammarAtelier')}
+        className="mb-5 rounded-3xl border border-indigo-200 bg-indigo-50 p-4 shadow-sm active:bg-indigo-100/80"
+      >
+        <View className="flex-row items-center justify-between gap-2">
+          <View className="flex-row items-center gap-3">
+            <View className="h-11 w-11 items-center justify-center rounded-xl bg-[#1e293b]">
+              <Ionicons name="flask" size={22} color="#e0e7ff" />
+            </View>
+            <View className="min-w-0 flex-1">
+              <Text className="text-[10px] font-bold uppercase tracking-widest text-indigo-800">Grammar Atelier</Text>
+              <Text className="text-base font-bold text-slate-900">Interactive lab · B2</Text>
+              <Text className="text-xs text-slate-600">Tense sorting, agreement drills, syntax reordering.</Text>
+            </View>
+          </View>
+          <Ionicons name="chevron-forward" size={20} color="#4338ca" />
+        </View>
+      </Pressable>
+
       {/* AI banner — Figma top card */}
       <View className="mb-5 flex-row items-center gap-3 rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
         <View className="h-11 w-11 items-center justify-center rounded-full bg-violet-100">
