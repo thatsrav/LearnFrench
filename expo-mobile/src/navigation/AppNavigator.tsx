@@ -57,7 +57,7 @@ function MainTabs() {
         headerStyle: { backgroundColor: '#ffffff' },
         headerTitleStyle: { fontWeight: '700', color: '#0f172a' },
         headerTintColor: '#0f172a',
-        tabBarActiveTintColor: '#4f46e5',
+        tabBarActiveTintColor: '#2563eb',
         tabBarInactiveTintColor: '#64748b',
         tabBarLabelStyle: { fontSize: 11, fontWeight: '600' },
         tabBarHideOnKeyboard: true,
@@ -134,10 +134,10 @@ export default function AppNavigator() {
     <NavigationContainer>
       <Stack.Navigator
         screenOptions={{
-          headerStyle: { backgroundColor: '#ffffff' },
-          headerTitleStyle: { fontWeight: '700' },
-          headerTintColor: '#0f172a',
-          contentStyle: { backgroundColor: '#f8fafc' },
+        headerStyle: { backgroundColor: '#ffffff' },
+        headerTitleStyle: { fontWeight: '700', color: '#0f172a' },
+        headerTintColor: '#2563eb',
+          contentStyle: { backgroundColor: '#f8f9fb' },
         }}
       >
         <Stack.Screen name="MainTabs" component={MainTabs} options={{ headerShown: false }} />
@@ -146,13 +146,16 @@ export default function AppNavigator() {
         <Stack.Screen name="JournalEntryDetail" component={JournalEntryDetailScreen} options={{ title: 'Entry' }} />
         <Stack.Screen name="LessonScreen" component={LessonScreen} options={{ title: 'Lesson' }} />
         <Stack.Screen name="SpacedReview" component={SpacedReviewScreen} options={{ title: 'Daily review' }} />
-        <Stack.Screen name="TefPrepHub" component={TefPrepHubScreen} options={{ title: 'TEF Canada Prep' }} />
+        <Stack.Screen name="TefPrepHub" component={TefPrepHubScreen} options={{ title: 'TEF Prep' }} />
         <Stack.Screen name="TefPrepUnit" component={TefPrepUnitScreen} options={{ title: 'TEF — Unit' }} />
         <Stack.Screen
           name="TefPrepActivity"
           component={TefPrepActivityScreen}
           options={({ route }) => ({
-            title: `${route.params.skill} · U${route.params.unit}`,
+            title:
+              route.params.skill === 'listening'
+                ? 'TEF Listening'
+                : `${route.params.skill} · U${route.params.unit}`,
           })}
         />
       </Stack.Navigator>

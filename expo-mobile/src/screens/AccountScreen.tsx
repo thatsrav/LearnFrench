@@ -90,9 +90,9 @@ export default function AccountScreen() {
 
   if (!configured) {
     return (
-      <ScrollView className="flex-1 bg-slate-50" contentContainerStyle={{ padding: 16, paddingBottom: bottomPad }}>
-        <Text className="text-lg font-bold text-slate-900">Account</Text>
-        <Text className="mt-2 text-sm text-slate-600">
+      <ScrollView className="flex-1 bg-[#f8f9fb]" contentContainerStyle={{ padding: 16, paddingBottom: bottomPad }}>
+        <Text className="font-display text-xl text-slate-900">Account</Text>
+        <Text className="font-sans mt-2 text-sm text-slate-600">
           Add <Text className="font-mono">EXPO_PUBLIC_SUPABASE_URL</Text> and{' '}
           <Text className="font-mono">EXPO_PUBLIC_SUPABASE_ANON_KEY</Text> to your .env, then restart Metro with{' '}
           <Text className="font-mono">npx expo start --clear</Text>.
@@ -103,7 +103,7 @@ export default function AccountScreen() {
 
   if (loading) {
     return (
-      <View className="flex-1 items-center justify-center bg-slate-50">
+      <View className="flex-1 items-center justify-center bg-[#f8f9fb]">
         <ActivityIndicator size="large" color="#2563eb" />
       </View>
     )
@@ -111,53 +111,69 @@ export default function AccountScreen() {
 
   if (user) {
     return (
-      <ScrollView className="flex-1 bg-slate-50" contentContainerStyle={{ padding: 16, paddingBottom: bottomPad }}>
-        <Text className="text-lg font-bold text-slate-900">Signed in</Text>
-        <Text className="mt-1 text-sm text-slate-600">{user.email}</Text>
-        <Text className="mt-3 text-xs text-slate-500">
-          Lesson progress lives in SQLite on this device. Use the buttons below to back it up or restore from your
-          Supabase account.
+      <ScrollView className="flex-1 bg-[#f8f9fb]" contentContainerStyle={{ padding: 16, paddingBottom: bottomPad }}>
+        <Text className="font-display text-3xl text-slate-900">Bienvenue</Text>
+        <Text className="font-sans mt-2 text-sm text-slate-600">Cloud sync and credentials.</Text>
+        <Text className="font-sans-semibold mt-4 text-slate-800">{user.email}</Text>
+        <Text className="font-sans mt-2 text-xs leading-5 text-slate-500">
+          Lesson progress lives in SQLite on this device. Use the buttons below to back up or restore from Supabase.
         </Text>
 
-        {syncMsg ? <Text className="mt-2 text-sm font-semibold text-emerald-700">{syncMsg}</Text> : null}
+        {syncMsg ? <Text className="font-sans-semibold mt-3 text-sm text-emerald-700">{syncMsg}</Text> : null}
 
-        <View className="mt-4 gap-2">
+        <View className="mt-6 rounded-[1.5rem] border border-slate-200 bg-white p-5 shadow-sm">
+          <View className="flex-row items-center gap-3">
+            <View className="h-14 w-14 items-center justify-center rounded-full bg-indigo-100">
+              <Ionicons name="person" size={28} color="#4f46e5" />
+            </View>
+            <View>
+              <Text className="font-display text-lg text-slate-900">Scholar</Text>
+              <Text className="font-sans text-xs text-slate-500">Connected</Text>
+              <View className="mt-1 self-start rounded-full bg-violet-100 px-2 py-0.5">
+                <Text className="font-sans text-[10px] font-bold uppercase text-violet-800">Pro</Text>
+              </View>
+            </View>
+          </View>
+        </View>
+
+        <View className="mt-5 gap-3">
           <Pressable
             disabled={busy}
             onPress={() => void onUploadProgress()}
-            className="rounded-xl bg-blue-600 py-3 active:opacity-90"
+            className="rounded-2xl bg-[#2563eb] py-3.5 active:opacity-90"
           >
-            <Text className="text-center font-bold text-white">Upload lesson progress → cloud</Text>
+            <Text className="text-center font-sans-bold text-white">Upload lesson progress → cloud</Text>
           </Pressable>
           <Pressable
             disabled={busy}
             onPress={() => void onDownloadProgress()}
-            className="rounded-xl border border-blue-600 py-3 active:bg-blue-50"
+            className="rounded-2xl border-2 border-[#2563eb] py-3.5 active:bg-blue-50"
           >
-            <Text className="text-center font-bold text-blue-700">Download cloud → this device</Text>
+            <Text className="text-center font-sans-bold text-[#2563eb]">Download cloud → this device</Text>
           </Pressable>
           <Pressable
             disabled={busy}
             onPress={() => void onUploadScores()}
-            className="rounded-xl bg-indigo-600 py-3 active:opacity-90"
+            className="rounded-2xl bg-[#4f46e5] py-3.5 active:opacity-90"
           >
-            <Text className="text-center font-bold text-white">Upload AI score history → cloud</Text>
+            <Text className="text-center font-sans-bold text-white">Upload AI score history → cloud</Text>
           </Pressable>
           <Pressable
             disabled={busy}
             onPress={() => void onDownloadScores()}
-            className="rounded-xl border border-indigo-600 py-3 active:bg-indigo-50"
+            className="rounded-2xl border-2 border-indigo-600 py-3.5 active:bg-indigo-50"
           >
-            <Text className="text-center font-bold text-indigo-700">Download score history from cloud</Text>
+            <Text className="text-center font-sans-bold text-indigo-700">Download score history from cloud</Text>
           </Pressable>
         </View>
 
         <Pressable
           disabled={busy}
           onPress={() => void signOut()}
-          className="mt-8 rounded-xl border border-slate-300 py-3"
+          className="mt-8 flex-row items-center justify-center gap-2 rounded-2xl border border-slate-200 bg-white py-3.5"
         >
-          <Text className="text-center font-semibold text-slate-800">Sign out</Text>
+          <Ionicons name="log-out-outline" size={20} color="#475569" />
+          <Text className="font-sans-semibold text-slate-800">Sign out</Text>
         </Pressable>
         {busy ? <ActivityIndicator className="mt-4" color="#2563eb" /> : null}
       </ScrollView>
@@ -167,74 +183,108 @@ export default function AccountScreen() {
   return (
     <KeyboardAvoidingView
       behavior={Platform.OS === 'ios' ? 'padding' : undefined}
-      className="flex-1 bg-slate-50"
+      className="flex-1 bg-[#f8f9fb]"
       style={{ flex: 1 }}
     >
       <ScrollView contentContainerStyle={{ padding: 16, paddingBottom: bottomPad }}>
-        <Text className="text-lg font-bold text-slate-900">Account</Text>
-        <Text className="mt-1 text-sm text-slate-600">Sign in to save progress to Supabase (email or Google).</Text>
+        <Text className="font-display text-3xl text-slate-900">Bienvenue</Text>
+        <Text className="font-sans mt-2 text-sm leading-5 text-slate-600">
+          Continue your journey toward French mastery in our digital atelier.
+        </Text>
 
-        <View className="mt-4 flex-row rounded-xl bg-slate-200 p-1">
+        <View className="mt-5 rounded-xl border border-amber-200 bg-amber-50 p-3">
+          <Text className="font-sans text-sm text-amber-950">
+            <Text className="font-sans-bold">Tip:</Text> sign in to sync progress across devices.
+          </Text>
+        </View>
+
+        <View className="mt-6 flex-row rounded-2xl bg-slate-200/90 p-1.5">
           <Pressable
             onPress={() => setMode('signin')}
-            className={['flex-1 rounded-lg py-2', mode === 'signin' ? 'bg-white shadow-sm' : ''].join(' ')}
+            className={['flex-1 rounded-xl py-2.5', mode === 'signin' ? 'bg-white shadow-sm' : ''].join(' ')}
           >
-            <Text className={['text-center text-sm font-semibold', mode === 'signin' ? 'text-slate-900' : 'text-slate-500'].join(' ')}>
+            <Text
+              className={['text-center font-sans-bold text-sm', mode === 'signin' ? 'text-slate-900' : 'text-slate-500'].join(
+                ' ',
+              )}
+            >
               Sign in
             </Text>
           </Pressable>
           <Pressable
             onPress={() => setMode('signup')}
-            className={['flex-1 rounded-lg py-2', mode === 'signup' ? 'bg-white shadow-sm' : ''].join(' ')}
+            className={['flex-1 rounded-xl py-2.5', mode === 'signup' ? 'bg-white shadow-sm' : ''].join(' ')}
           >
-            <Text className={['text-center text-sm font-semibold', mode === 'signup' ? 'text-slate-900' : 'text-slate-500'].join(' ')}>
+            <Text
+              className={['text-center font-sans-bold text-sm', mode === 'signup' ? 'text-slate-900' : 'text-slate-500'].join(
+                ' ',
+              )}
+            >
               Sign up
             </Text>
           </Pressable>
         </View>
 
-        <Text className="mb-1 mt-4 text-xs font-semibold text-slate-500">Email</Text>
-        <TextInput
-          value={email}
-          onChangeText={setEmail}
-          autoCapitalize="none"
-          keyboardType="email-address"
-          placeholder="you@example.com"
-          placeholderTextColor="#94a3b8"
-          className="rounded-xl border border-slate-200 bg-white px-4 py-3 text-slate-900"
-        />
-        <Text className="mb-1 mt-3 text-xs font-semibold text-slate-500">Password</Text>
-        <TextInput
-          value={password}
-          onChangeText={setPassword}
-          secureTextEntry
-          placeholder="••••••••"
-          placeholderTextColor="#94a3b8"
-          className="rounded-xl border border-slate-200 bg-white px-4 py-3 text-slate-900"
-        />
+        <View className="mt-6 rounded-[1.5rem] border border-slate-200 bg-white p-5 shadow-sm">
+          <Text className="font-sans text-[10px] font-bold uppercase tracking-widest text-slate-500">Email address</Text>
+          <TextInput
+            value={email}
+            onChangeText={setEmail}
+            autoCapitalize="none"
+            keyboardType="email-address"
+            placeholder="you@example.com"
+            placeholderTextColor="#94a3b8"
+            className="font-sans mt-2 rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-slate-900"
+          />
+          <View className="mt-4 flex-row items-center justify-between">
+            <Text className="font-sans text-[10px] font-bold uppercase tracking-widest text-slate-500">Password</Text>
+            <Text className="font-sans-bold text-xs text-[#4f46e5]">Forgot?</Text>
+          </View>
+          <TextInput
+            value={password}
+            onChangeText={setPassword}
+            secureTextEntry
+            placeholder="••••••••"
+            placeholderTextColor="#94a3b8"
+            className="font-sans mt-2 rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-slate-900"
+          />
 
-        <Pressable
-          disabled={busy}
-          onPress={() => void submitEmail()}
-          className="mt-5 rounded-xl bg-slate-900 py-3.5 active:opacity-90"
-        >
-          <Text className="text-center font-bold text-white">{mode === 'signin' ? 'Sign in' : 'Create account'}</Text>
-        </Pressable>
+          <Pressable
+            disabled={busy}
+            onPress={() => void submitEmail()}
+            className="mt-8 rounded-2xl bg-[#1a1c2e] py-3.5 active:opacity-90"
+          >
+            <Text className="text-center font-sans-bold text-white">
+              {mode === 'signin' ? 'Sign in to FrenchLearn' : 'Create your FrenchLearn account'}
+            </Text>
+          </Pressable>
 
-        <View className="my-6 flex-row items-center gap-3">
-          <View className="h-px flex-1 bg-slate-200" />
-          <Text className="text-xs text-slate-400">or</Text>
-          <View className="h-px flex-1 bg-slate-200" />
+          <View className="my-6 flex-row items-center gap-3">
+            <View className="h-px flex-1 bg-slate-200" />
+            <Text className="font-sans text-[10px] font-bold uppercase tracking-widest text-slate-400">Or</Text>
+            <View className="h-px flex-1 bg-slate-200" />
+          </View>
+
+          <Pressable
+            disabled={busy}
+            onPress={() => void google()}
+            className="flex-row items-center justify-center gap-2 rounded-2xl border-2 border-slate-200 bg-white py-3.5"
+          >
+            <Ionicons name="logo-google" size={20} color="#4285F4" />
+            <Text className="font-sans-bold text-slate-800">Continue with Google</Text>
+          </Pressable>
         </View>
 
-        <Pressable
-          disabled={busy}
-          onPress={() => void google()}
-          className="flex-row items-center justify-center gap-2 rounded-xl border border-slate-200 bg-white py-3"
-        >
-          <Ionicons name="logo-google" size={20} color="#4285F4" />
-          <Text className="font-semibold text-slate-800">Continue with Google</Text>
-        </Pressable>
+        <View className="mt-8 rounded-[1.5rem] border border-slate-200 bg-slate-100/80 p-5">
+          <Text className="font-sans text-[10px] font-bold uppercase tracking-widest text-slate-500">Preview</Text>
+          <View className="mt-3 flex-row items-center gap-3">
+            <View className="h-12 w-12 rounded-full bg-violet-200" />
+            <View>
+              <Text className="font-display text-base text-slate-900">Julian Lemaire</Text>
+              <Text className="font-sans text-xs text-slate-500">Advanced B2 · Pro member</Text>
+            </View>
+          </View>
+        </View>
 
         {busy ? <ActivityIndicator className="mt-6" color="#2563eb" /> : null}
       </ScrollView>

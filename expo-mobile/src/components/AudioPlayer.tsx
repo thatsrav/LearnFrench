@@ -101,6 +101,8 @@ export type AudioPlayerProps = {
   onLoadSuccess?: (durationMs: number) => void
   /** Render questions / extra UI with gate state */
   children?: ReactNode | ((ctx: AudioAnswerGateContextValue) => ReactNode)
+  /** TEF listening: emerald top bar + padding (matches web Stitch player). */
+  accent?: 'default' | 'tef'
 }
 
 type TranscriptSegment = { text: string; startRatio: number; endRatio: number }
@@ -149,6 +151,7 @@ export default function AudioPlayer({
   onPlaybackError,
   onLoadSuccess,
   children,
+  accent = 'default',
 }: AudioPlayerProps) {
   const soundRef = useRef<Audio.Sound | null>(null)
   const scrollRef = useRef<ScrollView>(null)
@@ -493,10 +496,15 @@ export default function AudioPlayer({
 
   const childNode = typeof children === 'function' ? children(gateCtx) : children
 
+  const shellClass =
+    accent === 'tef'
+      ? 'rounded-2xl border-x border-b border-slate-200 border-t-4 border-t-emerald-500 bg-white p-5 shadow-sm'
+      : 'rounded-2xl border border-slate-200 bg-white p-4 shadow-sm'
+
   return (
     <AudioAnswerGateContext.Provider value={gateCtx}>
-      <View className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
-        {title ? <Text className="text-base font-bold text-slate-900">{title}</Text> : null}
+      <View className={shellClass}>
+        {title ? <Text className="font-sans-semibold text-base text-slate-900">{title}</Text> : null}
 
         {loadState === 'loading' ? (
           <View className="mt-3 flex-row items-center gap-2">

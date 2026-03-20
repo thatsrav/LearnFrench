@@ -35,7 +35,8 @@
     "plugins": [
       "expo-sqlite",
       "expo-web-browser",
-      "expo-av"
+      "expo-av",
+      "expo-font"
     ]
   }
 }

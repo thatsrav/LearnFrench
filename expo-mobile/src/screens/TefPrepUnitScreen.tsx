@@ -7,11 +7,11 @@ import type { TefSkill } from '../content/tefPrepA1'
 import { getTefA1Unit } from '../content/tefPrepA1'
 import { useStackScreenBottomPadding } from '../lib/screenPadding'
 
-const SKILLS: { skill: TefSkill; label: string; icon: keyof typeof Ionicons.glyphMap; color: string }[] = [
-  { skill: 'reading', label: 'Reading Room', icon: 'book-outline', color: '#2563eb' },
-  { skill: 'writing', label: 'Writing (Section A)', icon: 'create-outline', color: '#7c3aed' },
-  { skill: 'listening', label: 'Listening', icon: 'headset-outline', color: '#059669' },
-  { skill: 'speaking', label: 'Speaking (Section A)', icon: 'chatbubbles-outline', color: '#ea580c' },
+const SKILLS: { skill: TefSkill; label: string; sub: string; icon: keyof typeof Ionicons.glyphMap; color: string }[] = [
+  { skill: 'reading', label: 'Reading', sub: 'Compréhension écrite', icon: 'book-outline', color: '#2563eb' },
+  { skill: 'writing', label: 'Writing', sub: 'Expression écrite', icon: 'create-outline', color: '#7c3aed' },
+  { skill: 'listening', label: 'Listening', sub: '6 QCM TEF-style', icon: 'headset-outline', color: '#059669' },
+  { skill: 'speaking', label: 'Speaking', sub: 'Expression orale — A', icon: 'chatbubbles-outline', color: '#ea580c' },
 ]
 
 type RouteParams = { unit: number }
@@ -25,49 +25,50 @@ export default function TefPrepUnitScreen() {
 
   if (!b) {
     return (
-      <View className="flex-1 items-center justify-center bg-slate-50 p-6">
-        <Text className="font-semibold text-slate-800">Unité introuvable</Text>
-        <Pressable onPress={() => navigation.goBack()} className="mt-4 rounded-xl bg-blue-600 px-4 py-2">
-          <Text className="font-semibold text-white">Retour</Text>
+      <View className="flex-1 items-center justify-center bg-[#f8f9fb] p-6">
+        <Text className="font-sans-semibold text-slate-800">Unité introuvable</Text>
+        <Pressable onPress={() => navigation.goBack()} className="mt-4 rounded-2xl bg-[#2563eb] px-5 py-2.5 active:opacity-90">
+          <Text className="font-sans-bold text-white">Retour</Text>
         </Pressable>
       </View>
     )
   }
 
   return (
-    <ScrollView className="flex-1 bg-slate-50" contentContainerStyle={{ padding: 16, paddingBottom: bottomPad }}>
+    <ScrollView className="flex-1 bg-[#f8f9fb]" contentContainerStyle={{ padding: 16, paddingBottom: bottomPad }}>
       <Pressable onPress={() => navigation.goBack()} className="mb-4 flex-row items-center gap-1 self-start">
         <Ionicons name="chevron-back" size={18} color="#2563eb" />
-        <Text className="text-sm font-semibold text-blue-600">TEF Prep</Text>
+        <Text className="font-sans-bold text-sm text-[#2563eb]">Retour au parcours TEF</Text>
       </Pressable>
 
-      <Text className="text-2xl font-bold text-slate-900">Unité {unit}</Text>
-      <Text className="mt-1 text-sm text-slate-500">{b.reading.tef_task_id}</Text>
+      <Text className="text-xs font-bold uppercase tracking-widest text-red-700">TEF Canada · A1</Text>
+      <Text className="font-display mt-2 text-3xl text-slate-900">Unité {unit}</Text>
+      <Text className="font-sans mt-1 text-xs text-slate-500">{b.reading.tef_task_id}</Text>
       <View className="mt-3 flex-row flex-wrap gap-2">
         <View className="rounded-full bg-slate-900 px-3 py-1">
-          <Text className="text-xs font-bold text-white">CLB {b.reading.clb_target}</Text>
+          <Text className="font-sans-bold text-xs text-white">CLB {b.reading.clb_target}</Text>
         </View>
-        <View className="rounded-full border border-slate-300 bg-white px-3 py-1">
-          <Text className="text-xs font-semibold text-slate-700">{b.reading.strictness_level}</Text>
+        <View className="rounded-full border border-slate-200 bg-white px-3 py-1">
+          <Text className="font-sans-semibold text-xs text-slate-700">{b.reading.strictness_level}</Text>
         </View>
       </View>
 
-      <Text className="mt-6 text-sm font-semibold text-slate-700">Choisir une salle</Text>
+      <Text className="font-sans-semibold mt-8 text-sm text-slate-700">Choisir une salle</Text>
       <View className="mt-3 gap-3">
-        {SKILLS.map(({ skill, label, icon, color }) => (
+        {SKILLS.map(({ skill, label, sub, icon, color }) => (
           <Pressable
             key={skill}
             onPress={() => navigation.navigate('TefPrepActivity', { unit, skill })}
-            className="flex-row items-center gap-3 rounded-2xl border border-slate-200 bg-white p-4 active:bg-slate-50"
+            className="flex-row items-center gap-4 rounded-[1.25rem] border border-slate-200 bg-white p-4 shadow-sm active:bg-slate-50"
           >
-            <View className="h-11 w-11 items-center justify-center rounded-xl" style={{ backgroundColor: `${color}20` }}>
-              <Ionicons name={icon} size={22} color={color} />
+            <View className="h-12 w-12 items-center justify-center rounded-xl" style={{ backgroundColor: `${color}18` }}>
+              <Ionicons name={icon} size={24} color={color} />
             </View>
-            <View className="flex-1">
-              <Text className="text-base font-bold text-slate-900">{label}</Text>
-              <Text className="text-xs text-slate-500 capitalize">{skill}</Text>
+            <View className="min-w-0 flex-1">
+              <Text className="font-display text-lg text-slate-900">{label}</Text>
+              <Text className="font-sans mt-0.5 text-xs text-slate-500">{sub}</Text>
+              <Text className="font-sans-bold mt-2 text-xs text-red-700">Ouvrir →</Text>
             </View>
-            <Ionicons name="chevron-forward" size={18} color="#94a3b8" />
           </Pressable>
         ))}
       </View>

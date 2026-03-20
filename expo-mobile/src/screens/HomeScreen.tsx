@@ -178,14 +178,14 @@ export default function HomeScreen() {
 
   return (
     <KeyboardAvoidingView
-      className="flex-1 bg-slate-50"
+      className="flex-1 bg-[#f8f9fb]"
       style={{ flex: 1 }}
       behavior={Platform.OS === 'ios' ? 'padding' : undefined}
       keyboardVerticalOffset={headerHeight}
     >
     <ScrollView
       ref={scrollRef}
-      className="flex-1 bg-slate-50"
+      className="flex-1 bg-[#f8f9fb]"
       contentContainerStyle={{ paddingHorizontal: 16, paddingTop: 12, paddingBottom: scrollBottomPad }}
       keyboardShouldPersistTaps="handled"
       keyboardDismissMode="on-drag"
@@ -202,8 +202,9 @@ export default function HomeScreen() {
           paddingVertical: 32,
         }}
       >
-        <Text className="text-center text-3xl font-extrabold text-white">Apprenez le Français</Text>
-        <Text className="mt-3 text-center text-sm leading-5 text-indigo-50">
+        <Text className="text-center font-display text-3xl text-white">Maîtrise le Français</Text>
+        <Text className="mt-1 text-center font-display text-xl text-white/90">avec Élégance</Text>
+        <Text className="mt-3 text-center font-sans text-sm leading-5 text-indigo-50">
           Master French with our comprehensive curriculum and AI-powered scoring system. From beginner to intermediate,
           we&apos;ve got you covered.
         </Text>
@@ -223,6 +224,30 @@ export default function HomeScreen() {
           <Text className="text-center text-sm font-semibold text-white">Try AI Scorer</Text>
         </Pressable>
       </LinearGradient>
+
+      <View className="mb-4 rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
+        <Text className="font-display text-lg text-slate-900">Structured pathways</Text>
+        <Text className="font-sans mt-1 text-xs text-slate-500">Foundation → Expansion → Mastery</Text>
+        {[
+          { n: '01', t: 'Foundation (A1)', d: 'First steps in everyday French.' },
+          { n: '02', t: 'Expansion (A2)', d: 'Stories, routines, and real life.' },
+          { n: '03', t: 'Mastery (B1+)', d: 'TEF readiness and nuance.' },
+        ].map((row, i) => (
+          <View
+            key={row.n}
+            className={['flex-row items-center gap-3 border-t border-slate-100 py-3', i === 0 ? 'border-t-0 pt-0' : ''].join(
+              ' ',
+            )}
+          >
+            <Text className="font-display w-10 text-2xl text-slate-200">{row.n}</Text>
+            <View className="min-w-0 flex-1">
+              <Text className="font-sans text-[10px] font-bold uppercase text-indigo-700">{row.t}</Text>
+              <Text className="font-sans mt-0.5 text-xs text-slate-600">{row.d}</Text>
+            </View>
+            <Ionicons name="chevron-forward" size={18} color="#cbd5e1" />
+          </View>
+        ))}
+      </View>
 
       <Pressable
         onPress={() => rootNav?.navigate('WritingJournal')}
@@ -365,8 +390,9 @@ export default function HomeScreen() {
         </View>
       </Pressable>
 
-      <Text className="mt-8 text-base font-bold text-slate-900">AI French Scorer</Text>
-      <Text className="mt-1 text-sm text-slate-500">
+      <Text className="mt-6 text-xs font-bold uppercase tracking-widest text-violet-600">Premium linguistic engine</Text>
+      <Text className="font-display mt-2 text-2xl text-slate-900">Master French with AI</Text>
+      <Text className="font-sans mt-1 text-sm text-slate-500">
         {compact ? 'Text in, instant breakdown.' : 'Choose input mode, provider, then analyze your text.'}
       </Text>
       <Text className="mt-1 text-xs text-slate-400" numberOfLines={1}>
@@ -378,8 +404,8 @@ export default function HomeScreen() {
         className="mt-3 rounded-2xl border border-slate-200 bg-white p-3 shadow-sm"
         onLayout={(e) => setScorerOffsetY(e.nativeEvent.layout.y)}
       >
-        <Text className="text-base font-bold text-slate-900">French Scorer</Text>
-        <Text className="mt-1 text-xs leading-5 text-slate-500">
+        <Text className="font-display text-lg text-slate-900">French Scorer</Text>
+        <Text className="font-sans mt-1 text-xs leading-5 text-slate-500">
           Score, CEFR, skill breakdown, and corrections — optimized for mobile.
         </Text>
 
@@ -473,11 +499,11 @@ export default function HomeScreen() {
           onPress={() => void onScore()}
           disabled={!canSubmit}
           className={[
-            'mt-4 items-center rounded-2xl py-3.5',
+            'mt-4 items-center rounded-2xl py-3.5 shadow-lg',
             canSubmit ? 'bg-indigo-600 active:bg-indigo-700' : 'bg-slate-300',
           ].join(' ')}
         >
-          <Text className="text-center text-base font-bold text-white">Analyze my French</Text>
+          <Text className="text-center font-sans-bold text-base text-white">Analyze my French</Text>
         </Pressable>
 
         {error ? (
