@@ -36,6 +36,14 @@ Authentication → URL configuration:
 
 **Site URL**: your main web origin (e.g. `http://localhost:5173` for dev).
 
+**Production (Vercel, etc.)**  
+Add your real site + callback, for example:
+
+- `https://your-app.vercel.app`
+- `https://your-app.vercel.app/auth/callback`
+
+Each preview URL (`*.vercel.app`) only works if you add that exact callback URL, or use a stable production domain.
+
 ## 4. App environment variables
 
 ### `expo-mobile/.env`
@@ -53,6 +61,10 @@ Restart Metro with `npx expo start --clear` after changing `.env`.
 VITE_SUPABASE_URL=https://xxxx.supabase.co
 VITE_SUPABASE_ANON_KEY=eyJ...
 ```
+
+**Vercel:** set the same names under **Project → Settings → Environment Variables** (Production + Preview if needed), then **redeploy**. Vite reads `VITE_*` only when the site is **built** — a missing key on Vercel means the live site has no Supabase config.
+
+The repo includes **`french-scorer-web/vercel.json`** so routes like `/account` and `/auth/callback` load the app (SPA fallback). Without that, Google OAuth can return **404** on `/auth/callback`.
 
 ## 5. Tables (summary)
 

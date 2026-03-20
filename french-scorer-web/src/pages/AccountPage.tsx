@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useAuth } from '../contexts/AuthContext'
-import { supabase } from '../lib/supabase'
+import { getSupabaseProjectHost, supabase } from '../lib/supabase'
 import {
   downloadWebScoreHistoryFromCloud,
   downloadWebUnitProgress,
@@ -63,6 +63,10 @@ export default function AccountPage() {
           Set <code className="rounded bg-slate-100 px-1">VITE_SUPABASE_URL</code> and{' '}
           <code className="rounded bg-slate-100 px-1">VITE_SUPABASE_ANON_KEY</code> in{' '}
           <code className="rounded bg-slate-100 px-1">.env</code>, then restart Vite.
+        </p>
+        <p className="text-sm text-amber-800">
+          <strong>Vercel:</strong> add the same variables under Project → Settings → Environment Variables, then{' '}
+          <strong>Redeploy</strong> (Vite bakes them in at build time).
         </p>
       </div>
     )
@@ -147,6 +151,10 @@ export default function AccountPage() {
     <div className="mx-auto max-w-md space-y-4">
       <h1 className="text-2xl font-bold text-slate-900">Account</h1>
       <p className="text-sm text-slate-600">Sign in with email or Google to sync progress.</p>
+      <p className="text-xs text-slate-400">
+        Connected to: <code className="rounded bg-slate-100 px-1 text-slate-700">{getSupabaseProjectHost() ?? '—'}</code>{' '}
+        (should end in <code className="text-slate-600">.supabase.co</code>)
+      </p>
 
       {syncMsg ? (
         <p

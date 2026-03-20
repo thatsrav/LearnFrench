@@ -60,13 +60,21 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     const redirectTo = `${window.location.origin}/auth/callback`
     const { data, error } = await supabase.auth.signInWithOAuth({
       provider: 'google',
-      options: { redirectTo },
+      options: {
+        redirectTo,
+        skipBrowserRedirect: false,
+      },
     })
     if (error) return { error: new Error(error.message) }
     if (data.url) {
       window.location.assign(data.url)
+      return { error: null }
     }
-    return { error: null }
+    return {
+      error: new Error(
+        'Google sign-in did not return a URL. Check VITE_SUPABASE_URL is https://YOUR_REF.supabase.co (not a supabase.com/dashboard link).',
+      ),
+    }
   }, [])
 
   const signOut = useCallback(async () => {

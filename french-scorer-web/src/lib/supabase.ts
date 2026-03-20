@@ -33,4 +33,24 @@ const url = resolveSupabaseUrl(rawUrl)
 
 export const isSupabaseConfigured = Boolean(url && key)
 
-export const supabase: SupabaseClient | null = isSupabaseConfigured ? createClient(url, key) : null
+/** Shown on Account page so you can confirm production (Vercel) is using the right project. */
+export function getSupabaseProjectHost(): string | null {
+  if (!url) return null
+  try {
+    return new URL(url).hostname
+  } catch {
+    return null
+  }
+}
+
+export const supabase: SupabaseClient | null = isSupabaseConfigured
+  ? createClient(url, key, {
+      auth: {
+        // Recommended for browser SPAs + OAuth (code in URL, exchange on /auth/callback).
+        flowType: 'pkce',
+        detectSessionInUrl: true,
+        persistSession: true,
+        autoRefreshToken: true,
+      },
+    })
+  : null
