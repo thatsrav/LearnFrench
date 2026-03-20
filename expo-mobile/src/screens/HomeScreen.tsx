@@ -12,11 +12,19 @@ import {
 } from 'react-native'
 import { useHeaderHeight } from '@react-navigation/elements'
 import { useFocusEffect, useNavigation } from '@react-navigation/native'
+import { countDueReviewItems } from '../lib/spacedRepetition'
+import {
+  generateDailyLessonPlan,
+  recordDailyPlanShown,
+  recordRecommendationEngagement,
+  type DailyLessonPlan,
+} from '../services/recommendationEngine'
 import type { NativeStackNavigationProp } from '@react-navigation/native-stack'
 import type { BottomTabNavigationProp } from '@react-navigation/bottom-tabs'
 import { LinearGradient } from 'expo-linear-gradient'
 import { Ionicons } from '@expo/vector-icons'
 import * as Speech from 'expo-speech'
+import { recordScoreEvent } from '../database/database'
 import { scoreFrench, type FrenchScore, type ScoreProvider } from '../api/scoreFrench'
 import { computeDailyStreak, loadRecentScores, saveRecentScores, type StoredScore } from '../lib/history'
 import { CURRICULUM_STATS } from '../lib/curriculum'
@@ -65,6 +73,8 @@ export default function HomeScreen() {
   const [result, setResult] = useState<FrenchScore | null>(null)
   const [resultProvider, setResultProvider] = useState<string | null>(null)
   const [recentScores, setRecentScores] = useState<StoredScore[]>([])
+  const [dueReviewCount, setDueReviewCount] = useState(0)
+  const [dailyPlan, setDailyPlan] = useState<DailyLessonPlan | null>(null)
 
   const refreshHistory = useCallback(async () => {
     const rows = await loadRecentScores()
@@ -75,6 +85,28 @@ export default function HomeScreen() {
     useCallback(() => {
       void refreshHistory()
     }, [refreshHistory]),
+  )
+
+  useFocusEffect(
+    useCallback(() => {
+      const uid = user?.id ?? ''
+      void countDueReviewItems(uid, new Date()).then(setDueReviewCount).catch(() => setDueReviewCount(0))
+    }, [user?.id]),
+  )
+
+  useFocusEffect(
+    useCallback(() => {
+      const uid = user?.id ?? ''
+      void (async () => {
+        try {
+          const plan = await generateDailyLessonPlan(uid)
+          setDailyPlan(plan)
+          await recordDailyPlanShown(user?.id ?? null, plan)
+        } catch {
+          setDailyPlan(null)
+        }
+      })()
+    }, [user?.id]),
   )
 
   const canSubmit = text.trim().length > 0 && !loading && inputMode === 'text'
@@ -103,6 +135,17 @@ export default function HomeScreen() {
       ].slice(-30)
       setRecentScores(nextHistory)
       await saveRecentScores(nextHistory)
+      try {
+        await recordScoreEvent({
+          userId: user?.id ?? null,
+          ts: Date.now(),
+          score: Number(next.score),
+          cecr: String(next.cecr ?? ''),
+          provider: providerUsed ?? '',
+        })
+      } catch {
+        // non-fatal: analytics table optional on very old DB files
+      }
       if (supabase && user) {
         void syncScoreHistoryToCloud(supabase, user.id, nextHistory).catch(() => {})
       }
@@ -180,6 +223,94 @@ export default function HomeScreen() {
           <Text className="text-center text-sm font-semibold text-white">Try AI Scorer</Text>
         </Pressable>
       </LinearGradient>
+
+      <Pressable
+        onPress={() => rootNav?.navigate('WritingJournal')}
+        className="mb-4 rounded-2xl border border-violet-200 bg-violet-50 p-4 active:opacity-90"
+      >
+        <View className="flex-row items-center gap-3">
+          <View className="h-11 w-11 items-center justify-center rounded-xl bg-violet-600">
+            <Ionicons name="journal-outline" size={22} color="#ffffff" />
+          </View>
+          <View className="min-w-0 flex-1">
+            <Text className="text-sm font-bold text-violet-950">Writing journal</Text>
+            <Text className="text-sm text-violet-900">
+              Drafts, AI scores, feedback, and insights — all in one place
+            </Text>
+          </View>
+          <Ionicons name="chevron-forward" size={20} color="#5b21b6" />
+        </View>
+      </Pressable>
+
+      {dueReviewCount > 0 ? (
+        <Pressable
+          onPress={() => rootNav?.navigate('SpacedReview', { maxItems: 5 })}
+          className="mb-4 rounded-2xl border border-indigo-200 bg-indigo-50 p-4 active:opacity-90"
+        >
+          <View className="flex-row items-center gap-3">
+            <View className="h-11 w-11 items-center justify-center rounded-xl bg-indigo-600">
+              <Ionicons name="albums-outline" size={22} color="#ffffff" />
+            </View>
+            <View className="min-w-0 flex-1">
+              <Text className="text-sm font-bold text-indigo-950">Spaced repetition</Text>
+              <Text className="text-sm text-indigo-900">
+                Review {Math.min(5, dueReviewCount)} vocabulary & grammar{' '}
+                {dueReviewCount === 1 ? 'item' : 'items'} today
+              </Text>
+            </View>
+            <Ionicons name="chevron-forward" size={20} color="#3730a3" />
+          </View>
+        </Pressable>
+      ) : null}
+
+      {dailyPlan && dailyPlan.items.length > 0 ? (
+        <View className="mb-4 rounded-2xl border border-sky-200 bg-sky-50 p-4">
+          <View className="mb-2 flex-row items-center justify-between gap-2">
+            <Text className="text-base font-bold text-sky-950">Daily plan</Text>
+            {dailyPlan.lightSchedule ? (
+              <View className="rounded-full bg-amber-100 px-2 py-0.5">
+                <Text className="text-[10px] font-bold uppercase text-amber-900">Light day</Text>
+              </View>
+            ) : null}
+          </View>
+          <Text className="mb-3 text-xs text-sky-900">
+            {dailyPlan.lightSchedule
+              ? `Streak just started — keeping today under ${dailyPlan.maxStudyMinutes} min.`
+              : `Streak: ${dailyPlan.streakDays} day${dailyPlan.streakDays === 1 ? '' : 's'} · up to ${dailyPlan.maxStudyMinutes} min`}
+          </Text>
+          {dailyPlan.items.map((item, i) => (
+            <Pressable
+              key={item.lessonId}
+              onPress={() => {
+                const planDate = dailyPlan.dateKey
+                void recordRecommendationEngagement(user?.id ?? null, planDate, item.lessonId, 'opened')
+                rootNav?.navigate('LessonScreen', {
+                  unitId: item.lessonId,
+                  level: item.level,
+                  fromRecommendation: true,
+                })
+              }}
+              className={`flex-row items-start gap-3 rounded-xl bg-white/90 p-3 active:opacity-90 ${i > 0 ? 'mt-2' : ''}`}
+            >
+              <View className="mt-0.5 h-8 w-8 items-center justify-center rounded-lg bg-sky-600">
+                <Text className="text-sm font-bold text-white">{i + 1}</Text>
+              </View>
+              <View className="min-w-0 flex-1">
+                <Text className="text-sm font-bold text-slate-900" numberOfLines={2}>
+                  {item.title}
+                </Text>
+                <Text className="mt-1 text-xs text-slate-600" numberOfLines={3}>
+                  {item.rationale}
+                </Text>
+                <Text className="mt-1 text-[10px] font-semibold uppercase text-sky-800">
+                  {item.difficulty.replace('_', ' ')} · impact {item.impactScore} · ~{item.durationMin} min
+                </Text>
+              </View>
+              <Ionicons name="chevron-forward" size={18} color="#0369a1" />
+            </Pressable>
+          ))}
+        </View>
+      ) : null}
 
       {/* Feature cards — Figma */}
       <View className="gap-3">

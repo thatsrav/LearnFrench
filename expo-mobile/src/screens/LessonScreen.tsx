@@ -6,6 +6,8 @@ import { unlockNextUnit } from '../database'
 import { useAuth } from '../contexts/AuthContext'
 import { supabase } from '../lib/supabase'
 import { uploadUnitProgressToCloud } from '../services/cloudProgress'
+import { seedSpacedRepetitionFromLesson } from '../lib/spacedRepetition'
+import { recordRecommendationEngagement } from '../services/recommendationEngine'
 import { useStackScreenBottomPadding } from '../lib/screenPadding'
 
 type QuizQuestion = {
@@ -26,6 +28,7 @@ type RouteParams = {
   level: 'A1' | 'A2' | 'B1' | 'B2' | 'C1'
   /** When set, user opened lesson from FrenchLearn unit overview. */
   moduleId?: string
+  fromRecommendation?: boolean
 }
 
 const a1Data: LessonUnit[] = require('../../assets/syllabus/a1.json')
@@ -62,7 +65,7 @@ export default function LessonScreen() {
   const insets = useSafeAreaInsets()
   const scrollBottomPad = useStackScreenBottomPadding(20)
   const route = useRoute()
-  const { unitId, level } = route.params as RouteParams
+  const { unitId, level, fromRecommendation } = route.params as RouteParams
 
   const unit = useMemo(() => getUnit(level, unitId), [level, unitId])
   const [answers, setAnswers] = useState<Record<number, number>>({})
@@ -93,6 +96,21 @@ export default function LessonScreen() {
         void uploadUnitProgressToCloud(supabase, user.id).catch(() => {})
       }
       if (score >= 80) {
+        try {
+          await seedSpacedRepetitionFromLesson(user?.id ?? null, {
+            id: unit.id,
+            grammar_rule_text: unit.grammar_rule_text,
+            vocab_list: unit.vocab_list,
+          })
+        } catch {
+          // non-fatal
+        }
+        if (fromRecommendation) {
+          const planDate = new Date().toISOString().slice(0, 10)
+          void recordRecommendationEngagement(user?.id ?? null, planDate, unit.id, 'completed').catch(
+            () => {},
+          )
+        }
         Alert.alert(
           'Great work!',
           result.unlockedUnitId

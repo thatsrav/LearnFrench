@@ -73,5 +73,8 @@ The repo includes **`french-scorer-web/vercel.json`** so routes like `/account` 
 | `profiles`            | User row linked to `auth.users`              |
 | `user_unit_progress`  | Per-unit status + score (syncs SQLite / web) |
 | `user_score_events`   | AI scorer attempts                           |
+| `writing_entries`     | Journal drafts & essays (per user)           |
+| `writing_scores`      | Per scoring run (overall + subscores)      |
+| `writing_feedback`    | AI feedback text + JSON suggestions          |
 
 RLS: users can only read/write their own rows.

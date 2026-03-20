@@ -1,6 +1,7 @@
 import './global.css'
 import { StatusBar } from 'expo-status-bar'
 import { ActivityIndicator, Text, View } from 'react-native'
+import { GestureHandlerRootView } from 'react-native-gesture-handler'
 import { SafeAreaProvider } from 'react-native-safe-area-context'
 import AppNavigator from './src/navigation/AppNavigator'
 import { AuthProvider } from './src/contexts/AuthContext'
@@ -39,12 +40,14 @@ export default function App() {
   }
 
   return (
-    <SafeAreaProvider>
-      <AuthProvider>
-        <AppNavigator />
-        <StatusBar style="dark" />
-      </AuthProvider>
-    </SafeAreaProvider>
+    <GestureHandlerRootView style={{ flex: 1 }}>
+      <SafeAreaProvider>
+        <AuthProvider>
+          <AppNavigator />
+          <StatusBar style="dark" />
+        </AuthProvider>
+      </SafeAreaProvider>
+    </GestureHandlerRootView>
   )
 }
 

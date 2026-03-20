@@ -14,12 +14,24 @@ import TefPrepHubScreen from '../screens/TefPrepHubScreen'
 import TefPrepUnitScreen from '../screens/TefPrepUnitScreen'
 import TefPrepActivityScreen from '../screens/TefPrepActivityScreen'
 import AccountScreen from '../screens/AccountScreen'
+import SpacedReviewScreen from '../screens/SpacedReviewScreen'
+import WritingJournalScreen from '../screens/WritingJournalScreen'
+import JournalEntryDetailScreen from '../screens/JournalEntryDetailScreen'
 import type { TefSkill } from '../content/tefPrepA1'
 
 export type RootStackParamList = {
   MainTabs: undefined
   UnitOverviewScreen: { moduleId: string }
-  LessonScreen: { unitId: string; level: 'A1' | 'A2' | 'B1' | 'B2' | 'C1'; moduleId?: string }
+  WritingJournal: { focusTab?: 'new' | 'entries' | 'insights'; editEntryId?: number } | undefined
+  JournalEntryDetail: { entryId: number }
+  LessonScreen: {
+    unitId: string
+    level: 'A1' | 'A2' | 'B1' | 'B2' | 'C1'
+    moduleId?: string
+    /** Opened from Home daily plan — used for recommendation engagement */
+    fromRecommendation?: boolean
+  }
+  SpacedReview: { maxItems?: number } | undefined
   TefPrepHub: undefined
   TefPrepUnit: { unit: number }
   TefPrepActivity: { unit: number; skill: TefSkill }
@@ -130,7 +142,10 @@ export default function AppNavigator() {
       >
         <Stack.Screen name="MainTabs" component={MainTabs} options={{ headerShown: false }} />
         <Stack.Screen name="UnitOverviewScreen" component={UnitOverviewScreen} options={{ title: 'Unit' }} />
+        <Stack.Screen name="WritingJournal" component={WritingJournalScreen} options={{ title: 'Writing journal' }} />
+        <Stack.Screen name="JournalEntryDetail" component={JournalEntryDetailScreen} options={{ title: 'Entry' }} />
         <Stack.Screen name="LessonScreen" component={LessonScreen} options={{ title: 'Lesson' }} />
+        <Stack.Screen name="SpacedReview" component={SpacedReviewScreen} options={{ title: 'Daily review' }} />
         <Stack.Screen name="TefPrepHub" component={TefPrepHubScreen} options={{ title: 'TEF Canada Prep' }} />
         <Stack.Screen name="TefPrepUnit" component={TefPrepUnitScreen} options={{ title: 'TEF — Unit' }} />
         <Stack.Screen

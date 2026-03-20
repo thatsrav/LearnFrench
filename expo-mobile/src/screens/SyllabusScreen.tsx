@@ -4,6 +4,7 @@ import { useNavigation } from '@react-navigation/native'
 import type { NativeStackNavigationProp } from '@react-navigation/native-stack'
 import type { BottomTabNavigationProp } from '@react-navigation/bottom-tabs'
 import { Ionicons } from '@expo/vector-icons'
+import WeakAreasCard from '../components/WeakAreasCard'
 import { CURRICULUM_MODULES, type CEFRLevel } from '../lib/curriculum'
 import { useTabScreenBottomPadding } from '../lib/screenPadding'
 import type { MainTabParamList, RootStackParamList } from '../navigation/AppNavigator'
@@ -50,6 +51,8 @@ export default function SyllabusScreen() {
         </View>
         <Text className="mt-1 text-xs text-red-800">Hors syllabus principal · 4 salles par unité</Text>
       </Pressable>
+
+      <WeakAreasCard />
 
       {/* AI banner — Figma top card */}
       <View className="mb-5 flex-row items-center gap-3 rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">

@@ -3,6 +3,7 @@ import { Pressable, ScrollView, Text, TextInput, View } from 'react-native'
 import { useRoute } from '@react-navigation/native'
 import * as Speech from 'expo-speech'
 import { Ionicons } from '@expo/vector-icons'
+import TefPrepListeningPractice from '../components/TefPrepListeningPractice'
 import type { TefSkill, TefReadingJson } from '../content/tefPrepA1'
 import { getTefA1SkillData } from '../content/tefPrepA1'
 import { useStackScreenBottomPadding } from '../lib/screenPadding'
@@ -155,49 +156,10 @@ export default function TefPrepActivityScreen() {
   }
 
   if (skill === 'listening') {
-    const l = data as import('../content/tefPrepA1').TefListeningJson
     return (
-      <ScrollView className="flex-1 bg-slate-50" contentContainerStyle={{ padding: 16, paddingBottom: bottomPad }}>
-        {meta}
-        <View className="rounded-2xl border border-emerald-200 bg-emerald-50 p-4">
-          <Text className="text-xs font-bold uppercase text-emerald-800">Transcription (audio à venir)</Text>
-          <Text className="mt-2 text-sm leading-6 text-emerald-950">{l.transcript_fr}</Text>
-          <Pressable
-            onPress={() => {
-              Speech.stop()
-              Speech.speak(l.transcript_fr, { language: 'fr-CA' })
-            }}
-            className="mt-3 flex-row items-center justify-center gap-2 rounded-xl bg-emerald-600 py-2"
-          >
-            <Ionicons name="volume-high" size={18} color="#fff" />
-            <Text className="font-semibold text-white">Lire avec TTS (fr-CA)</Text>
-          </Pressable>
-        </View>
-        {l.gloss_en ? <Text className="mt-2 text-xs text-slate-500">{l.gloss_en}</Text> : null}
-
-        {l.questions.map((q, qidx) => (
-          <View key={qidx} className="mt-4 rounded-xl border border-slate-200 bg-white p-3">
-            <Text className="text-sm font-semibold text-slate-900">{q.question_fr}</Text>
-            <View className="mt-2 gap-2">
-              {q.options.map((opt, oi) => {
-                const picked = answers[qidx] === oi
-                return (
-                  <Pressable
-                    key={oi}
-                    onPress={() => setAnswers((p) => ({ ...p, [qidx]: oi }))}
-                    className={[
-                      'rounded-lg border px-3 py-2',
-                      picked ? 'border-blue-500 bg-blue-50' : 'border-slate-200 bg-slate-50',
-                    ].join(' ')}
-                  >
-                    <Text>{opt}</Text>
-                  </Pressable>
-                )
-              })}
-            </View>
-          </View>
-        ))}
-      </ScrollView>
+      <View className="flex-1 bg-slate-50">
+        <TefPrepListeningPractice tefUnit={unit} />
+      </View>
     )
   }
 
