@@ -10,7 +10,6 @@ import {
   Library,
   LogOut,
   Menu,
-  Mic,
   Pencil,
   Search,
   Settings,
@@ -23,7 +22,7 @@ import { useMemo, useState } from 'react'
 import { NavLink, Outlet, Link, useLocation, useNavigate } from 'react-router-dom'
 import AppFooter from './AppFooter'
 import { useAuth } from '../contexts/AuthContext'
-import { TEF_PREP_HUB, tefPrepSkillPath } from '../lib/tefPrepNav'
+import { TEF_PREP_HUB } from '../lib/tefPrepNav'
 import { levelBadgeLabel, readUserCefrLevel } from '../lib/userCefr'
 
 /** Breadcrumbs left of search (design: Dashboard · Courses · Library) */
@@ -33,6 +32,9 @@ function breadcrumbsForPath(pathname: string): { root: string; mid?: string; lea
   if (pathname.startsWith('/reading-room')) return { root: 'Dashboard', mid: 'The Atelier', leaf: 'Reading Room' }
   if (pathname.startsWith('/writing')) return { root: 'Dashboard', mid: 'The Atelier', leaf: 'Writing Area' }
   if (pathname.startsWith('/game')) return { root: 'Dashboard', mid: 'The Atelier', leaf: 'Grammar Games' }
+  if (pathname.startsWith('/tef-prep/oral-labs')) {
+    return { root: 'Dashboard', mid: 'TEF Prep', leaf: 'Listening & Speaking' }
+  }
   if (pathname.startsWith('/tef-prep')) {
     const skillMatch = pathname.match(/\/(reading|writing|listening|speaking)(?:\/|$|\?)/)
     const leafBySkill: Record<string, string> = {
@@ -100,8 +102,7 @@ const subNavClass = ({ isActive }: { isActive: boolean }) =>
 const TEF_SUB_LINKS = [
   { to: '/reading-room', label: 'Reading Room', icon: BookOpen },
   { to: '/writing', label: 'Writing Area', icon: Pencil },
-  { to: tefPrepSkillPath('listening'), label: 'Listening Area', icon: Headphones },
-  { to: tefPrepSkillPath('speaking'), label: 'Speaking Area', icon: Mic },
+  { to: '/tef-prep/oral-labs', label: 'Listening & Speaking', icon: Headphones },
 ] as const
 
 export default function AppShell() {

@@ -13,6 +13,7 @@ import {
   SCORER_PREFILL_FROM_WRITING_KEY,
 } from '../../lib/writingAreaStorage'
 import { levelBadgeLabel } from '../../lib/userCefr'
+import TefTrackFooterBar from '../tef/TefTrackFooterBar'
 
 const navy = '#1e293b'
 const RECENT_SCORES_KEY = 'french_scorer_recent_scores_v1'
@@ -216,6 +217,10 @@ export default function WritingArea({ userLevel }: WritingAreaProps) {
             Ouvrez l’AI Scorer : votre composition sera préremplie automatiquement pour cette session.
           </p>
         </div>
+        <section className="space-y-3 pt-4">
+          <p className="text-[10px] font-bold uppercase tracking-widest text-slate-500">TEF track pulse</p>
+          <TefTrackFooterBar />
+        </section>
       </div>
     )
   }
@@ -417,6 +422,11 @@ export default function WritingArea({ userLevel }: WritingAreaProps) {
           </div>
         </aside>
       </div>
+
+      <section className="space-y-3 pt-4">
+        <p className="text-[10px] font-bold uppercase tracking-widest text-slate-500">TEF track pulse</p>
+        <TefTrackFooterBar />
+      </section>
     </div>
   )
 }

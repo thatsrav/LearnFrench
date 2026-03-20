@@ -12,6 +12,7 @@ import UnitOverviewPage from './pages/UnitOverviewPage.tsx'
 import TefPrepHubPage from './pages/TefPrepHubPage.tsx'
 import TefPrepUnitPage from './pages/TefPrepUnitPage.tsx'
 import TefPrepActivityPage from './pages/TefPrepActivityPage.tsx'
+import TefOralLabsPage from './pages/TefOralLabsPage.tsx'
 import AccountPage from './pages/AccountPage.tsx'
 import AuthCallbackPage from './pages/AuthCallbackPage.tsx'
 import SyllabusPage from './pages/SyllabusPage.tsx'
@@ -37,8 +38,9 @@ const router = createBrowserRouter([
           { path: 'game', element: <GrammarAtelierPage /> },
           { path: 'reading-room', element: <ReadingRoomPage /> },
           { path: 'writing', element: <WritingAreaPage /> },
-          { path: 'listening', element: <Navigate to={tefPrepSkillPath('listening')} replace /> },
-          { path: 'speaking', element: <Navigate to={tefPrepSkillPath('speaking')} replace /> },
+          { path: 'tef-prep/oral-labs', element: <TefOralLabsPage /> },
+          { path: 'listening', element: <Navigate to="/tef-prep/oral-labs" replace /> },
+          { path: 'speaking', element: <Navigate to="/tef-prep/oral-labs#speaking" replace /> },
           { path: 'reading', element: <Navigate to={tefPrepSkillPath('reading')} replace /> },
           { path: 'leaderboard', element: <LeaderboardPage /> },
           { path: 'tef-prep', element: <TefPrepHubPage /> },

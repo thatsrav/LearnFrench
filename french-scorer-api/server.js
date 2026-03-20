@@ -517,6 +517,363 @@ app.post("/api/writing/daily-topic", async (req, res) => {
   }
 });
 
+const ORAL_CEFR_LEVELS = WRITING_CEFR_LEVELS;
+const normalizeOralLevel = normalizeWritingCefrLevel;
+
+async function generateDailyListeningScriptGemini({ apiKey, level }) {
+  const modelName = await pickGeminiModel(apiKey);
+  const url = `https://generativelanguage.googleapis.com/v1/${modelName}:generateContent?key=${encodeURIComponent(apiKey)}`;
+
+  const userPrompt = `You create TEF Canada-style French LISTENING practice for CEFR level ${level}.
+
+Return ONLY valid JSON (no markdown):
+- scenarioTitle (string, French): short title for the scenario.
+- moduleLabel (string, English): e.g. "Module 03: Professional Discourse".
+- scriptFr (string): French audio script only, natural spoken French. Length: A1-A2 about 60-90 words; B1-B2 about 90-140 words; C1 about 140-200 words. Use a clear scenario (e.g. phone call, service desk, workplace). Can be monologue or short dialogue; if dialogue, use labels like "A:" "B:" lines.
+- questions (array of 4 or 5 objects): each has "questionEn" (string, English), "options" (array of exactly 4 strings in English), "correctIndex" (integer 0-3). Questions must test inference, tone, speaker intention, implied meaning — not trivial vocabulary from one word heard.
+
+Match vocabulary and speed expectations to ${level}.`;
+
+  const resp = await fetch(url, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      contents: [
+        {
+          parts: [
+            {
+              text: `System: Output ONLY the JSON object. User:\n${userPrompt}`,
+            },
+          ],
+        },
+      ],
+      generationConfig: { temperature: 0.7, maxOutputTokens: 4096 },
+    }),
+  });
+
+  const raw = await resp.text();
+  if (!resp.ok) {
+    const err = new Error(`Gemini listening HTTP ${resp.status}`);
+    err.status = resp.status;
+    err.details = raw;
+    throw err;
+  }
+
+  const parsed = JSON.parse(raw);
+  const modelText = parsed?.candidates?.[0]?.content?.parts?.[0]?.text ?? "";
+  const jsonText = extractFirstJsonObject(modelText);
+  return JSON.parse(jsonText);
+}
+
+async function generateDailySpeakingPromptGemini({ apiKey, level }) {
+  const modelName = await pickGeminiModel(apiKey);
+  const url = `https://generativelanguage.googleapis.com/v1/${modelName}:generateContent?key=${encodeURIComponent(apiKey)}`;
+
+  const userPrompt = `Create ONE French speaking task for TEF-style oral practice, CEFR ${level}.
+
+Return ONLY valid JSON:
+- promptFr (string): the instruction to the learner in French (what they should argue/explain/describe, 1-3 sentences).
+- promptEn (string): same meaning in English for UI subtitle.
+- topicLine (string): very short label in French for the UI chip.`;
+
+  const resp = await fetch(url, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      contents: [{ parts: [{ text: `Output ONLY JSON.\n${userPrompt}` }] }],
+      generationConfig: { temperature: 0.75, maxOutputTokens: 512 },
+    }),
+  });
+
+  const raw = await resp.text();
+  if (!resp.ok) {
+    const err = new Error(`Gemini speaking prompt HTTP ${resp.status}`);
+    err.status = resp.status;
+    err.details = raw;
+    throw err;
+  }
+
+  const parsed = JSON.parse(raw);
+  const modelText = parsed?.candidates?.[0]?.content?.parts?.[0]?.text ?? "";
+  const jsonText = extractFirstJsonObject(modelText);
+  return JSON.parse(jsonText);
+}
+
+/** ElevenLabs multilingual TTS → MP3 buffer. Falls back to null if not configured. */
+async function synthesizeElevenLabsMp3(text) {
+  const apiKey = (process.env.ELEVENLABS_API_KEY || "").trim();
+  const voiceId = (process.env.ELEVENLABS_VOICE_ID || "ErXwobaYiN019PkySvj").trim(); // Antoni (override with Charlotte ID)
+  if (!apiKey || !text.trim()) return null;
+
+  const modelId = (process.env.ELEVENLABS_MODEL || "eleven_multilingual_v2").trim();
+  const r = await fetch(`https://api.elevenlabs.io/v1/text-to-speech/${encodeURIComponent(voiceId)}`, {
+    method: "POST",
+    headers: {
+      "xi-api-key": apiKey,
+      "Content-Type": "application/json",
+      Accept: "audio/mpeg",
+    },
+    body: JSON.stringify({
+      text: text.trim().slice(0, 2500),
+      model_id: modelId,
+    }),
+  });
+
+  if (!r.ok) {
+    const t = await r.text().catch(() => "");
+    const err = new Error(`ElevenLabs HTTP ${r.status}`);
+    err.details = t.slice(0, 400);
+    throw err;
+  }
+  return Buffer.from(await r.arrayBuffer());
+}
+
+async function synthesizeOpenAiMp3French(text) {
+  const apiKey = (process.env.OPENAI_API_KEY || "").trim();
+  if (!apiKey) return null;
+  const r = await fetch("https://api.openai.com/v1/audio/speech", {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${apiKey}`,
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      model: "tts-1-hd",
+      voice: "nova",
+      input: text.trim().slice(0, 4096),
+      response_format: "mp3",
+    }),
+  });
+  if (!r.ok) return null;
+  return Buffer.from(await r.arrayBuffer());
+}
+
+function normalizeListeningPayload(raw, level) {
+  const scenarioTitle = String(raw?.scenarioTitle ?? "Scénario du jour").trim();
+  const moduleLabel = String(raw?.moduleLabel ?? "Daily listening").trim();
+  const scriptFr = String(raw?.scriptFr ?? "").trim();
+  let questions = Array.isArray(raw?.questions) ? raw.questions : [];
+  questions = questions
+    .map((q) => ({
+      questionEn: String(q?.questionEn ?? "").trim(),
+      options: Array.isArray(q?.options) ? q.options.map((o) => String(o).trim()).slice(0, 4) : [],
+      correctIndex: Math.max(0, Math.min(3, Math.round(Number(q?.correctIndex)))),
+    }))
+    .filter((q) => q.questionEn && q.options.length === 4);
+
+  while (questions.length < 3) {
+    questions.push({
+      questionEn: "What is the speaker's main goal?",
+      options: ["To complain", "To request information", "To end the call", "To sell a product"],
+      correctIndex: 1,
+    });
+  }
+  return { scenarioTitle, moduleLabel, scriptFr, questions: questions.slice(0, 5), level };
+}
+
+/**
+ * Daily listening: Gemini script + MCQ + TTS (ElevenLabs if key, else OpenAI).
+ * Response: audioBase64 (mp3), questions, scenarioTitle, moduleLabel, scriptFr
+ */
+app.post("/api/oral/daily-listening", async (req, res) => {
+  try {
+    const level = normalizeOralLevel(req.body?.level ?? req.body?.userLevel ?? "B1");
+    if (!ORAL_CEFR_LEVELS.has(level)) {
+      return res.status(400).json({ error: "Invalid level (use A1–C1)." });
+    }
+
+    const geminiKey = (process.env.GEMINI_API_KEY || "").trim();
+    if (!geminiKey) {
+      return res.status(503).json({ error: "GEMINI_API_KEY not configured.", code: "NO_GEMINI" });
+    }
+
+    const raw = await generateDailyListeningScriptGemini({ apiKey: geminiKey, level });
+    const payload = normalizeListeningPayload(raw, level);
+    if (!payload.scriptFr) {
+      return res.status(500).json({ error: "Model returned empty script." });
+    }
+
+    let audioBuf = null;
+    try {
+      audioBuf = await synthesizeElevenLabsMp3(payload.scriptFr);
+    } catch (e) {
+      console.warn("[oral] ElevenLabs failed, trying OpenAI TTS:", e?.message || e);
+    }
+    if (!audioBuf) {
+      audioBuf = await synthesizeOpenAiMp3French(payload.scriptFr);
+    }
+    if (!audioBuf) {
+      return res.json({
+        ...payload,
+        audioBase64: null,
+        mime: "audio/mpeg",
+        ttsWarning: "NO_TTS_CONFIGURED",
+      });
+    }
+
+    const audioBase64 = audioBuf.toString("base64");
+    return res.json({
+      ...payload,
+      audioBase64,
+      mime: "audio/mpeg",
+    });
+  } catch (err) {
+    return res.status(Number(err?.status || 500)).json({
+      error: err?.message || String(err),
+      details: err?.details ? String(err.details).slice(0, 500) : undefined,
+    });
+  }
+});
+
+app.post("/api/oral/daily-speaking-prompt", async (req, res) => {
+  try {
+    const level = normalizeOralLevel(req.body?.level ?? "B1");
+    if (!ORAL_CEFR_LEVELS.has(level)) {
+      return res.status(400).json({ error: "Invalid level." });
+    }
+    const geminiKey = (process.env.GEMINI_API_KEY || "").trim();
+    if (!geminiKey) {
+      return res.status(503).json({ error: "GEMINI_API_KEY not configured." });
+    }
+    const raw = await generateDailySpeakingPromptGemini({ apiKey: geminiKey, level });
+    const promptFr = String(raw?.promptFr ?? "").trim();
+    const promptEn = String(raw?.promptEn ?? "").trim();
+    const topicLine = String(raw?.topicLine ?? "Oral").trim();
+    if (!promptFr) {
+      return res.status(500).json({ error: "Empty prompt from model." });
+    }
+    return res.json({
+      promptFr,
+      promptEn: promptEn || promptFr,
+      topicLine,
+      level,
+    });
+  } catch (err) {
+    return res.status(Number(err?.status || 500)).json({ error: err?.message || String(err) });
+  }
+});
+
+app.post("/api/oral/whisper", express.raw({ type: "*/*", limit: "20mb" }), async (req, res) => {
+  try {
+    const apiKey = (process.env.OPENAI_API_KEY || "").trim();
+    if (!apiKey) {
+      return res.status(503).json({ error: "OPENAI_API_KEY required for Whisper." });
+    }
+
+    const buf = req.body;
+    if (!Buffer.isBuffer(buf) || buf.length < 32) {
+      return res.status(400).json({ error: "Missing or empty audio body (raw webm/wav)." });
+    }
+
+    const blob = new Blob([buf], { type: "audio/webm" });
+    const form = new FormData();
+    form.append("file", blob, "recording.webm");
+    form.append("model", "whisper-1");
+    form.append("language", "fr");
+
+    const r = await fetch("https://api.openai.com/v1/audio/transcriptions", {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${apiKey}`,
+      },
+      body: form,
+    });
+
+    const text = await r.text();
+    if (!r.ok) {
+      return res.status(502).json({ error: "Whisper failed", details: text.slice(0, 600) });
+    }
+    let json;
+    try {
+      json = JSON.parse(text);
+    } catch {
+      return res.status(502).json({ error: "Whisper invalid JSON", details: text.slice(0, 200) });
+    }
+    return res.json({ transcript: String(json.text ?? "").trim() });
+  } catch (err) {
+    return res.status(500).json({ error: err?.message || String(err) });
+  }
+});
+
+async function analyzeTranscriptGemini({ apiKey, transcript, level, promptFr }) {
+  const modelName = await pickGeminiModel(apiKey);
+  const url = `https://generativelanguage.googleapis.com/v1/${modelName}:generateContent?key=${encodeURIComponent(apiKey)}`;
+
+  const userPrompt = `You evaluate a French learner's spoken response (transcript from speech-to-text).
+
+CEFR target level: ${level}
+Task prompt (French): ${promptFr}
+
+Learner transcript (may have STT errors):
+"""
+${transcript.trim().slice(0, 8000)}
+"""
+
+Return ONLY valid JSON:
+- fluency (string): 2-3 sentences on pace, flow, connectors (English).
+- pronunciation (string): 2-3 sentences on likely French issues: silent letters, nasals, liaisons, based on misspellings typical of STT (English).
+- tefScorePredicted (integer): single number 0-900 as a rough predicted TEF global score band if this were Section A style production (be conservative).
+- strengths (array of 2-4 short strings, English)
+- improvements (array of 2-4 short strings, English)`;
+
+  const resp = await fetch(url, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      contents: [{ parts: [{ text: `Output ONLY JSON.\n${userPrompt}` }] }],
+      generationConfig: { temperature: 0.35, maxOutputTokens: 1024 },
+    }),
+  });
+
+  const raw = await resp.text();
+  if (!resp.ok) {
+    const err = new Error(`Gemini analyze HTTP ${resp.status}`);
+    err.status = resp.status;
+    err.details = raw;
+    throw err;
+  }
+
+  const parsed = JSON.parse(raw);
+  const modelText = parsed?.candidates?.[0]?.content?.parts?.[0]?.text ?? "";
+  const jsonText = extractFirstJsonObject(modelText);
+  return JSON.parse(jsonText);
+}
+
+app.post("/api/oral/analyze-transcript", async (req, res) => {
+  try {
+    const transcript = String(req.body?.transcript ?? "").trim();
+    const promptFr = String(req.body?.promptFr ?? "").trim();
+    const level = normalizeOralLevel(req.body?.level ?? "B1");
+
+    if (!transcript) {
+      return res.status(400).json({ error: "Missing transcript." });
+    }
+
+    const geminiKey = (process.env.GEMINI_API_KEY || "").trim();
+    if (!geminiKey) {
+      return res.status(503).json({ error: "GEMINI_API_KEY not configured." });
+    }
+
+    const raw = await analyzeTranscriptGemini({ apiKey: geminiKey, transcript, level, promptFr: promptFr || "Expression orale" });
+
+    const tefScorePredicted = Math.max(0, Math.min(900, Math.round(Number(raw?.tefScorePredicted) || 400)));
+    const fluency = String(raw?.fluency ?? "").trim() || "Continue à structurer tes idées avec des connecteurs logiques.";
+    const pronunciation = String(raw?.pronunciation ?? "").trim() || "Vérifie les voyelles nasales et les consonnes muettes finales.";
+    const strengths = Array.isArray(raw?.strengths) ? raw.strengths.map((s) => String(s)) : [];
+    const improvements = Array.isArray(raw?.improvements) ? raw.improvements.map((s) => String(s)) : [];
+
+    return res.json({
+      fluency,
+      pronunciation,
+      tefScorePredicted,
+      strengths,
+      improvements,
+    });
+  } catch (err) {
+    return res.status(Number(err?.status || 500)).json({ error: err?.message || String(err) });
+  }
+});
+
 app.post("/api/tts/french", async (req, res) => {
   try {
     const text = (req.body && req.body.text ? String(req.body.text) : "").trim();

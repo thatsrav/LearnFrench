@@ -28,6 +28,7 @@ import {
   saveMissionComplete,
 } from '../../lib/readingRoomMissionStorage'
 import { levelBadgeLabel } from '../../lib/userCefr'
+import TefTrackFooterBar from '../tef/TefTrackFooterBar'
 
 const navy = '#1e293b'
 
@@ -575,6 +576,11 @@ export default function ReadingRoom({ userLevel }: ReadingRoomProps) {
           Marquer la mission comme terminée
         </button>
       </div>
+
+      <section className="space-y-3 pt-6">
+        <p className="text-[10px] font-bold uppercase tracking-widest text-slate-500">TEF track pulse</p>
+        <TefTrackFooterBar />
+      </section>
 
       {vocabModal ? (
         <div

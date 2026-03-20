@@ -13,6 +13,7 @@ import { Bar, BarChart, CartesianGrid, Cell, ResponsiveContainer, Tooltip, XAxis
 import { useAuth } from '../contexts/AuthContext'
 import { countModuleProgress, getModuleById } from '../lib/curriculum'
 import { getSyllabusData, getUnitById } from '../lib/syllabus'
+import TefTrackFooterBar from '../components/tef/TefTrackFooterBar'
 
 const RECENT_SCORES_KEY = 'french_scorer_recent_scores_v1'
 
@@ -293,6 +294,11 @@ export default function DashboardHomePage() {
             <div className="absolute inset-0 bg-gradient-to-t from-[#1A1B4B]/80 to-transparent md:bg-gradient-to-l" />
           </div>
         </div>
+      </section>
+
+      <section className="space-y-3">
+        <p className="text-[10px] font-bold uppercase tracking-widest text-slate-500">TEF track pulse</p>
+        <TefTrackFooterBar />
       </section>
     </div>
   )

@@ -17,9 +17,8 @@ const UNIT_BLURBS: Record<number, string> = {
 }
 
 const READING_LINK = tefPrepSkillPath('reading')
-const LISTENING_LINK = tefPrepSkillPath('listening')
+const ORAL_LABS_LINK = '/tef-prep/oral-labs'
 const WRITING_LINK = tefPrepSkillPath('writing')
-const SPEAKING_LINK = tefPrepSkillPath('speaking')
 
 export default function TefPrepHubPage() {
   return (
@@ -61,18 +60,18 @@ export default function TefPrepHubPage() {
         </Link>
 
         <Link
-          to={LISTENING_LINK}
+          to={ORAL_LABS_LINK}
           className="group flex flex-col rounded-2xl border border-slate-200/90 bg-white p-6 shadow-sm transition hover:border-sky-200 hover:shadow-md"
         >
           <div className="flex items-center justify-between">
             <Headphones className="h-8 w-8 text-[var(--atelier-navy-deep)]" />
           </div>
-          <h2 className="font-display mt-5 text-xl font-bold text-[var(--atelier-navy-deep)]">Listening room</h2>
+          <h2 className="font-display mt-5 text-xl font-bold text-[var(--atelier-navy-deep)]">Listening &amp; speaking lab</h2>
           <p className="mt-2 flex-1 text-sm leading-relaxed text-slate-600">
-            Simulate real-world audio with TEF-style six-question sets and instant feedback.
+            Daily AI scenarios, no-back mode, oral recording with Whisper + Gemini analysis — TEF protocol.
           </p>
-          <p className="mt-4 text-xs font-semibold text-slate-500">Activities · extended catalog</p>
-          <span className="mt-6 text-sm font-bold text-[var(--fl-blue)] group-hover:underline">Start practice →</span>
+          <p className="mt-4 text-xs font-semibold text-slate-500">Oral atelier · combined track</p>
+          <span className="mt-6 text-sm font-bold text-[var(--fl-blue)] group-hover:underline">Open oral lab →</span>
         </Link>
 
         <Link
@@ -91,14 +90,14 @@ export default function TefPrepHubPage() {
         </Link>
 
         <Link
-          to={SPEAKING_LINK}
+          to={`${ORAL_LABS_LINK}#speaking`}
           className="group relative flex flex-col overflow-hidden rounded-2xl bg-[var(--atelier-navy-deep)] p-6 text-white shadow-xl shadow-slate-900/20"
         >
           <div className="absolute -right-6 -top-6 h-32 w-32 rounded-full bg-white/5" />
           <Mic className="relative h-8 w-8 text-sky-200" />
-          <h2 className="font-display relative mt-5 text-xl font-bold">Speaking lab</h2>
+          <h2 className="font-display relative mt-5 text-xl font-bold">Speaking focus</h2>
           <p className="relative mt-2 flex-1 text-sm leading-relaxed text-white/85">
-            Record Section A & B-style responses. Scoring aligns with TEF descriptors (where enabled).
+            Same oral lab page — jump to the recording block with live waveform, Whisper STT, and TEF-style scoring.
           </p>
           <div className="relative mt-4 flex items-center gap-2 text-xs text-white/70">
             <div className="flex -space-x-2">
@@ -108,10 +107,10 @@ export default function TefPrepHubPage() {
                 </span>
               ))}
             </div>
-            <span className="font-semibold">+42 atelier learners</span>
+            <span className="font-semibold">Oral track</span>
           </div>
           <span className="relative mt-6 inline-flex w-full items-center justify-center rounded-xl bg-sky-200 py-3.5 text-sm font-bold text-[var(--atelier-navy-deep)] transition group-hover:bg-white">
-            Enter lab
+            Scroll to speaking
           </span>
         </Link>
       </div>
