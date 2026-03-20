@@ -1,14 +1,18 @@
-import { Mic, Square } from 'lucide-react'
-import { useCallback, useEffect, useRef, useState } from 'react'
+import { Mic } from 'lucide-react'
+import { useCallback, useEffect, useState } from 'react'
+import VoiceRecorder from './VoiceRecorder'
 import {
   analyzeTranscript,
   transcribeRecordingWebm,
   type DailySpeakingPrompt,
   type SpeechAnalysisResult,
 } from '../../lib/OralMissionEngine'
-import { formatCountdown, msUntilLocalMidnight } from '../../lib/readingRoomMissionStorage'
+import { msUntilEdmontonMidnight } from '../../lib/edmontonTime'
+import { formatCountdown } from '../../lib/readingRoomMissionStorage'
 import { isSpeakingMissionLockedToday, markSpeakingMissionComplete } from '../../lib/oralLabStorage'
 import { addExamReadiness, incrementOralStreakOncePerDay } from '../../lib/tefSharedFooterStats'
+
+const navy = '#1e293b'
 
 type Props = {
   userLevel: string
@@ -16,250 +20,163 @@ type Props = {
 }
 
 function MissionDoneSpeaking() {
-  const [ms, setMs] = useState(() => msUntilLocalMidnight())
+  const [ms, setMs] = useState(() => msUntilEdmontonMidnight())
   useEffect(() => {
-    const id = setInterval(() => setMs(msUntilLocalMidnight()), 1000)
+    const id = setInterval(() => setMs(msUntilEdmontonMidnight()), 1000)
     return () => clearInterval(id)
   }, [])
   return (
-    <div className="rounded-3xl border border-slate-100 bg-white p-6 text-center shadow-sm">
-      <p className="text-sm font-bold text-emerald-700">Mission accomplie — Expression orale</p>
-      <p className="mt-2 text-xs text-slate-600">Prochaine consigne dans :</p>
-      <p className="mt-3 font-mono text-2xl font-bold tabular-nums text-[#1e293b]">{formatCountdown(ms)}</p>
+    <div className="overflow-hidden rounded-3xl border border-slate-100 bg-white shadow-sm">
+      <div className="px-6 py-4 text-white" style={{ backgroundColor: navy }}>
+        <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-indigo-200">Speaking lab</p>
+        <p className="font-display mt-1 text-lg font-bold">Mission accomplie</p>
+      </div>
+      <div className="p-6 text-center">
+        <p className="text-sm font-bold text-emerald-700">Expression orale — session validée</p>
+        <p className="mt-2 text-xs text-slate-600">Prochaine consigne (minuit Edmonton) dans :</p>
+        <p className="mt-3 font-mono text-2xl font-bold tabular-nums text-[#1e293b]">{formatCountdown(ms)}</p>
+      </div>
     </div>
   )
 }
 
 export default function SpeakingLab({ userLevel, prompt }: Props) {
   const [locked, setLocked] = useState(() => isSpeakingMissionLockedToday(userLevel))
-  const [recording, setRecording] = useState(false)
   const [processing, setProcessing] = useState(false)
   const [error, setError] = useState<string | null>(null)
   const [analysis, setAnalysis] = useState<SpeechAnalysisResult | null>(null)
-  const [recordSeconds, setRecordSeconds] = useState(0)
 
-  const mediaRecorderRef = useRef<MediaRecorder | null>(null)
-  const chunksRef = useRef<Blob[]>([])
-  const streamRef = useRef<MediaStream | null>(null)
-  const audioCtxRef = useRef<AudioContext | null>(null)
-  const analyserRef = useRef<AnalyserNode | null>(null)
-  const rafRef = useRef<number | null>(null)
-  const canvasRef = useRef<HTMLCanvasElement | null>(null)
-  const timerRef = useRef<number | null>(null)
-
-  const stopVisualizer = useCallback(() => {
-    if (rafRef.current !== null) cancelAnimationFrame(rafRef.current)
-    rafRef.current = null
-    if (audioCtxRef.current) {
-      void audioCtxRef.current.close().catch(() => {})
-      audioCtxRef.current = null
-    }
-    analyserRef.current = null
-  }, [])
-
-  const drawBars = useCallback(() => {
-    const analyser = analyserRef.current
-    const canvas = canvasRef.current
-    if (!analyser || !canvas) return
-    const ctx = canvas.getContext('2d')
-    if (!ctx) return
-    const data = new Uint8Array(analyser.frequencyBinCount)
-    const loop = () => {
-      analyser.getByteFrequencyData(data)
-      const w = canvas.width
-      const h = canvas.height
-      ctx.fillStyle = '#f1f5f9'
-      ctx.fillRect(0, 0, w, h)
-      const bars = 32
-      const step = Math.floor(data.length / bars)
-      const bw = w / bars
-      for (let i = 0; i < bars; i++) {
-        let v = 0
-        for (let j = 0; j < step; j++) v += data[i * step + j] ?? 0
-        v /= step
-        const bh = (v / 255) * (h * 0.85)
-        ctx.fillStyle = '#6366f1'
-        ctx.fillRect(i * bw + 1, h - bh, bw - 2, bh)
+  const onRecordComplete = useCallback(
+    async (blob: Blob) => {
+      if (!prompt) {
+        setError('Consigne indisponible.')
+        return
       }
-      rafRef.current = requestAnimationFrame(loop)
-    }
-    rafRef.current = requestAnimationFrame(loop)
-  }, [])
-
-  const stopRecording = useCallback(async () => {
-    setRecording(false)
-    if (timerRef.current) {
-      window.clearInterval(timerRef.current)
-      timerRef.current = null
-    }
-    stopVisualizer()
-    const rec = mediaRecorderRef.current
-    mediaRecorderRef.current = null
-    if (rec && rec.state !== 'inactive') {
-      await new Promise<void>((resolve) => {
-        rec.onstop = () => resolve()
-        rec.stop()
-      })
-    }
-    streamRef.current?.getTracks().forEach((t) => t.stop())
-    streamRef.current = null
-
-    const blob = new Blob(chunksRef.current, { type: 'audio/webm' })
-    chunksRef.current = []
-    if (blob.size < 2000) {
-      setError('Enregistrement trop court.')
-      return
-    }
-
-    if (!prompt) {
-      setError('Consigne indisponible.')
-      return
-    }
-
-    setProcessing(true)
-    setError(null)
-    try {
-      const transcript = await transcribeRecordingWebm(blob)
-      if (!transcript.trim()) throw new Error('Transcription vide — réessayez plus fort.')
-      const result = await analyzeTranscript(transcript, userLevel, prompt.promptFr)
-      setAnalysis(result)
-      markSpeakingMissionComplete(userLevel)
-      addExamReadiness(10)
-      incrementOralStreakOncePerDay()
-      setLocked(true)
-    } catch (e) {
-      setError(e instanceof Error ? e.message : 'Analyse impossible')
-    } finally {
-      setProcessing(false)
-    }
-  }, [prompt, userLevel, stopVisualizer])
-
-  const startRecording = useCallback(async () => {
-    setError(null)
-    setAnalysis(null)
-    chunksRef.current = []
-    try {
-      const stream = await navigator.mediaDevices.getUserMedia({ audio: true })
-      streamRef.current = stream
-      const ctx = new AudioContext()
-      audioCtxRef.current = ctx
-      const source = ctx.createMediaStreamSource(stream)
-      const analyser = ctx.createAnalyser()
-      analyser.fftSize = 128
-      source.connect(analyser)
-      analyserRef.current = analyser
-      drawBars()
-
-      const mime = MediaRecorder.isTypeSupported('audio/webm;codecs=opus')
-        ? 'audio/webm;codecs=opus'
-        : 'audio/webm'
-      const rec = new MediaRecorder(stream, { mimeType: mime })
-      mediaRecorderRef.current = rec
-      rec.ondataavailable = (e) => {
-        if (e.data.size) chunksRef.current.push(e.data)
+      setProcessing(true)
+      setError(null)
+      try {
+        const transcript = await transcribeRecordingWebm(blob)
+        if (!transcript.trim()) throw new Error('Transcription vide — réessayez plus fort.')
+        const result = await analyzeTranscript(transcript, userLevel, prompt.promptFr)
+        setAnalysis(result)
+        markSpeakingMissionComplete(userLevel)
+        addExamReadiness(10)
+        incrementOralStreakOncePerDay()
+        setLocked(true)
+      } catch (e) {
+        setError(e instanceof Error ? e.message : 'Analyse impossible')
+      } finally {
+        setProcessing(false)
       }
-      rec.start(200)
-      setRecording(true)
-      setRecordSeconds(0)
-      timerRef.current = window.setInterval(() => setRecordSeconds((s) => s + 1), 1000)
-    } catch {
-      setError('Microphone refusé ou indisponible.')
-    }
-  }, [drawBars])
-
-  useEffect(() => {
-    return () => {
-      if (timerRef.current) window.clearInterval(timerRef.current)
-      stopVisualizer()
-      streamRef.current?.getTracks().forEach((t) => t.stop())
-    }
-  }, [stopVisualizer])
-
-  const toggleRec = () => {
-    if (recording) void stopRecording()
-    else void startRecording()
-  }
+    },
+    [prompt, userLevel],
+  )
 
   if (locked && !analysis) {
     return <MissionDoneSpeaking />
   }
 
   return (
-    <div id="speaking" className="scroll-mt-24 rounded-3xl border border-slate-100 bg-white p-6 shadow-sm md:p-8">
-      <div className="flex items-center gap-3">
-        <Mic className="h-8 w-8 text-[#1e293b]" />
+    <div id="speaking" className="scroll-mt-24 overflow-hidden rounded-3xl border border-slate-100 bg-white shadow-sm">
+      <div className="px-6 py-5 text-white md:px-8" style={{ backgroundColor: navy }}>
+        <div className="flex items-center gap-3">
+          <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-white/10">
+            <Mic className="h-6 w-6 text-indigo-100" />
+          </div>
+          <div>
+            <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-indigo-200">TEF preparation track</p>
+            <h2 className="font-display text-xl font-bold md:text-2xl">Speaking Lab</h2>
+            {prompt ? (
+              <p className="mt-1 max-w-xl text-xs text-indigo-100/95">
+                <span className="font-bold text-white">Consigne :</span> {prompt.promptFr}
+              </p>
+            ) : (
+              <p className="mt-1 text-xs text-indigo-200">Chargement Whisper + Gemini…</p>
+            )}
+          </div>
+        </div>
+        {prompt?.topicLine ? (
+          <span className="mt-3 inline-block rounded-full border border-white/25 bg-white/10 px-3 py-1 text-[10px] font-bold uppercase tracking-wide text-indigo-100">
+            {prompt.topicLine}
+          </span>
+        ) : null}
+      </div>
+
+      <div className="space-y-6 p-6 md:p-8">
         <div>
-          <h2 className="font-display text-xl font-bold text-[#1e293b]">Speaking Lab</h2>
-          {prompt ? (
-            <p className="mt-1 text-sm text-slate-600">
-              <span className="font-semibold text-[#1e293b]">Prompt :</span> « {prompt.promptFr} »
-            </p>
-          ) : (
-            <p className="text-sm text-slate-500">Chargement de la consigne…</p>
-          )}
-        </div>
-      </div>
-
-      <div className="mt-6 rounded-2xl bg-slate-50 p-4">
-        <canvas ref={canvasRef} width={320} height={72} className="mx-auto w-full max-w-md rounded-lg bg-white" />
-        <div className="mt-4 flex flex-col items-center gap-2">
-          <button
-            type="button"
-            onClick={toggleRec}
-            disabled={processing || !prompt || locked}
-            className={[
-              'flex h-16 w-16 items-center justify-center rounded-full text-white shadow-lg transition',
-              recording ? 'bg-slate-700' : 'bg-red-600 hover:bg-red-700',
-              processing || !prompt || locked ? 'cursor-not-allowed opacity-50' : '',
-            ].join(' ')}
-            aria-label={recording ? 'Stop' : 'Record'}
-          >
-            {recording ? <Square className="h-6 w-6 fill-current" /> : <Mic className="h-7 w-7" />}
-          </button>
-          <p className="font-mono text-sm font-bold text-slate-700">
-            {recording ? `RECORDING ${String(Math.floor(recordSeconds / 60)).padStart(2, '0')}:${String(recordSeconds % 60).padStart(2, '0')}` : processing ? 'Analyse en cours…' : 'Appuyez pour enregistrer'}
+          <p className="text-xs font-bold uppercase tracking-wide text-slate-500">Enregistrement</p>
+          <p className="mt-1 text-xs text-slate-600">
+            Whisper (OpenAI) pour la transcription, puis analyse Gemini : fluidité, liaisons, voyelles nasales, score TEF
+            estimé.
           </p>
+          <div className="mt-4">
+            <VoiceRecorder
+              disabled={processing || !prompt || locked}
+              onRecordComplete={(blob) => void onRecordComplete(blob)}
+            />
+          </div>
+          {processing ? (
+            <p className="mt-3 text-center text-sm font-semibold text-indigo-600">Transcription et analyse en cours…</p>
+          ) : null}
         </div>
+
+        {error ? <p className="text-sm text-red-600">{error}</p> : null}
+
+        {analysis ? (
+          <div className="space-y-4 border-t border-slate-100 pt-6 text-sm">
+            <div className="rounded-2xl p-5 text-white shadow-md" style={{ backgroundColor: navy }}>
+              <p className="text-[10px] font-bold uppercase tracking-widest text-indigo-200">TEF — score estimé</p>
+              <p className="font-display mt-2 text-4xl font-bold tabular-nums">{analysis.tefScorePredicted}</p>
+              <p className="mt-1 text-xs text-indigo-200">sur 900 (prédiction pédagogique, non officielle)</p>
+            </div>
+
+            <div className="rounded-2xl border border-slate-100 bg-white p-4 shadow-sm">
+              <p className="text-[10px] font-bold uppercase tracking-widest text-slate-500">Fluidité</p>
+              <p className="mt-2 leading-relaxed text-slate-700">{analysis.fluency}</p>
+            </div>
+
+            <div className="rounded-2xl border border-slate-100 bg-white p-4 shadow-sm">
+              <p className="text-[10px] font-bold uppercase tracking-widest text-slate-500">Prononciation (vue d’ensemble)</p>
+              <p className="mt-2 leading-relaxed text-slate-700">{analysis.pronunciation}</p>
+            </div>
+
+            {analysis.liaisonsFeedback ? (
+              <div className="rounded-2xl border border-violet-100 bg-violet-50/50 p-4">
+                <p className="text-[10px] font-bold uppercase tracking-widest text-violet-800">Liaisons & enchaînements</p>
+                <p className="mt-2 leading-relaxed text-slate-800">{analysis.liaisonsFeedback}</p>
+              </div>
+            ) : null}
+
+            {analysis.nasalVowelsFeedback ? (
+              <div className="rounded-2xl border border-sky-100 bg-sky-50/50 p-4">
+                <p className="text-[10px] font-bold uppercase tracking-widest text-sky-900">Voyelles nasales</p>
+                <p className="mt-2 leading-relaxed text-slate-800">{analysis.nasalVowelsFeedback}</p>
+              </div>
+            ) : null}
+
+            {analysis.strengths.length > 0 ? (
+              <div>
+                <p className="text-xs font-bold uppercase text-emerald-700">Points forts</p>
+                <ul className="mt-2 list-inside list-disc space-y-1 text-slate-600">
+                  {analysis.strengths.map((s, i) => (
+                    <li key={i}>{s}</li>
+                  ))}
+                </ul>
+              </div>
+            ) : null}
+            {analysis.improvements.length > 0 ? (
+              <div>
+                <p className="text-xs font-bold uppercase text-amber-800">À travailler</p>
+                <ul className="mt-2 list-inside list-disc space-y-1 text-slate-600">
+                  {analysis.improvements.map((s, i) => (
+                    <li key={i}>{s}</li>
+                  ))}
+                </ul>
+              </div>
+            ) : null}
+          </div>
+        ) : null}
       </div>
-
-      {error ? <p className="mt-4 text-sm text-red-600">{error}</p> : null}
-
-      {analysis ? (
-        <div className="mt-6 space-y-4 border-t border-slate-100 pt-6 text-sm">
-          <div className="rounded-2xl bg-[#1e293b] p-4 text-white">
-            <p className="text-[10px] font-bold uppercase tracking-widest text-indigo-200">TEF score (predicted)</p>
-            <p className="font-display text-3xl font-bold">{analysis.tefScorePredicted} / 900</p>
-          </div>
-          <div>
-            <p className="text-xs font-bold uppercase text-slate-500">Fluency</p>
-            <p className="mt-1 text-slate-700">{analysis.fluency}</p>
-          </div>
-          <div>
-            <p className="text-xs font-bold uppercase text-slate-500">Pronunciation</p>
-            <p className="mt-1 text-slate-700">{analysis.pronunciation}</p>
-          </div>
-          {analysis.strengths.length > 0 ? (
-            <div>
-              <p className="text-xs font-bold uppercase text-emerald-700">Strengths</p>
-              <ul className="mt-1 list-inside list-disc text-slate-600">
-                {analysis.strengths.map((s, i) => (
-                  <li key={i}>{s}</li>
-                ))}
-              </ul>
-            </div>
-          ) : null}
-          {analysis.improvements.length > 0 ? (
-            <div>
-              <p className="text-xs font-bold uppercase text-amber-700">Improve</p>
-              <ul className="mt-1 list-inside list-disc text-slate-600">
-                {analysis.improvements.map((s, i) => (
-                  <li key={i}>{s}</li>
-                ))}
-              </ul>
-            </div>
-          ) : null}
-        </div>
-      ) : null}
     </div>
   )
 }

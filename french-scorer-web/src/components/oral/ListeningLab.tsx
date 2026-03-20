@@ -1,35 +1,58 @@
-import { AlertTriangle, Headphones, Pause, Play, SkipBack, SkipForward } from 'lucide-react'
+import { AlertTriangle, Headphones, Lock, Pause, Play, SkipBack, SkipForward } from 'lucide-react'
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
-import { ensureDailyListeningMission, type DailyListeningMission, type ListeningQuestion } from '../../lib/OralMissionEngine'
 import {
-  formatCountdown,
-  msUntilLocalMidnight,
-} from '../../lib/readingRoomMissionStorage'
+  ensureDailyListeningMission,
+  type DailyListeningMission,
+  type ListeningQuestion,
+  type QuestionFocus,
+} from '../../lib/OralMissionEngine'
+import { msUntilEdmontonMidnight } from '../../lib/edmontonTime'
+import { formatCountdown } from '../../lib/readingRoomMissionStorage'
 import { isListeningMissionLockedToday, markListeningMissionComplete } from '../../lib/oralLabStorage'
 import { addExamReadiness, incrementOralStreakOncePerDay } from '../../lib/tefSharedFooterStats'
+
+const navy = '#1e293b'
 
 type Props = {
   userLevel: string
 }
 
+function focusLabel(f: QuestionFocus | undefined): string {
+  if (f === 'tone') return 'Tone'
+  if (f === 'implicit') return 'Implicit meaning'
+  return 'Key details'
+}
+
+function focusChipClass(f: QuestionFocus | undefined): string {
+  if (f === 'tone') return 'bg-violet-100 text-violet-900 border-violet-200'
+  if (f === 'implicit') return 'bg-sky-100 text-sky-900 border-sky-200'
+  return 'bg-emerald-100 text-emerald-900 border-emerald-200'
+}
+
 function MissionDoneListening({ title, score, total }: { title?: string; score?: number; total?: number }) {
-  const [ms, setMs] = useState(() => msUntilLocalMidnight())
+  const [ms, setMs] = useState(() => msUntilEdmontonMidnight())
   useEffect(() => {
-    const id = setInterval(() => setMs(msUntilLocalMidnight()), 1000)
+    const id = setInterval(() => setMs(msUntilEdmontonMidnight()), 1000)
     return () => clearInterval(id)
   }, [])
   return (
-    <div className="rounded-3xl border border-slate-100 bg-white p-6 text-center shadow-sm">
-      <p className="text-sm font-bold text-emerald-700">Mission accomplie — Écoute</p>
-      {score !== undefined && total !== undefined ? (
-        <p className="mt-2 text-sm font-semibold text-[#1e293b]">
-          Score quiz : {score} / {total}
+    <div className="overflow-hidden rounded-3xl border border-slate-100 bg-white shadow-sm">
+      <div className="px-6 py-4 text-white" style={{ backgroundColor: navy }}>
+        <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-indigo-200">Listening lab</p>
+        <p className="font-display mt-1 text-lg font-bold">Mission accomplie</p>
+      </div>
+      <div className="p-6 text-center">
+        <p className="text-sm font-bold text-emerald-700">Écoute — session validée</p>
+        {score !== undefined && total !== undefined ? (
+          <p className="mt-2 text-sm font-semibold text-[#1e293b]">
+            Score : {score} / {total}
+          </p>
+        ) : null}
+        <p className="mt-2 text-xs leading-relaxed text-slate-600">
+          {title ? `« ${title} »` : "Scénario d'aujourd'hui"} terminé. Prochain contenu (minuit Edmonton) dans :
         </p>
-      ) : null}
-      <p className="mt-2 text-xs text-slate-600">
-        {title ? `« ${title} »` : "Scénario d'aujourd'hui"} terminé. Prochain scénario dans :
-      </p>
-      <p className="mt-3 font-mono text-2xl font-bold tabular-nums text-[#1e293b]">{formatCountdown(ms)}</p>
+        <p className="mt-3 font-mono text-2xl font-bold tabular-nums text-[#1e293b]">{formatCountdown(ms)}</p>
+      </div>
     </div>
   )
 }
@@ -39,7 +62,6 @@ export default function ListeningLab({ userLevel }: Props) {
   const [loading, setLoading] = useState(true)
   const [err, setErr] = useState<string | null>(null)
   const [locked, setLocked] = useState(() => isListeningMissionLockedToday(userLevel))
-  const [noBackMode, setNoBackMode] = useState(true)
   const [playbackStarted, setPlaybackStarted] = useState(false)
   const [playing, setPlaying] = useState(false)
   const [currentTime, setCurrentTime] = useState(0)
@@ -52,6 +74,9 @@ export default function ListeningLab({ userLevel }: Props) {
   const audioRef = useRef<HTMLAudioElement | null>(null)
   const objectUrlRef = useRef<string | null>(null)
   const lastGoodTimeRef = useRef(0)
+
+  /** TEF protocol: no rewind / seek once playback starts */
+  const tefProtocolActive = playbackStarted
 
   const loadMission = useCallback(async () => {
     setLoading(true)
@@ -105,8 +130,6 @@ export default function ListeningLab({ userLevel }: Props) {
     }
   }, [mission])
 
-  const tefProtocolActive = noBackMode && playbackStarted
-
   const onTimeUpdate = useCallback(() => {
     const a = audioRef.current
     if (!a) return
@@ -157,14 +180,14 @@ export default function ListeningLab({ userLevel }: Props) {
 
   const skipBack = useCallback(() => {
     if (seekDisabled) return
-    const a = audioRef.current
-    if (a) a.currentTime = Math.max(0, a.currentTime - 10)
+    const el = audioRef.current
+    if (el) el.currentTime = Math.max(0, el.currentTime - 10)
   }, [seekDisabled])
 
   const skipFwd = useCallback(() => {
     if (seekDisabled) return
-    const a = audioRef.current
-    if (a) a.currentTime = Math.min(a.duration || 0, a.currentTime + 10)
+    const el = audioRef.current
+    if (el) el.currentTime = Math.min(el.duration || 0, el.currentTime + 10)
   }, [seekDisabled])
 
   const onAudioEnded = useCallback(() => {
@@ -218,164 +241,182 @@ export default function ListeningLab({ userLevel }: Props) {
   }
 
   return (
-    <div className="rounded-3xl border border-slate-100 bg-white p-6 shadow-sm md:p-8">
-      <div className="flex flex-wrap items-start justify-between gap-3">
-        <div className="flex items-center gap-3">
-          <Headphones className="h-8 w-8 text-[#1e293b]" />
-          <div>
-            <h2 className="font-display text-xl font-bold text-[#1e293b]">Listening Lab</h2>
-            <p className="text-xs text-slate-500">{mission?.moduleLabel ?? '…'}</p>
+    <div className="overflow-hidden rounded-3xl border border-slate-100 bg-white shadow-sm">
+      <div className="px-6 py-5 text-white md:px-8" style={{ backgroundColor: navy }}>
+        <div className="flex flex-wrap items-start justify-between gap-3">
+          <div className="flex items-center gap-3">
+            <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-white/10">
+              <Headphones className="h-6 w-6 text-indigo-100" />
+            </div>
+            <div>
+              <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-indigo-200">TEF preparation track</p>
+              <h2 className="font-display text-xl font-bold md:text-2xl">Listening Lab</h2>
+              <p className="mt-0.5 text-xs text-indigo-100/90">{mission?.moduleLabel ?? '…'}</p>
+            </div>
           </div>
-        </div>
-        <div className="flex flex-wrap items-center gap-2">
-          {noBackMode ? (
-            <span className="rounded-full bg-red-50 px-3 py-1 text-[10px] font-bold uppercase tracking-wide text-red-700">
-              No-back mode active
-            </span>
-          ) : null}
-          <label className="flex cursor-pointer items-center gap-2 text-xs font-semibold text-slate-600">
-            <input
-              type="checkbox"
-              checked={noBackMode}
-              onChange={(e) => setNoBackMode(e.target.checked)}
-              className="accent-indigo-600"
-            />
-            TEF protocol
-          </label>
+          <span className="inline-flex items-center gap-1.5 rounded-full border border-white/20 bg-white/10 px-3 py-1.5 text-[10px] font-bold uppercase tracking-wide text-white">
+            <Lock className="h-3.5 w-3.5" />
+            No-back (TEF)
+          </span>
         </div>
       </div>
 
-      {err ? (
-        <p className="mt-4 text-sm text-red-600">{err}</p>
-      ) : null}
+      <div className="p-6 md:p-8">
+        {err ? <p className="text-sm text-red-600">{err}</p> : null}
 
-      {loading ? (
-        <p className="mt-6 text-sm text-slate-500">Chargement du scénario…</p>
-      ) : mission ? (
-        <>
-          <div className="mt-6 rounded-2xl bg-slate-50 p-4">
-            <div className="flex flex-wrap items-center gap-3">
-              <button
-                type="button"
-                onClick={togglePlay}
-                className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-[#1e293b] text-white shadow-md"
-                aria-label={playing ? 'Pause' : 'Lecture'}
-              >
-                {playing ? <Pause className="h-5 w-5" /> : <Play className="h-5 w-5 pl-0.5" />}
-              </button>
-              <div className="min-w-0 flex-1">
-                <div
-                  className={[
-                    'h-2 overflow-hidden rounded-full bg-slate-200',
-                    seekDisabled ? 'pointer-events-none opacity-90' : '',
-                  ].join(' ')}
-                >
-                  <div
-                    className="h-full rounded-full bg-indigo-500 transition-all"
-                    style={{ width: `${Math.min(100, (currentTime / displayDuration) * 100)}%` }}
-                  />
-                </div>
-                <div className="mt-1 flex justify-between font-mono text-[11px] text-slate-500">
-                  <span>{fmt(currentTime)}</span>
-                  <span>{fmt(duration)}</span>
-                </div>
-              </div>
-            </div>
-            <div className="mt-3 flex items-center justify-center gap-6 text-slate-400">
-              <button
-                type="button"
-                onClick={skipBack}
-                disabled={seekDisabled}
-                className="disabled:opacity-30"
-                aria-label="Rewind"
-              >
-                <SkipBack className="h-5 w-5" />
-              </button>
-              <p className="text-center text-xs italic text-slate-500">
-                {seekDisabled ? 'Rewind disabled per TEF protocol' : 'Free navigation'}
-              </p>
-              <button
-                type="button"
-                onClick={skipFwd}
-                disabled={seekDisabled}
-                className="disabled:opacity-30"
-                aria-label="Forward"
-              >
-                <SkipForward className="h-5 w-5" />
-              </button>
-            </div>
-            {!mission.audioBase64 ? (
-              <p className="mt-2 flex items-center justify-center gap-2 text-xs text-amber-700">
-                <AlertTriangle className="h-4 w-4" />
-                Audio non disponible — lecture vocale du navigateur (FR) ou configurez ElevenLabs / OpenAI sur l’API.
-              </p>
+        {loading ? (
+          <p className="mt-2 text-sm text-slate-500">Chargement du scénario (ElevenLabs Multilingual v2 + Gemini)…</p>
+        ) : mission ? (
+          <>
+            {mission.scenarioTitle ? (
+              <p className="text-sm font-semibold text-[#1e293b]">« {mission.scenarioTitle} »</p>
             ) : null}
-          </div>
 
-          <audio
-            ref={audioRef}
-            preload="metadata"
-            onLoadedMetadata={(e) => {
-              setDuration(e.currentTarget.duration || 0)
-              lastGoodTimeRef.current = 0
-            }}
-            onTimeUpdate={onTimeUpdate}
-            onEnded={onAudioEnded}
-            onPlay={() => setPlaying(true)}
-            onPause={() => setPlaying(false)}
-            className="hidden"
-          />
-
-          {showQuiz && mission.questions.length > 0 ? (
-            <div className="mt-6 space-y-4 border-t border-slate-100 pt-6">
-              <p className="text-sm font-bold text-[#1e293b]">Compréhension — ton & sous-texte</p>
-              {mission.questions.map((q: ListeningQuestion, qi: number) => (
-                <div key={qi} className="rounded-2xl border border-slate-100 bg-slate-50/80 p-4">
-                  <p className="text-sm font-medium text-slate-800">{q.questionEn}</p>
-                  <div className="mt-2 space-y-2">
-                    {q.options.map((opt, oi) => (
-                      <label
-                        key={oi}
-                        className={[
-                          'flex cursor-pointer items-center gap-2 rounded-lg border px-3 py-2 text-sm',
-                          choices[qi] === oi ? 'border-indigo-400 bg-indigo-50' : 'border-slate-200 bg-white',
-                          quizResult === 'done' && oi === q.correctIndex ? 'ring-2 ring-emerald-400' : '',
-                          quizResult === 'done' && choices[qi] === oi && oi !== q.correctIndex
-                            ? 'ring-2 ring-red-300'
-                            : '',
-                        ].join(' ')}
-                      >
-                        <input
-                          type="radio"
-                          name={`q-${qi}`}
-                          checked={choices[qi] === oi}
-                          disabled={quizResult === 'done'}
-                          onChange={() => setChoices((c) => ({ ...c, [qi]: oi }))}
-                          className="accent-indigo-600"
-                        />
-                        {opt}
-                      </label>
-                    ))}
-                  </div>
-                </div>
-              ))}
-              {quizResult === 'done' ? (
-                <p className="text-sm font-semibold text-emerald-700">
-                  Score : {score} / {mission.questions.length} — mission validée pour aujourd’hui.
-                </p>
-              ) : (
+            <div className="mt-5 rounded-2xl border border-slate-100 bg-slate-50/80 p-4">
+              <div
+                className="flex flex-wrap items-center gap-3"
+                onPointerDown={(e) => {
+                  if (seekDisabled) e.preventDefault()
+                }}
+              >
                 <button
                   type="button"
-                  onClick={submitQuiz}
-                  className="w-full rounded-full bg-indigo-600 py-3 text-sm font-bold text-white shadow-sm"
+                  onClick={togglePlay}
+                  className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-[#1e293b] text-white shadow-md transition hover:opacity-95"
+                  aria-label={playing ? 'Pause' : 'Lecture'}
                 >
-                  Valider les réponses
+                  {playing ? <Pause className="h-5 w-5" /> : <Play className="h-5 w-5 pl-0.5" />}
                 </button>
-              )}
+                <div className="min-w-0 flex-1">
+                  <div
+                    className={[
+                      'h-2.5 overflow-hidden rounded-full bg-slate-200',
+                      seekDisabled ? 'pointer-events-none select-none' : '',
+                    ].join(' ')}
+                    title={seekDisabled ? 'Seek désactivé (protocole TEF)' : undefined}
+                  >
+                    <div
+                      className="h-full rounded-full bg-indigo-500 transition-[width]"
+                      style={{ width: `${Math.min(100, (currentTime / displayDuration) * 100)}%` }}
+                    />
+                  </div>
+                  <div className="mt-1 flex justify-between font-mono text-[11px] text-slate-500">
+                    <span>{fmt(currentTime)}</span>
+                    <span>{fmt(duration)}</span>
+                  </div>
+                </div>
+              </div>
+              <div className="mt-4 flex items-center justify-center gap-6 text-slate-400">
+                <button
+                  type="button"
+                  onClick={skipBack}
+                  disabled={seekDisabled}
+                  className="rounded-lg p-2 disabled:opacity-25"
+                  aria-label="Reculer"
+                >
+                  <SkipBack className="h-5 w-5" />
+                </button>
+                <p className="max-w-[200px] text-center text-[11px] font-medium italic text-slate-500">
+                  {seekDisabled
+                    ? 'Pas de retour arrière ni de saut — comme à l’examen TEF.'
+                    : 'La lecture active le mode examen.'}
+                </p>
+                <button
+                  type="button"
+                  onClick={skipFwd}
+                  disabled={seekDisabled}
+                  className="rounded-lg p-2 disabled:opacity-25"
+                  aria-label="Avancer"
+                >
+                  <SkipForward className="h-5 w-5" />
+                </button>
+              </div>
+              {!mission.audioBase64 ? (
+                <p className="mt-3 flex items-center justify-center gap-2 text-xs text-amber-800">
+                  <AlertTriangle className="h-4 w-4 shrink-0" />
+                  Audio HD indisponible — synthèse navigateur (FR). Configurez ElevenLabs sur l’API pour MP3 haute fidélité.
+                </p>
+              ) : null}
             </div>
-          ) : null}
-        </>
-      ) : null}
+
+            <audio
+              ref={audioRef}
+              preload="metadata"
+              onLoadedMetadata={(e) => {
+                setDuration(e.currentTarget.duration || 0)
+                lastGoodTimeRef.current = 0
+              }}
+              onTimeUpdate={onTimeUpdate}
+              onEnded={onAudioEnded}
+              onPlay={() => setPlaying(true)}
+              onPause={() => setPlaying(false)}
+              className="hidden"
+            />
+
+            {showQuiz && mission.questions.length > 0 ? (
+              <div className="mt-8 space-y-4 border-t border-slate-100 pt-6">
+                <p className="text-sm font-bold text-[#1e293b]">Compréhension orale</p>
+                <p className="text-xs text-slate-500">
+                  Questions sur le ton, le sens implicite et les faits importants — après l’écoute complète.
+                </p>
+                {mission.questions.map((q: ListeningQuestion, qi: number) => (
+                  <div key={qi} className="rounded-2xl border border-slate-100 bg-white p-4 shadow-sm">
+                    <div className="flex flex-wrap items-center gap-2">
+                      <span
+                        className={[
+                          'rounded-full border px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-wide',
+                          focusChipClass(q.focus),
+                        ].join(' ')}
+                      >
+                        {focusLabel(q.focus)}
+                      </span>
+                    </div>
+                    <p className="mt-2 text-sm font-medium text-slate-800">{q.questionEn}</p>
+                    <div className="mt-3 space-y-2">
+                      {q.options.map((opt, oi) => (
+                        <label
+                          key={oi}
+                          className={[
+                            'flex cursor-pointer items-center gap-2 rounded-xl border px-3 py-2.5 text-sm transition',
+                            choices[qi] === oi ? 'border-indigo-400 bg-indigo-50' : 'border-slate-200 bg-slate-50/50',
+                            quizResult === 'done' && oi === q.correctIndex ? 'ring-2 ring-emerald-400' : '',
+                            quizResult === 'done' && choices[qi] === oi && oi !== q.correctIndex
+                              ? 'ring-2 ring-red-300'
+                              : '',
+                          ].join(' ')}
+                        >
+                          <input
+                            type="radio"
+                            name={`q-${qi}`}
+                            checked={choices[qi] === oi}
+                            disabled={quizResult === 'done'}
+                            onChange={() => setChoices((c) => ({ ...c, [qi]: oi }))}
+                            className="accent-indigo-600"
+                          />
+                          {opt}
+                        </label>
+                      ))}
+                    </div>
+                  </div>
+                ))}
+                {quizResult === 'done' ? (
+                  <p className="text-sm font-semibold text-emerald-700">
+                    Score : {score} / {mission.questions.length} — mission validée (fuseau Edmonton).
+                  </p>
+                ) : (
+                  <button
+                    type="button"
+                    onClick={submitQuiz}
+                    className="w-full rounded-full bg-indigo-600 py-3.5 text-sm font-bold text-white shadow-md transition hover:bg-indigo-500"
+                  >
+                    Valider les réponses
+                  </button>
+                )}
+              </div>
+            ) : null}
+          </>
+        ) : null}
+      </div>
     </div>
   )
 }

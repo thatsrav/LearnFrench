@@ -3,15 +3,18 @@
  * Server generates audio (ElevenLabs preferred, OpenAI TTS fallback); client caches 24h by date+level.
  */
 
+import { edmontonDateKey } from './edmontonTime'
 import { getApiBaseUrl } from './apiBase'
 import { LISTENING_FALLBACK_SCENARIOS } from './listeningFallbackScripts'
-import { localDateKey } from './readingRoomMissionStorage'
 import { normalizeWritingLevel } from './WritingService'
+
+export type QuestionFocus = 'tone' | 'implicit' | 'key_detail'
 
 export type ListeningQuestion = {
   questionEn: string
   options: string[]
   correctIndex: number
+  focus?: QuestionFocus
 }
 
 export type DailyListeningMission = {
@@ -39,7 +42,7 @@ type SpeakCache = { dateKey: string; level: string; prompt: DailySpeakingPrompt 
 
 export async function ensureDailyListeningMission(userLevelRaw: string): Promise<DailyListeningMission> {
   const level = normalizeWritingLevel(userLevelRaw)
-  const today = localDateKey()
+  const today = edmontonDateKey()
   try {
     const raw = localStorage.getItem(CACHE_LISTEN)
     if (raw) {
@@ -54,7 +57,7 @@ export async function ensureDailyListeningMission(userLevelRaw: string): Promise
   const resp = await fetch(`${apiBase}/api/oral/daily-listening`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ level }),
+    body: JSON.stringify({ level, contentDateKey: today }),
   })
   const data = (await resp.json().catch(() => ({}))) as DailyListeningMission & { error?: string }
 
@@ -62,11 +65,28 @@ export async function ensureDailyListeningMission(userLevelRaw: string): Promise
     return buildFallbackListening(level, data?.error)
   }
 
+  const rawQs = Array.isArray(data.questions) ? data.questions : []
+  const focuses: QuestionFocus[] = ['tone', 'implicit', 'key_detail']
+  const questions: ListeningQuestion[] = rawQs.map((q: Record<string, unknown>, i: number) => {
+    const f = String(q?.focus ?? '').toLowerCase()
+    let focus: QuestionFocus | undefined
+    if (f.includes('tone')) focus = 'tone'
+    else if (f.includes('implicit')) focus = 'implicit'
+    else if (f.includes('key') || f.includes('detail')) focus = 'key_detail'
+    else focus = focuses[i % 3]
+    return {
+      questionEn: String(q?.questionEn ?? ''),
+      options: Array.isArray(q?.options) ? q.options.map((o: unknown) => String(o)) : [],
+      correctIndex: Math.max(0, Math.min(3, Number(q?.correctIndex) || 0)),
+      focus,
+    }
+  })
+
   const mission: DailyListeningMission = {
     scenarioTitle: String(data.scenarioTitle ?? 'Scénario du jour'),
     moduleLabel: String(data.moduleLabel ?? 'Daily scenario'),
     scriptFr: String(data.scriptFr ?? ''),
-    questions: Array.isArray(data.questions) ? data.questions : [],
+    questions,
     audioBase64: data.audioBase64 ?? null,
     mime: String(data.mime ?? 'audio/mpeg'),
     level,
@@ -87,7 +107,7 @@ export async function ensureDailyListeningMission(userLevelRaw: string): Promise
 
 export async function ensureDailySpeakingPrompt(userLevelRaw: string): Promise<DailySpeakingPrompt> {
   const level = normalizeWritingLevel(userLevelRaw)
-  const today = localDateKey()
+  const today = edmontonDateKey()
   try {
     const raw = localStorage.getItem(CACHE_SPEAK)
     if (raw) {
@@ -102,7 +122,7 @@ export async function ensureDailySpeakingPrompt(userLevelRaw: string): Promise<D
   const resp = await fetch(`${apiBase}/api/oral/daily-speaking-prompt`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ level }),
+    body: JSON.stringify({ level, contentDateKey: today }),
   })
   const data = (await resp.json().catch(() => ({}))) as DailySpeakingPrompt & { error?: string }
 
@@ -129,11 +149,16 @@ export async function ensureDailySpeakingPrompt(userLevelRaw: string): Promise<D
 function buildFallbackListening(level: string, _err?: string): DailyListeningMission {
   const L = normalizeWritingLevel(level)
   const core = LISTENING_FALLBACK_SCENARIOS[L] ?? LISTENING_FALLBACK_SCENARIOS.B2
+  const rot: QuestionFocus[] = ['tone', 'implicit', 'key_detail']
+  const questions: ListeningQuestion[] = core.q.map((q, i) => ({
+    ...q,
+    focus: rot[i % 3],
+  }))
   return {
     scenarioTitle: core.title,
     moduleLabel: core.mod,
     scriptFr: core.script,
-    questions: core.q,
+    questions,
     audioBase64: null,
     mime: 'audio/mpeg',
     level: L,
@@ -181,6 +206,8 @@ export async function transcribeRecordingWebm(blob: Blob): Promise<string> {
 export type SpeechAnalysisResult = {
   fluency: string
   pronunciation: string
+  liaisonsFeedback: string
+  nasalVowelsFeedback: string
   tefScorePredicted: number
   strengths: string[]
   improvements: string[]
@@ -202,6 +229,8 @@ export async function analyzeTranscript(
   return {
     fluency: String(data.fluency ?? ''),
     pronunciation: String(data.pronunciation ?? ''),
+    liaisonsFeedback: String(data.liaisonsFeedback ?? ''),
+    nasalVowelsFeedback: String(data.nasalVowelsFeedback ?? ''),
     tefScorePredicted: Number(data.tefScorePredicted ?? 0),
     strengths: Array.isArray(data.strengths) ? data.strengths : [],
     improvements: Array.isArray(data.improvements) ? data.improvements : [],

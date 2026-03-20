@@ -7,7 +7,12 @@ export default function TefTrackFooterBar() {
 
   useEffect(() => {
     const id = setInterval(() => setStats(readTefFooterStats()), 2000)
-    return () => clearInterval(id)
+    const onRefresh = () => setStats(readTefFooterStats())
+    window.addEventListener('tef-footer-refresh', onRefresh)
+    return () => {
+      clearInterval(id)
+      window.removeEventListener('tef-footer-refresh', onRefresh)
+    }
   }, [])
 
   const cards = [

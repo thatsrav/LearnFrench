@@ -2,7 +2,7 @@
  * Shared TEF track footer metrics (Exam readiness, prep days, streak).
  * Used by Oral labs; same keys can be read on Reading/Writing dashboards for consistency.
  */
-import { localDateKey } from './readingRoomMissionStorage'
+import { edmontonDateKey } from './edmontonTime'
 
 const FOOTER_KEY = 'tef_track_footer_stats_v1'
 const STREAK_INC_DATE_KEY = 'tef_footer_streak_increment_date_v1'
@@ -50,6 +50,11 @@ export function writeTefFooterStats(partial: Partial<TefFooterStats>): void {
   } catch {
     /* */
   }
+  try {
+    window.dispatchEvent(new CustomEvent('tef-footer-refresh'))
+  } catch {
+    /* */
+  }
 }
 
 /** Add points toward exam readiness (capped at 900). */
@@ -58,9 +63,9 @@ export function addExamReadiness(delta: number): void {
   writeTefFooterStats({ examReadiness: Math.min(900, s.examReadiness + delta) })
 }
 
-/** Increment session streak at most once per local calendar day (shared across oral missions). */
+/** Increment session streak at most once per Edmonton calendar day (oral missions). */
 export function incrementOralStreakOncePerDay(): void {
-  const today = localDateKey()
+  const today = edmontonDateKey()
   try {
     if (localStorage.getItem(STREAK_INC_DATE_KEY) === today) return
     localStorage.setItem(STREAK_INC_DATE_KEY, today)

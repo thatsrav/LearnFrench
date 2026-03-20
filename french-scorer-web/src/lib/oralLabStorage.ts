@@ -1,4 +1,4 @@
-import { localDateKey } from './readingRoomMissionStorage'
+import { edmontonDateKey } from './edmontonTime'
 
 const LISTENING_DONE = 'oral_listening_mission_done_v1'
 const SPEAKING_DONE = 'oral_speaking_mission_done_v1'
@@ -29,7 +29,7 @@ function readRec(key: string): DayLevel | null {
 
 function writeRec(key: string, level: string): void {
   try {
-    localStorage.setItem(key, JSON.stringify({ dateKey: localDateKey(), level: normLevel(level) }))
+    localStorage.setItem(key, JSON.stringify({ dateKey: edmontonDateKey(), level: normLevel(level) }))
   } catch {
     /* */
   }
@@ -38,13 +38,13 @@ function writeRec(key: string, level: string): void {
 export function isListeningMissionLockedToday(userLevel: string): boolean {
   const r = readRec(LISTENING_DONE)
   if (!r) return false
-  return r.dateKey === localDateKey() && r.level === normLevel(userLevel)
+  return r.dateKey === edmontonDateKey() && r.level === normLevel(userLevel)
 }
 
 export function isSpeakingMissionLockedToday(userLevel: string): boolean {
   const r = readRec(SPEAKING_DONE)
   if (!r) return false
-  return r.dateKey === localDateKey() && r.level === normLevel(userLevel)
+  return r.dateKey === edmontonDateKey() && r.level === normLevel(userLevel)
 }
 
 export function markListeningMissionComplete(userLevel: string): void {

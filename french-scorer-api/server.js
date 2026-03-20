@@ -520,17 +520,23 @@ app.post("/api/writing/daily-topic", async (req, res) => {
 const ORAL_CEFR_LEVELS = WRITING_CEFR_LEVELS;
 const normalizeOralLevel = normalizeWritingCefrLevel;
 
-async function generateDailyListeningScriptGemini({ apiKey, level, extraUserBlock = "" }) {
+async function generateDailyListeningScriptGemini({ apiKey, level, extraUserBlock = "", contentDateKey = "" }) {
   const modelName = await pickGeminiModel(apiKey);
   const url = `https://generativelanguage.googleapis.com/v1/${modelName}:generateContent?key=${encodeURIComponent(apiKey)}`;
 
+  const dateLine = contentDateKey
+    ? `Official content calendar day (America/Edmonton): ${contentDateKey}. Vary scenario details vs other days.`
+    : "";
+
   const userPrompt = `You create TEF Canada-style French LISTENING practice for CEFR level ${level}.
+
+${dateLine}
 
 Return ONLY valid JSON (no markdown):
 - scenarioTitle (string, French): short title for the scenario.
 - moduleLabel (string, English): e.g. "Module 03: Professional Discourse".
-- scriptFr (string): French audio script only, natural spoken French. **Length requirement (all levels): between 150 and 300 French words inclusive — count every word before returning.** Shorter scripts are invalid. Use a clear scenario (e.g. phone call, service desk, workplace, public announcement). Can be monologue or short dialogue; if dialogue, use labels like "A:" "B:" lines.
-- questions (array of 4 or 5 objects): each has "questionEn" (string, English), "options" (array of exactly 4 strings in English), "correctIndex" (integer 0-3). Questions must test inference, tone, speaker intention, implied meaning — not trivial vocabulary from one word heard.
+- scriptFr (string): French audio script only, natural spoken French. **Length requirement (all levels): between 150 and 300 French words inclusive — count every word before returning.** Shorter scripts are invalid. Use a clear scenario (e.g. phone call, service desk, workplace, public announcement). Can be monologue or short dialogue; if dialogue, use labels like "A:" "B:" lines. Vocabulary, sentence length, and discourse complexity MUST match CEFR ${level} (simpler/shorter for A1–A2; richer for B2–C1).
+- questions (array of exactly 5 objects): each has "questionEn" (string, English), "options" (array of exactly 4 strings in English), "correctIndex" (integer 0-3), "focus" (string, one of: "tone", "implicit", "key_detail"). Distribute focuses: at least one "tone", one "implicit", one "key_detail"; the other two may repeat. Questions must test inference, tone, speaker intention, implied meaning — not trivial vocabulary from one word heard.
 
 Match vocabulary and complexity to ${level}, but always respect the 150–300 word length for scriptFr.
 ${extraUserBlock ? `\n${extraUserBlock}` : ""}`;
@@ -566,15 +572,15 @@ ${extraUserBlock ? `\n${extraUserBlock}` : ""}`;
   return JSON.parse(jsonText);
 }
 
-async function generateDailyListeningPayloadWithRetry({ apiKey, level }) {
-  let raw = await generateDailyListeningScriptGemini({ apiKey, level });
+async function generateDailyListeningPayloadWithRetry({ apiKey, level, contentDateKey = "" }) {
+  let raw = await generateDailyListeningScriptGemini({ apiKey, level, contentDateKey });
   let payload = normalizeListeningPayload(raw, level);
   let n = countFrenchWords(payload.scriptFr);
   if (n >= 150 && n <= 320) return payload;
 
   const retryHint =
     "Your previous answer was outside the required length. Regenerate scriptFr so it contains AT LEAST 150 French words and AT MOST 300. Reply with full valid JSON again.";
-  raw = await generateDailyListeningScriptGemini({ apiKey, level, extraUserBlock: retryHint });
+  raw = await generateDailyListeningScriptGemini({ apiKey, level, extraUserBlock: retryHint, contentDateKey });
   payload = normalizeListeningPayload(raw, level);
   n = countFrenchWords(payload.scriptFr);
   if (n < 150) {
@@ -583,14 +589,20 @@ async function generateDailyListeningPayloadWithRetry({ apiKey, level }) {
   return payload;
 }
 
-async function generateDailySpeakingPromptGemini({ apiKey, level }) {
+async function generateDailySpeakingPromptGemini({ apiKey, level, contentDateKey = "" }) {
   const modelName = await pickGeminiModel(apiKey);
   const url = `https://generativelanguage.googleapis.com/v1/${modelName}:generateContent?key=${encodeURIComponent(apiKey)}`;
 
+  const dateLine = contentDateKey
+    ? `Content calendar day (America/Edmonton): ${contentDateKey}. Make the task distinct from other days.`
+    : "";
+
   const userPrompt = `Create ONE French speaking task for TEF-style oral practice, CEFR ${level}.
 
+${dateLine}
+
 Return ONLY valid JSON:
-- promptFr (string): the instruction to the learner in French (what they should argue/explain/describe, 1-3 sentences).
+- promptFr (string): the instruction to the learner in French (what they should argue/explain/describe, 2-4 sentences appropriate to ${level}).
 - promptEn (string): same meaning in English for UI subtitle.
 - topicLine (string): very short label in French for the UI chip.`;
 
@@ -617,13 +629,24 @@ Return ONLY valid JSON:
   return JSON.parse(jsonText);
 }
 
+/** ElevenLabs Multilingual v2 — level-tuned pacing (TEF listening). */
+function elevenLabsSpeedForLevel(level) {
+  const L = String(level || "B1").toUpperCase();
+  if (L.startsWith("A1")) return 0.82;
+  if (L.startsWith("A2")) return 0.88;
+  if (L.startsWith("B1")) return 0.94;
+  if (L.startsWith("B2")) return 1.0;
+  return 1.05;
+}
+
 /** ElevenLabs multilingual TTS → MP3 buffer. Falls back to null if not configured. */
-async function synthesizeElevenLabsMp3(text) {
+async function synthesizeElevenLabsMp3(text, level = "B1") {
   const apiKey = (process.env.ELEVENLABS_API_KEY || "").trim();
-  const voiceId = (process.env.ELEVENLABS_VOICE_ID || "ErXwobaYiN019PkySvj").trim(); // Antoni (override with Charlotte ID)
+  const voiceId = (process.env.ELEVENLABS_VOICE_ID || "ErXwobaYiN019PkySvjV").trim(); // Antoni; use Charlotte XB0fDUnXU5powFXDhCwa via env
   if (!apiKey || !text.trim()) return null;
 
   const modelId = (process.env.ELEVENLABS_MODEL || "eleven_multilingual_v2").trim();
+  const speed = elevenLabsSpeedForLevel(level);
   const r = await fetch(`https://api.elevenlabs.io/v1/text-to-speech/${encodeURIComponent(voiceId)}`, {
     method: "POST",
     headers: {
@@ -632,8 +655,15 @@ async function synthesizeElevenLabsMp3(text) {
       Accept: "audio/mpeg",
     },
     body: JSON.stringify({
-      text: text.trim().slice(0, 2500),
+      text: text.trim().slice(0, 12000),
       model_id: modelId,
+      voice_settings: {
+        stability: 0.45,
+        similarity_boost: 0.8,
+        style: 0,
+        use_speaker_boost: true,
+        speed: Math.min(1.2, Math.max(0.7, speed)),
+      },
     }),
   });
 
@@ -678,12 +708,26 @@ function normalizeListeningPayload(raw, level) {
   const moduleLabel = String(raw?.moduleLabel ?? "Daily listening").trim();
   const scriptFr = String(raw?.scriptFr ?? "").trim();
   let questions = Array.isArray(raw?.questions) ? raw.questions : [];
+  function normalizeQuestionFocus(f) {
+    const x = String(f ?? "")
+      .trim()
+      .toLowerCase()
+      .replace(/\s+/g, "_");
+    if (x.includes("tone") || x.includes("attitude") || x.includes("mood")) return "tone";
+    if (x.includes("implicit") || x.includes("infer") || x.includes("implied") || x.includes("subtext")) return "implicit";
+    if (x === "key_detail" || x.includes("detail") || x.includes("factual")) return "key_detail";
+    return "key_detail";
+  }
   questions = questions
-    .map((q) => ({
-      questionEn: String(q?.questionEn ?? "").trim(),
-      options: Array.isArray(q?.options) ? q.options.map((o) => String(o).trim()).slice(0, 4) : [],
-      correctIndex: Math.max(0, Math.min(3, Math.round(Number(q?.correctIndex)))),
-    }))
+    .map((q) => {
+      const focus = normalizeQuestionFocus(q?.focus);
+      return {
+        questionEn: String(q?.questionEn ?? "").trim(),
+        options: Array.isArray(q?.options) ? q.options.map((o) => String(o).trim()).slice(0, 4) : [],
+        correctIndex: Math.max(0, Math.min(3, Math.round(Number(q?.correctIndex)))),
+        focus,
+      };
+    })
     .filter((q) => q.questionEn && q.options.length === 4);
 
   while (questions.length < 3) {
@@ -691,6 +735,7 @@ function normalizeListeningPayload(raw, level) {
       questionEn: "What is the speaker's main goal?",
       options: ["To complain", "To request information", "To end the call", "To sell a product"],
       correctIndex: 1,
+      focus: "key_detail",
     });
   }
   return { scenarioTitle, moduleLabel, scriptFr, questions: questions.slice(0, 5), level };
@@ -707,19 +752,21 @@ app.post("/api/oral/daily-listening", async (req, res) => {
       return res.status(400).json({ error: "Invalid level (use A1–C1)." });
     }
 
+    const contentDateKey = String(req.body?.contentDateKey ?? req.body?.edmontonDateKey ?? "").trim();
+
     const geminiKey = (process.env.GEMINI_API_KEY || "").trim();
     if (!geminiKey) {
       return res.status(503).json({ error: "GEMINI_API_KEY not configured.", code: "NO_GEMINI" });
     }
 
-    const payload = await generateDailyListeningPayloadWithRetry({ apiKey: geminiKey, level });
+    const payload = await generateDailyListeningPayloadWithRetry({ apiKey: geminiKey, level, contentDateKey });
     if (!payload.scriptFr) {
       return res.status(500).json({ error: "Model returned empty script." });
     }
 
     let audioBuf = null;
     try {
-      audioBuf = await synthesizeElevenLabsMp3(payload.scriptFr);
+      audioBuf = await synthesizeElevenLabsMp3(payload.scriptFr, level);
     } catch (e) {
       console.warn("[oral] ElevenLabs failed, trying OpenAI TTS:", e?.message || e);
     }
@@ -759,7 +806,8 @@ app.post("/api/oral/daily-speaking-prompt", async (req, res) => {
     if (!geminiKey) {
       return res.status(503).json({ error: "GEMINI_API_KEY not configured." });
     }
-    const raw = await generateDailySpeakingPromptGemini({ apiKey: geminiKey, level });
+    const contentDateKey = String(req.body?.contentDateKey ?? req.body?.edmontonDateKey ?? "").trim();
+    const raw = await generateDailySpeakingPromptGemini({ apiKey: geminiKey, level, contentDateKey });
     const promptFr = String(raw?.promptFr ?? "").trim();
     const promptEn = String(raw?.promptEn ?? "").trim();
     const topicLine = String(raw?.topicLine ?? "Oral").trim();
@@ -834,9 +882,11 @@ ${transcript.trim().slice(0, 8000)}
 """
 
 Return ONLY valid JSON:
-- fluency (string): 2-3 sentences on pace, flow, connectors (English).
-- pronunciation (string): 2-3 sentences on likely French issues: silent letters, nasals, liaisons, based on misspellings typical of STT (English).
-- tefScorePredicted (integer): single number 0-900 as a rough predicted TEF global score band if this were Section A style production (be conservative).
+- fluency (string): 2-3 sentences on speech rate, pauses, logical flow, discourse connectors (English).
+- pronunciation (string): 2-3 sentences — overall French phonology quality inferred from transcript (English).
+- liaisonsFeedback (string): 2-4 sentences highlighting probable liaison/linking issues OR correct liaisons (e.g. "les_amis", "est_allé"); cite examples from transcript if possible (English).
+- nasalVowelsFeedback (string): 2-4 sentences on nasal vowels /ɑ̃/, /ɛ̃/, /ɔ̃/, /œ̃/ patterns suggested by spelling in transcript; note common confusions (an/in, on/un) (English).
+- tefScorePredicted (integer): single integer 0-900 mapping to TEF Canada global scale for this short production (be conservative vs official exam).
 - strengths (array of 2-4 short strings, English)
 - improvements (array of 2-4 short strings, English)`;
 
@@ -881,14 +931,18 @@ app.post("/api/oral/analyze-transcript", async (req, res) => {
     const raw = await analyzeTranscriptGemini({ apiKey: geminiKey, transcript, level, promptFr: promptFr || "Expression orale" });
 
     const tefScorePredicted = Math.max(0, Math.min(900, Math.round(Number(raw?.tefScorePredicted) || 400)));
-    const fluency = String(raw?.fluency ?? "").trim() || "Continue à structurer tes idées avec des connecteurs logiques.";
-    const pronunciation = String(raw?.pronunciation ?? "").trim() || "Vérifie les voyelles nasales et les consonnes muettes finales.";
+    const fluency = String(raw?.fluency ?? "").trim() || "Continue structuring ideas with clear connectors.";
+    const pronunciation = String(raw?.pronunciation ?? "").trim() || "Review nasal vowels and final silent consonants.";
+    const liaisonsFeedback = String(raw?.liaisonsFeedback ?? "").trim();
+    const nasalVowelsFeedback = String(raw?.nasalVowelsFeedback ?? "").trim();
     const strengths = Array.isArray(raw?.strengths) ? raw.strengths.map((s) => String(s)) : [];
     const improvements = Array.isArray(raw?.improvements) ? raw.improvements.map((s) => String(s)) : [];
 
     return res.json({
       fluency,
       pronunciation,
+      liaisonsFeedback,
+      nasalVowelsFeedback,
       tefScorePredicted,
       strengths,
       improvements,
