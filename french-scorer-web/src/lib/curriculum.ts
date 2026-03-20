@@ -192,3 +192,11 @@ export function countModuleProgress(module: CurriculumModule, syllabusRows: Syll
   return { done, total, percent }
 }
 
+/** Module id for navigation when opening a lesson by `contentUnitId` (e.g. `a1-u1`). */
+export function getModuleIdForContentUnit(contentUnitId: string): string | undefined {
+  for (const mod of CURRICULUM_MODULES) {
+    if (mod.lessons.some((l) => l.contentUnitId === contentUnitId)) return mod.id
+  }
+  return undefined
+}
+

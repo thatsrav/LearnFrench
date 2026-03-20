@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import { Volume2 } from 'lucide-react'
+import TefPrepWebListeningPractice from '../components/TefPrepWebListeningPractice'
 import { fetchTefA1Skill, type TefSkill } from '../lib/tefPrepFetch'
 
 type Mcq = { question_fr: string; options: string[]; answer_index: number }
@@ -36,6 +37,12 @@ export default function TefPrepActivityPage() {
   useEffect(() => {
     if (!Number.isFinite(unit) || unit < 1 || unit > 10 || !validSkill) {
       setLoading(false)
+      return
+    }
+    if (skill === 'listening') {
+      setLoading(false)
+      setErr(null)
+      setData(null)
       return
     }
     let cancelled = false
@@ -89,6 +96,18 @@ export default function TefPrepActivityPage() {
 
   if (loading) return <p className="text-slate-600">Chargement…</p>
   if (err) return <p className="text-red-700">{err}</p>
+
+  if (skill === 'listening') {
+    return (
+      <div className="space-y-4">
+        <Link to={`/tef-prep/a1/${unit}`} className="text-sm font-semibold text-blue-600 hover:underline">
+          ← Unité {unit}
+        </Link>
+        <TefPrepWebListeningPractice tefUnit={unit} />
+      </div>
+    )
+  }
+
   if (!data) return null
 
   const meta = (d: Record<string, unknown>) => (
@@ -200,54 +219,6 @@ export default function TefPrepActivityPage() {
         <p className="text-xs text-slate-500">
           Astuce : utilisez <Link className="font-semibold text-blue-600 hover:underline" to="/scorer">AI Scorer</Link> pour un retour.
         </p>
-      </div>
-    )
-  }
-
-  if (skill === 'listening') {
-    const l = data as Record<string, unknown>
-    const questions = (l.questions as Mcq[]) ?? []
-    return (
-      <div className="space-y-4">
-        <Link to={`/tef-prep/a1/${unit}`} className="text-sm font-semibold text-blue-600 hover:underline">
-          ← Unité {unit}
-        </Link>
-        {meta(l)}
-        <div className="rounded-2xl border border-emerald-200 bg-emerald-50 p-4">
-          <p className="text-xs font-bold uppercase text-emerald-800">Transcription (audio à venir)</p>
-          <p className="mt-2 text-sm leading-relaxed text-emerald-950">{String(l.transcript_fr)}</p>
-          <button
-            type="button"
-            onClick={() => speakFrCa(String(l.transcript_fr))}
-            className="mt-3 inline-flex items-center gap-2 rounded-xl bg-emerald-600 px-4 py-2 text-sm font-semibold text-white hover:bg-emerald-700"
-          >
-            <Volume2 className="h-4 w-4" />
-            Lire avec TTS (fr-CA)
-          </button>
-        </div>
-        {questions.map((q, qidx) => (
-          <div key={qidx} className="rounded-xl border border-slate-200 bg-white p-4">
-            <p className="text-sm font-semibold text-slate-900">{q.question_fr}</p>
-            <ul className="mt-2 space-y-2">
-              {q.options.map((opt, oi) => {
-                const picked = answers[qidx] === oi
-                return (
-                  <li key={oi}>
-                    <button
-                      type="button"
-                      onClick={() => setAnswers((p) => ({ ...p, [qidx]: oi }))}
-                      className={`w-full rounded-lg border px-3 py-2 text-left text-sm ${
-                        picked ? 'border-blue-500 bg-blue-50' : 'border-slate-200 bg-slate-50'
-                      }`}
-                    >
-                      {opt}
-                    </button>
-                  </li>
-                )
-              })}
-            </ul>
-          </div>
-        ))}
       </div>
     )
   }
