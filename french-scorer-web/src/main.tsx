@@ -15,16 +15,18 @@ import TefPrepActivityPage from './pages/TefPrepActivityPage.tsx'
 import AccountPage from './pages/AccountPage.tsx'
 import AuthCallbackPage from './pages/AuthCallbackPage.tsx'
 import SyllabusPage from './pages/SyllabusPage.tsx'
+import DashboardHomePage from './pages/DashboardHomePage.tsx'
 
 const router = createBrowserRouter([
   {
     path: '/',
     element: <RootLayout />,
     children: [
-      { index: true, element: <LandingPage /> },
       {
+        path: '',
         element: <AppShell />,
         children: [
+          { index: true, element: <DashboardHomePage /> },
           { path: 'scorer', element: <AIScorerPage /> },
           { path: 'unit/:moduleId', element: <UnitOverviewPage /> },
           { path: 'lesson/:unitId', element: <LessonPage /> },
@@ -39,6 +41,7 @@ const router = createBrowserRouter([
           { path: 'auth/callback', element: <AuthCallbackPage /> },
         ],
       },
+      { path: 'welcome', element: <LandingPage /> },
     ],
   },
 ])

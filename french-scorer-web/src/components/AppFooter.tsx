@@ -9,6 +9,9 @@ export default function AppFooter() {
           <p className="mt-1 text-xs text-slate-500">© {new Date().getFullYear()} FrenchLearn · The Academic Atelier</p>
         </div>
         <nav className="flex flex-wrap gap-x-8 gap-y-2 text-xs font-semibold uppercase tracking-wide text-slate-500">
+          <Link to="/welcome" className="transition hover:text-[var(--atelier-navy-deep)]">
+            Overview
+          </Link>
           <span className="cursor-pointer transition hover:text-[var(--atelier-navy-deep)]">Help Center</span>
           <span className="cursor-pointer transition hover:text-[var(--atelier-navy-deep)]">Terms of Service</span>
           <span className="cursor-pointer transition hover:text-[var(--atelier-navy-deep)]">Privacy Policy</span>

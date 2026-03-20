@@ -28,14 +28,21 @@ export default function LandingPage() {
     <div className="min-h-full bg-[var(--fl-bg)]">
       <header className="border-b border-slate-200/60 bg-white/90 backdrop-blur-sm">
         <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 md:px-8">
-          <Link to="/" className="flex items-center gap-3">
+          <Link to="/welcome" className="flex items-center gap-3">
             <span className="font-display text-2xl font-bold text-slate-900">F</span>
             <span className="text-lg font-semibold tracking-tight text-slate-900">FrenchLearn</span>
           </Link>
           <nav className="hidden items-center gap-8 text-sm font-medium text-slate-600 md:flex">
-            <Link to="/" className="border-b-2 border-[#4f46e5] pb-0.5 text-slate-900">
-              Home
+            <Link
+              to="/"
+              className="rounded-full bg-[#1A1B4B] px-4 py-2 text-xs font-bold text-white shadow-sm transition hover:bg-[#12132e]"
+            >
+              Launch Atelier
             </Link>
+            <span className="text-slate-400">|</span>
+            <a href="#pathways" className="text-slate-700 hover:text-indigo-600">
+              Pathways
+            </a>
             <Link to="/tef-prep" className="transition hover:text-red-700">
               TEF Prep
             </Link>
@@ -76,6 +83,12 @@ export default function LandingPage() {
             scorer when you want feedback on a draft — it supports the main track; it isn’t the starting point.
           </p>
           <div className="mt-10 flex flex-wrap items-center gap-4">
+            <Link
+              to="/"
+              className="inline-flex items-center justify-center rounded-lg bg-[#1A1B4B] px-8 py-3.5 text-sm font-bold text-white shadow-lg transition hover:bg-[#12132e]"
+            >
+              Enter dashboard
+            </Link>
             <Link
               to="/tef-prep"
               className="inline-flex items-center justify-center rounded-lg bg-red-700 px-8 py-3.5 text-sm font-bold text-white shadow-lg shadow-red-900/25 transition hover:bg-red-800"

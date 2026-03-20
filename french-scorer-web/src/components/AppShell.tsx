@@ -3,16 +3,21 @@ import {
   BookOpen,
   Bot,
   GraduationCap,
+  HelpCircle,
+  Home,
+  LogOut,
   Menu,
   Search,
+  Settings,
   TrendingUp,
   Trophy,
   User,
   X,
 } from 'lucide-react'
 import { useMemo, useState } from 'react'
-import { NavLink, Outlet, Link, useLocation } from 'react-router-dom'
+import { NavLink, Outlet, Link, useLocation, useNavigate } from 'react-router-dom'
 import AppFooter from './AppFooter'
+import { useAuth } from '../contexts/AuthContext'
 
 const RECENT_SCORES_KEY = 'french_scorer_recent_scores_v1'
 
@@ -30,6 +35,7 @@ function readLastCefr(): string {
 }
 
 function breadcrumbForPath(pathname: string): string {
+  if (pathname === '/' || pathname === '') return 'Home'
   if (pathname.startsWith('/tef-prep')) return 'TEF Canada Academic Pathway'
   if (pathname.startsWith('/scorer')) return 'Dashboard / AI Scorer'
   if (pathname.startsWith('/syllabus')) return 'Dashboard / Syllabus Atelier'
@@ -41,6 +47,22 @@ function breadcrumbForPath(pathname: string): string {
 }
 
 function SidebarFooter({ pathname }: { pathname: string }) {
+  if (pathname === '/' || pathname === '') {
+    return (
+      <div className="rounded-2xl border border-white/10 bg-[#1A1B4B] p-4">
+        <p className="text-[10px] font-bold uppercase tracking-[0.15em] text-indigo-200/90">Pro access</p>
+        <p className="mt-2 text-xs leading-relaxed text-white/75">
+          Unlock advanced phonetics and expanded AI feedback.
+        </p>
+        <Link
+          to="/account"
+          className="mt-4 block w-full rounded-xl bg-[#4F46E5] py-2.5 text-center text-xs font-bold text-white shadow-md transition hover:bg-[#4338ca]"
+        >
+          Upgrade to Premium
+        </Link>
+      </div>
+    )
+  }
   if (pathname.startsWith('/tef-prep')) {
     return (
       <div className="rounded-2xl border border-white/10 bg-white/[0.06] p-4">
@@ -87,10 +109,18 @@ const navItemClass = ({ isActive }: { isActive: boolean }) =>
 
 export default function AppShell() {
   const location = useLocation()
+  const navigate = useNavigate()
+  const { signOut } = useAuth()
   const [mobileOpen, setMobileOpen] = useState(false)
   const crumb = useMemo(() => breadcrumbForPath(location.pathname), [location.pathname])
 
   const closeMobile = () => setMobileOpen(false)
+
+  const onLogout = async () => {
+    await signOut()
+    navigate('/welcome')
+    closeMobile()
+  }
 
   return (
     <div className="flex min-h-full bg-[var(--atelier-surface)]">
@@ -127,6 +157,10 @@ export default function AppShell() {
         </div>
 
         <nav className="flex flex-1 flex-col gap-0.5 overflow-y-auto px-3 py-4">
+          <NavLink to="/" end className={navItemClass} onClick={closeMobile}>
+            <Home size={20} className="shrink-0 opacity-90" />
+            <span>Home</span>
+          </NavLink>
           <NavLink to="/syllabus" className={navItemClass} onClick={closeMobile}>
             <BookOpen size={20} className="shrink-0 opacity-90" />
             <span>Syllabus</span>
@@ -149,8 +183,26 @@ export default function AppShell() {
           </NavLink>
         </nav>
 
-        <div className="mt-auto border-t border-white/10 p-4">
+        <div className="mt-auto space-y-3 border-t border-white/10 p-4">
           <SidebarFooter pathname={location.pathname} />
+          <div className="flex flex-col gap-1 border-t border-white/5 pt-3">
+            <Link
+              to="/welcome"
+              className="flex items-center gap-2 rounded-lg px-2 py-2 text-xs font-semibold text-white/60 transition hover:bg-white/[0.06] hover:text-white"
+              onClick={closeMobile}
+            >
+              <HelpCircle size={16} />
+              Help Center
+            </Link>
+            <button
+              type="button"
+              onClick={() => void onLogout()}
+              className="flex w-full items-center gap-2 rounded-lg px-2 py-2 text-left text-xs font-semibold text-white/60 transition hover:bg-white/[0.06] hover:text-white"
+            >
+              <LogOut size={16} />
+              Log out
+            </button>
+          </div>
         </div>
       </aside>
 
@@ -179,7 +231,7 @@ export default function AppShell() {
                 />
                 <input
                   type="search"
-                  placeholder="Search modules, grammar rules, or vocabulary…"
+                  placeholder="Search lessons, grammar rules…"
                   className="w-full rounded-full border border-slate-200 bg-slate-50 py-2.5 pl-10 pr-4 text-sm text-slate-800 outline-none transition placeholder:text-slate-400 focus:border-sky-300 focus:bg-white focus:ring-2 focus:ring-sky-100"
                   readOnly
                 />
@@ -201,6 +253,13 @@ export default function AppShell() {
               >
                 <Bell size={20} />
               </button>
+              <Link
+                to="/account"
+                className="hidden rounded-full p-2.5 text-slate-500 hover:bg-slate-100 sm:inline-flex"
+                aria-label="Settings"
+              >
+                <Settings size={20} />
+              </Link>
               <Link
                 to="/account"
                 className="flex items-center gap-2 rounded-full border border-slate-200 bg-slate-50 py-1 pl-1 pr-3 transition hover:border-sky-200 hover:bg-white"
