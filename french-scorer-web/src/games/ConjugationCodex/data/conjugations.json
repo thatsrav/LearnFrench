@@ -1,0 +1,2763 @@
+{
+  "version": 1,
+  "verbs": [
+    {
+      "id": "aller_001",
+      "infinitive": "aller",
+      "english": "to go",
+      "level": "A1",
+      "frequency": 95,
+      "regular": false,
+      "tenses": {
+        "present": {
+          "je": "vais",
+          "tu": "vas",
+          "il": "va",
+          "nous": "allons",
+          "vous": "allez",
+          "ils": "vont"
+        },
+        "passe_compose": {
+          "je": "suis allé(e)",
+          "tu": "es allé(e)",
+          "il": "est allé",
+          "nous": "sommes allé(e)s",
+          "vous": "êtes allé(e)s",
+          "ils": "sont allés"
+        }
+      }
+    },
+    {
+      "id": "etre_001",
+      "infinitive": "être",
+      "english": "to be",
+      "level": "A1",
+      "frequency": 98,
+      "regular": false,
+      "tenses": {
+        "present": {
+          "je": "suis",
+          "tu": "es",
+          "il": "est",
+          "nous": "sommes",
+          "vous": "êtes",
+          "ils": "sont"
+        },
+        "passe_compose": {
+          "je": "ai été",
+          "tu": "as été",
+          "il": "a été",
+          "nous": "avons été",
+          "vous": "avez été",
+          "ils": "ont été"
+        }
+      }
+    },
+    {
+      "id": "avoir_001",
+      "infinitive": "avoir",
+      "english": "to have",
+      "level": "A1",
+      "frequency": 97,
+      "regular": false,
+      "tenses": {
+        "present": {
+          "je": "ai",
+          "tu": "as",
+          "il": "a",
+          "nous": "avons",
+          "vous": "avez",
+          "ils": "ont"
+        },
+        "passe_compose": {
+          "je": "ai eu",
+          "tu": "as eu",
+          "il": "a eu",
+          "nous": "avons eu",
+          "vous": "avez eu",
+          "ils": "ont eu"
+        }
+      }
+    },
+    {
+      "id": "faire_001",
+      "infinitive": "faire",
+      "english": "to do / to make",
+      "level": "A1",
+      "frequency": 92,
+      "regular": false,
+      "tenses": {
+        "present": {
+          "je": "fais",
+          "tu": "fais",
+          "il": "fait",
+          "nous": "faisons",
+          "vous": "faites",
+          "ils": "font"
+        },
+        "passe_compose": {
+          "je": "ai fait",
+          "tu": "as fait",
+          "il": "a fait",
+          "nous": "avons fait",
+          "vous": "avez fait",
+          "ils": "ont fait"
+        }
+      }
+    },
+    {
+      "id": "venir_001",
+      "infinitive": "venir",
+      "english": "to come",
+      "level": "A1",
+      "frequency": 88,
+      "regular": false,
+      "tenses": {
+        "present": {
+          "je": "viens",
+          "tu": "viens",
+          "il": "vient",
+          "nous": "venons",
+          "vous": "venez",
+          "ils": "viennent"
+        },
+        "passe_compose": {
+          "je": "suis venu(e)",
+          "tu": "es venu(e)",
+          "il": "est venu",
+          "nous": "sommes venu(e)s",
+          "vous": "êtes venu(e)s",
+          "ils": "sont venus"
+        }
+      }
+    },
+    {
+      "id": "pouvoir_001",
+      "infinitive": "pouvoir",
+      "english": "to be able to / can",
+      "level": "A2",
+      "frequency": 90,
+      "regular": false,
+      "tenses": {
+        "present": {
+          "je": "peux",
+          "tu": "peux",
+          "il": "peut",
+          "nous": "pouvons",
+          "vous": "pouvez",
+          "ils": "peuvent"
+        },
+        "passe_compose": {
+          "je": "ai pu",
+          "tu": "as pu",
+          "il": "a pu",
+          "nous": "avons pu",
+          "vous": "avez pu",
+          "ils": "ont pu"
+        }
+      }
+    },
+    {
+      "id": "vouloir_001",
+      "infinitive": "vouloir",
+      "english": "to want",
+      "level": "A2",
+      "frequency": 89,
+      "regular": false,
+      "tenses": {
+        "present": {
+          "je": "veux",
+          "tu": "veux",
+          "il": "veut",
+          "nous": "voulons",
+          "vous": "voulez",
+          "ils": "veulent"
+        },
+        "passe_compose": {
+          "je": "ai voulu",
+          "tu": "as voulu",
+          "il": "a voulu",
+          "nous": "avons voulu",
+          "vous": "avez voulu",
+          "ils": "ont voulu"
+        }
+      }
+    },
+    {
+      "id": "devoir_001",
+      "infinitive": "devoir",
+      "english": "to have to / must",
+      "level": "A2",
+      "frequency": 87,
+      "regular": false,
+      "tenses": {
+        "present": {
+          "je": "dois",
+          "tu": "dois",
+          "il": "doit",
+          "nous": "devons",
+          "vous": "devez",
+          "ils": "doivent"
+        },
+        "passe_compose": {
+          "je": "ai dû",
+          "tu": "as dû",
+          "il": "a dû",
+          "nous": "avons dû",
+          "vous": "avez dû",
+          "ils": "ont dû"
+        }
+      }
+    },
+    {
+      "id": "savoir_001",
+      "infinitive": "savoir",
+      "english": "to know (a fact)",
+      "level": "A2",
+      "frequency": 85,
+      "regular": false,
+      "tenses": {
+        "present": {
+          "je": "sais",
+          "tu": "sais",
+          "il": "sait",
+          "nous": "savons",
+          "vous": "savez",
+          "ils": "savent"
+        },
+        "passe_compose": {
+          "je": "ai su",
+          "tu": "as su",
+          "il": "a su",
+          "nous": "avons su",
+          "vous": "avez su",
+          "ils": "ont su"
+        }
+      }
+    },
+    {
+      "id": "prendre_001",
+      "infinitive": "prendre",
+      "english": "to take",
+      "level": "A2",
+      "frequency": 86,
+      "regular": false,
+      "tenses": {
+        "present": {
+          "je": "prends",
+          "tu": "prends",
+          "il": "prend",
+          "nous": "prenons",
+          "vous": "prenez",
+          "ils": "prennent"
+        },
+        "passe_compose": {
+          "je": "ai pris",
+          "tu": "as pris",
+          "il": "a pris",
+          "nous": "avons pris",
+          "vous": "avez pris",
+          "ils": "ont pris"
+        }
+      }
+    },
+    {
+      "id": "parler_001",
+      "infinitive": "parler",
+      "english": "to speak",
+      "level": "A1",
+      "frequency": 84,
+      "regular": true,
+      "tenses": {
+        "present": {
+          "je": "parle",
+          "tu": "parles",
+          "il": "parle",
+          "nous": "parlons",
+          "vous": "parlez",
+          "ils": "parlent"
+        },
+        "passe_compose": {
+          "je": "ai parlé",
+          "tu": "as parlé",
+          "il": "a parlé",
+          "nous": "avons parlé",
+          "vous": "avez parlé",
+          "ils": "ont parlé"
+        }
+      }
+    },
+    {
+      "id": "dire_001",
+      "infinitive": "dire",
+      "english": "to say / to tell",
+      "level": "A2",
+      "frequency": 88,
+      "regular": false,
+      "tenses": {
+        "present": {
+          "je": "dis",
+          "tu": "dis",
+          "il": "dit",
+          "nous": "disons",
+          "vous": "dites",
+          "ils": "disent"
+        },
+        "passe_compose": {
+          "je": "ai dit",
+          "tu": "as dit",
+          "il": "a dit",
+          "nous": "avons dit",
+          "vous": "avez dit",
+          "ils": "ont dit"
+        }
+      }
+    }
+  ],
+  "conversations": [
+    {
+      "id": "aller_conv_01",
+      "verb_id": "aller_001",
+      "level": "A1",
+      "scene": "At a café",
+      "dialogues": [
+        {
+          "speaker": "Marie",
+          "text": "Bonjour! Tu vas bien?",
+          "highlighted": [
+            "vas"
+          ]
+        },
+        {
+          "speaker": "Pierre",
+          "text": "Oui, je vais très bien.",
+          "highlighted": [
+            "vais"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "aller_conv_02",
+      "verb_id": "aller_001",
+      "level": "A1",
+      "scene": "Planning the evening",
+      "dialogues": [
+        {
+          "speaker": "Léa",
+          "text": "Nous allons au cinéma ce soir?",
+          "highlighted": [
+            "allons"
+          ]
+        },
+        {
+          "speaker": "Tom",
+          "text": "Oui, ils vont nous rejoindre vers 20h.",
+          "highlighted": [
+            "vont"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "etre_conv_01",
+      "verb_id": "etre_001",
+      "level": "A1",
+      "scene": "At school",
+      "dialogues": [
+        {
+          "speaker": "Prof",
+          "text": "Vous êtes prêts pour le test?",
+          "highlighted": [
+            "êtes"
+          ]
+        },
+        {
+          "speaker": "Clara",
+          "text": "Oui, nous sommes prêts.",
+          "highlighted": [
+            "sommes"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "etre_conv_02",
+      "verb_id": "etre_001",
+      "level": "A1",
+      "scene": "At home",
+      "dialogues": [
+        {
+          "speaker": "Maman",
+          "text": "Tu es fatigué?",
+          "highlighted": [
+            "es"
+          ]
+        },
+        {
+          "speaker": "Paul",
+          "text": "Un peu, je suis rentré tard.",
+          "highlighted": [
+            "suis"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "avoir_conv_01",
+      "verb_id": "avoir_001",
+      "level": "A1",
+      "scene": "At breakfast",
+      "dialogues": [
+        {
+          "speaker": "Julie",
+          "text": "Tu as faim?",
+          "highlighted": [
+            "as"
+          ]
+        },
+        {
+          "speaker": "Marc",
+          "text": "Oui, j'ai très faim.",
+          "highlighted": [
+            "ai"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "avoir_conv_02",
+      "verb_id": "avoir_001",
+      "level": "A1",
+      "scene": "Homework",
+      "dialogues": [
+        {
+          "speaker": "Nadia",
+          "text": "Nous avons un contrôle demain.",
+          "highlighted": [
+            "avons"
+          ]
+        },
+        {
+          "speaker": "Sam",
+          "text": "Ils ont déjà révisé?",
+          "highlighted": [
+            "ont"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "faire_conv_01",
+      "verb_id": "faire_001",
+      "level": "A1",
+      "scene": "Weekend plans",
+      "dialogues": [
+        {
+          "speaker": "Inès",
+          "text": "Tu fais du sport ce weekend?",
+          "highlighted": [
+            "fais"
+          ]
+        },
+        {
+          "speaker": "Hugo",
+          "text": "Oui, je fais du vélo.",
+          "highlighted": [
+            "fais"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "faire_conv_02",
+      "verb_id": "faire_001",
+      "level": "A1",
+      "scene": "Office",
+      "dialogues": [
+        {
+          "speaker": "Boss",
+          "text": "Nous faisons une réunion à 14h.",
+          "highlighted": [
+            "faisons"
+          ]
+        },
+        {
+          "speaker": "Lina",
+          "text": "Parfait, ils font la présentation?",
+          "highlighted": [
+            "font"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "venir_conv_01",
+      "verb_id": "venir_001",
+      "level": "A1",
+      "scene": "At the door",
+      "dialogues": [
+        {
+          "speaker": "Ana",
+          "text": "Tu viens avec nous?",
+          "highlighted": [
+            "viens"
+          ]
+        },
+        {
+          "speaker": "Leo",
+          "text": "Oui, je viens dans cinq minutes.",
+          "highlighted": [
+            "viens"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "venir_conv_02",
+      "verb_id": "venir_001",
+      "level": "A1",
+      "scene": "Party",
+      "dialogues": [
+        {
+          "speaker": "Sara",
+          "text": "Ils viennent de Paris pour le week-end.",
+          "highlighted": [
+            "viennent"
+          ]
+        },
+        {
+          "speaker": "Noah",
+          "text": "Nous venons aussi en train.",
+          "highlighted": [
+            "venons"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pouvoir_conv_01",
+      "verb_id": "pouvoir_001",
+      "level": "A2",
+      "scene": "Making plans",
+      "dialogues": [
+        {
+          "speaker": "Emma",
+          "text": "Tu peux venir demain?",
+          "highlighted": [
+            "peux"
+          ]
+        },
+        {
+          "speaker": "Jules",
+          "text": "Je peux après 18h.",
+          "highlighted": [
+            "peux"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pouvoir_conv_02",
+      "verb_id": "pouvoir_001",
+      "level": "A2",
+      "scene": "Classroom",
+      "dialogues": [
+        {
+          "speaker": "Prof",
+          "text": "Nous pouvons commencer?",
+          "highlighted": [
+            "pouvons"
+          ]
+        },
+        {
+          "speaker": "Élève",
+          "text": "Oui, nous pouvons écouter le texte.",
+          "highlighted": [
+            "pouvons"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "vouloir_conv_01",
+      "verb_id": "vouloir_001",
+      "level": "A2",
+      "scene": "Restaurant",
+      "dialogues": [
+        {
+          "speaker": "Serveur",
+          "text": "Vous voulez une table près de la fenêtre?",
+          "highlighted": [
+            "voulez"
+          ]
+        },
+        {
+          "speaker": "Client",
+          "text": "Oui, nous voulons celle-ci.",
+          "highlighted": [
+            "voulons"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "vouloir_conv_02",
+      "verb_id": "vouloir_001",
+      "level": "A2",
+      "scene": "Friends",
+      "dialogues": [
+        {
+          "speaker": "Zoé",
+          "text": "Tu veux du thé?",
+          "highlighted": [
+            "veux"
+          ]
+        },
+        {
+          "speaker": "Milo",
+          "text": "Merci, je veux bien.",
+          "highlighted": [
+            "veux"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "devoir_conv_01",
+      "verb_id": "devoir_001",
+      "level": "A2",
+      "scene": "Homework",
+      "dialogues": [
+        {
+          "speaker": "Liam",
+          "text": "Tu dois finir ce soir?",
+          "highlighted": [
+            "dois"
+          ]
+        },
+        {
+          "speaker": "Maya",
+          "text": "Oui, je dois rendre le devoir demain.",
+          "highlighted": [
+            "dois"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "devoir_conv_02",
+      "verb_id": "devoir_001",
+      "level": "A2",
+      "scene": "Work",
+      "dialogues": [
+        {
+          "speaker": "Chef",
+          "text": "Nous devons envoyer le rapport.",
+          "highlighted": [
+            "devons"
+          ]
+        },
+        {
+          "speaker": "Stagiaire",
+          "text": "Ils doivent valider avant midi?",
+          "highlighted": [
+            "doivent"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "savoir_conv_01",
+      "verb_id": "savoir_001",
+      "level": "A2",
+      "scene": "Directions",
+      "dialogues": [
+        {
+          "speaker": "Touriste",
+          "text": "Tu sais où est la gare?",
+          "highlighted": [
+            "sais"
+          ]
+        },
+        {
+          "speaker": "Local",
+          "text": "Oui, je sais, c’est à deux rues.",
+          "highlighted": [
+            "sais"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "savoir_conv_02",
+      "verb_id": "savoir_001",
+      "level": "A2",
+      "scene": "Quiz",
+      "dialogues": [
+        {
+          "speaker": "Prof",
+          "text": "Vous savez la réponse?",
+          "highlighted": [
+            "savez"
+          ]
+        },
+        {
+          "speaker": "Classe",
+          "text": "Nous savons la règle.",
+          "highlighted": [
+            "savons"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "prendre_conv_01",
+      "verb_id": "prendre_001",
+      "level": "A2",
+      "scene": "Café",
+      "dialogues": [
+        {
+          "speaker": "Barista",
+          "text": "Tu prends un café?",
+          "highlighted": [
+            "prends"
+          ]
+        },
+        {
+          "speaker": "Client",
+          "text": "Oui, je prends un cappuccino.",
+          "highlighted": [
+            "prends"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "prendre_conv_02",
+      "verb_id": "prendre_001",
+      "level": "A2",
+      "scene": "Transport",
+      "dialogues": [
+        {
+          "speaker": "Ami",
+          "text": "Nous prenons le bus à 8h.",
+          "highlighted": [
+            "prenons"
+          ]
+        },
+        {
+          "speaker": "Amie",
+          "text": "Ils prennent le métro, non?",
+          "highlighted": [
+            "prennent"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "parler_conv_01",
+      "verb_id": "parler_001",
+      "level": "A1",
+      "scene": "Language class",
+      "dialogues": [
+        {
+          "speaker": "Prof",
+          "text": "Tu parles français à la maison?",
+          "highlighted": [
+            "parles"
+          ]
+        },
+        {
+          "speaker": "Élève",
+          "text": "Oui, je parle avec mes cousins.",
+          "highlighted": [
+            "parle"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "parler_conv_02",
+      "verb_id": "parler_001",
+      "level": "A1",
+      "scene": "Travel",
+      "dialogues": [
+        {
+          "speaker": "Guide",
+          "text": "Nous parlons anglais et espagnol.",
+          "highlighted": [
+            "parlons"
+          ]
+        },
+        {
+          "speaker": "Visiteur",
+          "text": "Parfait, vous parlez lentement, merci.",
+          "highlighted": [
+            "parlez"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "dire_conv_01",
+      "verb_id": "dire_001",
+      "level": "A2",
+      "scene": "News",
+      "dialogues": [
+        {
+          "speaker": "Journaliste",
+          "text": "Que dites-vous de cette décision?",
+          "highlighted": [
+            "dites"
+          ]
+        },
+        {
+          "speaker": "Ministre",
+          "text": "Nous disons que c’est une priorité.",
+          "highlighted": [
+            "disons"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "dire_conv_02",
+      "verb_id": "dire_001",
+      "level": "A2",
+      "scene": "Family",
+      "dialogues": [
+        {
+          "speaker": "Grand-mère",
+          "text": "Tu dis toujours la vérité?",
+          "highlighted": [
+            "dis"
+          ]
+        },
+        {
+          "speaker": "Petit-fils",
+          "text": "Oui, je dis ce que je pense.",
+          "highlighted": [
+            "dis"
+          ]
+        }
+      ]
+    }
+  ],
+  "practice_questions": [
+    {
+      "id": "aller_mc_01",
+      "verb_id": "aller_001",
+      "tense": "present",
+      "pronoun": "nous",
+      "difficulty": "easy",
+      "type": "multiple_choice",
+      "sentence": "Nous ____ au cinéma ce soir.",
+      "english": "We are going to the cinema tonight.",
+      "choices": [
+        "vais",
+        "vas",
+        "va",
+        "allons"
+      ],
+      "correct_index": 3,
+      "explanation": "aller: nous → allons (present)."
+    },
+    {
+      "id": "aller_mc_02",
+      "verb_id": "aller_001",
+      "tense": "present",
+      "pronoun": "tu",
+      "difficulty": "easy",
+      "type": "multiple_choice",
+      "sentence": "Tu ____ où demain après-midi?",
+      "english": "Where are you going tomorrow afternoon?",
+      "choices": [
+        "va",
+        "vas",
+        "allons",
+        "vont"
+      ],
+      "correct_index": 1,
+      "explanation": "Tu → vas."
+    },
+    {
+      "id": "aller_mc_03",
+      "verb_id": "aller_001",
+      "tense": "present",
+      "pronoun": "ils",
+      "difficulty": "medium",
+      "type": "multiple_choice",
+      "sentence": "Ils ____ au musée samedi.",
+      "english": "They are going to the museum on Saturday.",
+      "choices": [
+        "allez",
+        "va",
+        "vont",
+        "allons"
+      ],
+      "correct_index": 2,
+      "explanation": "Ils → vont."
+    },
+    {
+      "id": "aller_mc_04",
+      "verb_id": "aller_001",
+      "tense": "present",
+      "pronoun": "je",
+      "difficulty": "medium",
+      "type": "multiple_choice",
+      "sentence": "Je ____ à la plage demain.",
+      "english": "I am going to the beach tomorrow.",
+      "choices": [
+        "vais",
+        "vas",
+        "va",
+        "allons"
+      ],
+      "correct_index": 0,
+      "explanation": "Je → vais."
+    },
+    {
+      "id": "aller_txt_01",
+      "verb_id": "aller_001",
+      "tense": "present",
+      "pronoun": "vous",
+      "difficulty": "medium",
+      "type": "text_input",
+      "sentence": "Vous ____ en retard ce matin?",
+      "english": "Are you late this morning?",
+      "accepted": [
+        "allez"
+      ],
+      "explanation": "Vous → allez."
+    },
+    {
+      "id": "aller_txt_02",
+      "verb_id": "aller_001",
+      "tense": "present",
+      "pronoun": "il",
+      "difficulty": "medium",
+      "type": "text_input",
+      "sentence": "Il ____ toujours ponctuel.",
+      "english": "He is always punctual.",
+      "accepted": [
+        "va"
+      ],
+      "explanation": "Il → va."
+    },
+    {
+      "id": "aller_txt_03",
+      "verb_id": "aller_001",
+      "tense": "passe_compose",
+      "pronoun": "nous",
+      "difficulty": "medium",
+      "type": "text_input",
+      "sentence": "Nous ____ déjà fini le travail.",
+      "english": "We have already finished the work.",
+      "accepted": [
+        "sommes allé(e)s",
+        "sommes"
+      ],
+      "explanation": "Passé composé: sommes allé(e)s."
+    },
+    {
+      "id": "aller_ctx_01",
+      "verb_id": "aller_001",
+      "tense": "present",
+      "pronoun": "je",
+      "difficulty": "hard",
+      "type": "context",
+      "context": "Le prof demande qui est disponible.",
+      "sentence": "— Moi, je ____ libre après 16h.",
+      "english": "Me, I am free after 4 p.m.",
+      "accepted": [
+        "vais"
+      ],
+      "explanation": "Je → vais."
+    },
+    {
+      "id": "aller_ctx_02",
+      "verb_id": "aller_001",
+      "tense": "present",
+      "pronoun": "tu",
+      "difficulty": "hard",
+      "type": "context",
+      "context": "Tu parles à un ami.",
+      "sentence": "Tu ____ sûr de ton choix?",
+      "english": "Are you sure about your choice?",
+      "accepted": [
+        "vas"
+      ],
+      "explanation": "Tu → vas."
+    },
+    {
+      "id": "aller_ctx_03",
+      "verb_id": "aller_001",
+      "tense": "passe_compose",
+      "pronoun": "il",
+      "difficulty": "hard",
+      "type": "context",
+      "context": "Hier soir, tout le monde parle du film.",
+      "sentence": "Il ____ déjà vu ce film.",
+      "english": "He has already seen that film.",
+      "accepted": [
+        "est",
+        "allé"
+      ],
+      "explanation": "Passé composé: est allé."
+    },
+    {
+      "id": "etre_mc_01",
+      "verb_id": "etre_001",
+      "tense": "present",
+      "pronoun": "nous",
+      "difficulty": "easy",
+      "type": "multiple_choice",
+      "sentence": "Nous ____ contents du résultat.",
+      "english": "We are happy with the result.",
+      "choices": [
+        "suis",
+        "es",
+        "est",
+        "sommes"
+      ],
+      "correct_index": 3,
+      "explanation": "être: nous → sommes (present)."
+    },
+    {
+      "id": "etre_mc_02",
+      "verb_id": "etre_001",
+      "tense": "present",
+      "pronoun": "tu",
+      "difficulty": "easy",
+      "type": "multiple_choice",
+      "sentence": "Tu ____ content du résultat?",
+      "english": "Are you happy with the result?",
+      "choices": [
+        "est",
+        "es",
+        "sommes",
+        "sont"
+      ],
+      "correct_index": 1,
+      "explanation": "Tu → es."
+    },
+    {
+      "id": "etre_mc_03",
+      "verb_id": "etre_001",
+      "tense": "present",
+      "pronoun": "ils",
+      "difficulty": "medium",
+      "type": "multiple_choice",
+      "sentence": "Ils ____ très motivés.",
+      "english": "They are very motivated.",
+      "choices": [
+        "êtes",
+        "est",
+        "sont",
+        "sommes"
+      ],
+      "correct_index": 2,
+      "explanation": "Ils → sont."
+    },
+    {
+      "id": "etre_mc_04",
+      "verb_id": "etre_001",
+      "tense": "present",
+      "pronoun": "je",
+      "difficulty": "medium",
+      "type": "multiple_choice",
+      "sentence": "Je ____ prêt quand tu arrives.",
+      "english": "I am ready when you arrive.",
+      "choices": [
+        "suis",
+        "es",
+        "est",
+        "sommes"
+      ],
+      "correct_index": 0,
+      "explanation": "Je → suis."
+    },
+    {
+      "id": "etre_txt_01",
+      "verb_id": "etre_001",
+      "tense": "present",
+      "pronoun": "vous",
+      "difficulty": "medium",
+      "type": "text_input",
+      "sentence": "Vous ____ en retard ce matin?",
+      "english": "Are you late this morning?",
+      "accepted": [
+        "êtes"
+      ],
+      "explanation": "Vous → êtes."
+    },
+    {
+      "id": "etre_txt_02",
+      "verb_id": "etre_001",
+      "tense": "present",
+      "pronoun": "il",
+      "difficulty": "medium",
+      "type": "text_input",
+      "sentence": "Il ____ toujours ponctuel.",
+      "english": "He is always punctual.",
+      "accepted": [
+        "est"
+      ],
+      "explanation": "Il → est."
+    },
+    {
+      "id": "etre_txt_03",
+      "verb_id": "etre_001",
+      "tense": "passe_compose",
+      "pronoun": "nous",
+      "difficulty": "medium",
+      "type": "text_input",
+      "sentence": "Nous ____ déjà fini le travail.",
+      "english": "We have already finished the work.",
+      "accepted": [
+        "avons été",
+        "avons"
+      ],
+      "explanation": "Passé composé: avons été."
+    },
+    {
+      "id": "etre_ctx_01",
+      "verb_id": "etre_001",
+      "tense": "present",
+      "pronoun": "je",
+      "difficulty": "hard",
+      "type": "context",
+      "context": "Le prof demande qui est disponible.",
+      "sentence": "— Moi, je ____ libre après 16h.",
+      "english": "Me, I am free after 4 p.m.",
+      "accepted": [
+        "suis"
+      ],
+      "explanation": "Je → suis."
+    },
+    {
+      "id": "etre_ctx_02",
+      "verb_id": "etre_001",
+      "tense": "present",
+      "pronoun": "tu",
+      "difficulty": "hard",
+      "type": "context",
+      "context": "Tu parles à un ami.",
+      "sentence": "Tu ____ sûr de ton choix?",
+      "english": "Are you sure about your choice?",
+      "accepted": [
+        "es"
+      ],
+      "explanation": "Tu → es."
+    },
+    {
+      "id": "etre_ctx_03",
+      "verb_id": "etre_001",
+      "tense": "passe_compose",
+      "pronoun": "il",
+      "difficulty": "hard",
+      "type": "context",
+      "context": "Hier soir, tout le monde parle du film.",
+      "sentence": "Il ____ déjà vu ce film.",
+      "english": "He has already seen that film.",
+      "accepted": [
+        "a",
+        "été"
+      ],
+      "explanation": "Passé composé: a été."
+    },
+    {
+      "id": "avoir_mc_01",
+      "verb_id": "avoir_001",
+      "tense": "present",
+      "pronoun": "nous",
+      "difficulty": "easy",
+      "type": "multiple_choice",
+      "sentence": "Nous ____ le temps de finir.",
+      "english": "We have time to finish.",
+      "choices": [
+        "ai",
+        "as",
+        "a",
+        "avons"
+      ],
+      "correct_index": 3,
+      "explanation": "avoir: nous → avons (present)."
+    },
+    {
+      "id": "avoir_mc_02",
+      "verb_id": "avoir_001",
+      "tense": "present",
+      "pronoun": "tu",
+      "difficulty": "easy",
+      "type": "multiple_choice",
+      "sentence": "Tu ____ le temps ce soir?",
+      "english": "Do you have time tonight?",
+      "choices": [
+        "a",
+        "as",
+        "avons",
+        "ont"
+      ],
+      "correct_index": 1,
+      "explanation": "Tu → as."
+    },
+    {
+      "id": "avoir_mc_03",
+      "verb_id": "avoir_001",
+      "tense": "present",
+      "pronoun": "ils",
+      "difficulty": "medium",
+      "type": "multiple_choice",
+      "sentence": "Ils ____ très faim après le match.",
+      "english": "They are very hungry after the match.",
+      "choices": [
+        "avez",
+        "a",
+        "ont",
+        "avons"
+      ],
+      "correct_index": 2,
+      "explanation": "Ils → ont."
+    },
+    {
+      "id": "avoir_mc_04",
+      "verb_id": "avoir_001",
+      "tense": "present",
+      "pronoun": "je",
+      "difficulty": "medium",
+      "type": "multiple_choice",
+      "sentence": "J'____ froid dehors.",
+      "english": "I'm cold outside.",
+      "choices": [
+        "ai",
+        "as",
+        "a",
+        "avons"
+      ],
+      "correct_index": 0,
+      "explanation": "Je → ai."
+    },
+    {
+      "id": "avoir_txt_01",
+      "verb_id": "avoir_001",
+      "tense": "present",
+      "pronoun": "vous",
+      "difficulty": "medium",
+      "type": "text_input",
+      "sentence": "Vous ____ en retard ce matin?",
+      "english": "Are you late this morning?",
+      "accepted": [
+        "avez"
+      ],
+      "explanation": "Vous → avez."
+    },
+    {
+      "id": "avoir_txt_02",
+      "verb_id": "avoir_001",
+      "tense": "present",
+      "pronoun": "il",
+      "difficulty": "medium",
+      "type": "text_input",
+      "sentence": "Il ____ toujours ponctuel.",
+      "english": "He is always punctual.",
+      "accepted": [
+        "a"
+      ],
+      "explanation": "Il → a."
+    },
+    {
+      "id": "avoir_txt_03",
+      "verb_id": "avoir_001",
+      "tense": "passe_compose",
+      "pronoun": "nous",
+      "difficulty": "medium",
+      "type": "text_input",
+      "sentence": "Nous ____ déjà fini le travail.",
+      "english": "We have already finished the work.",
+      "accepted": [
+        "avons eu",
+        "avons"
+      ],
+      "explanation": "Passé composé: avons eu."
+    },
+    {
+      "id": "avoir_ctx_01",
+      "verb_id": "avoir_001",
+      "tense": "present",
+      "pronoun": "je",
+      "difficulty": "hard",
+      "type": "context",
+      "context": "Le prof demande qui est disponible.",
+      "sentence": "— Moi, je ____ libre après 16h.",
+      "english": "Me, I am free after 4 p.m.",
+      "accepted": [
+        "ai"
+      ],
+      "explanation": "Je → ai."
+    },
+    {
+      "id": "avoir_ctx_02",
+      "verb_id": "avoir_001",
+      "tense": "present",
+      "pronoun": "tu",
+      "difficulty": "hard",
+      "type": "context",
+      "context": "Tu parles à un ami.",
+      "sentence": "Tu ____ sûr de ton choix?",
+      "english": "Are you sure about your choice?",
+      "accepted": [
+        "as"
+      ],
+      "explanation": "Tu → as."
+    },
+    {
+      "id": "avoir_ctx_03",
+      "verb_id": "avoir_001",
+      "tense": "passe_compose",
+      "pronoun": "il",
+      "difficulty": "hard",
+      "type": "context",
+      "context": "Hier soir, tout le monde parle du film.",
+      "sentence": "Il ____ déjà vu ce film.",
+      "english": "He has already seen that film.",
+      "accepted": [
+        "a",
+        "eu"
+      ],
+      "explanation": "Passé composé: a eu."
+    },
+    {
+      "id": "faire_mc_01",
+      "verb_id": "faire_001",
+      "tense": "present",
+      "pronoun": "nous",
+      "difficulty": "easy",
+      "type": "multiple_choice",
+      "sentence": "Nous ____ attention aux détails.",
+      "english": "We pay attention to the details.",
+      "choices": [
+        "fais",
+        "fait",
+        "faisons"
+      ],
+      "correct_index": 2,
+      "explanation": "faire: nous → faisons (present)."
+    },
+    {
+      "id": "faire_mc_02",
+      "verb_id": "faire_001",
+      "tense": "present",
+      "pronoun": "tu",
+      "difficulty": "easy",
+      "type": "multiple_choice",
+      "sentence": "Tu ____ quoi ce weekend?",
+      "english": "What are you doing this weekend?",
+      "choices": [
+        "fait",
+        "fais",
+        "faisons",
+        "font"
+      ],
+      "correct_index": 1,
+      "explanation": "Tu → fais."
+    },
+    {
+      "id": "faire_mc_03",
+      "verb_id": "faire_001",
+      "tense": "present",
+      "pronoun": "ils",
+      "difficulty": "medium",
+      "type": "multiple_choice",
+      "sentence": "Ils ____ du sport chaque semaine.",
+      "english": "They exercise every week.",
+      "choices": [
+        "faites",
+        "fait",
+        "font",
+        "faisons"
+      ],
+      "correct_index": 2,
+      "explanation": "Ils → font."
+    },
+    {
+      "id": "faire_mc_04",
+      "verb_id": "faire_001",
+      "tense": "present",
+      "pronoun": "je",
+      "difficulty": "medium",
+      "type": "multiple_choice",
+      "sentence": "Je ____ mes devoirs ce soir.",
+      "english": "I'm doing my homework tonight.",
+      "choices": [
+        "fais",
+        "fait",
+        "faisons"
+      ],
+      "correct_index": 0,
+      "explanation": "Je → fais."
+    },
+    {
+      "id": "faire_txt_01",
+      "verb_id": "faire_001",
+      "tense": "present",
+      "pronoun": "vous",
+      "difficulty": "medium",
+      "type": "text_input",
+      "sentence": "Vous ____ en retard ce matin?",
+      "english": "Are you late this morning?",
+      "accepted": [
+        "faites"
+      ],
+      "explanation": "Vous → faites."
+    },
+    {
+      "id": "faire_txt_02",
+      "verb_id": "faire_001",
+      "tense": "present",
+      "pronoun": "il",
+      "difficulty": "medium",
+      "type": "text_input",
+      "sentence": "Il ____ toujours ponctuel.",
+      "english": "He is always punctual.",
+      "accepted": [
+        "fait"
+      ],
+      "explanation": "Il → fait."
+    },
+    {
+      "id": "faire_txt_03",
+      "verb_id": "faire_001",
+      "tense": "passe_compose",
+      "pronoun": "nous",
+      "difficulty": "medium",
+      "type": "text_input",
+      "sentence": "Nous ____ déjà fini le travail.",
+      "english": "We have already finished the work.",
+      "accepted": [
+        "avons fait",
+        "avons"
+      ],
+      "explanation": "Passé composé: avons fait."
+    },
+    {
+      "id": "faire_ctx_01",
+      "verb_id": "faire_001",
+      "tense": "present",
+      "pronoun": "je",
+      "difficulty": "hard",
+      "type": "context",
+      "context": "Le prof demande qui est disponible.",
+      "sentence": "— Moi, je ____ libre après 16h.",
+      "english": "Me, I am free after 4 p.m.",
+      "accepted": [
+        "fais"
+      ],
+      "explanation": "Je → fais."
+    },
+    {
+      "id": "faire_ctx_02",
+      "verb_id": "faire_001",
+      "tense": "present",
+      "pronoun": "tu",
+      "difficulty": "hard",
+      "type": "context",
+      "context": "Tu parles à un ami.",
+      "sentence": "Tu ____ sûr de ton choix?",
+      "english": "Are you sure about your choice?",
+      "accepted": [
+        "fais"
+      ],
+      "explanation": "Tu → fais."
+    },
+    {
+      "id": "faire_ctx_03",
+      "verb_id": "faire_001",
+      "tense": "passe_compose",
+      "pronoun": "il",
+      "difficulty": "hard",
+      "type": "context",
+      "context": "Hier soir, tout le monde parle du film.",
+      "sentence": "Il ____ déjà vu ce film.",
+      "english": "He has already seen that film.",
+      "accepted": [
+        "a",
+        "fait"
+      ],
+      "explanation": "Passé composé: a fait."
+    },
+    {
+      "id": "venir_mc_01",
+      "verb_id": "venir_001",
+      "tense": "present",
+      "pronoun": "nous",
+      "difficulty": "easy",
+      "type": "multiple_choice",
+      "sentence": "Nous ____ de Lyon.",
+      "english": "We come from Lyon.",
+      "choices": [
+        "viens",
+        "vient",
+        "venons"
+      ],
+      "correct_index": 2,
+      "explanation": "venir: nous → venons (present)."
+    },
+    {
+      "id": "venir_mc_02",
+      "verb_id": "venir_001",
+      "tense": "present",
+      "pronoun": "tu",
+      "difficulty": "easy",
+      "type": "multiple_choice",
+      "sentence": "Tu ____ à la fête samedi?",
+      "english": "Are you coming to the party on Saturday?",
+      "choices": [
+        "vient",
+        "viens",
+        "venons",
+        "viennent"
+      ],
+      "correct_index": 1,
+      "explanation": "Tu → viens."
+    },
+    {
+      "id": "venir_mc_03",
+      "verb_id": "venir_001",
+      "tense": "present",
+      "pronoun": "ils",
+      "difficulty": "medium",
+      "type": "multiple_choice",
+      "sentence": "Ils ____ nous voir demain.",
+      "english": "They are coming to see us tomorrow.",
+      "choices": [
+        "venez",
+        "vient",
+        "viennent",
+        "venons"
+      ],
+      "correct_index": 2,
+      "explanation": "Ils → viennent."
+    },
+    {
+      "id": "venir_mc_04",
+      "verb_id": "venir_001",
+      "tense": "present",
+      "pronoun": "je",
+      "difficulty": "medium",
+      "type": "multiple_choice",
+      "sentence": "Je ____ te voir bientôt.",
+      "english": "I'm coming to see you soon.",
+      "choices": [
+        "viens",
+        "vient",
+        "venons"
+      ],
+      "correct_index": 0,
+      "explanation": "Je → viens."
+    },
+    {
+      "id": "venir_txt_01",
+      "verb_id": "venir_001",
+      "tense": "present",
+      "pronoun": "vous",
+      "difficulty": "medium",
+      "type": "text_input",
+      "sentence": "Vous ____ en retard ce matin?",
+      "english": "Are you late this morning?",
+      "accepted": [
+        "venez"
+      ],
+      "explanation": "Vous → venez."
+    },
+    {
+      "id": "venir_txt_02",
+      "verb_id": "venir_001",
+      "tense": "present",
+      "pronoun": "il",
+      "difficulty": "medium",
+      "type": "text_input",
+      "sentence": "Il ____ toujours ponctuel.",
+      "english": "He is always punctual.",
+      "accepted": [
+        "vient"
+      ],
+      "explanation": "Il → vient."
+    },
+    {
+      "id": "venir_txt_03",
+      "verb_id": "venir_001",
+      "tense": "passe_compose",
+      "pronoun": "nous",
+      "difficulty": "medium",
+      "type": "text_input",
+      "sentence": "Nous ____ déjà fini le travail.",
+      "english": "We have already finished the work.",
+      "accepted": [
+        "sommes venu(e)s",
+        "sommes"
+      ],
+      "explanation": "Passé composé: sommes venu(e)s."
+    },
+    {
+      "id": "venir_ctx_01",
+      "verb_id": "venir_001",
+      "tense": "present",
+      "pronoun": "je",
+      "difficulty": "hard",
+      "type": "context",
+      "context": "Le prof demande qui est disponible.",
+      "sentence": "— Moi, je ____ libre après 16h.",
+      "english": "Me, I am free after 4 p.m.",
+      "accepted": [
+        "viens"
+      ],
+      "explanation": "Je → viens."
+    },
+    {
+      "id": "venir_ctx_02",
+      "verb_id": "venir_001",
+      "tense": "present",
+      "pronoun": "tu",
+      "difficulty": "hard",
+      "type": "context",
+      "context": "Tu parles à un ami.",
+      "sentence": "Tu ____ sûr de ton choix?",
+      "english": "Are you sure about your choice?",
+      "accepted": [
+        "viens"
+      ],
+      "explanation": "Tu → viens."
+    },
+    {
+      "id": "venir_ctx_03",
+      "verb_id": "venir_001",
+      "tense": "passe_compose",
+      "pronoun": "il",
+      "difficulty": "hard",
+      "type": "context",
+      "context": "Hier soir, tout le monde parle du film.",
+      "sentence": "Il ____ déjà vu ce film.",
+      "english": "He has already seen that film.",
+      "accepted": [
+        "est",
+        "venu"
+      ],
+      "explanation": "Passé composé: est venu."
+    },
+    {
+      "id": "pouvoir_mc_01",
+      "verb_id": "pouvoir_001",
+      "tense": "present",
+      "pronoun": "nous",
+      "difficulty": "easy",
+      "type": "multiple_choice",
+      "sentence": "Nous ____ rester un peu plus tard.",
+      "english": "We can stay a bit later.",
+      "choices": [
+        "peux",
+        "peut",
+        "pouvons"
+      ],
+      "correct_index": 2,
+      "explanation": "pouvoir: nous → pouvons (present)."
+    },
+    {
+      "id": "pouvoir_mc_02",
+      "verb_id": "pouvoir_001",
+      "tense": "present",
+      "pronoun": "tu",
+      "difficulty": "easy",
+      "type": "multiple_choice",
+      "sentence": "Tu ____ m’aider deux minutes?",
+      "english": "Can you help me for two minutes?",
+      "choices": [
+        "peut",
+        "peux",
+        "pouvons",
+        "peuvent"
+      ],
+      "correct_index": 1,
+      "explanation": "Tu → peux."
+    },
+    {
+      "id": "pouvoir_mc_03",
+      "verb_id": "pouvoir_001",
+      "tense": "present",
+      "pronoun": "ils",
+      "difficulty": "medium",
+      "type": "multiple_choice",
+      "sentence": "Ils ____ venir demain.",
+      "english": "They can come tomorrow.",
+      "choices": [
+        "pouvez",
+        "peut",
+        "peuvent",
+        "pouvons"
+      ],
+      "correct_index": 2,
+      "explanation": "Ils → peuvent."
+    },
+    {
+      "id": "pouvoir_mc_04",
+      "verb_id": "pouvoir_001",
+      "tense": "present",
+      "pronoun": "je",
+      "difficulty": "medium",
+      "type": "multiple_choice",
+      "sentence": "Je ____ t’aider si tu veux.",
+      "english": "I can help you if you want.",
+      "choices": [
+        "peux",
+        "peut",
+        "pouvons"
+      ],
+      "correct_index": 0,
+      "explanation": "Je → peux."
+    },
+    {
+      "id": "pouvoir_txt_01",
+      "verb_id": "pouvoir_001",
+      "tense": "present",
+      "pronoun": "vous",
+      "difficulty": "medium",
+      "type": "text_input",
+      "sentence": "Vous ____ en retard ce matin?",
+      "english": "Are you late this morning?",
+      "accepted": [
+        "pouvez"
+      ],
+      "explanation": "Vous → pouvez."
+    },
+    {
+      "id": "pouvoir_txt_02",
+      "verb_id": "pouvoir_001",
+      "tense": "present",
+      "pronoun": "il",
+      "difficulty": "medium",
+      "type": "text_input",
+      "sentence": "Il ____ toujours ponctuel.",
+      "english": "He is always punctual.",
+      "accepted": [
+        "peut"
+      ],
+      "explanation": "Il → peut."
+    },
+    {
+      "id": "pouvoir_txt_03",
+      "verb_id": "pouvoir_001",
+      "tense": "passe_compose",
+      "pronoun": "nous",
+      "difficulty": "medium",
+      "type": "text_input",
+      "sentence": "Nous ____ déjà fini le travail.",
+      "english": "We have already finished the work.",
+      "accepted": [
+        "avons pu",
+        "avons"
+      ],
+      "explanation": "Passé composé: avons pu."
+    },
+    {
+      "id": "pouvoir_ctx_01",
+      "verb_id": "pouvoir_001",
+      "tense": "present",
+      "pronoun": "je",
+      "difficulty": "hard",
+      "type": "context",
+      "context": "Le prof demande qui est disponible.",
+      "sentence": "— Moi, je ____ libre après 16h.",
+      "english": "Me, I am free after 4 p.m.",
+      "accepted": [
+        "peux"
+      ],
+      "explanation": "Je → peux."
+    },
+    {
+      "id": "pouvoir_ctx_02",
+      "verb_id": "pouvoir_001",
+      "tense": "present",
+      "pronoun": "tu",
+      "difficulty": "hard",
+      "type": "context",
+      "context": "Tu parles à un ami.",
+      "sentence": "Tu ____ sûr de ton choix?",
+      "english": "Are you sure about your choice?",
+      "accepted": [
+        "peux"
+      ],
+      "explanation": "Tu → peux."
+    },
+    {
+      "id": "pouvoir_ctx_03",
+      "verb_id": "pouvoir_001",
+      "tense": "passe_compose",
+      "pronoun": "il",
+      "difficulty": "hard",
+      "type": "context",
+      "context": "Hier soir, tout le monde parle du film.",
+      "sentence": "Il ____ déjà vu ce film.",
+      "english": "He has already seen that film.",
+      "accepted": [
+        "a",
+        "pu"
+      ],
+      "explanation": "Passé composé: a pu."
+    },
+    {
+      "id": "vouloir_mc_01",
+      "verb_id": "vouloir_001",
+      "tense": "present",
+      "pronoun": "nous",
+      "difficulty": "easy",
+      "type": "multiple_choice",
+      "sentence": "Nous ____ réserver une table.",
+      "english": "We want to book a table.",
+      "choices": [
+        "veux",
+        "veut",
+        "voulons"
+      ],
+      "correct_index": 2,
+      "explanation": "vouloir: nous → voulons (present)."
+    },
+    {
+      "id": "vouloir_mc_02",
+      "verb_id": "vouloir_001",
+      "tense": "present",
+      "pronoun": "tu",
+      "difficulty": "easy",
+      "type": "multiple_choice",
+      "sentence": "Tu ____ du dessert?",
+      "english": "Do you want dessert?",
+      "choices": [
+        "veut",
+        "veux",
+        "voulons",
+        "veulent"
+      ],
+      "correct_index": 1,
+      "explanation": "Tu → veux."
+    },
+    {
+      "id": "vouloir_mc_03",
+      "verb_id": "vouloir_001",
+      "tense": "present",
+      "pronoun": "ils",
+      "difficulty": "medium",
+      "type": "multiple_choice",
+      "sentence": "Ils ____ réserver pour huit personnes.",
+      "english": "They want to book for eight people.",
+      "choices": [
+        "voulez",
+        "veut",
+        "veulent",
+        "voulons"
+      ],
+      "correct_index": 2,
+      "explanation": "Ils → veulent."
+    },
+    {
+      "id": "vouloir_mc_04",
+      "verb_id": "vouloir_001",
+      "tense": "present",
+      "pronoun": "je",
+      "difficulty": "medium",
+      "type": "multiple_choice",
+      "sentence": "Je ____ un café, s’il te plaît.",
+      "english": "I want a coffee, please.",
+      "choices": [
+        "veux",
+        "veut",
+        "voulons"
+      ],
+      "correct_index": 0,
+      "explanation": "Je → veux."
+    },
+    {
+      "id": "vouloir_txt_01",
+      "verb_id": "vouloir_001",
+      "tense": "present",
+      "pronoun": "vous",
+      "difficulty": "medium",
+      "type": "text_input",
+      "sentence": "Vous ____ en retard ce matin?",
+      "english": "Are you late this morning?",
+      "accepted": [
+        "voulez"
+      ],
+      "explanation": "Vous → voulez."
+    },
+    {
+      "id": "vouloir_txt_02",
+      "verb_id": "vouloir_001",
+      "tense": "present",
+      "pronoun": "il",
+      "difficulty": "medium",
+      "type": "text_input",
+      "sentence": "Il ____ toujours ponctuel.",
+      "english": "He is always punctual.",
+      "accepted": [
+        "veut"
+      ],
+      "explanation": "Il → veut."
+    },
+    {
+      "id": "vouloir_txt_03",
+      "verb_id": "vouloir_001",
+      "tense": "passe_compose",
+      "pronoun": "nous",
+      "difficulty": "medium",
+      "type": "text_input",
+      "sentence": "Nous ____ déjà fini le travail.",
+      "english": "We have already finished the work.",
+      "accepted": [
+        "avons voulu",
+        "avons"
+      ],
+      "explanation": "Passé composé: avons voulu."
+    },
+    {
+      "id": "vouloir_ctx_01",
+      "verb_id": "vouloir_001",
+      "tense": "present",
+      "pronoun": "je",
+      "difficulty": "hard",
+      "type": "context",
+      "context": "Le prof demande qui est disponible.",
+      "sentence": "— Moi, je ____ libre après 16h.",
+      "english": "Me, I am free after 4 p.m.",
+      "accepted": [
+        "veux"
+      ],
+      "explanation": "Je → veux."
+    },
+    {
+      "id": "vouloir_ctx_02",
+      "verb_id": "vouloir_001",
+      "tense": "present",
+      "pronoun": "tu",
+      "difficulty": "hard",
+      "type": "context",
+      "context": "Tu parles à un ami.",
+      "sentence": "Tu ____ sûr de ton choix?",
+      "english": "Are you sure about your choice?",
+      "accepted": [
+        "veux"
+      ],
+      "explanation": "Tu → veux."
+    },
+    {
+      "id": "vouloir_ctx_03",
+      "verb_id": "vouloir_001",
+      "tense": "passe_compose",
+      "pronoun": "il",
+      "difficulty": "hard",
+      "type": "context",
+      "context": "Hier soir, tout le monde parle du film.",
+      "sentence": "Il ____ déjà vu ce film.",
+      "english": "He has already seen that film.",
+      "accepted": [
+        "a",
+        "voulu"
+      ],
+      "explanation": "Passé composé: a voulu."
+    },
+    {
+      "id": "devoir_mc_01",
+      "verb_id": "devoir_001",
+      "tense": "present",
+      "pronoun": "nous",
+      "difficulty": "easy",
+      "type": "multiple_choice",
+      "sentence": "Nous ____ partir avant 18h.",
+      "english": "We have to leave before 6 p.m.",
+      "choices": [
+        "dois",
+        "doit",
+        "devons"
+      ],
+      "correct_index": 2,
+      "explanation": "devoir: nous → devons (present)."
+    },
+    {
+      "id": "devoir_mc_02",
+      "verb_id": "devoir_001",
+      "tense": "present",
+      "pronoun": "tu",
+      "difficulty": "easy",
+      "type": "multiple_choice",
+      "sentence": "Tu ____ finir ce soir?",
+      "english": "Do you have to finish tonight?",
+      "choices": [
+        "doit",
+        "dois",
+        "devons",
+        "doivent"
+      ],
+      "correct_index": 1,
+      "explanation": "Tu → dois."
+    },
+    {
+      "id": "devoir_mc_03",
+      "verb_id": "devoir_001",
+      "tense": "present",
+      "pronoun": "ils",
+      "difficulty": "medium",
+      "type": "multiple_choice",
+      "sentence": "Ils ____ rendre le dossier lundi.",
+      "english": "They have to hand in the file on Monday.",
+      "choices": [
+        "devez",
+        "doit",
+        "doivent",
+        "devons"
+      ],
+      "correct_index": 2,
+      "explanation": "Ils → doivent."
+    },
+    {
+      "id": "devoir_mc_04",
+      "verb_id": "devoir_001",
+      "tense": "present",
+      "pronoun": "je",
+      "difficulty": "medium",
+      "type": "multiple_choice",
+      "sentence": "Je ____ partir tôt.",
+      "english": "I have to leave early.",
+      "choices": [
+        "dois",
+        "doit",
+        "devons"
+      ],
+      "correct_index": 0,
+      "explanation": "Je → dois."
+    },
+    {
+      "id": "devoir_txt_01",
+      "verb_id": "devoir_001",
+      "tense": "present",
+      "pronoun": "vous",
+      "difficulty": "medium",
+      "type": "text_input",
+      "sentence": "Vous ____ en retard ce matin?",
+      "english": "Are you late this morning?",
+      "accepted": [
+        "devez"
+      ],
+      "explanation": "Vous → devez."
+    },
+    {
+      "id": "devoir_txt_02",
+      "verb_id": "devoir_001",
+      "tense": "present",
+      "pronoun": "il",
+      "difficulty": "medium",
+      "type": "text_input",
+      "sentence": "Il ____ toujours ponctuel.",
+      "english": "He is always punctual.",
+      "accepted": [
+        "doit"
+      ],
+      "explanation": "Il → doit."
+    },
+    {
+      "id": "devoir_txt_03",
+      "verb_id": "devoir_001",
+      "tense": "passe_compose",
+      "pronoun": "nous",
+      "difficulty": "medium",
+      "type": "text_input",
+      "sentence": "Nous ____ déjà fini le travail.",
+      "english": "We have already finished the work.",
+      "accepted": [
+        "avons dû",
+        "avons"
+      ],
+      "explanation": "Passé composé: avons dû."
+    },
+    {
+      "id": "devoir_ctx_01",
+      "verb_id": "devoir_001",
+      "tense": "present",
+      "pronoun": "je",
+      "difficulty": "hard",
+      "type": "context",
+      "context": "Le prof demande qui est disponible.",
+      "sentence": "— Moi, je ____ libre après 16h.",
+      "english": "Me, I am free after 4 p.m.",
+      "accepted": [
+        "dois"
+      ],
+      "explanation": "Je → dois."
+    },
+    {
+      "id": "devoir_ctx_02",
+      "verb_id": "devoir_001",
+      "tense": "present",
+      "pronoun": "tu",
+      "difficulty": "hard",
+      "type": "context",
+      "context": "Tu parles à un ami.",
+      "sentence": "Tu ____ sûr de ton choix?",
+      "english": "Are you sure about your choice?",
+      "accepted": [
+        "dois"
+      ],
+      "explanation": "Tu → dois."
+    },
+    {
+      "id": "devoir_ctx_03",
+      "verb_id": "devoir_001",
+      "tense": "passe_compose",
+      "pronoun": "il",
+      "difficulty": "hard",
+      "type": "context",
+      "context": "Hier soir, tout le monde parle du film.",
+      "sentence": "Il ____ déjà vu ce film.",
+      "english": "He has already seen that film.",
+      "accepted": [
+        "a",
+        "dû"
+      ],
+      "explanation": "Passé composé: a dû."
+    },
+    {
+      "id": "savoir_mc_01",
+      "verb_id": "savoir_001",
+      "tense": "present",
+      "pronoun": "nous",
+      "difficulty": "easy",
+      "type": "multiple_choice",
+      "sentence": "Nous ____ la réponse.",
+      "english": "We know the answer.",
+      "choices": [
+        "sais",
+        "sait",
+        "savons"
+      ],
+      "correct_index": 2,
+      "explanation": "savoir: nous → savons (present)."
+    },
+    {
+      "id": "savoir_mc_02",
+      "verb_id": "savoir_001",
+      "tense": "present",
+      "pronoun": "tu",
+      "difficulty": "easy",
+      "type": "multiple_choice",
+      "sentence": "Tu ____ la date du test?",
+      "english": "Do you know the test date?",
+      "choices": [
+        "sait",
+        "sais",
+        "savons",
+        "savent"
+      ],
+      "correct_index": 1,
+      "explanation": "Tu → sais."
+    },
+    {
+      "id": "savoir_mc_03",
+      "verb_id": "savoir_001",
+      "tense": "present",
+      "pronoun": "ils",
+      "difficulty": "medium",
+      "type": "multiple_choice",
+      "sentence": "Ils ____ le code par cœur.",
+      "english": "They know the code by heart.",
+      "choices": [
+        "savez",
+        "sait",
+        "savent",
+        "savons"
+      ],
+      "correct_index": 2,
+      "explanation": "Ils → savent."
+    },
+    {
+      "id": "savoir_mc_04",
+      "verb_id": "savoir_001",
+      "tense": "present",
+      "pronoun": "je",
+      "difficulty": "medium",
+      "type": "multiple_choice",
+      "sentence": "Je ____ la réponse depuis hier.",
+      "english": "I have known the answer since yesterday.",
+      "choices": [
+        "sais",
+        "sait",
+        "savons"
+      ],
+      "correct_index": 0,
+      "explanation": "Je → sais."
+    },
+    {
+      "id": "savoir_txt_01",
+      "verb_id": "savoir_001",
+      "tense": "present",
+      "pronoun": "vous",
+      "difficulty": "medium",
+      "type": "text_input",
+      "sentence": "Vous ____ en retard ce matin?",
+      "english": "Are you late this morning?",
+      "accepted": [
+        "savez"
+      ],
+      "explanation": "Vous → savez."
+    },
+    {
+      "id": "savoir_txt_02",
+      "verb_id": "savoir_001",
+      "tense": "present",
+      "pronoun": "il",
+      "difficulty": "medium",
+      "type": "text_input",
+      "sentence": "Il ____ toujours ponctuel.",
+      "english": "He is always punctual.",
+      "accepted": [
+        "sait"
+      ],
+      "explanation": "Il → sait."
+    },
+    {
+      "id": "savoir_txt_03",
+      "verb_id": "savoir_001",
+      "tense": "passe_compose",
+      "pronoun": "nous",
+      "difficulty": "medium",
+      "type": "text_input",
+      "sentence": "Nous ____ déjà fini le travail.",
+      "english": "We have already finished the work.",
+      "accepted": [
+        "avons su",
+        "avons"
+      ],
+      "explanation": "Passé composé: avons su."
+    },
+    {
+      "id": "savoir_ctx_01",
+      "verb_id": "savoir_001",
+      "tense": "present",
+      "pronoun": "je",
+      "difficulty": "hard",
+      "type": "context",
+      "context": "Le prof demande qui est disponible.",
+      "sentence": "— Moi, je ____ libre après 16h.",
+      "english": "Me, I am free after 4 p.m.",
+      "accepted": [
+        "sais"
+      ],
+      "explanation": "Je → sais."
+    },
+    {
+      "id": "savoir_ctx_02",
+      "verb_id": "savoir_001",
+      "tense": "present",
+      "pronoun": "tu",
+      "difficulty": "hard",
+      "type": "context",
+      "context": "Tu parles à un ami.",
+      "sentence": "Tu ____ sûr de ton choix?",
+      "english": "Are you sure about your choice?",
+      "accepted": [
+        "sais"
+      ],
+      "explanation": "Tu → sais."
+    },
+    {
+      "id": "savoir_ctx_03",
+      "verb_id": "savoir_001",
+      "tense": "passe_compose",
+      "pronoun": "il",
+      "difficulty": "hard",
+      "type": "context",
+      "context": "Hier soir, tout le monde parle du film.",
+      "sentence": "Il ____ déjà vu ce film.",
+      "english": "He has already seen that film.",
+      "accepted": [
+        "a",
+        "su"
+      ],
+      "explanation": "Passé composé: a su."
+    },
+    {
+      "id": "prendre_mc_01",
+      "verb_id": "prendre_001",
+      "tense": "present",
+      "pronoun": "nous",
+      "difficulty": "easy",
+      "type": "multiple_choice",
+      "sentence": "Nous ____ le train de 7h.",
+      "english": "We take the 7 a.m. train.",
+      "choices": [
+        "prends",
+        "prend",
+        "prenons"
+      ],
+      "correct_index": 2,
+      "explanation": "prendre: nous → prenons (present)."
+    },
+    {
+      "id": "prendre_mc_02",
+      "verb_id": "prendre_001",
+      "tense": "present",
+      "pronoun": "tu",
+      "difficulty": "easy",
+      "type": "multiple_choice",
+      "sentence": "Tu ____ le train ou le bus?",
+      "english": "Do you take the train or the bus?",
+      "choices": [
+        "prend",
+        "prends",
+        "prenons",
+        "prennent"
+      ],
+      "correct_index": 1,
+      "explanation": "Tu → prends."
+    },
+    {
+      "id": "prendre_mc_03",
+      "verb_id": "prendre_001",
+      "tense": "present",
+      "pronoun": "ils",
+      "difficulty": "medium",
+      "type": "multiple_choice",
+      "sentence": "Ils ____ le taxi pour l’aéroport.",
+      "english": "They take a taxi to the airport.",
+      "choices": [
+        "prenez",
+        "prend",
+        "prennent",
+        "prenons"
+      ],
+      "correct_index": 2,
+      "explanation": "Ils → prennent."
+    },
+    {
+      "id": "prendre_mc_04",
+      "verb_id": "prendre_001",
+      "tense": "present",
+      "pronoun": "je",
+      "difficulty": "medium",
+      "type": "multiple_choice",
+      "sentence": "Je ____ le bus vers 8h.",
+      "english": "I take the bus around 8 a.m.",
+      "choices": [
+        "prends",
+        "prend",
+        "prenons"
+      ],
+      "correct_index": 0,
+      "explanation": "Je → prends."
+    },
+    {
+      "id": "prendre_txt_01",
+      "verb_id": "prendre_001",
+      "tense": "present",
+      "pronoun": "vous",
+      "difficulty": "medium",
+      "type": "text_input",
+      "sentence": "Vous ____ en retard ce matin?",
+      "english": "Are you late this morning?",
+      "accepted": [
+        "prenez"
+      ],
+      "explanation": "Vous → prenez."
+    },
+    {
+      "id": "prendre_txt_02",
+      "verb_id": "prendre_001",
+      "tense": "present",
+      "pronoun": "il",
+      "difficulty": "medium",
+      "type": "text_input",
+      "sentence": "Il ____ toujours ponctuel.",
+      "english": "He is always punctual.",
+      "accepted": [
+        "prend"
+      ],
+      "explanation": "Il → prend."
+    },
+    {
+      "id": "prendre_txt_03",
+      "verb_id": "prendre_001",
+      "tense": "passe_compose",
+      "pronoun": "nous",
+      "difficulty": "medium",
+      "type": "text_input",
+      "sentence": "Nous ____ déjà fini le travail.",
+      "english": "We have already finished the work.",
+      "accepted": [
+        "avons pris",
+        "avons"
+      ],
+      "explanation": "Passé composé: avons pris."
+    },
+    {
+      "id": "prendre_ctx_01",
+      "verb_id": "prendre_001",
+      "tense": "present",
+      "pronoun": "je",
+      "difficulty": "hard",
+      "type": "context",
+      "context": "Le prof demande qui est disponible.",
+      "sentence": "— Moi, je ____ libre après 16h.",
+      "english": "Me, I am free after 4 p.m.",
+      "accepted": [
+        "prends"
+      ],
+      "explanation": "Je → prends."
+    },
+    {
+      "id": "prendre_ctx_02",
+      "verb_id": "prendre_001",
+      "tense": "present",
+      "pronoun": "tu",
+      "difficulty": "hard",
+      "type": "context",
+      "context": "Tu parles à un ami.",
+      "sentence": "Tu ____ sûr de ton choix?",
+      "english": "Are you sure about your choice?",
+      "accepted": [
+        "prends"
+      ],
+      "explanation": "Tu → prends."
+    },
+    {
+      "id": "prendre_ctx_03",
+      "verb_id": "prendre_001",
+      "tense": "passe_compose",
+      "pronoun": "il",
+      "difficulty": "hard",
+      "type": "context",
+      "context": "Hier soir, tout le monde parle du film.",
+      "sentence": "Il ____ déjà vu ce film.",
+      "english": "He has already seen that film.",
+      "accepted": [
+        "a",
+        "pris"
+      ],
+      "explanation": "Passé composé: a pris."
+    },
+    {
+      "id": "parler_mc_01",
+      "verb_id": "parler_001",
+      "tense": "present",
+      "pronoun": "nous",
+      "difficulty": "easy",
+      "type": "multiple_choice",
+      "sentence": "Nous ____ français en classe.",
+      "english": "We speak French in class.",
+      "choices": [
+        "parle",
+        "parles",
+        "parlons"
+      ],
+      "correct_index": 2,
+      "explanation": "parler: nous → parlons (present)."
+    },
+    {
+      "id": "parler_mc_02",
+      "verb_id": "parler_001",
+      "tense": "present",
+      "pronoun": "tu",
+      "difficulty": "easy",
+      "type": "multiple_choice",
+      "sentence": "Tu ____ anglais couramment?",
+      "english": "Do you speak English fluently?",
+      "choices": [
+        "parle",
+        "parles",
+        "parlons",
+        "parlent"
+      ],
+      "correct_index": 1,
+      "explanation": "Tu → parles."
+    },
+    {
+      "id": "parler_mc_03",
+      "verb_id": "parler_001",
+      "tense": "present",
+      "pronoun": "ils",
+      "difficulty": "medium",
+      "type": "multiple_choice",
+      "sentence": "Ils ____ espagnol et français.",
+      "english": "They speak Spanish and French.",
+      "choices": [
+        "parlez",
+        "parle",
+        "parlent",
+        "parlons"
+      ],
+      "correct_index": 2,
+      "explanation": "Ils → parlent."
+    },
+    {
+      "id": "parler_mc_04",
+      "verb_id": "parler_001",
+      "tense": "present",
+      "pronoun": "je",
+      "difficulty": "medium",
+      "type": "multiple_choice",
+      "sentence": "Je ____ français avec ma famille.",
+      "english": "I speak French with my family.",
+      "choices": [
+        "parle",
+        "parles",
+        "parlons"
+      ],
+      "correct_index": 0,
+      "explanation": "Je → parle."
+    },
+    {
+      "id": "parler_txt_01",
+      "verb_id": "parler_001",
+      "tense": "present",
+      "pronoun": "vous",
+      "difficulty": "medium",
+      "type": "text_input",
+      "sentence": "Vous ____ en retard ce matin?",
+      "english": "Are you late this morning?",
+      "accepted": [
+        "parlez"
+      ],
+      "explanation": "Vous → parlez."
+    },
+    {
+      "id": "parler_txt_02",
+      "verb_id": "parler_001",
+      "tense": "present",
+      "pronoun": "il",
+      "difficulty": "medium",
+      "type": "text_input",
+      "sentence": "Il ____ toujours ponctuel.",
+      "english": "He is always punctual.",
+      "accepted": [
+        "parle"
+      ],
+      "explanation": "Il → parle."
+    },
+    {
+      "id": "parler_txt_03",
+      "verb_id": "parler_001",
+      "tense": "passe_compose",
+      "pronoun": "nous",
+      "difficulty": "medium",
+      "type": "text_input",
+      "sentence": "Nous ____ déjà fini le travail.",
+      "english": "We have already finished the work.",
+      "accepted": [
+        "avons parlé",
+        "avons"
+      ],
+      "explanation": "Passé composé: avons parlé."
+    },
+    {
+      "id": "parler_ctx_01",
+      "verb_id": "parler_001",
+      "tense": "present",
+      "pronoun": "je",
+      "difficulty": "hard",
+      "type": "context",
+      "context": "Le prof demande qui est disponible.",
+      "sentence": "— Moi, je ____ libre après 16h.",
+      "english": "Me, I am free after 4 p.m.",
+      "accepted": [
+        "parle"
+      ],
+      "explanation": "Je → parle."
+    },
+    {
+      "id": "parler_ctx_02",
+      "verb_id": "parler_001",
+      "tense": "present",
+      "pronoun": "tu",
+      "difficulty": "hard",
+      "type": "context",
+      "context": "Tu parles à un ami.",
+      "sentence": "Tu ____ sûr de ton choix?",
+      "english": "Are you sure about your choice?",
+      "accepted": [
+        "parles"
+      ],
+      "explanation": "Tu → parles."
+    },
+    {
+      "id": "parler_ctx_03",
+      "verb_id": "parler_001",
+      "tense": "passe_compose",
+      "pronoun": "il",
+      "difficulty": "hard",
+      "type": "context",
+      "context": "Hier soir, tout le monde parle du film.",
+      "sentence": "Il ____ déjà vu ce film.",
+      "english": "He has already seen that film.",
+      "accepted": [
+        "a",
+        "parlé"
+      ],
+      "explanation": "Passé composé: a parlé."
+    },
+    {
+      "id": "dire_mc_01",
+      "verb_id": "dire_001",
+      "tense": "present",
+      "pronoun": "nous",
+      "difficulty": "easy",
+      "type": "multiple_choice",
+      "sentence": "Nous ____ merci souvent.",
+      "english": "We say thank you often.",
+      "choices": [
+        "dis",
+        "dit",
+        "disons"
+      ],
+      "correct_index": 2,
+      "explanation": "dire: nous → disons (present)."
+    },
+    {
+      "id": "dire_mc_02",
+      "verb_id": "dire_001",
+      "tense": "present",
+      "pronoun": "tu",
+      "difficulty": "easy",
+      "type": "multiple_choice",
+      "sentence": "Tu ____ toujours la vérité?",
+      "english": "Do you always tell the truth?",
+      "choices": [
+        "dit",
+        "dis",
+        "disons",
+        "disent"
+      ],
+      "correct_index": 1,
+      "explanation": "Tu → dis."
+    },
+    {
+      "id": "dire_mc_03",
+      "verb_id": "dire_001",
+      "tense": "present",
+      "pronoun": "ils",
+      "difficulty": "medium",
+      "type": "multiple_choice",
+      "sentence": "Ils ____ la même chose.",
+      "english": "They say the same thing.",
+      "choices": [
+        "dites",
+        "dit",
+        "disent",
+        "disons"
+      ],
+      "correct_index": 2,
+      "explanation": "Ils → disent."
+    },
+    {
+      "id": "dire_mc_04",
+      "verb_id": "dire_001",
+      "tense": "present",
+      "pronoun": "je",
+      "difficulty": "medium",
+      "type": "multiple_choice",
+      "sentence": "Je ____ merci souvent.",
+      "english": "I say thank you often.",
+      "choices": [
+        "dis",
+        "dit",
+        "disons"
+      ],
+      "correct_index": 0,
+      "explanation": "Je → dis."
+    },
+    {
+      "id": "dire_txt_01",
+      "verb_id": "dire_001",
+      "tense": "present",
+      "pronoun": "vous",
+      "difficulty": "medium",
+      "type": "text_input",
+      "sentence": "Vous ____ en retard ce matin?",
+      "english": "Are you late this morning?",
+      "accepted": [
+        "dites"
+      ],
+      "explanation": "Vous → dites."
+    },
+    {
+      "id": "dire_txt_02",
+      "verb_id": "dire_001",
+      "tense": "present",
+      "pronoun": "il",
+      "difficulty": "medium",
+      "type": "text_input",
+      "sentence": "Il ____ toujours ponctuel.",
+      "english": "He is always punctual.",
+      "accepted": [
+        "dit"
+      ],
+      "explanation": "Il → dit."
+    },
+    {
+      "id": "dire_txt_03",
+      "verb_id": "dire_001",
+      "tense": "passe_compose",
+      "pronoun": "nous",
+      "difficulty": "medium",
+      "type": "text_input",
+      "sentence": "Nous ____ déjà fini le travail.",
+      "english": "We have already finished the work.",
+      "accepted": [
+        "avons dit",
+        "avons"
+      ],
+      "explanation": "Passé composé: avons dit."
+    },
+    {
+      "id": "dire_ctx_01",
+      "verb_id": "dire_001",
+      "tense": "present",
+      "pronoun": "je",
+      "difficulty": "hard",
+      "type": "context",
+      "context": "Le prof demande qui est disponible.",
+      "sentence": "— Moi, je ____ libre après 16h.",
+      "english": "Me, I am free after 4 p.m.",
+      "accepted": [
+        "dis"
+      ],
+      "explanation": "Je → dis."
+    },
+    {
+      "id": "dire_ctx_02",
+      "verb_id": "dire_001",
+      "tense": "present",
+      "pronoun": "tu",
+      "difficulty": "hard",
+      "type": "context",
+      "context": "Tu parles à un ami.",
+      "sentence": "Tu ____ sûr de ton choix?",
+      "english": "Are you sure about your choice?",
+      "accepted": [
+        "dis"
+      ],
+      "explanation": "Tu → dis."
+    },
+    {
+      "id": "dire_ctx_03",
+      "verb_id": "dire_001",
+      "tense": "passe_compose",
+      "pronoun": "il",
+      "difficulty": "hard",
+      "type": "context",
+      "context": "Hier soir, tout le monde parle du film.",
+      "sentence": "Il ____ déjà vu ce film.",
+      "english": "He has already seen that film.",
+      "accepted": [
+        "a",
+        "dit"
+      ],
+      "explanation": "Passé composé: a dit."
+    }
+  ]
+}

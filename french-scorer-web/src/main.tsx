@@ -17,7 +17,9 @@ import AccountPage from './pages/AccountPage.tsx'
 import AuthCallbackPage from './pages/AuthCallbackPage.tsx'
 import SyllabusPage from './pages/SyllabusPage.tsx'
 import DashboardHomePage from './pages/DashboardHomePage.tsx'
+import ConjugationCodexPage from './games/ConjugationCodex/ConjugationCodexPage.tsx'
 import GrammarAtelierPage from './pages/GrammarAtelierPage.tsx'
+import GrammarGamesHubPage from './pages/GrammarGamesHubPage.tsx'
 import ReadingRoomPage from './pages/ReadingRoomPage.tsx'
 import WritingAreaPage from './pages/WritingAreaPage.tsx'
 import { tefPrepSkillPath } from './lib/tefPrepNav'
@@ -35,7 +37,9 @@ const router = createBrowserRouter([
           { path: 'scorer', element: <AIScorerPage /> },
           { path: 'unit/:moduleId', element: <UnitOverviewPage /> },
           { path: 'lesson/:unitId', element: <LessonPage /> },
-          { path: 'game', element: <GrammarAtelierPage /> },
+          { path: 'game', element: <GrammarGamesHubPage /> },
+          { path: 'game/conjugation-codex', element: <ConjugationCodexPage /> },
+          { path: 'game/grammar-atelier', element: <GrammarAtelierPage /> },
           { path: 'reading-room', element: <ReadingRoomPage /> },
           { path: 'writing', element: <WritingAreaPage /> },
           { path: 'tef-prep/oral-labs', element: <TefOralLabsPage /> },

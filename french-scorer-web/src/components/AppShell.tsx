@@ -31,6 +31,9 @@ function breadcrumbsForPath(pathname: string): { root: string; mid?: string; lea
   if (pathname.startsWith('/syllabus')) return { root: 'Dashboard', mid: 'Courses', leaf: 'Library' }
   if (pathname.startsWith('/reading-room')) return { root: 'Dashboard', mid: 'The Atelier', leaf: 'Reading Room' }
   if (pathname.startsWith('/writing')) return { root: 'Dashboard', mid: 'The Atelier', leaf: 'Writing Area' }
+  if (pathname.startsWith('/game/conjugation-codex')) {
+    return { root: 'Dashboard', mid: 'The Atelier', leaf: 'Conjugation Codex' }
+  }
   if (pathname.startsWith('/game')) return { root: 'Dashboard', mid: 'The Atelier', leaf: 'Grammar Games' }
   if (pathname.startsWith('/tef-prep/oral-labs')) {
     return { root: 'Dashboard', mid: 'TEF Prep', leaf: 'Listening & Speaking' }
@@ -215,7 +218,7 @@ export default function AppShell() {
 
           <NavLink to="/game" className={navClass} onClick={closeMobile}>
             <Gamepad2 size={20} className="shrink-0 text-slate-500" />
-            <span>Game</span>
+            <span>Grammar Games</span>
           </NavLink>
 
           <div className="my-3 border-t border-slate-100" />
