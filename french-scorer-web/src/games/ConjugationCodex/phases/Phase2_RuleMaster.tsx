@@ -6,6 +6,7 @@ import { useConjugationState } from '../hooks/useConjugationState'
 import { isAnswerCorrect } from '../lib/answerCheck'
 import {
   pickContextQuestionSession,
+  ruleMasterFromPracticeQuestion,
   type RuleMasterContextQuestion,
 } from '../lib/contextQuestionPool'
 
@@ -49,26 +50,8 @@ function clearPersist() {
 
 function questionById(id: string): RuleMasterContextQuestion | null {
   const q = BUNDLE.practice_questions.find((x) => x.id === id)
-  if (!q || q.type !== 'context' || !q.accepted?.length || !q.context) return null
-  return {
-    id: q.id,
-    verb_id: q.verb_id,
-    tense: q.tense,
-    pronoun: q.pronoun,
-    context: q.context,
-    sentence: q.sentence,
-    english: q.english,
-    accepted: [...q.accepted],
-    explanation: q.explanation,
-    wrongHint: `Check the subject (${q.pronoun}) and tense (${q.tense.replace(/_/g, ' ')}).`,
-    optionalHint:
-      q.tense === 'passe_compose'
-        ? 'Passé composé: auxiliary + past participle — what fits the blank?'
-        : q.tense === 'present'
-          ? 'Present tense: match the subject to the correct verb form.'
-          : undefined,
-    difficulty: q.difficulty,
-  }
+  if (!q) return null
+  return ruleMasterFromPracticeQuestion(q)
 }
 
 function resolveSessionQuestions(persist: SessionPersist | null): RuleMasterContextQuestion[] {
@@ -76,7 +59,12 @@ function resolveSessionQuestions(persist: SessionPersist | null): RuleMasterCont
     const rows = persist.questionIds.map(questionById).filter((x): x is RuleMasterContextQuestion => x !== null)
     if (rows.length === persist.questionIds.length) return rows
   }
-  const fresh = pickContextQuestionSession(BUNDLE, { verbId: 'aller_001', minCount: 5, maxCount: 10 })
+  const fresh = pickContextQuestionSession(BUNDLE, {
+    minCount: 5,
+    maxCount: 10,
+    preferVerbId: 'aller_001',
+    preferVerbShare: 0.4,
+  })
   savePersist({ v: 1, questionIds: fresh.map((q) => q.id), cursor: 0 })
   return fresh
 }
@@ -156,7 +144,12 @@ export function Phase2_RuleMaster() {
 
   const startNewDeck = useCallback(() => {
     clearPersist()
-    const fresh = pickContextQuestionSession(BUNDLE, { verbId: 'aller_001', minCount: 5, maxCount: 10 })
+    const fresh = pickContextQuestionSession(BUNDLE, {
+      minCount: 5,
+      maxCount: 10,
+      preferVerbId: 'aller_001',
+      preferVerbShare: 0.4,
+    })
     setQuestions(fresh)
     setCursor(0)
     setInput('')
@@ -252,7 +245,8 @@ export function Phase2_RuleMaster() {
         <div className="mt-8 rounded-2xl border border-emerald-200 bg-emerald-50/80 p-8 text-center">
           <p className="font-display text-lg font-bold text-emerald-900">Phase 2 complete!</p>
           <p className="mt-2 text-sm text-emerald-800/90">
-            You practiced context sentences with <strong>aller</strong>. Ready for daily reviews in the Master&apos;s Guild?
+            You practiced mixed context sentences (with extra <strong>aller</strong> drills). Ready for daily reviews in the
+            Master&apos;s Guild?
           </p>
           <button
             type="button"

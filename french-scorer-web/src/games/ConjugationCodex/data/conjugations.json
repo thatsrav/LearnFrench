@@ -973,7 +973,9 @@
       "accepted": [
         "vais"
       ],
-      "explanation": "Je → vais."
+      "explanation": "Je → vais.",
+      "wrong_hint": "You need the present of aller for je — one word, not the infinitive.",
+      "optional_hint": "Think of the je row in the present tense of aller."
     },
     {
       "id": "aller_ctx_02",
@@ -988,7 +990,9 @@
       "accepted": [
         "vas"
       ],
-      "explanation": "Tu → vas."
+      "explanation": "Tu → vas.",
+      "wrong_hint": "Use the informal tu present of aller (not the je or il form).",
+      "optional_hint": "Tu has its own singular ending on this verb — compare je vs tu in the table."
     },
     {
       "id": "aller_ctx_03",
@@ -1004,7 +1008,9 @@
         "est",
         "allé"
       ],
-      "explanation": "Passé composé: est allé."
+      "explanation": "Passé composé: est allé.",
+      "wrong_hint": "Passé composé for il: auxiliary (avoir or être) plus past participle — both parts matter.",
+      "optional_hint": "Full form for il here: est allé. Say auxiliary first, then the participle."
     },
     {
       "id": "etre_mc_01",
@@ -1134,7 +1140,9 @@
       "accepted": [
         "suis"
       ],
-      "explanation": "Je → suis."
+      "explanation": "Je → suis.",
+      "wrong_hint": "You need the present of être for je — one word, not the infinitive.",
+      "optional_hint": "Think of the je row in the present tense of être."
     },
     {
       "id": "etre_ctx_02",
@@ -1149,7 +1157,9 @@
       "accepted": [
         "es"
       ],
-      "explanation": "Tu → es."
+      "explanation": "Tu → es.",
+      "wrong_hint": "Use the informal tu present of être (not the je or il form).",
+      "optional_hint": "Tu has its own singular ending on this verb — compare je vs tu in the table."
     },
     {
       "id": "etre_ctx_03",
@@ -1165,7 +1175,9 @@
         "a",
         "été"
       ],
-      "explanation": "Passé composé: a été."
+      "explanation": "Passé composé: a été.",
+      "wrong_hint": "Passé composé for il: auxiliary (avoir or être) plus past participle — both parts matter.",
+      "optional_hint": "Full form for il here: a été. Say auxiliary first, then the participle."
     },
     {
       "id": "avoir_mc_01",
@@ -1295,7 +1307,9 @@
       "accepted": [
         "ai"
       ],
-      "explanation": "Je → ai."
+      "explanation": "Je → ai.",
+      "wrong_hint": "You need the present of avoir for je — one word, not the infinitive.",
+      "optional_hint": "Think of the je row in the present tense of avoir."
     },
     {
       "id": "avoir_ctx_02",
@@ -1310,7 +1324,9 @@
       "accepted": [
         "as"
       ],
-      "explanation": "Tu → as."
+      "explanation": "Tu → as.",
+      "wrong_hint": "Use the informal tu present of avoir (not the je or il form).",
+      "optional_hint": "Tu has its own singular ending on this verb — compare je vs tu in the table."
     },
     {
       "id": "avoir_ctx_03",
@@ -1326,7 +1342,9 @@
         "a",
         "eu"
       ],
-      "explanation": "Passé composé: a eu."
+      "explanation": "Passé composé: a eu.",
+      "wrong_hint": "Passé composé for il: auxiliary (avoir or être) plus past participle — both parts matter.",
+      "optional_hint": "Full form for il here: a eu. Say auxiliary first, then the participle."
     },
     {
       "id": "faire_mc_01",
@@ -1454,7 +1472,9 @@
       "accepted": [
         "fais"
       ],
-      "explanation": "Je → fais."
+      "explanation": "Je → fais.",
+      "wrong_hint": "You need the present of faire for je — one word, not the infinitive.",
+      "optional_hint": "Think of the je row in the present tense of faire."
     },
     {
       "id": "faire_ctx_02",
@@ -1469,7 +1489,9 @@
       "accepted": [
         "fais"
       ],
-      "explanation": "Tu → fais."
+      "explanation": "Tu → fais.",
+      "wrong_hint": "Use the informal tu present of faire (not the je or il form).",
+      "optional_hint": "Tu has its own singular ending on this verb — compare je vs tu in the table."
     },
     {
       "id": "faire_ctx_03",
@@ -1485,7 +1507,9 @@
         "a",
         "fait"
       ],
-      "explanation": "Passé composé: a fait."
+      "explanation": "Passé composé: a fait.",
+      "wrong_hint": "Passé composé for il: auxiliary (avoir or être) plus past participle — both parts matter.",
+      "optional_hint": "Full form for il here: a fait. Say auxiliary first, then the participle."
     },
     {
       "id": "venir_mc_01",
@@ -1613,7 +1637,9 @@
       "accepted": [
         "viens"
       ],
-      "explanation": "Je → viens."
+      "explanation": "Je → viens.",
+      "wrong_hint": "You need the present of venir for je — one word, not the infinitive.",
+      "optional_hint": "Think of the je row in the present tense of venir."
     },
     {
       "id": "venir_ctx_02",
@@ -1628,7 +1654,9 @@
       "accepted": [
         "viens"
       ],
-      "explanation": "Tu → viens."
+      "explanation": "Tu → viens.",
+      "wrong_hint": "Use the informal tu present of venir (not the je or il form).",
+      "optional_hint": "Tu has its own singular ending on this verb — compare je vs tu in the table."
     },
     {
       "id": "venir_ctx_03",
@@ -1644,7 +1672,9 @@
         "est",
         "venu"
       ],
-      "explanation": "Passé composé: est venu."
+      "explanation": "Passé composé: est venu.",
+      "wrong_hint": "Passé composé for il: auxiliary (avoir or être) plus past participle — both parts matter.",
+      "optional_hint": "Full form for il here: est venu. Say auxiliary first, then the participle."
     },
     {
       "id": "pouvoir_mc_01",
@@ -1772,7 +1802,9 @@
       "accepted": [
         "peux"
       ],
-      "explanation": "Je → peux."
+      "explanation": "Je → peux.",
+      "wrong_hint": "You need the present of pouvoir for je — one word, not the infinitive.",
+      "optional_hint": "Think of the je row in the present tense of pouvoir."
     },
     {
       "id": "pouvoir_ctx_02",
@@ -1787,7 +1819,9 @@
       "accepted": [
         "peux"
       ],
-      "explanation": "Tu → peux."
+      "explanation": "Tu → peux.",
+      "wrong_hint": "Use the informal tu present of pouvoir (not the je or il form).",
+      "optional_hint": "Tu has its own singular ending on this verb — compare je vs tu in the table."
     },
     {
       "id": "pouvoir_ctx_03",
@@ -1803,7 +1837,9 @@
         "a",
         "pu"
       ],
-      "explanation": "Passé composé: a pu."
+      "explanation": "Passé composé: a pu.",
+      "wrong_hint": "Passé composé for il: auxiliary (avoir or être) plus past participle — both parts matter.",
+      "optional_hint": "Full form for il here: a pu. Say auxiliary first, then the participle."
     },
     {
       "id": "vouloir_mc_01",
@@ -1931,7 +1967,9 @@
       "accepted": [
         "veux"
       ],
-      "explanation": "Je → veux."
+      "explanation": "Je → veux.",
+      "wrong_hint": "You need the present of vouloir for je — one word, not the infinitive.",
+      "optional_hint": "Think of the je row in the present tense of vouloir."
     },
     {
       "id": "vouloir_ctx_02",
@@ -1946,7 +1984,9 @@
       "accepted": [
         "veux"
       ],
-      "explanation": "Tu → veux."
+      "explanation": "Tu → veux.",
+      "wrong_hint": "Use the informal tu present of vouloir (not the je or il form).",
+      "optional_hint": "Tu has its own singular ending on this verb — compare je vs tu in the table."
     },
     {
       "id": "vouloir_ctx_03",
@@ -1962,7 +2002,9 @@
         "a",
         "voulu"
       ],
-      "explanation": "Passé composé: a voulu."
+      "explanation": "Passé composé: a voulu.",
+      "wrong_hint": "Passé composé for il: auxiliary (avoir or être) plus past participle — both parts matter.",
+      "optional_hint": "Full form for il here: a voulu. Say auxiliary first, then the participle."
     },
     {
       "id": "devoir_mc_01",
@@ -2090,7 +2132,9 @@
       "accepted": [
         "dois"
       ],
-      "explanation": "Je → dois."
+      "explanation": "Je → dois.",
+      "wrong_hint": "You need the present of devoir for je — one word, not the infinitive.",
+      "optional_hint": "Think of the je row in the present tense of devoir."
     },
     {
       "id": "devoir_ctx_02",
@@ -2105,7 +2149,9 @@
       "accepted": [
         "dois"
       ],
-      "explanation": "Tu → dois."
+      "explanation": "Tu → dois.",
+      "wrong_hint": "Use the informal tu present of devoir (not the je or il form).",
+      "optional_hint": "Tu has its own singular ending on this verb — compare je vs tu in the table."
     },
     {
       "id": "devoir_ctx_03",
@@ -2121,7 +2167,9 @@
         "a",
         "dû"
       ],
-      "explanation": "Passé composé: a dû."
+      "explanation": "Passé composé: a dû.",
+      "wrong_hint": "Passé composé for il: auxiliary (avoir or être) plus past participle — both parts matter.",
+      "optional_hint": "Full form for il here: a dû. Say auxiliary first, then the participle."
     },
     {
       "id": "savoir_mc_01",
@@ -2249,7 +2297,9 @@
       "accepted": [
         "sais"
       ],
-      "explanation": "Je → sais."
+      "explanation": "Je → sais.",
+      "wrong_hint": "You need the present of savoir for je — one word, not the infinitive.",
+      "optional_hint": "Think of the je row in the present tense of savoir."
     },
     {
       "id": "savoir_ctx_02",
@@ -2264,7 +2314,9 @@
       "accepted": [
         "sais"
       ],
-      "explanation": "Tu → sais."
+      "explanation": "Tu → sais.",
+      "wrong_hint": "Use the informal tu present of savoir (not the je or il form).",
+      "optional_hint": "Tu has its own singular ending on this verb — compare je vs tu in the table."
     },
     {
       "id": "savoir_ctx_03",
@@ -2280,7 +2332,9 @@
         "a",
         "su"
       ],
-      "explanation": "Passé composé: a su."
+      "explanation": "Passé composé: a su.",
+      "wrong_hint": "Passé composé for il: auxiliary (avoir or être) plus past participle — both parts matter.",
+      "optional_hint": "Full form for il here: a su. Say auxiliary first, then the participle."
     },
     {
       "id": "prendre_mc_01",
@@ -2408,7 +2462,9 @@
       "accepted": [
         "prends"
       ],
-      "explanation": "Je → prends."
+      "explanation": "Je → prends.",
+      "wrong_hint": "You need the present of prendre for je — one word, not the infinitive.",
+      "optional_hint": "Think of the je row in the present tense of prendre."
     },
     {
       "id": "prendre_ctx_02",
@@ -2423,7 +2479,9 @@
       "accepted": [
         "prends"
       ],
-      "explanation": "Tu → prends."
+      "explanation": "Tu → prends.",
+      "wrong_hint": "Use the informal tu present of prendre (not the je or il form).",
+      "optional_hint": "Tu has its own singular ending on this verb — compare je vs tu in the table."
     },
     {
       "id": "prendre_ctx_03",
@@ -2439,7 +2497,9 @@
         "a",
         "pris"
       ],
-      "explanation": "Passé composé: a pris."
+      "explanation": "Passé composé: a pris.",
+      "wrong_hint": "Passé composé for il: auxiliary (avoir or être) plus past participle — both parts matter.",
+      "optional_hint": "Full form for il here: a pris. Say auxiliary first, then the participle."
     },
     {
       "id": "parler_mc_01",
@@ -2567,7 +2627,9 @@
       "accepted": [
         "parle"
       ],
-      "explanation": "Je → parle."
+      "explanation": "Je → parle.",
+      "wrong_hint": "You need the present of parler for je — one word, not the infinitive.",
+      "optional_hint": "Think of the je row in the present tense of parler."
     },
     {
       "id": "parler_ctx_02",
@@ -2582,7 +2644,9 @@
       "accepted": [
         "parles"
       ],
-      "explanation": "Tu → parles."
+      "explanation": "Tu → parles.",
+      "wrong_hint": "Use the informal tu present of parler (not the je or il form).",
+      "optional_hint": "Tu has its own singular ending on this verb — compare je vs tu in the table."
     },
     {
       "id": "parler_ctx_03",
@@ -2598,7 +2662,9 @@
         "a",
         "parlé"
       ],
-      "explanation": "Passé composé: a parlé."
+      "explanation": "Passé composé: a parlé.",
+      "wrong_hint": "Passé composé for il: auxiliary (avoir or être) plus past participle — both parts matter.",
+      "optional_hint": "Full form for il here: a parlé. Say auxiliary first, then the participle."
     },
     {
       "id": "dire_mc_01",
@@ -2726,7 +2792,9 @@
       "accepted": [
         "dis"
       ],
-      "explanation": "Je → dis."
+      "explanation": "Je → dis.",
+      "wrong_hint": "You need the present of dire for je — one word, not the infinitive.",
+      "optional_hint": "Think of the je row in the present tense of dire."
     },
     {
       "id": "dire_ctx_02",
@@ -2741,7 +2809,9 @@
       "accepted": [
         "dis"
       ],
-      "explanation": "Tu → dis."
+      "explanation": "Tu → dis.",
+      "wrong_hint": "Use the informal tu present of dire (not the je or il form).",
+      "optional_hint": "Tu has its own singular ending on this verb — compare je vs tu in the table."
     },
     {
       "id": "dire_ctx_03",
@@ -2757,7 +2827,9 @@
         "a",
         "dit"
       ],
-      "explanation": "Passé composé: a dit."
+      "explanation": "Passé composé: a dit.",
+      "wrong_hint": "Passé composé for il: auxiliary (avoir or être) plus past participle — both parts matter.",
+      "optional_hint": "Full form for il here: a dit. Say auxiliary first, then the participle."
     }
   ]
 }

@@ -1,7 +1,10 @@
 import { useCallback, useEffect, useMemo, useState } from 'react'
 import type { ConjugationCard } from '../data/mastersGuildCards'
-import { MASTERS_GUILD_CARDS } from '../data/mastersGuildCards'
+import type { ConjugationsBundle } from '../data/conjugationsSchema'
+import conjugationsBundle from '../data/conjugations.json'
+import { buildMasterSrsDeck } from '../lib/srsExtendedDeck'
 import {
+  addCalendarDays,
   applySm2Correct,
   applySm2Wrong,
   createDefaultSrsState,
@@ -11,6 +14,12 @@ import {
 } from '../lib/sm2'
 
 const STORAGE_KEY = 'ccx:srs:cards'
+
+const BUNDLE = conjugationsBundle as ConjugationsBundle
+const SRS_DECK = buildMasterSrsDeck(BUNDLE)
+
+/** Cap how many due cards we queue per sitting (full due count still shown in the badge). */
+const MAX_SESSION_CARDS = 12
 
 export type ExtendedSrsCardState = SrsCardState & {
   timesReviewedTotal: number
@@ -31,9 +40,19 @@ function shuffle<T>(arr: T[]): T[] {
   return a
 }
 
-function defaultCardState(today: string): ExtendedSrsCardState {
+function hashStringId(id: string): number {
+  let h = 0
+  for (let i = 0; i < id.length; i++) h = (Math.imul(31, h) + id.charCodeAt(i)) | 0
+  return Math.abs(h)
+}
+
+/** Spread first reviews across two weeks so day one is not every card at once. */
+function staggeredInitialState(id: string, today: string): ExtendedSrsCardState {
+  const days = hashStringId(id) % 14
+  const base = createDefaultSrsState(today)
   return {
-    ...createDefaultSrsState(today),
+    ...base,
+    nextReviewDate: addCalendarDays(today, days),
     timesReviewedTotal: 0,
     timesCorrect: 0,
   }
@@ -60,21 +79,29 @@ function savePersisted(cards: Record<string, ExtendedSrsCardState>) {
   }
 }
 
-function mergeWithGuild(
+function mergeWithDeck(
   partial: Record<string, ExtendedSrsCardState>,
   today: string,
 ): Record<string, ExtendedSrsCardState> {
   const out: Record<string, ExtendedSrsCardState> = { ...partial }
-  for (const c of MASTERS_GUILD_CARDS) {
+  for (const c of SRS_DECK) {
     if (!out[c.id]) {
-      out[c.id] = defaultCardState(today)
+      out[c.id] = staggeredInitialState(c.id, today)
     }
   }
   return out
 }
 
+function defaultCardState(today: string): ExtendedSrsCardState {
+  return {
+    ...createDefaultSrsState(today),
+    timesReviewedTotal: 0,
+    timesCorrect: 0,
+  }
+}
+
 function getDueCards(map: Record<string, ExtendedSrsCardState>, today: string): ConjugationCard[] {
-  return MASTERS_GUILD_CARDS.filter((c) => isCardDue(map[c.id] ?? defaultCardState(today), today))
+  return SRS_DECK.filter((c) => isCardDue(map[c.id] ?? defaultCardState(today), today))
 }
 
 /**
@@ -89,7 +116,7 @@ function ensureMinimumDue(
   if (due.length >= min) return map
   const need = min - due.length
   const dueIds = new Set(due.map((c) => c.id))
-  const candidates = shuffle(MASTERS_GUILD_CARDS.filter((c) => !dueIds.has(c.id)))
+  const candidates = shuffle(SRS_DECK.filter((c) => !dueIds.has(c.id)))
   const next = { ...map }
   for (let i = 0; i < need && i < candidates.length; i++) {
     const id = candidates[i]!.id
@@ -102,15 +129,13 @@ function ensureMinimumDue(
 export type UseSRSResult = {
   ready: boolean
   todayKey: string
-  /** Cards in today's review session (fixed order for the session). */
   sessionQueue: ConjugationCard[]
-  /** How many cards were due before padding (for badge). */
+  /** All cards due today before session cap (for badge). */
   rawDueCount: number
-  /** Persisted scheduling map (for debugging / advanced UI). */
+  /** Cards actually queued this session (≤ MAX_SESSION_CARDS when many are due). */
+  sessionCap: number
   cardStates: Record<string, ExtendedSrsCardState>
-  /** Apply SM-2 update and persist. */
   recordSchedulingOutcome: (cardId: string, correct: boolean) => void
-  /** Rebuild queue from storage (e.g. new calendar day). */
   refreshSession: () => void
 }
 
@@ -123,12 +148,13 @@ export function useSRS(): UseSRSResult {
 
   const bootstrap = useCallback(() => {
     const t = todayKeyLocal()
-    const mergedBase = mergeWithGuild(loadPersisted(), t)
+    const mergedBase = mergeWithDeck(loadPersisted(), t)
     const rawDue = getDueCards(mergedBase, t)
     setRawDueCount(rawDue.length)
     const merged = ensureMinimumDue(mergedBase, 5, t)
     savePersisted(merged)
-    const queue = shuffle(getDueCards(merged, t))
+    const due = getDueCards(merged, t)
+    const queue = shuffle(due).slice(0, MAX_SESSION_CARDS)
     setCardStates(merged)
     setSessionQueue(queue)
     setReady(true)
@@ -169,6 +195,7 @@ export function useSRS(): UseSRSResult {
       todayKey: today,
       sessionQueue,
       rawDueCount,
+      sessionCap: MAX_SESSION_CARDS,
       cardStates,
       recordSchedulingOutcome,
       refreshSession,

@@ -10,7 +10,7 @@ import type { ConjugationCard } from '../data/mastersGuildCards'
  */
 export function Phase3_MastersGuild() {
   const { addXp, bumpStreakIfNeeded, recordReview, showFeedback, clearFeedback, setPhase } = useConjugationState()
-  const { ready, sessionQueue, rawDueCount, recordSchedulingOutcome, refreshSession } = useSRS()
+  const { ready, sessionQueue, rawDueCount, sessionCap, recordSchedulingOutcome, refreshSession } = useSRS()
 
   const inputRef = useRef<HTMLInputElement>(null)
   const [index, setIndex] = useState(0)
@@ -200,9 +200,16 @@ export function Phase3_MastersGuild() {
             <p className="mt-0.5 text-xs font-semibold text-slate-500">Daily SRS reviews</p>
           </div>
         </div>
-        <div className="flex items-center gap-2 rounded-full bg-slate-100 px-3 py-1.5 text-xs font-bold text-slate-600">
-          <ClipboardList className="h-4 w-4 text-slate-500" aria-hidden />
-          {rawDueCount} due today
+        <div className="flex flex-col items-end gap-0.5">
+          <div className="flex items-center gap-2 rounded-full bg-slate-100 px-3 py-1.5 text-xs font-bold text-slate-600">
+            <ClipboardList className="h-4 w-4 text-slate-500" aria-hidden />
+            {rawDueCount} due today
+          </div>
+          {sessionQueue.length < rawDueCount ? (
+            <span className="max-w-[14rem] text-right text-[10px] font-medium text-slate-500">
+              Reviewing {sessionQueue.length} now (cap {sessionCap}); the rest stay queued
+            </span>
+          ) : null}
         </div>
       </div>
 

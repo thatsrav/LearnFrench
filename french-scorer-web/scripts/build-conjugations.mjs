@@ -768,6 +768,8 @@ function practiceForVerb(v) {
       en: 'Me, I am free after 4 p.m.',
       acc: [p.je],
       expl: `Je → ${p.je}.`,
+      wrong_hint: `You need the present of ${v.infinitive} for je — one word, not the infinitive.`,
+      optional_hint: `Think of the je row in the present tense of ${v.infinitive}.`,
     },
     {
       pronoun: 'tu',
@@ -777,6 +779,8 @@ function practiceForVerb(v) {
       en: 'Are you sure about your choice?',
       acc: [p.tu],
       expl: `Tu → ${p.tu}.`,
+      wrong_hint: `Use the informal tu present of ${v.infinitive} (not the je or il form).`,
+      optional_hint: `Tu has its own singular ending on this verb — compare je vs tu in the table.`,
     },
     {
       pronoun: 'il',
@@ -786,6 +790,8 @@ function practiceForVerb(v) {
       en: 'He has already seen that film.',
       acc: pc.il.split(' '),
       expl: `Passé composé: ${pc.il}.`,
+      wrong_hint: `Passé composé for il: auxiliary (avoir or être) plus past participle — both parts matter.`,
+      optional_hint: `Full form for il here: ${pc.il}. Say auxiliary first, then the participle.`,
     },
   ]
 
@@ -802,6 +808,8 @@ function practiceForVerb(v) {
       english: m.en,
       accepted: m.acc,
       explanation: m.expl,
+      wrong_hint: m.wrong_hint,
+      optional_hint: m.optional_hint,
     })
   })
 

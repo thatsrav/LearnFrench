@@ -46,10 +46,15 @@ function toRuleMasterQuestion(q: PracticeQuestion): RuleMasterContextQuestion | 
     english: q.english,
     accepted: [...accepted],
     explanation: q.explanation,
-    wrongHint: defaultWrongHint(q),
-    optionalHint: defaultOptionalHint(q),
+    wrongHint: q.wrong_hint?.trim() || defaultWrongHint(q),
+    optionalHint: q.optional_hint?.trim() || defaultOptionalHint(q),
     difficulty: q.difficulty,
   }
+}
+
+/** Map a JSON practice row to a Rule Master card (shared with Phase 2 restore-by-id). */
+export function ruleMasterFromPracticeQuestion(q: PracticeQuestion): RuleMasterContextQuestion | null {
+  return toRuleMasterQuestion(q)
 }
 
 function shuffle<T>(arr: T[]): T[] {
@@ -61,24 +66,62 @@ function shuffle<T>(arr: T[]): T[] {
   return a
 }
 
+export type ContextSessionOptions = {
+  minCount?: number
+  maxCount?: number
+  /** Prefer this verb_id for part of the session (e.g. aller_001). */
+  preferVerbId?: string
+  /** Fraction of the session (0–1) to reserve for preferred verb when possible. Default 0.38. */
+  preferVerbShare?: number
+}
+
 /**
- * Pull context questions from the bundle, optionally filtered by verb_id (e.g. aller_001).
+ * Build a session: mixes all context verbs, with extra weight on `preferVerbId` when provided.
  */
 export function pickContextQuestionSession(
   bundle: ConjugationsBundle,
-  opts: { verbId?: string; minCount?: number; maxCount?: number },
+  opts: ContextSessionOptions = {},
 ): RuleMasterContextQuestion[] {
   const min = Math.max(1, opts.minCount ?? 5)
   const max = Math.max(min, opts.maxCount ?? 10)
   const count = min + Math.floor(Math.random() * (max - min + 1))
 
-  let pool = bundle.practice_questions
+  const all = bundle.practice_questions
     .map(toRuleMasterQuestion)
     .filter((x): x is RuleMasterContextQuestion => x !== null)
 
-  if (opts.verbId) {
-    pool = pool.filter((q) => q.verb_id === opts.verbId)
+  const preferId = opts.preferVerbId
+  const share = Math.min(1, Math.max(0, opts.preferVerbShare ?? 0.38))
+
+  if (!preferId) {
+    return shuffle(all).slice(0, count)
   }
 
-  return shuffle(pool).slice(0, count)
+  const preferred = all.filter((q) => q.verb_id === preferId)
+  const rest = all.filter((q) => q.verb_id !== preferId)
+
+  const nPrefer = Math.min(preferred.length, Math.max(1, Math.ceil(count * share)))
+
+  const picked: RuleMasterContextQuestion[] = []
+  const idSet = new Set<string>()
+  const take = (q: RuleMasterContextQuestion) => {
+    if (picked.length >= count || idSet.has(q.id)) return
+    picked.push(q)
+    idSet.add(q.id)
+  }
+
+  for (const q of shuffle(preferred)) {
+    if (picked.length >= nPrefer) break
+    take(q)
+  }
+  for (const q of shuffle(rest)) {
+    if (picked.length >= count) break
+    take(q)
+  }
+  for (const q of shuffle(all)) {
+    if (picked.length >= count) break
+    take(q)
+  }
+
+  return shuffle(picked)
 }

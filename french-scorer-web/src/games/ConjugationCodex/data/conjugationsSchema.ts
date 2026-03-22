@@ -59,6 +59,10 @@ export type PracticeQuestion = {
   explanation: string
   /** Optional short narrative for context type */
   context?: string
+  /** Phase 2 — feedback when the learner is wrong */
+  wrong_hint?: string
+  /** Phase 2 — optional grammar tip (hint button) */
+  optional_hint?: string
 }
 
 export type ConjugationsBundle = {
