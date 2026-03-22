@@ -1,0 +1,161 @@
+{
+  "id": "a1-u6",
+  "level": "A1",
+  "unit_index": 6,
+  "theme": "Home & Describing Rooms",
+  "estimated_minutes": 11,
+  "steps": [
+    {
+      "type": "vocab_intro",
+      "cards": [
+        {
+          "word": "la maison · l'appartement",
+          "translation": "house · apartment",
+          "example": "On habite dans un petit appartement au centre-ville.",
+          "example_translation": "We live in a small downtown apartment.",
+          "audio_key": "logement"
+        },
+        {
+          "word": "la chambre",
+          "translation": "bedroom",
+          "example": "Ma chambre donne sur le jardin.",
+          "example_translation": "My bedroom faces the garden.",
+          "audio_key": "chambre"
+        },
+        {
+          "word": "le salon · la cuisine",
+          "translation": "living room · kitchen",
+          "example": "Le salon est ouvert sur la cuisine.",
+          "example_translation": "The living room is open to the kitchen.",
+          "audio_key": "salon_cuisine"
+        },
+        {
+          "word": "la salle de bain · le bureau",
+          "translation": "bathroom · office / desk room",
+          "example": "Il y a une douche dans la salle de bain et un bureau au sous-sol.",
+          "example_translation": "There's a shower in the bathroom and an office in the basement.",
+          "audio_key": "sdb_bureau"
+        },
+        {
+          "word": "le jardin · le balcon",
+          "translation": "garden · balcony",
+          "example": "Nous prenons le café sur le balcon l'été.",
+          "example_translation": "We have coffee on the balcony in summer.",
+          "audio_key": "jardin_balcon"
+        },
+        {
+          "word": "la fenêtre · la porte",
+          "translation": "window · door",
+          "example": "Ferme la fenêtre, il fait froid!",
+          "example_translation": "Close the window, it's cold!",
+          "audio_key": "fenetre_porte"
+        },
+        {
+          "word": "la table · la chaise · le lit",
+          "translation": "table · chair · bed",
+          "example": "Il y a une grande table et six chaises dans la salle à manger.",
+          "example_translation": "There's a big table and six chairs in the dining room.",
+          "audio_key": "mobilier"
+        },
+        {
+          "word": "l'armoire",
+          "translation": "wardrobe / closet (furniture)",
+          "example": "Mes manteaux sont dans l'armoire de l'entrée.",
+          "example_translation": "My coats are in the entryway wardrobe.",
+          "audio_key": "armoire"
+        },
+        {
+          "word": "habiter · louer",
+          "translation": "to live (in a place) · to rent",
+          "example": "Nous louons cet appartement depuis deux ans.",
+          "example_translation": "We've been renting this apartment for two years.",
+          "audio_key": "habiter_louer"
+        }
+      ]
+    },
+    {
+      "type": "dialogue",
+      "scene": "Tu décris ton nouvel appartement à un·e ami·e à Calgary",
+      "turns": [
+        {
+          "speaker": "A",
+          "text": "Alors, ton nouveau logement, ça donne quoi?",
+          "translation": "So, your new place — what's it like?"
+        },
+        {
+          "speaker": "B",
+          "text": "C'est lumineux! Il y a deux chambres et un grand salon.",
+          "translation": "It's bright! There are two bedrooms and a big living room."
+        },
+        {
+          "speaker": "A",
+          "text": "Et la cuisine, elle est équipée?",
+          "translation": "And the kitchen, is it equipped?"
+        },
+        {
+          "speaker": "B",
+          "text": "Oui, avec un balcon pour les plantes. La salle de bain a une baignoire.",
+          "translation": "Yes, with a balcony for plants. The bathroom has a tub."
+        },
+        {
+          "speaker": "A",
+          "text": "Parfait. Tu habites enfin près du travail!",
+          "translation": "Perfect. You're finally living near work!"
+        }
+      ]
+    },
+    {
+      "type": "grammar_tip",
+      "rule": "Pour dire ce qui existe dans un lieu, utilise « Il y a + nom » (singulier ou pluriel). « Il n'y a pas de… » pour la négation.",
+      "examples": [
+        { "fr": "Il y a un canapé et trois lampes dans le salon.", "en": "There's a sofa and three lamps in the living room." },
+        { "fr": "Il n'y a pas de jardin, mais il y a un petit balcon.", "en": "There's no garden, but there's a small balcony." }
+      ]
+    },
+    {
+      "type": "practice",
+      "exercises": [
+        {
+          "type": "match_pairs",
+          "instruction": "Match each room to its French name",
+          "pairs": [
+            { "left": "kitchen", "right": "la cuisine" },
+            { "left": "bedroom", "right": "la chambre" },
+            { "left": "bathroom", "right": "la salle de bain" },
+            { "left": "living room", "right": "le salon" }
+          ]
+        },
+        {
+          "type": "fill_blank",
+          "sentence": "___ deux fenêtres dans ma chambre.",
+          "answer": "Il y a",
+          "options": ["C'est", "Il y a", "Je suis", "Nous avons"],
+          "hint": "impersonal expression for « there is/are »"
+        },
+        {
+          "type": "word_order",
+          "words": ["cuisine.", "petite", "une", "Il", "y", "a"],
+          "correct_order": [3, 4, 5, 2, 1, 0],
+          "translation": "There is a small kitchen."
+        },
+        {
+          "type": "mcq",
+          "question": "Which sentence correctly says « We rent an apartment »?",
+          "options": [
+            "Nous habitons un appartement.",
+            "Nous louons un appartement.",
+            "Nous allons un appartement.",
+            "Nous prenons un appartement."
+          ],
+          "answer_index": 1,
+          "explanation": "« Louer » means to rent; « habiter » means to live (in), often with dans."
+        }
+      ]
+    }
+  ],
+  "production_task": {
+    "prompt": "Décris ton logement en 3 ou 4 phrases avec « Il y a ».",
+    "example": "J'habite un appartement. Il y a deux chambres et une cuisine moderne. Il y a un balcon.",
+    "skill": "writing"
+  }
+}

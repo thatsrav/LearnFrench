@@ -1,0 +1,137 @@
+{
+  "id": "a1-u2",
+  "level": "A1",
+  "unit_index": 2,
+  "theme": "Numbers & Telling Time",
+  "estimated_minutes": 12,
+  "steps": [
+    {
+      "type": "vocab_intro",
+      "cards": [
+        {
+          "word": "un → dix",
+          "translation": "one to ten",
+          "example": "Je compte de un à dix en français.",
+          "example_translation": "I count from one to ten in French.",
+          "audio_key": "un_dix"
+        },
+        {
+          "word": "onze → vingt",
+          "translation": "eleven to twenty",
+          "example": "Le bus arrive dans quinze minutes.",
+          "example_translation": "The bus arrives in fifteen minutes.",
+          "audio_key": "onze_vingt"
+        },
+        {
+          "word": "vingt-et-un",
+          "translation": "twenty-one",
+          "example": "J'ai vingt-et-un ans cette année.",
+          "example_translation": "I'm twenty-one this year.",
+          "audio_key": "vingt_et_un"
+        },
+        {
+          "word": "trente, quarante, cinquante, cent",
+          "translation": "30, 40, 50, 100",
+          "example": "Ça coûte quarante dollars, pas cent!",
+          "example_translation": "It costs forty dollars, not a hundred!",
+          "audio_key": "trente_cent"
+        },
+        {
+          "word": "l'heure",
+          "translation": "the time / the hour",
+          "example": "Quelle heure est-il, s'il vous plaît?",
+          "example_translation": "What time is it, please?",
+          "audio_key": "heure"
+        },
+        {
+          "word": "et quart · et demie",
+          "translation": "quarter past · half past",
+          "example": "Le train part à huit heures et demie.",
+          "example_translation": "The train leaves at half past eight.",
+          "audio_key": "quart_demie"
+        },
+        {
+          "word": "matin · midi · après-midi · soir · minuit",
+          "translation": "morning · noon · afternoon · evening · midnight",
+          "example": "À midi, on mange. Le soir, je lis.",
+          "example_translation": "At noon we eat. In the evening, I read.",
+          "audio_key": "moments_jour"
+        }
+      ]
+    },
+    {
+      "type": "dialogue",
+      "scene": "À la gare : on demande l'heure du départ du train",
+      "turns": [
+        {
+          "speaker": "A",
+          "text": "Excusez-moi, le train pour Québec part à quelle heure?",
+          "translation": "Excuse me, what time does the train to Québec leave?"
+        },
+        {
+          "speaker": "B",
+          "text": "Il part à quinze heures dix, voie trois.",
+          "translation": "It leaves at three ten p.m., track three."
+        },
+        {
+          "speaker": "A",
+          "text": "Merci! Et il est quelle heure maintenant?",
+          "translation": "Thanks! And what time is it now?"
+        },
+        {
+          "speaker": "B",
+          "text": "Il est quatorze heures quarante-cinq. Vous avez le temps.",
+          "translation": "It's two forty-five p.m. You have time."
+        }
+      ]
+    },
+    {
+      "type": "grammar_tip",
+      "rule": "Pour dire l'heure au présent, on utilise « Il est + [nombre] heure(s) » : Il est deux heures, il est midi, il est minuit. « Il » est impersonnel — pas « C'est deux heures » dans ce sens.",
+      "examples": [
+        { "fr": "Il est sept heures et quart.", "en": "It's a quarter past seven." },
+        { "fr": "Il est onze heures moins le quart.", "en": "It's a quarter to eleven." }
+      ]
+    },
+    {
+      "type": "practice",
+      "exercises": [
+        {
+          "type": "match_pairs",
+          "instruction": "Match each French number word to the digit",
+          "pairs": [
+            { "left": "quinze", "right": "15" },
+            { "left": "vingt", "right": "20" },
+            { "left": "trente", "right": "30" },
+            { "left": "cent", "right": "100" }
+          ]
+        },
+        {
+          "type": "fill_blank",
+          "sentence": "Il est ___ heures. (3 p.m. in 24 h style)",
+          "answer": "quinze",
+          "options": ["trois", "quinze", "treize", "cinq"],
+          "hint": "15 h → « quinze heures »"
+        },
+        {
+          "type": "word_order",
+          "words": ["heures", "Il", "sept", "est"],
+          "correct_order": [1, 3, 2, 0],
+          "translation": "It's seven o'clock."
+        },
+        {
+          "type": "mcq",
+          "question": "How do you say « noon » in French?",
+          "options": ["minuit", "midi", "matin", "soir"],
+          "answer_index": 1,
+          "explanation": "« Midi » is noon; « minuit » is midnight."
+        }
+      ]
+    }
+  ],
+  "production_task": {
+    "prompt": "Écris deux phrases : une heure du matin et une heure de l'après-midi, avec « Il est… ».",
+    "example": "Il est huit heures du matin. Il est seize heures trente.",
+    "skill": "writing"
+  }
+}

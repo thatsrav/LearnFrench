@@ -1,0 +1,144 @@
+{
+  "id": "a1-u3",
+  "level": "A1",
+  "unit_index": 3,
+  "theme": "Family Members",
+  "estimated_minutes": 11,
+  "steps": [
+    {
+      "type": "vocab_intro",
+      "cards": [
+        {
+          "word": "la famille",
+          "translation": "the family",
+          "example": "Ma famille vient de Halifax.",
+          "example_translation": "My family comes from Halifax.",
+          "audio_key": "famille"
+        },
+        {
+          "word": "le père · la mère",
+          "translation": "father · mother",
+          "example": "Mes parents sont gentils.",
+          "example_translation": "My parents are kind.",
+          "audio_key": "pere_mere"
+        },
+        {
+          "word": "le frère · la sœur",
+          "translation": "brother · sister",
+          "example": "J'ai un frère et deux sœurs.",
+          "example_translation": "I have one brother and two sisters.",
+          "audio_key": "frere_soeur"
+        },
+        {
+          "word": "le fils · la fille",
+          "translation": "son · daughter",
+          "example": "Leur fille s'appelle Zoé.",
+          "example_translation": "Their daughter's name is Zoé.",
+          "audio_key": "fils_fille"
+        },
+        {
+          "word": "grand-père · grand-mère",
+          "translation": "grandfather · grandmother",
+          "example": "Mes grands-parents habitent en Ontario.",
+          "example_translation": "My grandparents live in Ontario.",
+          "audio_key": "grands_parents"
+        },
+        {
+          "word": "l'oncle · la tante",
+          "translation": "uncle · aunt",
+          "example": "Mon oncle apporte une tarte aux bleuets.",
+          "example_translation": "My uncle brings a blueberry pie.",
+          "audio_key": "oncle_tante"
+        },
+        {
+          "word": "le cousin · la cousine",
+          "translation": "cousin (m.) · cousin (f.)",
+          "example": "Ma cousine étudie à Ottawa.",
+          "example_translation": "My cousin studies in Ottawa.",
+          "audio_key": "cousin"
+        },
+        {
+          "word": "le mari · la femme · l'enfant",
+          "translation": "husband · wife · child",
+          "example": "Son mari travaille à la maison; leur enfant a six ans.",
+          "example_translation": "Her husband works from home; their child is six.",
+          "audio_key": "mari_femme"
+        }
+      ]
+    },
+    {
+      "type": "dialogue",
+      "scene": "Tu montres une photo de famille à un·e nouvel·le ami·e",
+      "turns": [
+        {
+          "speaker": "A",
+          "text": "Wow, belle photo! C'est ta famille?",
+          "translation": "Wow, nice photo! Is that your family?"
+        },
+        {
+          "speaker": "B",
+          "text": "Oui! Là, ce sont mes parents, et à côté mon grand-père.",
+          "translation": "Yes! There are my parents, and next to them my grandfather."
+        },
+        {
+          "speaker": "A",
+          "text": "Et le petit garçon avec le chien, c'est ton frère?",
+          "translation": "And the little boy with the dog, is that your brother?"
+        },
+        {
+          "speaker": "B",
+          "text": "Exact! Ma sœur prend la photo. Ma tante est derrière.",
+          "translation": "Exactly! My sister is taking the photo. My aunt is behind."
+        }
+      ]
+    },
+    {
+      "type": "grammar_tip",
+      "rule": "Les adjectifs possessifs s'accordent avec le nom possédé : mon frère, ma mère, mes cousins. « Ton / ta / tes » pour « your » (tu). Avant voyelle : mon amie, ton oncle.",
+      "examples": [
+        { "fr": "Ma mère et ton père sont collègues.", "en": "My mother and your father are colleagues." },
+        { "fr": "Tes sœurs habitent à Vancouver.", "en": "Your sisters live in Vancouver." }
+      ]
+    },
+    {
+      "type": "practice",
+      "exercises": [
+        {
+          "type": "match_pairs",
+          "instruction": "Match the French word to English",
+          "pairs": [
+            { "left": "la mère", "right": "mother" },
+            { "left": "le père", "right": "father" },
+            { "left": "la sœur", "right": "sister" },
+            { "left": "le cousin", "right": "cousin (male)" }
+          ]
+        },
+        {
+          "type": "fill_blank",
+          "sentence": "C'est ___ frère. (my — masculine noun)",
+          "answer": "mon",
+          "options": ["mon", "ma", "mes", "ta"],
+          "hint": "« frère » is masculine singular"
+        },
+        {
+          "type": "word_order",
+          "words": ["famille.", "grande", "une", "Nous", "avons"],
+          "correct_order": [3, 4, 2, 1, 0],
+          "translation": "We have a big family."
+        },
+        {
+          "type": "mcq",
+          "question": "Choose the correct phrase for « her daughter ».",
+          "options": ["son fille", "sa fille", "ses fille", "leur fille"],
+          "answer_index": 1,
+          "explanation": "« Fille » is feminine → « sa fille ». « Son » is used before masculine nouns or feminine nouns starting with a vowel sound."
+        }
+      ]
+    }
+  ],
+  "production_task": {
+    "prompt": "Décris trois personnes de ta famille avec mon/ma/mes ou ton/ta/tes.",
+    "example": "Ma mère s'appelle Julie. Mon père travaille beaucoup. Mes frères sont plus jeunes que moi.",
+    "skill": "writing"
+  }
+}

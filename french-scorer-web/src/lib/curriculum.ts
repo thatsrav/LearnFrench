@@ -31,7 +31,7 @@ export type CurriculumModule = {
 /** Marketing / hero stats (aligned with Figma). */
 export const CURRICULUM_STATS = {
   moduleCount: 6,
-  lessonCount: 51,
+  lessonCount: 53,
 } as const
 
 export const CURRICULUM_MODULES: CurriculumModule[] = [
@@ -46,14 +46,16 @@ export const CURRICULUM_MODULES: CurriculumModule[] = [
     durationWeeks: 2,
     topics: ['Greetings', 'Self-introduction', 'Numbers 1-100', 'Days & Months'],
     lessons: [
-      { id: 'm1-l1', title: 'Bonjour! - Basic Greetings', subtitle: 'Les salutations', durationMin: 15, contentUnitId: 'a1-u1' },
-      { id: 'm1-l2', title: "Je m'appelle… - Introducing Yourself", subtitle: 'Se présenter', durationMin: 18, contentUnitId: 'a1-u2' },
-      { id: 'm1-l3', title: 'Numbers 1-20', subtitle: 'Les nombres', durationMin: 20, contentUnitId: 'a1-u3' },
-      { id: 'm1-l4', title: 'Numbers 21-100', subtitle: 'Compter plus loin', durationMin: 20, contentUnitId: 'a1-u4' },
-      { id: 'm1-l5', title: 'Days of the Week', subtitle: 'Les jours', durationMin: 18, contentUnitId: 'a1-u5' },
-      { id: 'm1-l6', title: 'Months of the Year', subtitle: 'Les mois', durationMin: 18, contentUnitId: 'a2-u1' },
-      { id: 'm1-l7', title: 'Asking Questions - Comment ? Quoi ?', subtitle: 'Les questions', durationMin: 22, contentUnitId: 'a2-u2' },
-      { id: 'm1-l8', title: 'Unit 1 Review & Practice', subtitle: 'Révision', durationMin: 25, contentUnitId: 'a2-u3' },
+      { id: 'm1-l1', title: 'Greetings & Meeting People', subtitle: 'Les salutations', durationMin: 18, contentUnitId: 'a1-u1' },
+      { id: 'm1-l2', title: 'Numbers & Telling Time', subtitle: 'Nombres & heure', durationMin: 22, contentUnitId: 'a1-u2' },
+      { id: 'm1-l3', title: 'Family Members', subtitle: 'La famille', durationMin: 20, contentUnitId: 'a1-u3' },
+      { id: 'm1-l4', title: 'Food & Ordering at a Café', subtitle: 'Au café', durationMin: 22, contentUnitId: 'a1-u4' },
+      { id: 'm1-l5', title: 'Colors & Clothes Shopping', subtitle: 'Couleurs & vêtements', durationMin: 20, contentUnitId: 'a1-u5' },
+      { id: 'm1-l6', title: 'Home & Describing Rooms', subtitle: 'La maison', durationMin: 20, contentUnitId: 'a1-u6' },
+      { id: 'm1-l7', title: 'Daily Routine & Regular Verbs', subtitle: 'La routine', durationMin: 22, contentUnitId: 'a1-u7' },
+      { id: 'm1-l8', title: 'Transport & Directions', subtitle: 'Transport', durationMin: 20, contentUnitId: 'a1-u8' },
+      { id: 'm1-l9', title: 'Weather & Seasons', subtitle: 'La météo', durationMin: 18, contentUnitId: 'a1-u9' },
+      { id: 'm1-l10', title: 'Hobbies & Free Time', subtitle: 'Les loisirs', durationMin: 20, contentUnitId: 'a1-u10' },
     ],
   },
   {

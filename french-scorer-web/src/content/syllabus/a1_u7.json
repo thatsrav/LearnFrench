@@ -1,0 +1,149 @@
+{
+  "id": "a1-u7",
+  "level": "A1",
+  "unit_index": 7,
+  "theme": "Daily Routine & Regular Verbs",
+  "estimated_minutes": 14,
+  "steps": [
+    {
+      "type": "vocab_intro",
+      "cards": [
+        {
+          "word": "se lever · se coucher",
+          "translation": "to get up · to go to bed",
+          "example": "Je me lève à six heures et je me couche vers vingt-trois heures.",
+          "example_translation": "I get up at six and I go to bed around eleven p.m.",
+          "audio_key": "lever_coucher"
+        },
+        {
+          "word": "travailler · manger",
+          "translation": "to work · to eat",
+          "example": "Elle travaille de la maison le mardi; nous mangeons ensemble à midi.",
+          "example_translation": "She works from home on Tuesdays; we eat together at noon.",
+          "audio_key": "travailler_manger"
+        },
+        {
+          "word": "partir · arriver · rentrer",
+          "translation": "to leave · to arrive · to come back home",
+          "example": "Je pars tôt, j'arrive au bureau à huit heures, je rentre le soir fatigué.",
+          "example_translation": "I leave early, I arrive at the office at eight, I come home tired in the evening.",
+          "audio_key": "deplacements"
+        },
+        {
+          "word": "commencer · finir",
+          "translation": "to start · to finish",
+          "example": "Les cours commencent à neuf heures et finissent à quinze heures.",
+          "example_translation": "Classes start at nine and finish at three.",
+          "audio_key": "commencer_finir"
+        },
+        {
+          "word": "dormir",
+          "translation": "to sleep",
+          "example": "Le week-end, je dors une heure de plus.",
+          "example_translation": "On weekends I sleep an extra hour.",
+          "audio_key": "dormir"
+        },
+        {
+          "word": "le matin · le soir",
+          "translation": "morning · evening",
+          "example": "Le matin, je lis les nouvelles; le soir, je me détends.",
+          "example_translation": "In the morning I read the news; in the evening I relax.",
+          "audio_key": "matin_soir"
+        },
+        {
+          "word": "tous les jours",
+          "translation": "every day",
+          "example": "Je marche tous les jours avant le travail.",
+          "example_translation": "I walk every day before work.",
+          "audio_key": "tous_les_jours"
+        },
+        {
+          "word": "d'abord · ensuite · enfin",
+          "translation": "first · then · finally",
+          "example": "D'abord le café, ensuite les courriels, enfin la réunion.",
+          "example_translation": "First coffee, then emails, finally the meeting.",
+          "audio_key": "connecteurs"
+        }
+      ]
+    },
+    {
+      "type": "dialogue",
+      "scene": "Deux collègues comparent leur routine du matin à Toronto",
+      "turns": [
+        {
+          "speaker": "A",
+          "text": "Toi, tu es plutôt lève-tôt ou bouton-snooze?",
+          "translation": "Are you more of an early bird or a snooze-button person?"
+        },
+        {
+          "speaker": "B",
+          "text": "Alarme à six, je me lève tout de suite. Et toi?",
+          "translation": "Alarm at six, I get up right away. And you?"
+        },
+        {
+          "speaker": "A",
+          "text": "Moi je traîne un peu, puis je mange un toast et je pars vers sept heures.",
+          "translation": "I drag a bit, then I eat toast and I leave around seven."
+        },
+        {
+          "speaker": "B",
+          "text": "Même combat. J'arrive au bureau pour huit, je commence les dossiers à huit et quart.",
+          "translation": "Same here. I get to the office by eight, I start on files at a quarter past."
+        },
+        {
+          "speaker": "A",
+          "text": "Enfin le vendredi soir, on rentre plus tôt — promis!",
+          "translation": "Finally on Friday evening we get home earlier — promise!"
+        }
+      ]
+    },
+    {
+      "type": "grammar_tip",
+      "rule": "Les verbes en -ER au présent : enlève -er et ajoute -e, -es, -e, -ons, -ez, -ent (parler → je parle, tu parles, il parle, nous parlons, vous parlez, ils parlent). Mange, travaille, commence suivent la même règle.",
+      "examples": [
+        { "fr": "Tu travailles de huit à dix-sept heures?", "en": "Do you work from eight to five?" },
+        { "fr": "Nous mangeons souvent ensemble le midi.", "en": "We often eat together at noon." }
+      ]
+    },
+    {
+      "type": "practice",
+      "exercises": [
+        {
+          "type": "match_pairs",
+          "instruction": "Match each French verb to its English meaning",
+          "pairs": [
+            { "left": "travailler", "right": "to work" },
+            { "left": "manger", "right": "to eat" },
+            { "left": "arriver", "right": "to arrive" },
+            { "left": "finir", "right": "to finish" }
+          ]
+        },
+        {
+          "type": "fill_blank",
+          "sentence": "Elles ___ (travailler) à la bibliothèque le samedi.",
+          "answer": "travaillent",
+          "options": ["travaille", "travaillent", "travaillons", "travailler"],
+          "hint": "present, subject « elles »"
+        },
+        {
+          "type": "word_order",
+          "words": ["matin.", "mange", "le", "Je", "tôt"],
+          "correct_order": [3, 1, 4, 2, 0],
+          "translation": "I eat early in the morning."
+        },
+        {
+          "type": "mcq",
+          "question": "Which is the correct « nous » form of « commencer » in the present?",
+          "options": ["nous commence", "nous commençons", "nous commencer", "nous commencent"],
+          "answer_index": 1,
+          "explanation": "« Commencer » keeps the cedilla before o/u: nous commençons, to keep the [s] sound."
+        }
+      ]
+    }
+  ],
+  "production_task": {
+    "prompt": "Décris ta journée type en 4 phrases avec au moins deux verbes en -ER au présent.",
+    "example": "Le matin je mange un bol de céréales. Je travaille jusqu'à dix-sept heures. Le soir je rentre fatigué.",
+    "skill": "writing"
+  }
+}
