@@ -13,11 +13,19 @@ export function listeningAccentToBcp47(accent: 'france' | 'quebec'): FrenchBcp47
 }
 
 let cloudAudioEl: HTMLAudioElement | null = null
+/** Separate from cloud TTS — bundled / static vocab MP3. */
+let vocabStaticEl: HTMLAudioElement | null = null
 
 /** Active cloud TTS element, if any (for progress UI). */
 export function getFrenchWebTtsAudioElement(): HTMLAudioElement | null {
   if (typeof window === 'undefined') return null
   return cloudAudioEl
+}
+
+/** Active static vocab audio element, if any. */
+export function getFrenchVocabStaticAudioElement(): HTMLAudioElement | null {
+  if (typeof window === 'undefined') return null
+  return vocabStaticEl
 }
 
 export const FRENCH_CLOUD_TTS_SETUP_HINT =
@@ -35,6 +43,55 @@ export function stopFrenchWebTts(): void {
     cloudAudioEl.src = ''
     cloudAudioEl = null
   }
+}
+
+/** Stops static vocab MP3 (public/audio/vocab/…). */
+export function stopFrenchVocabStaticAudio(): void {
+  if (typeof window === 'undefined') return
+  if (vocabStaticEl) {
+    vocabStaticEl.pause()
+    vocabStaticEl.src = ''
+    vocabStaticEl = null
+  }
+}
+
+export type PlayVocabStaticOptions = {
+  onPlaybackStarted?: () => void
+}
+
+/**
+ * Play a pre-generated MP3 from the site root (e.g. `/audio/vocab/bonjour.mp3`).
+ * Does not call the TTS API.
+ */
+export async function playFrenchVocabStaticUrl(url: string, options?: PlayVocabStaticOptions): Promise<void> {
+  if (typeof window === 'undefined') return
+  const trimmed = url.trim()
+  if (!trimmed) return
+
+  stopFrenchVocabStaticAudio()
+  stopFrenchWebTts()
+
+  const audio = new Audio(trimmed)
+  vocabStaticEl = audio
+  return new Promise((resolve, reject) => {
+    audio.onended = () => {
+      if (vocabStaticEl === audio) vocabStaticEl = null
+      resolve()
+    }
+    audio.onerror = () => {
+      if (vocabStaticEl === audio) vocabStaticEl = null
+      reject(new Error('Lecture audio (fichier) impossible.'))
+    }
+    void audio
+      .play()
+      .then(() => {
+        options?.onPlaybackStarted?.()
+      })
+      .catch((e) => {
+        if (vocabStaticEl === audio) vocabStaticEl = null
+        reject(e instanceof Error ? e : new Error(String(e)))
+      })
+  })
 }
 
 function getApiBase(): string {

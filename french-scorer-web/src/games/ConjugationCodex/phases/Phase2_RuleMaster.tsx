@@ -9,6 +9,7 @@ import {
   ruleMasterFromPracticeQuestion,
   type RuleMasterContextQuestion,
 } from '../lib/contextQuestionPool'
+import { playSoundEffect } from '../../../services/soundEffects'
 
 const BUNDLE = conjugationsBundle as ConjugationsBundle
 
@@ -165,6 +166,7 @@ export function Phase2_RuleMaster() {
 
     if (ok) {
       setSubmitting(true)
+      playSoundEffect('success')
       bumpStreakIfNeeded()
       addXp(10)
       recordReview(true)
@@ -181,6 +183,7 @@ export function Phase2_RuleMaster() {
 
     if (nextWrong >= 3) {
       setSubmitting(true)
+      playSoundEffect('error')
       showFeedback('neutral', 'Moving on', `${current.explanation} You will get another pass later.`)
       window.setTimeout(() => {
         clearFeedback()
@@ -200,6 +203,7 @@ export function Phase2_RuleMaster() {
       return
     }
 
+    playSoundEffect('error')
     const hintLine = current.optionalHint ? `${current.wrongHint} ${current.optionalHint}` : current.wrongHint
     showFeedback('incorrect', 'Close, try again', hintLine)
   }, [
@@ -251,6 +255,7 @@ export function Phase2_RuleMaster() {
           <button
             type="button"
             onClick={() => {
+              playSoundEffect('unlock')
               bumpStreakIfNeeded()
               addXp(25)
               markPhaseComplete('rule_master')

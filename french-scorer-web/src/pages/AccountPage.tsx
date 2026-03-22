@@ -1,6 +1,7 @@
 import { Cloud, CreditCard, LogOut, Settings, User } from 'lucide-react'
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
+import { SoundPreferencesCard } from '../components/SoundPreferencesCard'
 import { useAuth } from '../contexts/AuthContext'
 import { getSupabaseProjectHost, getSupabaseSetupDiagnostics, supabase } from '../lib/supabase'
 import {
@@ -219,6 +220,9 @@ export default function AccountPage() {
               Sign out
             </button>
           </div>
+          <div className="mt-6">
+            <SoundPreferencesCard />
+          </div>
           <div className="mt-4 space-y-2">
             <button
               type="button"
@@ -369,6 +373,9 @@ export default function AccountPage() {
             </span>
             <span className="text-xs font-medium text-white/80">Just now</span>
           </div>
+        </div>
+        <div className="mt-6">
+          <SoundPreferencesCard />
         </div>
         <p className="mt-6 text-center text-sm text-slate-500 lg:text-left">
           <Link to="/" className="font-semibold text-[#2563eb] hover:underline">

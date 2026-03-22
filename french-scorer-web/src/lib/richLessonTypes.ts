@@ -5,7 +5,10 @@ export type VocabCard = {
   translation: string
   example: string
   example_translation: string
+  /** Stable id for `public/audio/vocab/{audio_key}.mp3` */
   audio_key?: string
+  /** Optional absolute or site-root URL override */
+  audio_url?: string
 }
 
 export type VocabIntroStep = { type: 'vocab_intro'; cards: VocabCard[] }

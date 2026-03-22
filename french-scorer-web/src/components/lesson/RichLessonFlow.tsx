@@ -1,3 +1,4 @@
+import { Volume2 } from 'lucide-react'
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import type {
   FillBlankExercise,
@@ -5,9 +6,40 @@ import type {
   McqExercise,
   PracticeExercise,
   RichLessonUnit,
+  VocabCard,
   WordOrderExercise,
 } from '../../lib/richLessonTypes'
 import type { UnitLesson } from '../../lib/syllabus'
+import { isFrenchCloudTtsConfigured } from '../../lib/frenchWebTts'
+import { playVocabCardAudio, resolveVocabAudioUrl } from '../../lib/vocabAudio'
+import { playSoundEffect } from '../../services/soundEffects'
+
+function VocabAudioButton({ card }: { card: VocabCard }) {
+  const [busy, setBusy] = useState(false)
+  const [err, setErr] = useState<string | null>(null)
+  const canPlay = Boolean(resolveVocabAudioUrl(card) || isFrenchCloudTtsConfigured())
+
+  return (
+    <div className="flex flex-col items-end gap-1">
+      <button
+        type="button"
+        disabled={!canPlay || busy}
+        onClick={() => {
+          setErr(null)
+          setBusy(true)
+          void playVocabCardAudio(card)
+            .catch((e) => setErr(e instanceof Error ? e.message : 'Audio indisponible'))
+            .finally(() => setBusy(false))
+        }}
+        className="rounded-full p-2 text-slate-600 transition hover:bg-indigo-50 hover:text-indigo-700 disabled:cursor-not-allowed disabled:opacity-40"
+        aria-label={`Écouter la prononciation : ${card.word}`}
+      >
+        <Volume2 className="h-5 w-5" strokeWidth={2} aria-hidden />
+      </button>
+      {err ? <span className="max-w-[10rem] text-right text-[10px] text-red-600">{err}</span> : null}
+    </div>
+  )
+}
 
 function shuffleIndices(n: number): number[] {
   const a = Array.from({ length: n }, (_, i) => i)
@@ -42,7 +74,12 @@ function McqBlock({
               onClick={() => {
                 if (ok) return
                 setPicked(i)
-                if (i === ex.answer_index) onCorrect()
+                if (i === ex.answer_index) {
+                  playSoundEffect('success')
+                  onCorrect()
+                } else {
+                  playSoundEffect('error')
+                }
               }}
               className={[
                 'w-full rounded-xl border px-4 py-3 text-left text-sm transition',
@@ -84,7 +121,12 @@ function FillBlankBlock({
             onClick={() => {
               if (ok) return
               setPicked(opt)
-              if (opt === ex.answer) onCorrect()
+              if (opt === ex.answer) {
+                playSoundEffect('success')
+                onCorrect()
+              } else {
+                playSoundEffect('error')
+              }
             }}
             className={[
               'rounded-full border px-4 py-2 text-sm font-semibold',
@@ -117,9 +159,16 @@ function MatchPairsBlock({
     if (trueR === shownR) {
       setMatches((m) => {
         const next = { ...m, [li]: ri }
-        if (Object.keys(next).length === ex.pairs.length) queueMicrotask(() => onCorrect())
+        if (Object.keys(next).length === ex.pairs.length) {
+          queueMicrotask(() => {
+            playSoundEffect('success')
+            onCorrect()
+          })
+        }
         return next
       })
+    } else {
+      playSoundEffect('error')
     }
     setPickL(null)
   }
@@ -211,8 +260,11 @@ function WordOrderBlock({
     if (tray.length !== ex.correct_order.length) return
     const ok = tray.every((v, i) => v === ex.correct_order[i])
     if (ok) {
+      playSoundEffect('success')
       setDone(true)
       onCorrect()
+    } else {
+      playSoundEffect('error')
     }
   }
 
@@ -290,6 +342,7 @@ export default function RichLessonFlow({ unit, rich, onBack, onComplete }: RichL
   const [prodPhase, setProdPhase] = useState(false)
   const [correctCount, setCorrectCount] = useState(0)
   const solvedThisExercise = useRef(false)
+  const summarySoundPlayed = useRef(false)
 
   const practiceTotals = useMemo(() => {
     let t = 0
@@ -307,6 +360,17 @@ export default function RichLessonFlow({ unit, rich, onBack, onComplete }: RichL
   useEffect(() => {
     solvedThisExercise.current = false
   }, [stepIdx, exIdx])
+
+  useEffect(() => {
+    summarySoundPlayed.current = false
+  }, [unit.id])
+
+  useEffect(() => {
+    if (!showSummaryCard || summarySoundPlayed.current) return
+    summarySoundPlayed.current = true
+    const score = practiceTotals === 0 ? 100 : Math.round((correctCount / practiceTotals) * 100)
+    playSoundEffect(score >= 80 ? 'levelup' : 'unlock')
+  }, [showSummaryCard, correctCount, practiceTotals])
 
   const advanceAfterPractice = () => {
     if (!step || step.type !== 'practice') return
@@ -389,7 +453,10 @@ export default function RichLessonFlow({ unit, rich, onBack, onComplete }: RichL
         <div className="mt-6 grid gap-3 sm:grid-cols-2">
           {step.cards.map((c, i) => (
             <div key={i} className="rounded-xl border border-slate-100 bg-slate-50/80 p-4">
-              <p className="font-semibold text-slate-900">{c.word}</p>
+              <div className="flex items-start justify-between gap-2">
+                <p className="font-semibold text-slate-900">{c.word}</p>
+                <VocabAudioButton card={c} />
+              </div>
               <p className="text-sm text-indigo-700">{c.translation}</p>
               <p className="mt-2 text-sm text-slate-800">{c.example}</p>
               <p className="text-xs text-slate-500">{c.example_translation}</p>

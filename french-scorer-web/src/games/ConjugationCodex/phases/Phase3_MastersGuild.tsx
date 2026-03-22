@@ -4,6 +4,7 @@ import { useConjugationState } from '../hooks/useConjugationState'
 import { useSRS } from '../hooks/useSRS'
 import { isAnswerCorrect } from '../lib/answerCheck'
 import type { ConjugationCard } from '../data/mastersGuildCards'
+import { playSoundEffect } from '../../../services/soundEffects'
 
 /**
  * Phase 3: Master's Guild — daily SRS-style reviews with persisted scheduling.
@@ -51,6 +52,7 @@ export function Phase3_MastersGuild() {
 
     if (ok) {
       setSubmitting(true)
+      playSoundEffect('success')
       bumpStreakIfNeeded()
       addXp(8)
       setSessionXp((x) => x + 8)
@@ -75,6 +77,7 @@ export function Phase3_MastersGuild() {
 
     if (nextWrong >= 3) {
       setSubmitting(true)
+      playSoundEffect('error')
       recordReview(false)
       recordSchedulingOutcome(current.id, false)
       showFeedback(
@@ -86,6 +89,7 @@ export function Phase3_MastersGuild() {
       return
     }
 
+    playSoundEffect('error')
     showFeedback('incorrect', 'Not quite', 'Try again — recall the form without overthinking.')
   }, [
     addXp,
