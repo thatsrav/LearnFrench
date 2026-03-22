@@ -2,64 +2,162 @@
   "id": "a1-u9",
   "level": "A1",
   "unit_index": 9,
-  "phase": "solid_a1",
-  "theme": "Passé composé — mini storytelling",
-  "lexical_density": 2.144,
-  "grammar_rule_text": "Chain two events in the past: 'D abord j ai pris le bus, puis j ai vu mon ami.' Agreement of past participle with AVOIR object BEFORE verb comes at higher levels—for A1 keep objects after verb. Use connectors: puis, ensuite, alors, et, mais.",
-  "vocab_list": [
-    "d abord", "puis", "ensuite", "alors", "apres", "avant",
-    "bus", "train", "metro", "ami", "rendez vous", "fete", "anniversaire",
-    "acheter", "acheté", "voir", "vu", "prendre", "pris", "faire", "fait",
-    "aller", "allé", "arriver", "arrivé", "content", "fatigue", "super"
-  ],
-  "quiz": [
+  "theme": "Weather & Seasons",
+  "estimated_minutes": 10,
+  "steps": [
     {
-      "question": "Past participle of faire?",
-      "options": ["fais", "fait", "faite", "faisant"],
-      "answer_index": 1
+      "type": "vocab_intro",
+      "cards": [
+        {
+          "word": "le soleil",
+          "translation": "sun / sunny weather",
+          "example": "Aujourd'hui, il y a du soleil toute la journée.",
+          "example_translation": "Today there's sun all day long.",
+          "audio_key": "soleil"
+        },
+        {
+          "word": "la pluie",
+          "translation": "rain",
+          "example": "Il y a de la pluie verglaçante annoncée pour demain matin.",
+          "example_translation": "Freezing rain is forecast for tomorrow morning.",
+          "audio_key": "pluie"
+        },
+        {
+          "word": "la neige",
+          "translation": "snow",
+          "example": "La neige tombe depuis hier soir; la pelle est dehors.",
+          "example_translation": "Snow has been falling since last night; the shovel is outside.",
+          "audio_key": "neige"
+        },
+        {
+          "word": "le nuage · le vent",
+          "translation": "cloud · wind",
+          "example": "Le ciel est gris, le vent souffle fort sur le fleuve.",
+          "example_translation": "The sky is gray; the wind blows hard on the river.",
+          "audio_key": "nuage_vent"
+        },
+        {
+          "word": "chaud · froid",
+          "translation": "hot · cold",
+          "example": "En été il fait chaud; en janvier, il fait très froid.",
+          "example_translation": "In summer it's hot; in January it's very cold.",
+          "audio_key": "chaud_froid"
+        },
+        {
+          "word": "le temps · la météo",
+          "translation": "weather · weather forecast",
+          "example": "As-tu vu la météo? Le temps change vite ici.",
+          "example_translation": "Did you see the forecast? The weather changes fast here.",
+          "audio_key": "temps_meteo"
+        },
+        {
+          "word": "le printemps · l'été",
+          "translation": "spring · summer",
+          "example": "Au printemps, les érables débordent; l'été, les terrasses sont pleines.",
+          "example_translation": "In spring the maples bud; in summer the patios are full.",
+          "audio_key": "printemps_ete"
+        },
+        {
+          "word": "l'automne · l'hiver",
+          "translation": "fall / autumn · winter",
+          "example": "L'automne est court; l'hiver à Montréal, il faut une bonne tuque.",
+          "example_translation": "Autumn is short; in winter in Montréal you need a good tuque.",
+          "audio_key": "automne_hiver"
+        },
+        {
+          "word": "aujourd'hui · demain",
+          "translation": "today · tomorrow",
+          "example": "Aujourd'hui il neige; demain, peut-être du soleil.",
+          "example_translation": "Today it's snowing; tomorrow, maybe sun.",
+          "audio_key": "aujourdhui_demain"
+        },
+        {
+          "word": "il fait · il y a",
+          "translation": "it's (weather) · there is (weather phenomenon)",
+          "example": "Il fait froid et il y a du vent ce matin.",
+          "example_translation": "It's cold and it's windy this morning.",
+          "audio_key": "il_fait_y_a"
+        }
+      ]
     },
     {
-      "question": "Pick the best mini-story opening.",
-      "options": [
-        "Samedi matin j ai pris le métro et j ai rendez-vous.",
-        "Samedi matin j ai pris le métro, puis j ai vu Lucie.",
-        "Samedi matin je prends le métro puis je vois Lucie.",
-        "Samedi matin j ai prendre le métro puis vu Lucie."
-      ],
-      "answer_index": 1
+      "type": "dialogue",
+      "scene": "Petite conversation sur la météo à Montréal en hiver",
+      "turns": [
+        {
+          "speaker": "A",
+          "text": "Brr… moins vingt avec le facteur vent, non?",
+          "translation": "Brr… minus twenty with the wind chill, right?"
+        },
+        {
+          "speaker": "B",
+          "text": "Oui, la météo annonce de la neige pour ce soir encore.",
+          "translation": "Yes, the forecast calls for snow again tonight."
+        },
+        {
+          "speaker": "A",
+          "text": "J'en ai marre du gris. Tu crois qu'il y aura du soleil samedi?",
+          "translation": "I'm fed up with the gray. Do you think there'll be sun Saturday?"
+        },
+        {
+          "speaker": "B",
+          "text": "Peut-être! En tout cas, au printemps on appréciera plus le chaud.",
+          "translation": "Maybe! In any case, in spring we'll appreciate the warm more."
+        }
+      ]
     },
     {
-      "question": "I went to the cinema yesterday — aller uses être in passé composé.",
-      "options": [
-        "Je suis allé au cinéma hier.",
-        "J ai allé au cinéma hier.",
-        "Je suis aller au cinéma hier.",
-        "J ai été au cinéma hier."
-      ],
-      "answer_index": 0
+      "type": "grammar_tip",
+      "rule": "Pour la météo : « Il fait + adjectif » (chaud, froid, doux, mauvais) ou « Il fait + nombre + degrés ». Pour un phénomène : « Il y a du vent / du soleil / de la pluie / de la neige ».",
+      "examples": [
+        { "fr": "Il fait mauvais; il y a du brouillard.", "en": "The weather's bad; there's fog." },
+        { "fr": "Il y a un bel après-midi ensoleillé.", "en": "There's a beautiful sunny afternoon." }
+      ]
     },
     {
-      "question": "They did their homework last night.",
-      "options": [
-        "Ils ont fait leurs devoirs hier soir.",
-        "Ils font leurs devoirs hier soir.",
-        "Ils ont faits leurs devoirs hier soir.",
-        "Ils sont fait leurs devoirs hier soir."
-      ],
-      "answer_index": 0
-    },
-    {
-      "question": "Which connector fits: 'J ai mangé ___ j ai dormi.'",
-      "options": ["puis", "demain", "toujours", "ne"],
-      "answer_index": 0
+      "type": "practice",
+      "exercises": [
+        {
+          "type": "match_pairs",
+          "instruction": "Match the French word to English",
+          "pairs": [
+            { "left": "la neige", "right": "snow" },
+            { "left": "la pluie", "right": "rain" },
+            { "left": "l'hiver", "right": "winter" },
+            { "left": "le soleil", "right": "sun" }
+          ]
+        },
+        {
+          "type": "fill_blank",
+          "sentence": "___ très froid aujourd'hui; mets ton manteau!",
+          "answer": "Il fait",
+          "options": ["Il fait", "Il y a", "C'est", "Je suis"],
+          "hint": "weather + adjective"
+        },
+        {
+          "type": "word_order",
+          "words": ["neige.", "y", "Il", "a", "de", "la"],
+          "correct_order": [2, 1, 3, 4, 5, 0],
+          "translation": "It's snowing. / There is snow."
+        },
+        {
+          "type": "mcq",
+          "question": "How do you say « It's windy » naturally in French?",
+          "options": [
+            "Il fait vent.",
+            "Il y a du vent.",
+            "Il est vent.",
+            "C'est venteux seulement."
+          ],
+          "answer_index": 1,
+          "explanation": "« Il y a du vent » is the usual pattern; you may also hear « Il vente » in weather reports."
+        }
+      ]
     }
   ],
   "production_task": {
-    "type": "short_writing",
-    "instructions_en": "Write 15–18 words: two past actions with puis or ensuite.",
-    "prompt_fr": "Racontez votre samedi ou dimanche: au moins deux actions au passé composé.",
-    "min_words": 15,
-    "max_words": 18,
-    "rubric_hints": ["Two PC verbs", "Connector", "Coherent order"]
+    "prompt": "Décris la météo d'aujourd'hui et la saison en 3 phrases (il fait / il y a).",
+    "example": "Aujourd'hui il fait froid. Il y a du vent. C'est l'hiver.",
+    "skill": "writing"
   }
 }

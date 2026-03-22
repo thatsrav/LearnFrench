@@ -837,9 +837,19 @@ app.post("/api/oral/whisper", express.raw({ type: "*/*", limit: "20mb" }), async
       return res.status(400).json({ error: "Missing or empty audio body (raw webm/wav)." });
     }
 
-    const blob = new Blob([buf], { type: "audio/webm" });
+    const rawCt = String(req.headers["content-type"] || "audio/webm").split(";")[0].trim().toLowerCase();
+    const mime =
+      rawCt === "audio/m4a" || rawCt === "audio/x-m4a" || rawCt === "audio/mp4" || rawCt === "audio/aac"
+        ? "audio/mp4"
+        : rawCt === "audio/wav" || rawCt === "audio/x-wav"
+          ? "audio/wav"
+          : rawCt === "audio/webm" || rawCt === "audio/ogg"
+            ? "audio/webm"
+            : "audio/webm";
+    const ext = mime === "audio/mp4" ? "m4a" : mime === "audio/wav" ? "wav" : "webm";
+    const blob = new Blob([buf], { type: mime });
     const form = new FormData();
-    form.append("file", blob, "recording.webm");
+    form.append("file", blob, `recording.${ext}`);
     form.append("model", "whisper-1");
     form.append("language", "fr");
 

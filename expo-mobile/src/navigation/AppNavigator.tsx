@@ -30,6 +30,8 @@ export type RootStackParamList = {
     moduleId?: string
     /** Opened from Home daily plan — used for recommendation engagement */
     fromRecommendation?: boolean
+    /** Replay a completed unit from the syllabus path */
+    reviewMode?: boolean
   }
   SpacedReview: { maxItems?: number } | undefined
   TefPrepHub: undefined

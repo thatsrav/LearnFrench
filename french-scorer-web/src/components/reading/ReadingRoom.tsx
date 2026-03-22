@@ -27,10 +27,25 @@ import {
   msUntilLocalMidnight,
   saveMissionComplete,
 } from '../../lib/readingRoomMissionStorage'
+import {
+  FRENCH_CLOUD_TTS_SETUP_HINT,
+  getFrenchWebTtsAudioElement,
+  isFrenchCloudTtsConfigured,
+  speakFrenchListening,
+  stopFrenchWebTts,
+} from '../../lib/frenchWebTts'
 import { levelBadgeLabel } from '../../lib/userCefr'
 import TefTrackFooterBar from '../tef/TefTrackFooterBar'
 
 const navy = '#1e293b'
+
+function chunk<T>(arr: T[], size: number): T[][] {
+  const out: T[][] = []
+  for (let i = 0; i < arr.length; i += size) {
+    out.push(arr.slice(i, i + size))
+  }
+  return out
+}
 
 function indexForTime(t: number, sentences: StoryPayload['sentences']): number {
   for (let i = 0; i < sentences.length; i++) {
@@ -133,7 +148,7 @@ export default function ReadingRoom({ userLevel }: ReadingRoomProps) {
   const [story, setStory] = useState<StoryPayload | null>(null)
   const [loadError, setLoadError] = useState<string | null>(null)
   const [patternsOn, setPatternsOn] = useState(true)
-  const [translationOn, setTranslationOn] = useState(true)
+  const [translationOn, setTranslationOn] = useState(false)
   const [selectedIdx, setSelectedIdx] = useState(0)
   const [activeMarker, setActiveMarker] = useState<GrammarMarker | null>(null)
   const [vocabModal, setVocabModal] = useState(false)
@@ -143,7 +158,9 @@ export default function ReadingRoom({ userLevel }: ReadingRoomProps) {
   const [playing, setPlaying] = useState(false)
   const [currentTime, setCurrentTime] = useState(0)
   const [duration, setDuration] = useState(0)
-  const mockTickRef = useRef<number | null>(null)
+  const [ttsError, setTtsError] = useState<string | null>(null)
+  /** True while POST /api/tts/french is in flight (no bundled audio). */
+  const [ttsStarting, setTtsStarting] = useState(false)
 
   const durationTotal = useMemo(() => {
     if (!story?.sentences.length) return 0
@@ -151,6 +168,17 @@ export default function ReadingRoom({ userLevel }: ReadingRoomProps) {
   }, [story])
 
   const audioUrl = story?.audioUrl?.trim() || null
+
+  const sentenceChunkWindows = useMemo(() => {
+    if (!story?.sentences.length) return []
+    const chunks = chunk(story.sentences, 3)
+    let offset = 0
+    return chunks.map((sentences) => {
+      const startIndex = offset
+      offset += sentences.length
+      return { sentences, startIndex }
+    })
+  }, [story])
 
   useEffect(() => {
     let cancelled = false
@@ -171,10 +199,17 @@ export default function ReadingRoom({ userLevel }: ReadingRoomProps) {
     }
   }, [userLevel])
 
+  useEffect(() => () => stopFrenchWebTts(), [])
+
   const audioSentenceIdx = useMemo(() => {
     if (!story) return 0
+    if (!audioUrl && playing && duration > 0) {
+      const ratio = Math.min(1, currentTime / duration)
+      const virtualT = ratio * durationTotal
+      return indexForTime(virtualT, story.sentences)
+    }
     return indexForTime(currentTime, story.sentences)
-  }, [story, currentTime])
+  }, [story, currentTime, audioUrl, playing, duration, durationTotal])
 
   const highlightIdx = playing ? audioSentenceIdx : selectedIdx
 
@@ -183,34 +218,18 @@ export default function ReadingRoom({ userLevel }: ReadingRoomProps) {
     if (a) setCurrentTime(a.currentTime)
   }, [])
 
+  /** Cloud TTS progress when there is no bundled story audio. */
   useEffect(() => {
-    if (audioUrl || !playing || !story) {
-      if (mockTickRef.current !== null) {
-        cancelAnimationFrame(mockTickRef.current)
-        mockTickRef.current = null
+    if (audioUrl || !playing || !story) return
+    const id = window.setInterval(() => {
+      const a = getFrenchWebTtsAudioElement()
+      if (a) {
+        setCurrentTime(a.currentTime)
+        if (a.duration > 0 && !Number.isNaN(a.duration)) setDuration(a.duration)
       }
-      return
-    }
-    let last = performance.now()
-    const tick = (now: number) => {
-      const dt = (now - last) / 1000
-      last = now
-      setCurrentTime((t) => {
-        const n = t + dt
-        if (n >= durationTotal) {
-          setPlaying(false)
-          return durationTotal
-        }
-        return n
-      })
-      mockTickRef.current = requestAnimationFrame(tick)
-    }
-    mockTickRef.current = requestAnimationFrame(tick)
-    return () => {
-      if (mockTickRef.current !== null) cancelAnimationFrame(mockTickRef.current)
-      mockTickRef.current = null
-    }
-  }, [audioUrl, playing, story, durationTotal])
+    }, 150)
+    return () => window.clearInterval(id)
+  }, [audioUrl, playing, story])
 
   useEffect(() => {
     const a = audioRef.current
@@ -237,9 +256,37 @@ export default function ReadingRoom({ userLevel }: ReadingRoomProps) {
       }
       return
     }
-    setPlaying((p) => !p)
-    if (!playing) setCurrentTime((t) => (t >= durationTotal ? 0 : t))
-  }, [story, audioUrl, playing, durationTotal])
+    if (playing) {
+      stopFrenchWebTts()
+      setPlaying(false)
+      setTtsStarting(false)
+      return
+    }
+    if (!isFrenchCloudTtsConfigured()) {
+      setTtsError(FRENCH_CLOUD_TTS_SETUP_HINT)
+      return
+    }
+    setTtsError(null)
+    setCurrentTime(0)
+    setDuration(0)
+    setTtsStarting(true)
+    const text = story.sentences.map((s) => s.fr).join(' ')
+    void speakFrenchListening(text, undefined, {
+      onPlaybackStarted: () => {
+        setTtsStarting(false)
+        setPlaying(true)
+      },
+    })
+      .then(() => {
+        setPlaying(false)
+        setTtsStarting(false)
+      })
+      .catch((e) => {
+        setPlaying(false)
+        setTtsStarting(false)
+        setTtsError(e instanceof Error ? e.message : String(e))
+      })
+  }, [story, audioUrl, playing])
 
   const seekRelative = useCallback(
     (delta: number) => {
@@ -249,9 +296,14 @@ export default function ReadingRoom({ userLevel }: ReadingRoomProps) {
         setCurrentTime(audioRef.current.currentTime)
         return
       }
-      setCurrentTime((t) => Math.max(0, Math.min(durationTotal, t + delta)))
+      const a = getFrenchWebTtsAudioElement()
+      if (a && a.duration > 0) {
+        const next = Math.max(0, Math.min(a.duration, a.currentTime + delta))
+        a.currentTime = next
+        setCurrentTime(next)
+      }
     },
-    [story, audioUrl, durationTotal],
+    [story, audioUrl],
   )
 
   const formatPlayerTime = (t: number) => {
@@ -260,7 +312,7 @@ export default function ReadingRoom({ userLevel }: ReadingRoomProps) {
     return `${String(m).padStart(2, '0')}:${String(s).padStart(2, '0')}`
   }
 
-  const displayDuration = audioUrl && duration > 0 ? duration : durationTotal
+  const displayDuration = duration > 0 ? duration : durationTotal
 
   const onCompleteMission = useCallback(() => {
     if (!story) return
@@ -353,16 +405,25 @@ export default function ReadingRoom({ userLevel }: ReadingRoomProps) {
         </span>
       </header>
 
+      {ttsError ? (
+        <div className="rounded-2xl border border-amber-200 bg-amber-50 px-4 py-3 text-sm text-amber-900">{ttsError}</div>
+      ) : null}
+
       <div className="flex flex-wrap items-center justify-between gap-3">
         <div className="flex flex-wrap gap-2">
           <button
             type="button"
             onClick={togglePlay}
-            className="inline-flex items-center gap-2 rounded-full px-5 py-2.5 text-sm font-bold text-white shadow-md"
+            disabled={Boolean(!audioUrl && ttsStarting)}
+            className="inline-flex items-center gap-2 rounded-full px-5 py-2.5 text-sm font-bold text-white shadow-md disabled:cursor-not-allowed disabled:opacity-80"
             style={{ backgroundColor: navy }}
           >
-            <Headphones className="h-4 w-4" />
-            Écouter la page
+            {!audioUrl && ttsStarting ? null : <Headphones className="h-4 w-4" />}
+            {!audioUrl && ttsStarting
+              ? 'Chargement…'
+              : playing
+                ? 'Pause'
+                : 'Écouter la page'}
           </button>
           <button
             type="button"
@@ -390,129 +451,156 @@ export default function ReadingRoom({ userLevel }: ReadingRoomProps) {
             {story.chapter ? (
               <p className="font-serif text-lg font-semibold italic text-slate-500">{story.chapter}</p>
             ) : null}
-            <div className="mt-4 space-y-4 text-base leading-relaxed text-[#1e293b] md:text-lg">
-              {story.sentences.map((sent, i) => {
-                const active = highlightIdx === i
-                const markers = markersBySentence(i)
-                return (
-                  <p key={i} className="leading-relaxed">
-                    <button
-                      type="button"
-                      onClick={() => {
-                        setSelectedIdx(i)
-                        setPlaying(false)
-                        if (audioRef.current) audioRef.current.pause()
-                        const first = markers[0]
-                        if (patternsOn && first) setActiveMarker(first)
-                        else setActiveMarker(null)
-                      }}
-                      className={[
-                        'w-full rounded-lg px-1 py-0.5 text-left transition',
-                        active ? 'bg-sky-100 ring-2 ring-sky-400/60' : 'hover:bg-slate-50',
-                      ].join(' ')}
-                    >
-                      <span
+            <div className="mt-4 space-y-8 text-base leading-relaxed text-[#1e293b] md:text-lg">
+              {sentenceChunkWindows.map(({ sentences: chunk, startIndex }) => (
+                <div
+                  key={startIndex}
+                  className="space-y-3 border-b border-slate-100 pb-8 last:border-b-0 last:pb-0"
+                >
+                  <div className="space-y-3">
+                    {chunk.map((sent, offset) => {
+                      const i = startIndex + offset
+                      const active = highlightIdx === i
+                      const markers = markersBySentence(i)
+                      return (
+                        <div key={i} className="space-y-2">
+                          <p className="leading-relaxed">
+                            <button
+                              type="button"
+                              onClick={() => {
+                                setSelectedIdx(i)
+                                setPlaying(false)
+                                if (audioRef.current) audioRef.current.pause()
+                                stopFrenchWebTts()
+                                setTtsStarting(false)
+                                const first = markers[0]
+                                if (patternsOn && first) setActiveMarker(first)
+                                else setActiveMarker(null)
+                              }}
+                              className={[
+                                'w-full rounded-lg px-1 py-0.5 text-left transition',
+                                active ? 'bg-sky-100 ring-2 ring-sky-400/60' : 'hover:bg-slate-50',
+                              ].join(' ')}
+                            >
+                              <span
+                                className={[
+                                  patternsOn && markers.length > 0
+                                    ? 'underline decoration-indigo-400 decoration-2 underline-offset-4'
+                                    : '',
+                                ].join(' ')}
+                              >
+                                {sent.fr}
+                              </span>
+                            </button>
+                            {patternsOn && markers.length > 0 ? (
+                              <span className="mt-2 flex flex-wrap gap-1.5">
+                                {markers.map((m) => (
+                                  <button
+                                    key={m.id}
+                                    type="button"
+                                    onClick={(e) => {
+                                      e.stopPropagation()
+                                      setActiveMarker(m)
+                                      setSelectedIdx(i)
+                                    }}
+                                    className="rounded-full bg-indigo-50 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wide text-indigo-800 hover:bg-indigo-100"
+                                  >
+                                    {m.label}
+                                  </button>
+                                ))}
+                              </span>
+                            ) : null}
+                          </p>
+                        </div>
+                      )
+                    })}
+                  </div>
+
+                  <div
+                    className="grid transition-[grid-template-rows] duration-300 ease-out"
+                    style={{ gridTemplateRows: translationOn ? '1fr' : '0fr' }}
+                    aria-hidden={!translationOn}
+                  >
+                    <div className="min-h-0 overflow-hidden">
+                      <div
                         className={[
-                          patternsOn && markers.length > 0 ? 'underline decoration-indigo-400 decoration-2 underline-offset-4' : '',
+                          'space-y-2 border-t border-dashed border-indigo-200 pt-3 transition-opacity duration-300 ease-out',
+                          translationOn ? 'opacity-100' : 'opacity-0',
                         ].join(' ')}
                       >
-                        {sent.fr}
-                      </span>
-                    </button>
-                    {patternsOn && markers.length > 0 ? (
-                      <span className="mt-2 flex flex-wrap gap-1.5">
-                        {markers.map((m) => (
-                          <button
-                            key={m.id}
-                            type="button"
-                            onClick={(e) => {
-                              e.stopPropagation()
-                              setActiveMarker(m)
-                              setSelectedIdx(i)
-                            }}
-                            className="rounded-full bg-indigo-50 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wide text-indigo-800 hover:bg-indigo-100"
-                          >
-                            {m.label}
-                          </button>
-                        ))}
-                      </span>
-                    ) : null}
-                  </p>
-                )
-              })}
-            </div>
-          </div>
-
-          <div className="relative rounded-3xl border border-slate-100 bg-slate-50 p-6 pb-24 shadow-sm md:p-8 md:pb-28">
-            <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-slate-500">English parallel</p>
-            <div
-              className={[
-                'mt-4 space-y-4 text-sm leading-relaxed transition-opacity md:text-base',
-                translationOn ? 'opacity-100' : 'pointer-events-none opacity-25',
-              ].join(' ')}
-            >
-              {story.sentences.map((sent, i) => {
-                const active = highlightIdx === i
-                return (
-                  <p
-                    key={i}
-                    className={[
-                      active
-                        ? 'font-semibold italic text-[#1e293b] underline decoration-indigo-500 decoration-2'
-                        : 'text-slate-500',
-                    ].join(' ')}
-                  >
-                    {sent.en}
-                  </p>
-                )
-              })}
+                        {chunk.map((sent, offset) => {
+                          const i = startIndex + offset
+                          const active = highlightIdx === i
+                          return (
+                            <p
+                              key={`en-${i}`}
+                              className={[
+                                'border-l-2 border-indigo-200 pl-3 text-sm leading-relaxed italic md:text-base',
+                                active ? 'font-semibold text-indigo-700' : 'text-slate-500',
+                              ].join(' ')}
+                            >
+                              {sent.en}
+                            </p>
+                          )
+                        })}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              ))}
             </div>
 
-            <div className="absolute bottom-4 left-4 right-4 flex flex-wrap items-center gap-2 rounded-full border border-slate-200 bg-white px-3 py-2 shadow-lg md:px-4">
-              <button
-                type="button"
-                aria-label="Reculer"
-                onClick={() => seekRelative(-3)}
-                className="rounded-full p-2 text-slate-600 hover:bg-slate-100"
-              >
-                <SkipBack className="h-4 w-4" />
-              </button>
-              <button
-                type="button"
-                aria-label={playing ? 'Pause' : 'Lecture'}
-                onClick={togglePlay}
-                className="flex h-10 w-10 items-center justify-center rounded-full text-white"
-                style={{ backgroundColor: navy }}
-              >
-                {playing ? <Pause className="h-5 w-5" /> : <Play className="h-5 w-5 pl-0.5" />}
-              </button>
-              <button
-                type="button"
-                aria-label="Avancer"
-                onClick={() => seekRelative(3)}
-                className="rounded-full p-2 text-slate-600 hover:bg-slate-100"
-              >
-                <SkipForward className="h-4 w-4" />
-              </button>
-              <div className="mx-1 h-1 min-w-[80px] flex-1 rounded-full bg-slate-200">
-                <div
-                  className="h-full rounded-full bg-indigo-500 transition-all"
-                  style={{
-                    width: `${displayDuration > 0 ? Math.min(100, (currentTime / displayDuration) * 100) : 0}%`,
-                  }}
-                />
+            <div className="relative mt-8 border-t border-slate-100 pt-5 md:pt-6">
+              <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-slate-500">Lecture audio</p>
+              <div className="mt-3 flex flex-wrap items-center gap-2 rounded-full border border-slate-200 bg-slate-50 px-3 py-2 md:px-4">
+                <button
+                  type="button"
+                  aria-label="Reculer"
+                  onClick={() => seekRelative(-3)}
+                  className="rounded-full p-2 text-slate-600 hover:bg-slate-100"
+                >
+                  <SkipBack className="h-4 w-4" />
+                </button>
+                <button
+                  type="button"
+                  aria-label={playing ? 'Pause' : 'Lecture'}
+                  onClick={togglePlay}
+                  disabled={Boolean(!audioUrl && ttsStarting && !playing)}
+                  className="flex h-10 w-10 items-center justify-center rounded-full text-white disabled:opacity-50"
+                  style={{ backgroundColor: navy }}
+                >
+                  {playing ? <Pause className="h-5 w-5" /> : <Play className="h-5 w-5 pl-0.5" />}
+                </button>
+                <button
+                  type="button"
+                  aria-label="Avancer"
+                  onClick={() => seekRelative(3)}
+                  className="rounded-full p-2 text-slate-600 hover:bg-slate-100"
+                >
+                  <SkipForward className="h-4 w-4" />
+                </button>
+                <div className="mx-1 h-1 min-w-[80px] flex-1 rounded-full bg-slate-200">
+                  <div
+                    className="h-full rounded-full bg-indigo-500 transition-all"
+                    style={{
+                      width: `${displayDuration > 0 ? Math.min(100, (currentTime / displayDuration) * 100) : 0}%`,
+                    }}
+                  />
+                </div>
+                <span className="font-mono text-[10px] text-slate-500 tabular-nums">
+                  {formatPlayerTime(currentTime)} / {formatPlayerTime(displayDuration || durationTotal)}
+                </span>
+                <span className="text-[10px] font-bold text-slate-600">1.0×</span>
+                <Volume2 className="h-4 w-4 text-slate-400" aria-hidden />
               </div>
-              <span className="font-mono text-[10px] text-slate-500 tabular-nums">
-                {formatPlayerTime(currentTime)} / {formatPlayerTime(displayDuration || durationTotal)}
-              </span>
-              <span className="text-[10px] font-bold text-slate-600">1.0×</span>
-              <Volume2 className="h-4 w-4 text-slate-400" aria-hidden />
+              {!audioUrl ? (
+                <p className="mt-2 text-[10px] leading-relaxed text-slate-500">
+                  {isFrenchCloudTtsConfigured()
+                    ? 'Sans fichier audio intégré : la page est lue via la synthèse vocale (API).'
+                    : FRENCH_CLOUD_TTS_SETUP_HINT}
+                </p>
+              ) : null}
             </div>
-            {!audioUrl ? (
-              <p className="absolute bottom-1 left-6 text-[10px] text-slate-400">
-                Démo : synchro texte sans fichier audio (horloge interne).
-              </p>
-            ) : null}
           </div>
         </div>
 

@@ -171,6 +171,48 @@ export async function getReviewItems(userId: string, today: Date): Promise<Space
   return rows.map(mapRow)
 }
 
+/**
+ * Vocabulary items due for this unit (same due rule as getReviewItems), ordered oldest first.
+ */
+export async function getDueReviewItemsForUnit(
+  userId: string,
+  unitId: string,
+  today: Date,
+  limit: number,
+): Promise<SpacedRepetitionReviewItem[]> {
+  const uid = normalizeUserId(userId)
+  const before = endOfDay(today)
+  const lim = Math.min(50, Math.max(1, limit))
+  const db = await getDb()
+  const rows = await db.getAllAsync<{
+    id: number
+    item_id: string
+    content_type: string
+    unit_id: string
+    front_text: string
+    back_text: string
+    last_review: number
+    next_review: number
+    ease_factor: number
+    interval_days: number
+    repetitions: number
+  }>(
+    `
+    SELECT id, item_id, content_type, unit_id, front_text, back_text,
+           last_review, next_review, ease_factor, interval_days, repetitions
+    FROM spaced_repetition_items
+    WHERE user_id = ? AND unit_id = ? AND content_type = 'vocab' AND next_review <= ?
+    ORDER BY next_review ASC, id ASC
+    LIMIT ?
+  `,
+    uid,
+    unitId,
+    before,
+    lim,
+  )
+  return rows.map(mapRow)
+}
+
 const MAX_VOCAB_SEED_PER_LESSON = 15
 const GRAMMAR_SNIPPET_LEN = 480
 
@@ -178,14 +220,22 @@ export type LessonUnitSeed = {
   id: string
   grammar_rule_text: string
   vocab_list: string[]
+  /** Richer backs (e.g. translations). When non-empty, used instead of vocab_list for inserts. */
+  vocab_entries?: { word: string; back: string }[]
 }
 
 /**
- * After a lesson score ≥ 80%, seed vocab + one grammar card (INSERT OR IGNORE).
+ * Insert one SR row if absent (INSERT OR IGNORE). Uses SM-2 initial schedule (review tomorrow).
  */
-export async function seedSpacedRepetitionFromLesson(
+export async function insertSpacedRepetitionItem(
   userId: string | null | undefined,
-  unit: LessonUnitSeed,
+  row: {
+    itemId: string
+    unitId: string
+    contentType: SpacedRepetitionContentType
+    frontText: string
+    backText: string
+  },
 ): Promise<void> {
   const uid = normalizeUserId(userId)
   const db = await getDb()
@@ -196,14 +246,87 @@ export async function seedSpacedRepetitionFromLesson(
   const nextMs = next.getTime()
   const ef = SM2Algorithm.DEFAULT_EASE
 
+  await db.runAsync(
+    `
+    INSERT OR IGNORE INTO spaced_repetition_items
+      (user_id, item_id, content_type, unit_id, front_text, back_text,
+       last_review, next_review, ease_factor, interval_days, repetitions)
+    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 0)
+  `,
+    uid,
+    row.itemId,
+    row.contentType,
+    row.unitId,
+    row.frontText,
+    row.backText,
+    now,
+    nextMs,
+    ef,
+    initialInterval,
+  )
+}
+
+/**
+ * Apply SM-2 after a grade, keyed by stable `item_id` (resolves DB row then delegates to recordSpacedRepetitionReview).
+ */
+export async function updateSpacedRepetitionItem(
+  userId: string | null | undefined,
+  itemId: string,
+  quality: number,
+): Promise<void> {
+  const uid = normalizeUserId(userId)
+  const db = await getDb()
+  const row = await db.getFirstAsync<{ id: number }>(
+    'SELECT id FROM spaced_repetition_items WHERE user_id = ? AND item_id = ? LIMIT 1',
+    uid,
+    itemId,
+  )
+  if (!row) {
+    throw new Error(`Spaced repetition item not found: ${itemId}`)
+  }
+  await recordSpacedRepetitionReview(userId, row.id, quality)
+}
+
+/**
+ * After a lesson score ≥ 80%, seed vocab + one grammar card (INSERT OR IGNORE).
+ */
+function buildInitialInsertRow() {
+  const now = Date.now()
+  const last = new Date(now)
+  const initialInterval = 1
+  const next = SM2Algorithm.calculateNextReviewDate(last, SM2Algorithm.DEFAULT_EASE, initialInterval)
+  return {
+    now,
+    nextMs: next.getTime(),
+    ef: SM2Algorithm.DEFAULT_EASE,
+    initialInterval,
+  }
+}
+
+export async function seedSpacedRepetitionFromLesson(
+  userId: string | null | undefined,
+  unit: LessonUnitSeed,
+): Promise<void> {
+  const uid = normalizeUserId(userId)
+  const db = await getDb()
+  const { now, nextMs, ef, initialInterval } = buildInitialInsertRow()
+
   await db.withTransactionAsync(async () => {
-    const vocabSlice = unit.vocab_list.slice(0, MAX_VOCAB_SEED_PER_LESSON)
+    const useEntries = unit.vocab_entries && unit.vocab_entries.length > 0
+    const vocabSource = useEntries
+      ? unit.vocab_entries!.slice(0, MAX_VOCAB_SEED_PER_LESSON)
+      : unit.vocab_list.slice(0, MAX_VOCAB_SEED_PER_LESSON).map((word) => ({
+          word,
+          back: `From unit ${unit.id}. Recall meaning / use in a short phrase.`,
+        }))
+
     let idx = 0
-    for (const word of vocabSlice) {
+    for (const { word, back } of vocabSource) {
       const w = word.trim()
       if (!w) continue
       const itemId = `vocab:${unit.id}:${String(idx).padStart(4, '0')}`
       idx += 1
+      const backText = back.trim() || `From unit ${unit.id}. Recall meaning / use in a short phrase.`
       await db.runAsync(
         `
         INSERT OR IGNORE INTO spaced_repetition_items
@@ -215,7 +338,7 @@ export async function seedSpacedRepetitionFromLesson(
         itemId,
         unit.id,
         w,
-        `From unit ${unit.id}. Recall meaning / use in a short phrase.`,
+        backText,
         now,
         nextMs,
         ef,

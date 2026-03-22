@@ -24,7 +24,11 @@ export function isFrenchCloudTtsConfigured(): boolean {
   return Boolean(process.env.EXPO_PUBLIC_API_BASE_URL?.trim())
 }
 
-async function speakOpenAiFromApi(text: string, apiBase: string): Promise<void> {
+async function speakOpenAiFromApi(
+  text: string,
+  apiBase: string,
+  onPlaybackStarted?: () => void,
+): Promise<void> {
   if (cloudSound) {
     try {
       await cloudSound.unloadAsync()
@@ -75,7 +79,12 @@ async function speakOpenAiFromApi(text: string, apiBase: string): Promise<void> 
         resolve()
       }
     })
-    void sound.playAsync().catch(reject)
+    void sound
+      .playAsync()
+      .then(() => {
+        onPlaybackStarted?.()
+      })
+      .catch(reject)
   })
 }
 
@@ -93,10 +102,18 @@ export async function stopFrenchExpoTts(): Promise<void> {
 
 const MAX_TTS_CHARS = 4096
 
+export type SpeakFrenchCloudOptions = {
+  onPlaybackStarted?: () => void
+}
+
 /**
  * Play French text via OpenAI TTS on your backend. Throws if not configured or request fails.
  */
-export async function speakFrenchListening(text: string, _prefer?: FrenchBcp47): Promise<void> {
+export async function speakFrenchListening(
+  text: string,
+  _prefer?: FrenchBcp47,
+  options?: SpeakFrenchCloudOptions,
+): Promise<void> {
   const trimmed = text.trim()
   if (!trimmed) return
 
@@ -108,5 +125,5 @@ export async function speakFrenchListening(text: string, _prefer?: FrenchBcp47):
     throw new Error(`Texte trop long (max ${MAX_TTS_CHARS} caractères).`)
   }
 
-  await speakOpenAiFromApi(trimmed, apiBase)
+  await speakOpenAiFromApi(trimmed, apiBase, options?.onPlaybackStarted)
 }

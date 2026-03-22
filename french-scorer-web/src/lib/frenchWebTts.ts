@@ -14,6 +14,12 @@ export function listeningAccentToBcp47(accent: 'france' | 'quebec'): FrenchBcp47
 
 let cloudAudioEl: HTMLAudioElement | null = null
 
+/** Active cloud TTS element, if any (for progress UI). */
+export function getFrenchWebTtsAudioElement(): HTMLAudioElement | null {
+  if (typeof window === 'undefined') return null
+  return cloudAudioEl
+}
+
 export const FRENCH_CLOUD_TTS_SETUP_HINT =
   'Pour une voix naturelle : définissez VITE_API_BASE_URL vers votre french-scorer-api et OPENAI_API_KEY sur le serveur (POST /api/tts/french).'
 
@@ -41,10 +47,18 @@ function getApiBase(): string {
 
 const MAX_TTS_CHARS = 4096
 
+export type SpeakFrenchCloudOptions = {
+  onPlaybackStarted?: () => void
+}
+
 /**
  * Play French text using OpenAI TTS on your backend. Throws if not configured or request fails.
  */
-export async function speakFrenchListening(text: string, _prefer?: FrenchBcp47): Promise<void> {
+export async function speakFrenchListening(
+  text: string,
+  _prefer?: FrenchBcp47,
+  options?: SpeakFrenchCloudOptions,
+): Promise<void> {
   const trimmed = text.trim()
   if (!trimmed) return
 
@@ -79,10 +93,15 @@ export async function speakFrenchListening(text: string, _prefer?: FrenchBcp47):
       if (cloudAudioEl === audio) cloudAudioEl = null
       reject(new Error('Lecture audio impossible.'))
     }
-    void audio.play().catch((e) => {
-      URL.revokeObjectURL(objectUrl)
-      if (cloudAudioEl === audio) cloudAudioEl = null
-      reject(e instanceof Error ? e : new Error(String(e)))
-    })
+    void audio
+      .play()
+      .then(() => {
+        options?.onPlaybackStarted?.()
+      })
+      .catch((e) => {
+        URL.revokeObjectURL(objectUrl)
+        if (cloudAudioEl === audio) cloudAudioEl = null
+        reject(e instanceof Error ? e : new Error(String(e)))
+      })
   })
 }

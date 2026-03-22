@@ -2,68 +2,160 @@
   "id": "a1-u8",
   "level": "A1",
   "unit_index": 8,
-  "phase": "solid_a1",
-  "theme": "Passé composé — introduction (avoir + participe passé)",
-  "lexical_density": 1.949,
-  "grammar_rule_text": "Passé composé with auxiliary avoir: j'ai parlé, tu as mangé, il a fini. Regular -er verbs: drop -er, add -é (parler → parlé, manger → mangé with spelling note). Word order: subject + avoir + past participle. Negation: je n'ai pas mangé. Use time words: hier, ce matin (often with passé composé).",
-  "vocab_list": [
-    "hier", "ce matin", "ce soir", "avoir", "ai", "as", "a", "avons", "avez", "ont",
-    "parle", "parlé", "mangé", "aimé", "travaillé", "regardé", "acheté", "visité",
-    "film", "repas", "vacances", "weekend", "ensemble", "seul", "vite", "alors"
-  ],
-  "quiz": [
+  "theme": "Transport & Directions",
+  "estimated_minutes": 13,
+  "steps": [
     {
-      "question": "Past participle of parler?",
-      "options": ["parlait", "parlé", "parlant", "parle"],
-      "answer_index": 1
+      "type": "vocab_intro",
+      "cards": [
+        {
+          "word": "le bus · le métro",
+          "translation": "bus · subway",
+          "example": "Je prends le métro jusqu'à la station Berri-UQAM.",
+          "example_translation": "I take the metro to Berri-UQAM station.",
+          "audio_key": "bus_metro"
+        },
+        {
+          "word": "le train · le taxi",
+          "translation": "train · taxi",
+          "example": "Le train pour Ottawa part de la gare Centrale.",
+          "example_translation": "The train to Ottawa leaves from Central Station.",
+          "audio_key": "train_taxi"
+        },
+        {
+          "word": "le vélo · la voiture",
+          "translation": "bicycle · car",
+          "example": "Quand il pleut, je laisse le vélo et je prends la voiture.",
+          "example_translation": "When it rains, I leave the bike and take the car.",
+          "audio_key": "velo_voiture"
+        },
+        {
+          "word": "à pied",
+          "translation": "on foot",
+          "example": "C'est près d'ici — cinq minutes à pied.",
+          "example_translation": "It's close by — five minutes on foot.",
+          "audio_key": "a_pied"
+        },
+        {
+          "word": "la station · l'arrêt",
+          "translation": "station · stop",
+          "example": "Descends au prochain arrêt, la station est juste après.",
+          "example_translation": "Get off at the next stop; the station is right after.",
+          "audio_key": "station_arret"
+        },
+        {
+          "word": "à gauche · à droite · tout droit",
+          "translation": "to the left · to the right · straight ahead",
+          "example": "Tournez à gauche, puis tout droit jusqu'au parc.",
+          "example_translation": "Turn left, then straight ahead until the park.",
+          "audio_key": "directions"
+        },
+        {
+          "word": "prendre · descendre",
+          "translation": "to take (transport) · to get off",
+          "example": "Prenez la ligne orange et descendez à Henri-Bourassa.",
+          "example_translation": "Take the orange line and get off at Henri-Bourassa.",
+          "audio_key": "prendre_descendre"
+        },
+        {
+          "word": "traverser",
+          "translation": "to cross",
+          "example": "Traversez la rue avec le feu piéton.",
+          "example_translation": "Cross the street with the walk signal.",
+          "audio_key": "traverser"
+        },
+        {
+          "word": "près de · loin de",
+          "translation": "near · far from",
+          "example": "La gare est près du centre commercial, loin de chez moi.",
+          "example_translation": "The station is near the mall, far from my place.",
+          "audio_key": "pres_loin"
+        }
+      ]
     },
     {
-      "question": "Choose correct passé composé: I ate a sandwich.",
-      "options": [
-        "J ai mangé un sandwich.",
-        "Je mange un sandwich.",
-        "J ai manger un sandwich.",
-        "Je mangé un sandwich."
-      ],
-      "answer_index": 0
+      "type": "dialogue",
+      "scene": "Demander son chemin à un·e passant·e pour la gare",
+      "turns": [
+        {
+          "speaker": "A",
+          "text": "Excusez-moi, la gare ferroviaire, c'est par où?",
+          "translation": "Excuse me, which way to the train station?"
+        },
+        {
+          "speaker": "B",
+          "text": "C'est simple. Allez tout droit jusqu'au grand hôtel.",
+          "translation": "It's simple. Go straight until the big hotel."
+        },
+        {
+          "speaker": "A",
+          "text": "D'accord. Et après?",
+          "translation": "OK. And after that?"
+        },
+        {
+          "speaker": "B",
+          "text": "Tournez à droite, traversez le pont piéton, puis prenez le bus numéro 15.",
+          "translation": "Turn right, cross the footbridge, then take bus number 15."
+        },
+        {
+          "speaker": "A",
+          "text": "Merci beaucoup! Bonne journée.",
+          "translation": "Thank you very much! Have a good day."
+        }
+      ]
     },
     {
-      "question": "They worked yesterday — pick the right line.",
-      "options": [
-        "Ils ont travaillé hier.",
-        "Ils travaillent hier.",
-        "Ils ont travailler hier.",
-        "Ils sont travaillé hier."
-      ],
-      "answer_index": 0
+      "type": "grammar_tip",
+      "rule": "Pour donner des directions, on utilise l'impératif (vous ou tu) : « Tournez à gauche », « Prenez le bus », « Traversez la rue ». C'est la forme qu'on entend sur les panneaux et dans la rue.",
+      "examples": [
+        { "fr": "Continuez tout droit sur deux rues.", "en": "Keep straight for two blocks." },
+        { "fr": "Descendez à la prochaine station.", "en": "Get off at the next station." }
+      ]
     },
     {
-      "question": "Negate in passé composé: She didn't watch TV.",
-      "options": [
-        "Elle n a pas regardé la télé.",
-        "Elle ne regarde pas la télé.",
-        "Elle n a regardé pas la télé.",
-        "Elle pas a regardé la télé."
-      ],
-      "answer_index": 0
-    },
-    {
-      "question": "We visited Paris — correct auxiliary + participle.",
-      "options": [
-        "Nous avons visité Paris.",
-        "Nous sommes visité Paris.",
-        "Nous avons visiter Paris.",
-        "Nous visitons Paris."
-      ],
-      "answer_index": 0
+      "type": "practice",
+      "exercises": [
+        {
+          "type": "match_pairs",
+          "instruction": "Match each French word to English",
+          "pairs": [
+            { "left": "le métro", "right": "subway" },
+            { "left": "à pied", "right": "on foot" },
+            { "left": "à gauche", "right": "to the left" },
+            { "left": "tout droit", "right": "straight ahead" }
+          ]
+        },
+        {
+          "type": "fill_blank",
+          "sentence": "Pour aller au centre-ville, ___ le bus 80. (Take — vous form)",
+          "answer": "prenez",
+          "options": ["prends", "prenez", "prenons", "prendre"],
+          "hint": "impératif, vouvoiement"
+        },
+        {
+          "type": "word_order",
+          "words": ["gauche.", "à", "Tournez"],
+          "correct_order": [2, 1, 0],
+          "translation": "Turn left."
+        },
+        {
+          "type": "mcq",
+          "question": "Natural French for « I'm taking the metro » is…",
+          "options": [
+            "Je vais en métro.",
+            "Je prends le métro.",
+            "Je fais le métro.",
+            "Je mange le métro."
+          ],
+          "answer_index": 1,
+          "explanation": "« Prendre le métro / le bus » is the standard collocation for using transit."
+        }
+      ]
     }
   ],
   "production_task": {
-    "type": "short_writing",
-    "instructions_en": "Write 10–14 words in French using passé composé with avoir at least once.",
-    "prompt_fr": "Racontez une chose simple que vous avez fait hier (manger, regarder, travailler…).",
-    "min_words": 10,
-    "max_words": 14,
-    "rubric_hints": ["avoir + participe passé", "Time expression optional"]
+    "prompt": "Écris 3 phrases : comment tu vas au travail ou à l'école (transport + une direction simple).",
+    "example": "Je prends le bus. Parfois je marche à pied. Tournez à droite au coin.",
+    "skill": "writing"
   }
 }

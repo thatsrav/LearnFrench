@@ -2,53 +2,148 @@
   "id": "a1-u4",
   "level": "A1",
   "unit_index": 4,
-  "phase": "developing_a1",
-  "theme": "Action verbs: manger, aller, travailler",
-  "lexical_density": 1.331,
-  "grammar_rule_text": "Present tense of key irregular/regular verbs: manger (je mange, tu manges…), aller (je vais, tu vas…) + à + place, travailler (je travaille…). Build short sentences of 5–10 words: subject + verb + complement. Word order: SVO like English for these patterns.",
-  "vocab_list": [
-    "manger", "boire", "aller", "venir", "travailler", "etudier", "habiter",
-    "maison", "ecole", "bureau", "restaurant", "au", "a la", "chez",
-    "maintenant", "demain", "aujourd hui", "avec", "pour", "parce que"
-  ],
-  "quiz": [
+  "theme": "Food & Ordering at a Café",
+  "estimated_minutes": 13,
+  "steps": [
     {
-      "question": "Conjugate: 'Nous ___ au restaurant ce soir.' (aller)",
-      "options": ["allons", "allez", "vont", "vais"],
-      "answer_index": 0
+      "type": "vocab_intro",
+      "cards": [
+        {
+          "word": "un café · un thé",
+          "translation": "a coffee · a tea",
+          "example": "Un café au lait, s'il vous plaît.",
+          "example_translation": "A coffee with milk, please.",
+          "audio_key": "cafe_the"
+        },
+        {
+          "word": "l'eau · un jus",
+          "translation": "water · a juice",
+          "example": "Une carafe d'eau et un jus d'orange.",
+          "example_translation": "A pitcher of water and an orange juice.",
+          "audio_key": "eau_jus"
+        },
+        {
+          "word": "le pain · un croissant · une baguette",
+          "translation": "bread · croissant · baguette",
+          "example": "Une baguette encore chaude, c'est parfait.",
+          "example_translation": "A still-warm baguette — perfect.",
+          "audio_key": "boulangerie"
+        },
+        {
+          "word": "le fromage · la salade · le sandwich",
+          "translation": "cheese · salad · sandwich",
+          "example": "Je prends une salade et un sandwich au jambon.",
+          "example_translation": "I'll have a salad and a ham sandwich.",
+          "audio_key": "dejeuner"
+        },
+        {
+          "word": "le menu · l'addition",
+          "translation": "menu · bill",
+          "example": "L'addition, s'il vous plaît?",
+          "example_translation": "Could we have the bill, please?",
+          "audio_key": "menu_addition"
+        },
+        {
+          "word": "commander",
+          "translation": "to order",
+          "example": "On commande au comptoir?",
+          "example_translation": "Do we order at the counter?",
+          "audio_key": "commander"
+        },
+        {
+          "word": "avoir faim · avoir soif",
+          "translation": "to be hungry · to be thirsty",
+          "example": "J'ai faim; tu as soif?",
+          "example_translation": "I'm hungry; are you thirsty?",
+          "audio_key": "faim_soif"
+        },
+        {
+          "word": "s'il vous plaît",
+          "translation": "please",
+          "example": "Deux tartines, s'il vous plaît.",
+          "example_translation": "Two slices of toast, please.",
+          "audio_key": "sil_vous_plait"
+        }
+      ]
     },
     {
-      "question": "Which sentence is correct (5–8 words idea)?",
-      "options": [
-        "Je mange une pomme maintenant.",
-        "Je mange une.",
-        "Mange je pomme.",
-        "Une je mange pomme."
-      ],
-      "answer_index": 0
+      "type": "dialogue",
+      "scene": "Petit-déjeuner dans un café parisien (touristes canadien·ne·s)",
+      "turns": [
+        {
+          "speaker": "A",
+          "text": "Bonjour! Une table pour deux près de la fenêtre?",
+          "translation": "Hello! A table for two near the window?"
+        },
+        {
+          "speaker": "B",
+          "text": "Bien sûr. Voici le menu du matin.",
+          "translation": "Of course. Here's the breakfast menu."
+        },
+        {
+          "speaker": "A",
+          "text": "Je voudrais un café crème et un croissant au beurre.",
+          "translation": "I'd like a coffee with cream and a butter croissant."
+        },
+        {
+          "speaker": "B",
+          "text": "Et pour vous, madame?",
+          "translation": "And for you, ma'am?"
+        },
+        {
+          "speaker": "A",
+          "text": "Moi, un thé vert et une tartine avec de la confiture. Merci!",
+          "translation": "For me, green tea and toast with jam. Thanks!"
+        }
+      ]
     },
     {
-      "question": "Fill in: 'Elle ___ dans une école.' (travailler, elle)",
-      "options": ["travailles", "travaille", "travaillons", "travaillent"],
-      "answer_index": 1
+      "type": "grammar_tip",
+      "rule": "« Je voudrais + nom » est la formule polie pour commander (conditionnel de politesse de vouloir). On l'utilise au restaurant, au café, à la boulangerie.",
+      "examples": [
+        { "fr": "Je voudrais une salade, s'il vous plaît.", "en": "I'd like a salad, please." },
+        { "fr": "Je voudrais payer par carte.", "en": "I'd like to pay by card." }
+      ]
     },
     {
-      "question": "Choose the best answer: Where are you going? (Tu ___ à la bibliothèque.)",
-      "options": ["vas", "va", "allons", "allez"],
-      "answer_index": 0
-    },
-    {
-      "question": "They work in Paris — pick the correct form.",
-      "options": ["Ils travaille", "Ils travaillent", "Ils travaillons", "Ils travailles"],
-      "answer_index": 1
+      "type": "practice",
+      "exercises": [
+        {
+          "type": "match_pairs",
+          "instruction": "Match each food or drink word to its English",
+          "pairs": [
+            { "left": "croissant", "right": "crescent pastry" },
+            { "left": "baguette", "right": "long bread loaf" },
+            { "left": "fromage", "right": "cheese" },
+            { "left": "jus", "right": "juice" }
+          ]
+        },
+        {
+          "type": "fill_blank",
+          "sentence": "___ un café et un pain au chocolat, s'il vous plaît.",
+          "answer": "Je voudrais",
+          "options": ["Je suis", "Je voudrais", "J'ai", "Je fais"],
+          "hint": "polite way to order"
+        },
+        {
+          "type": "word_order",
+          "words": ["soif.", "J'", "ai", "très"],
+          "correct_order": [1, 2, 3, 0],
+          "translation": "I'm very thirsty."
+        },
+        {
+          "type": "mcq",
+          "question": "You want the bill in a café. What do you say?",
+          "options": ["Le menu, s'il vous plaît.", "L'addition, s'il vous plaît.", "La commande, s'il vous plaît.", "Le croissant, s'il vous plaît."],
+          "answer_index": 1,
+          "explanation": "« L'addition » is the check/bill; standard French in France and Canada."
+        }
+      ]
     }
   ],
   "production_task": {
-    "type": "short_writing",
-    "instructions_en": "Write 5–10 words in French. Use manger, aller, or travailler in the present.",
-    "prompt_fr": "Décrivez votre journée: où vous allez et ce que vous mangez ou où vous travaillez.",
-    "min_words": 5,
-    "max_words": 10,
-    "rubric_hints": ["Present tense", "One clear verb", "Subject + verb + object"]
+    "prompt": "Écris une mini-commande au café : une boisson + quelque chose à manger, avec « Je voudrais » et « merci ».",
+    "example": "Bonjour, je voudrais un thé et un sandwich. Merci beaucoup!",
+    "skill": "writing"
   }
 }

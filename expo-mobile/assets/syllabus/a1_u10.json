@@ -2,79 +2,160 @@
   "id": "a1-u10",
   "level": "A1",
   "unit_index": 10,
-  "phase": "solid_a1",
-  "theme": "Capstone — Mini-TEF Section A style (simple event)",
-  "lexical_density": 2.358,
-  "grammar_rule_text": "TEF-style Section A (niveau débutant): write a short message about a concrete situation (invitation, excuse, past weekend, simple problem). Use passé composé (avoir or être as learned), present for habits, and basic connectors. Target 20–30 words; stay clear and simple—examiners reward communication over complexity.",
-  "vocab_list": [
-    "cher", "chers", "excuse", "desole", "desolee", "invitation", "fete",
-    "rendez vous", "retard", "probleme", "train", "bus", "hier", "demain",
-    "parce que", "donc", "alors", "ensuite", "beaucoup", "tres", "content",
-    "passé composé", "message", "écrire", "répondre", "question", "situation"
-  ],
-  "quiz": [
+  "theme": "Hobbies & Free Time",
+  "estimated_minutes": 12,
+  "steps": [
     {
-      "question": "Which opening fits a short formal message?",
-      "options": [
-        "Salut mec j ai super faim lol",
-        "Bonjour, je vous écris concernant notre rendez-vous.",
-        "Yo hier j ai mangé",
-        "Cc tu vas bien"
-      ],
-      "answer_index": 1
+      "type": "vocab_intro",
+      "cards": [
+        {
+          "word": "aimer · adorer",
+          "translation": "to like · to love",
+          "example": "J'adore patiner sur le canal; j'aime aussi le cinéma.",
+          "example_translation": "I love skating on the canal; I also like the movies.",
+          "audio_key": "aimer_adorer"
+        },
+        {
+          "word": "détester · préférer",
+          "translation": "to hate · to prefer",
+          "example": "Je déteste me lever tôt le dimanche; je préfère les brunchs.",
+          "example_translation": "I hate getting up early on Sundays; I prefer brunches.",
+          "audio_key": "detester_preferer"
+        },
+        {
+          "word": "jouer · lire · regarder · écouter",
+          "translation": "to play · to read · to watch · to listen",
+          "example": "Elle joue au soccer, lit des romans et écoute du jazz.",
+          "example_translation": "She plays soccer, reads novels, and listens to jazz.",
+          "audio_key": "activites"
+        },
+        {
+          "word": "le sport",
+          "translation": "sport",
+          "example": "Le sport d'hiver, c'est une tradition au Québec.",
+          "example_translation": "Winter sports are a tradition in Québec.",
+          "audio_key": "sport"
+        },
+        {
+          "word": "la musique",
+          "translation": "music",
+          "example": "On écoute de la musique francophone en voiture.",
+          "example_translation": "We listen to French-language music in the car.",
+          "audio_key": "musique"
+        },
+        {
+          "word": "le cinéma",
+          "translation": "cinema / movies",
+          "example": "Aller au cinéma le vendredi soir, c'est notre rituel.",
+          "example_translation": "Going to the movies Friday evening is our ritual.",
+          "audio_key": "cinema"
+        },
+        {
+          "word": "la lecture",
+          "translation": "reading",
+          "example": "La lecture avant de dormir, ça me détend.",
+          "example_translation": "Reading before bed relaxes me.",
+          "audio_key": "lecture"
+        },
+        {
+          "word": "la cuisine · le voyage",
+          "translation": "cooking · travel",
+          "example": "J'aime la cuisine italienne et rêver de voyages en Europe.",
+          "example_translation": "I love Italian cooking and dreaming of trips to Europe.",
+          "audio_key": "cuisine_voyage"
+        },
+        {
+          "word": "le weekend · le temps libre · le loisir",
+          "translation": "weekend · free time · leisure / hobby",
+          "example": "En fin de semaine, j'ai plus de temps libre pour mes loisirs.",
+          "example_translation": "On the weekend I have more free time for my hobbies.",
+          "audio_key": "temps_libre"
+        }
+      ]
     },
     {
-      "question": "Mini-TEF skill: You missed the bus this morning — natural past tense.",
-      "options": [
-        "J ai raté le bus ce matin.",
-        "Je rate le bus ce matin.",
-        "J ai rater le bus ce matin.",
-        "Je suis raté le bus ce matin."
-      ],
-      "answer_index": 0
+      "type": "dialogue",
+      "scene": "Deux ami·e·s planifient une sortie en fin de semaine",
+      "turns": [
+        {
+          "speaker": "A",
+          "text": "Ce weekend tu es libre? On pourrait faire quelque chose de sympa.",
+          "translation": "Are you free this weekend? We could do something fun."
+        },
+        {
+          "speaker": "B",
+          "text": "Oui! J'adore marcher au parc quand il fait beau.",
+          "translation": "Yes! I love walking in the park when it's nice out."
+        },
+        {
+          "speaker": "A",
+          "text": "Parfait. Et s'il pleut, on va au cinéma voir un film québécois?",
+          "translation": "Perfect. And if it rains, shall we go to the cinema to see a Québec film?"
+        },
+        {
+          "speaker": "B",
+          "text": "J'adore l'idée! Je déteste rester chez moi toute la journée.",
+          "translation": "I love the idea! I hate staying home all day."
+        },
+        {
+          "speaker": "A",
+          "text": "Super. On se texte vendredi pour confirmer l'heure.",
+          "translation": "Great. Let's text Friday to confirm the time."
+        }
+      ]
     },
     {
-      "question": "Choose the most coherent past narrative (one sentence).",
-      "options": [
-        "Hier j ai visité ma grand-mère et nous avons mangé un gâteau.",
-        "Hier je visite ma grand-mère et nous mangeons gâteau.",
-        "Hier j ai visité ma grand-mère et nous mange un gâteau.",
-        "Hier je visité ma grand-mère et nous avons mangé."
-      ],
-      "answer_index": 0
+      "type": "grammar_tip",
+      "rule": "Après aimer, adorer, préférer, détester, on met souvent un verbe à l'infinitif : j'aime cuisiner, j'adore nager, je préfère lire. Tu peux aussi mettre un nom : j'aime la musique.",
+      "examples": [
+        { "fr": "Nous aimons regarder le hockey le samedi.", "en": "We like watching hockey on Saturdays." },
+        { "fr": "Il déteste faire la vaisselle.", "en": "He hates doing the dishes." }
+      ]
     },
     {
-      "question": "Which uses passé composé + negation correctly?",
-      "options": [
-        "Je n ai pas pu venir à la fête.",
-        "Je ne pas ai pu venir à la fête.",
-        "Je n ai pu pas venir à la fête.",
-        "Je pas ai pu venir à la fête."
-      ],
-      "answer_index": 0
-    },
-    {
-      "question": "For 'She arrived late' — être verb in passé composé.",
-      "options": [
-        "Elle est arrivée en retard.",
-        "Elle a arrivé en retard.",
-        "Elle est arrivé en retard.",
-        "Elle a arrivée en retard."
-      ],
-      "answer_index": 0
+      "type": "practice",
+      "exercises": [
+        {
+          "type": "match_pairs",
+          "instruction": "Match each French word to English",
+          "pairs": [
+            { "left": "lire", "right": "to read" },
+            { "left": "écouter", "right": "to listen" },
+            { "left": "le loisir", "right": "leisure / hobby" },
+            { "left": "voyage", "right": "travel (n.)" }
+          ]
+        },
+        {
+          "type": "fill_blank",
+          "sentence": "Elles ___ nager à la piscine municipale. (love)",
+          "answer": "adorent",
+          "options": ["adorent", "adorer", "adore", "adorons"],
+          "hint": "present, subject « elles »"
+        },
+        {
+          "type": "word_order",
+          "words": ["livres.", "lire", "J'aime", "les"],
+          "correct_order": [2, 1, 3, 0],
+          "translation": "I like reading books."
+        },
+        {
+          "type": "mcq",
+          "question": "Which sentence is correct for « She prefers to listen to music »?",
+          "options": [
+            "Elle préfère écouter de la musique.",
+            "Elle préfère écoutant de la musique.",
+            "Elle préfère à écouter la musique.",
+            "Elle préfère musique écouter."
+          ],
+          "answer_index": 0,
+          "explanation": "After « préférer », use the infinitive: « écouter »."
+        }
+      ]
     }
   ],
   "production_task": {
-    "type": "mini_tef_section_a",
-    "instructions_en": "Write 20–30 words in French. Describe a simple real or imaginary event (weekend, small accident, nice meal). Use at least one passé composé verb.",
-    "prompt_fr": "Situation: Racontez brièvement ce qui s est passé le week-end dernier (sortie, famille, sport, ou petit problème). Style court, comme un message ou un paragraphe d examen.",
-    "min_words": 20,
-    "max_words": 30,
-    "rubric_hints": [
-      "20–30 words",
-      "At least one passé composé",
-      "Logical order (time + events)",
-      "Appropriate register (neutral / slightly formal OK)"
-    ]
+    "prompt": "Write 3 sentences about your hobbies using j'aime, j'adore, and je déteste.",
+    "example": "J'aime lire le soir. J'adore faire du vélo. Je déteste nettoyer la salle de bain.",
+    "skill": "writing"
   }
 }

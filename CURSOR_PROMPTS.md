@@ -679,3 +679,774 @@ to username for users with ≥5 badges.
 ---
 
 Feel free to copy any prompt above directly into Cursor!
+
+---
+
+## 🇫🇷 BUSUU-STYLE OFFLINE LEARNING (NEW PRIORITY)
+
+> **Goal:** Upgrade the lesson experience from flat MCQ quizzes to a Busuu-style step-by-step lesson flow with vocab cards, dialogues, grammar tips, and mixed exercises — all bundled offline-first in JSON.
+
+---
+
+### Prompt B1: Redesign Unit JSON Schema (Content Layer)
+```
+Context: Our current unit JSON files (expo-mobile/assets/syllabus/a1_u*.json) contain only
+grammar_rule_text, a flat vocab_list (bare words, no translations), 5 MCQ questions, and
+production_task: null. This is too thin for a real lesson. We need a Busuu-style multi-step
+format bundled in JSON so lessons work 100% offline.
+
+Task: Rewrite all 10 A1 unit JSON files (a1_u1.json → a1_u10.json) using this new schema:
+
+{
+  "id": "a1-u1",
+  "level": "A1",
+  "unit_index": 1,
+  "theme": "Greetings & Meeting People",
+  "estimated_minutes": 12,
+  "steps": [
+    {
+      "type": "vocab_intro",
+      "cards": [
+        {
+          "word": "bonjour",
+          "translation": "hello / good morning",
+          "example": "Bonjour, je m'appelle Marie.",
+          "example_translation": "Hello, my name is Marie.",
+          "audio_key": "bonjour"
+        }
+        // 6–10 cards total per unit
+      ]
+    },
+    {
+      "type": "dialogue",
+      "scene": "Two students meeting at school",
+      "turns": [
+        { "speaker": "A", "text": "Bonjour! Tu t'appelles comment?", "translation": "Hello! What is your name?" },
+        { "speaker": "B", "text": "Je m'appelle Léa. Et toi?",       "translation": "My name is Léa. And you?" },
+        { "speaker": "A", "text": "Moi, c'est Marc. Enchanté!",       "translation": "I'm Marc. Nice to meet you!" }
+      ]
+    },
+    {
+      "type": "grammar_tip",
+      "rule": "To say your name: 'Je m'appelle ___'",
+      "examples": [
+        { "fr": "Je m'appelle Sophie.", "en": "My name is Sophie." },
+        { "fr": "Tu t'appelles comment?", "en": "What's your name?" }
+      ]
+    },
+    {
+      "type": "practice",
+      "exercises": [
+        {
+          "type": "match_pairs",
+          "instruction": "Match each French word to its meaning",
+          "pairs": [
+            { "left": "bonjour",       "right": "hello" },
+            { "left": "merci",         "right": "thank you" },
+            { "left": "au revoir",     "right": "goodbye" },
+            { "left": "s'il vous plaît","right": "please" }
+          ]
+        },
+        {
+          "type": "fill_blank",
+          "sentence": "___, je m'appelle Paul.",
+          "answer": "Bonjour",
+          "options": ["Bonsoir", "Bonjour", "Merci", "Au revoir"],
+          "hint": "daytime greeting"
+        },
+        {
+          "type": "word_order",
+          "words": ["appelle", "Marie", "m'", "Je"],
+          "correct_order": [3, 2, 0, 1],
+          "translation": "My name is Marie."
+        },
+        {
+          "type": "mcq",
+          "question": "How do you say 'nice to meet you' in French?",
+          "options": ["merci", "au revoir", "enchanté", "bonjour"],
+          "answer_index": 2,
+          "explanation": "'Enchanté(e)' is the standard French expression when meeting someone."
+        }
+      ]
+    }
+  ],
+  "production_task": {
+    "prompt": "Write 2 sentences: introduce yourself and say goodbye.",
+    "example": "Bonjour! Je m'appelle [votre nom]. Au revoir!",
+    "skill": "writing"
+  }
+}
+
+Unit themes for all 10:
+U1: Greetings & Meeting People
+U2: Numbers & Telling Time
+U3: Family Members
+U4: Food & Ordering at a Café
+U5: Colors & Clothes Shopping
+U6: Home & Describing Rooms
+U7: Daily Routine & Verbs
+U8: Transport & Directions
+U9: Weather & Seasons
+U10: Hobbies & Free Time
+
+Requirements per unit:
+- 6–10 vocab cards, each with: word, translation, example sentence, example_translation
+- 1 dialogue with 3–5 turns (realistic conversational French, not textbook dry)
+- 1 grammar_tip covering the unit's single most important rule
+- 4 exercises: 1 match_pairs + 1 fill_blank + 1 word_order + 1 mcq (with explanation)
+- 1 production_task (writing or speaking prompt)
+
+Keep all content authentic Canadian/Québec-aware French where relevant.
+```
+
+---
+
+### Prompt B2: LessonScreen Step Navigator
+```
+Context: expo-mobile/src/screens/LessonScreen.tsx currently renders grammar_rule_text and
+loops through a flat quiz array. We need to replace it with a step-by-step navigator that
+reads our new multi-step JSON schema (steps[]) and renders the correct component per step.
+
+Task: Refactor LessonScreen.tsx to:
+
+1. Load unit data from the new JSON schema (steps[] array).
+   - Import the JSON directly (bundled, offline-first) OR from SQLite if pre-seeded.
+
+2. Implement a step state machine:
+   - currentStepIndex: number
+   - stepProgress: percentage for the top progress bar
+   - Advance with a "Continue" button (or auto-advance on vocab swipe)
+
+3. Render the correct component for each step type:
+   - "vocab_intro"   → <VocabIntroStep cards={step.cards} />
+   - "dialogue"      → <DialogueStep turns={step.turns} scene={step.scene} />
+   - "grammar_tip"   → <GrammarTipStep rule={step.rule} examples={step.examples} />
+   - "practice"      → <PracticeStep exercises={step.exercises} onComplete={advance} />
+
+4. Progress bar at the top: shows step index / total steps (e.g. "3 / 7").
+
+5. On final step completion:
+   - Calculate score (correct exercises / total exercises × 100)
+   - Call existing unlockNextUnit(unitId, score) from SyllabusService.ts
+   - Show completion modal with score, XP earned, and "Continue" button
+   - If score ≥ 80, trigger inline spaced repetition review (see Prompt B5)
+
+6. Handle back navigation: warn user "Progress will be lost" if mid-lesson.
+
+Keep the existing navigation params (unitId, module) compatible so SyllabusScreen
+deep-links still work. Do not break the existing unlockNextUnit / getSyllabusData flow.
+```
+
+---
+
+### Prompt B3: VocabIntroStep & DialogueStep Components
+```
+Context: We need two new lesson step components for expo-mobile/src/components/lesson/:
+VocabIntroStep (swipeable vocab flashcards) and DialogueStep (chat bubble scene).
+
+Task 1 — Create src/components/lesson/VocabIntroStep.tsx:
+- Props: cards: { word, translation, example, example_translation, audio_key? }[]
+- Render a swipeable card stack (use react-native-reanimated or FlatList with paging)
+- Card front: large French word centered, smaller audio icon (if audio_key present)
+- Card back (tap to flip): translation in bold, example sentence below, example_translation in grey
+- Bottom: dot indicators showing position (card 2 of 8)
+- "Got it" / "Review again" buttons on back face — mark card for spaced repetition later
+- After all cards swiped: show "Vocab done! You learned X words" → auto-advance
+
+Task 2 — Create src/components/lesson/DialogueStep.tsx:
+- Props: scene: string, turns: { speaker: 'A' | 'B', text: string, translation: string }[]
+- Render as chat bubbles: speaker A on left (grey), speaker B on right (blue)
+- Each bubble starts showing French text only
+- Tap any bubble to toggle translation visibility (show/hide inline)
+- "Scene: [scene description]" header at top in italics
+- "Continue" button enabled after user has tapped at least one bubble (shows they engaged)
+- Animate bubbles appearing one by one with a 300ms stagger on mount
+
+Both components must work offline (no network calls). Use NativeWind / existing theme colors.
+```
+
+---
+
+### Prompt B4: PracticeStep Exercise Components
+```
+Context: We need four exercise types for expo-mobile/src/components/lesson/exercises/:
+MatchPairsExercise, FillBlankExercise, WordOrderExercise, and the existing MCQ (reuse).
+These are rendered inside a PracticeStep that sequences exercises within the "practice" step.
+
+Task 1 — Create src/components/lesson/exercises/MatchPairsExercise.tsx:
+- Props: pairs: { left: string, right: string }[], instruction: string
+- Render two columns: left words, right meanings — all shuffled
+- User taps one item from each column to form a pair
+- Highlight selected item in blue; when matched correctly → turn green and lock
+- Wrong match → shake animation + red flash for 500ms → deselect
+- Complete when all pairs matched → show "✓ Perfect!" banner + call onComplete(true)
+- Score: 100 if all correct on first try, -10 per wrong attempt
+
+Task 2 — Create src/components/lesson/exercises/FillBlankExercise.tsx:
+- Props: sentence: string (contains "___"), answer: string, options: string[], hint?: string
+- Render sentence with a raised blank slot in the middle
+- Below: row of 4 word chips (the options)
+- Tap a chip → it fills the blank slot
+- "Check" button appears after selection
+- Correct: green highlight, explanation if provided, "Continue" button
+- Wrong: red shake, chip returns to options row, try again
+- After 2 wrong attempts: reveal hint text below the sentence
+
+Task 3 — Create src/components/lesson/exercises/WordOrderExercise.tsx:
+- Props: words: string[], correct_order: number[], translation: string
+- Render shuffled word chips in a "bank" at the bottom
+- Tap chips to build the sentence in an answer tray at the top
+- Tap a placed chip to return it to the bank
+- "Check" button when tray has same word count as correct_order
+- Correct → green tray + show translation underneath + "Continue"
+- Wrong → red tray shake + keep chips placed for user to fix
+
+Task 4 — Create src/components/lesson/PracticeStep.tsx:
+- Props: exercises: Exercise[], onComplete: (score: number) => void
+- Sequences exercises in order using an internal index
+- Shows "Exercise 2 of 4" counter
+- Tracks correct/incorrect per exercise, computes final score on completion
+- Transitions between exercises with a simple fade
+
+All components: NativeWind styling, no external animation libraries beyond what Expo SDK provides.
+```
+
+---
+
+### Prompt B5: Inline Spaced Repetition at Lesson End
+```
+Context: We already have spaced_repetition_items table in SQLite and SpacedReviewScreen.tsx
+in expo-mobile/src/screens/. The problem: users never navigate there voluntarily. We need
+spaced repetition to appear automatically inline at the end of each completed lesson,
+Busuu-style — no separate screen redirect.
+
+Task: Modify the lesson completion flow in LessonScreen.tsx:
+
+1. After final step completes and score ≥ 80:
+   - Before showing the "Lesson Complete" modal, query spaced_repetition_items for this user
+     WHERE next_review <= today AND unit_id = currentUnitId LIMIT 3
+   - Also add the just-learned vocab cards as new SR items (if not already seeded)
+     using the existing insertSpacedRepetitionItem() pattern
+
+2. If there are ≥ 1 items due for review:
+   - Show an inline "Quick Review" panel (NOT a navigation push) inside LessonScreen
+   - Title: "Before you go — review 3 words from this unit"
+   - Show each word as a simple flashcard: French front, tap to reveal translation
+   - Buttons: "Remembered ✓" (quality: 4) and "Forgot ✗" (quality: 1)
+   - Call updateSpacedRepetitionItem(itemId, quality) for each response
+   - After all 3 reviewed: show the full completion modal
+
+3. If no items due: skip the review panel, show completion modal directly.
+
+4. If score < 80: skip inline review entirely, show "Try again" prompt instead.
+
+This must reuse the existing SM2 algorithm from src/lib/spacedRepetition.ts and the
+existing database functions — no new tables needed.
+```
+
+---
+
+### Prompt B6: Visual Lesson Path (Syllabus Map)
+```
+Context: expo-mobile/src/screens/SyllabusScreen.tsx currently renders a flat list of
+units. We want a Busuu/Duolingo-style visual path where unit nodes are connected by a
+vertical line, alternate left/right, and locked units are greyed out. No data change
+needed — status comes from existing getSyllabusData() which returns 'locked' | 'available'
+| 'completed' per unit.
+
+Task: Refactor SyllabusScreen.tsx:
+
+1. Replace the FlatList with a ScrollView containing a path layout:
+   - Units rendered as circular nodes connected by a vertical dashed line
+   - Alternate positioning: odd units offset left, even units offset right (zigzag path)
+   - Node size: 72px circle
+
+2. Node appearance by status:
+   - "completed":  filled green circle, white checkmark ✓, unit theme emoji above
+   - "available":  filled blue/primary circle, white unit number, subtle pulse animation
+   - "locked":     grey circle, lock icon 🔒, dimmed text
+
+3. Below each node: unit theme label (2–3 words, e.g. "Greetings") and "X min" estimate
+
+4. Tapping "available" → navigate to existing LessonScreen with unitId param
+   Tapping "completed" → navigate to LessonScreen with a "review mode" param (allow replay)
+   Tapping "locked"   → show a small tooltip "Complete the previous unit to unlock"
+
+5. Level header banners between levels: e.g. "── A1 Beginner ──" as a wide badge
+   separating A1 units from A2 units in the scroll.
+
+6. XP / progress summary at the very top:
+   - "A1: 4 / 10 units complete"
+   - Linear progress bar
+
+Use react-native Animated for the pulse on the current available node.
+No new libraries. Reuse existing theme colors and NativeWind classes.
+```
+
+---
+
+### Prompt B7: A1 Content Rewrite — Units U1–U5 (JSON Files)
+```
+Context: Rewrite the first 5 A1 unit JSON files using the new multi-step schema
+(defined in Prompt B1). Files to create/overwrite:
+  expo-mobile/assets/syllabus/a1_u1.json
+  expo-mobile/assets/syllabus/a1_u2.json
+  expo-mobile/assets/syllabus/a1_u3.json
+  expo-mobile/assets/syllabus/a1_u4.json
+  expo-mobile/assets/syllabus/a1_u5.json
+
+Content specifications:
+
+U1 — Greetings & Meeting People (estimated_minutes: 10)
+  Vocab: bonjour, bonsoir, salut, au revoir, merci, s'il vous plaît, enchanté/e,
+         de rien, bonne nuit, à bientôt, pardon, excusez-moi
+  Dialogue scene: Two classmates meeting on the first day of school
+  Grammar tip: "Je m'appelle ___" for introductions
+  Exercises: match greetings to time of day | fill "Bonjour, je ___ Marc" | word order "m'appelle Marie Je" | MCQ
+
+U2 — Numbers & Telling Time (estimated_minutes: 12)
+  Vocab: un–vingt + vingt-et-un, trente, quarante, cinquante, cent
+         heure, demi, quart, matin, midi, minuit, après-midi, soir
+  Dialogue scene: Asking what time the train leaves at a station
+  Grammar tip: "Il est [heure] heure(s)" — telling time with est
+  Exercises: match number to digit | fill "Il est ___ heures" | word order "heures Il sept est" | MCQ
+
+U3 — Family Members (estimated_minutes: 11)
+  Vocab: père, mère, frère, sœur, fils, fille, grand-père, grand-mère,
+         oncle, tante, cousin/e, mari, femme, enfant, famille
+  Dialogue scene: Showing a family photo to a new friend
+  Grammar tip: Possessive adjectives mon/ma/mes, ton/ta/tes
+  Exercises: match family member to English | fill "C'est ___ frère" | word order | MCQ
+
+U4 — Food & Ordering at a Café (estimated_minutes: 13)
+  Vocab: café, thé, eau, jus, pain, croissant, baguette, fromage,
+         salade, sandwich, menu, addition, s'il vous plaît, commander, avoir faim/soif
+  Dialogue scene: Ordering breakfast at a Parisian café
+  Grammar tip: "Je voudrais ___" for polite ordering (conditionnel de politesse)
+  Exercises: match food item to image word | fill blank | word order | MCQ
+
+U5 — Colors & Clothes Shopping (estimated_minutes: 12)
+  Vocab: rouge, bleu/e, vert/e, jaune, blanc/he, noir/e, gris/e, rose, orange
+         robe, pantalon, chemise, pull, veste, chaussures, taille, essayer, coûter, cher
+  Dialogue scene: Trying on a jacket in a clothing store
+  Grammar tip: Adjective agreement — add -e for feminine (blanc → blanche)
+  Exercises: match color to French | fill blank | word order | MCQ
+
+Write complete valid JSON for all 5 files. Keep French authentic, natural, and Canadian-friendly.
+```
+
+---
+
+### Prompt B8: A1 Content Rewrite — Units U6–U10 (JSON Files)
+```
+Context: Rewrite the second 5 A1 unit JSON files using the same multi-step schema.
+Files to create/overwrite:
+  expo-mobile/assets/syllabus/a1_u6.json
+  expo-mobile/assets/syllabus/a1_u7.json
+  expo-mobile/assets/syllabus/a1_u8.json
+  expo-mobile/assets/syllabus/a1_u9.json
+  expo-mobile/assets/syllabus/a1_u10.json
+
+Content specifications:
+
+U6 — Home & Describing Rooms (estimated_minutes: 11)
+  Vocab: maison, appartement, chambre, salon, cuisine, salle de bain, bureau,
+         jardin, balcon, fenêtre, porte, table, chaise, lit, armoire, habiter, louer
+  Dialogue scene: Describing your new apartment to a friend
+  Grammar tip: "Il y a ___" to describe what exists in a place
+  Exercises: match room to French | fill blank | word order | MCQ
+
+U7 — Daily Routine & Regular Verbs (estimated_minutes: 14)
+  Vocab: se lever, se coucher, travailler, manger, partir, arriver, commencer,
+         finir, rentrer, dormir, matin, soir, tous les jours, d'abord, ensuite, enfin
+  Dialogue scene: Two colleagues comparing their morning routines
+  Grammar tip: Regular -ER verb present tense conjugation (je parle, tu parles…)
+  Exercises: match verb to English | fill blank with correct conjugation | word order | MCQ
+
+U8 — Transport & Directions (estimated_minutes: 13)
+  Vocab: bus, métro, train, taxi, vélo, voiture, à pied, station, arrêt,
+         gauche, droite, tout droit, prendre, descendre, traverser, près de, loin de
+  Dialogue scene: Asking a stranger for directions to the train station
+  Grammar tip: Imperative mood for directions — "Tournez à gauche", "Prenez le bus"
+  Exercises: match transport to English | fill blank | word order | MCQ
+
+U9 — Weather & Seasons (estimated_minutes: 10)
+  Vocab: soleil, pluie, neige, nuage, vent, chaud, froid, temps, météo,
+         printemps, été, automne, hiver, aujourd'hui, demain, il fait, il y a
+  Dialogue scene: Small talk about the weather in Montréal in winter
+  Grammar tip: Weather expressions with "Il fait ___" and "Il y a ___"
+  Exercises: match weather word to English | fill blank | word order | MCQ
+
+U10 — Hobbies & Free Time (estimated_minutes: 12)
+  Vocab: aimer, adorer, détester, préférer, jouer, lire, regarder, écouter,
+         sport, musique, cinéma, lecture, cuisine, voyage, weekend, temps libre, loisir
+  Dialogue scene: Two friends planning a weekend activity
+  Grammar tip: "J'aime + infinitive" — expressing likes and dislikes
+  Production task: "Write 3 sentences about your hobbies using j'aime, j'adore, je déteste."
+  Exercises: match hobby to English | fill blank | word order | MCQ
+
+Write complete valid JSON for all 5 files. Each vocab card must have word, translation,
+example sentence (French), and example_translation (English).
+```
+
+---
+
+### Prompt B9: Mobile Voice Recording → Whisper → AI Feedback (SpeakingCoachScreen)
+```
+Context: expo-mobile/src/screens/SpeakingCoachScreen.tsx is currently a stub — it shows 4
+static prompts and a "Check speaking" button that returns hardcoded text. There is NO
+microphone recording, NO Whisper transcription, and NO real AI feedback on mobile.
+
+The backend already has all required endpoints:
+  POST /api/oral/daily-speaking-prompt  → { promptFr, promptEn, topicLine }
+  POST /api/oral/whisper                → accepts raw audio/webm binary → { transcript }
+  POST /api/oral/analyze-transcript     → { transcript, level, promptFr } → full analysis
+
+The web app (french-scorer-web) has a complete working pipeline in:
+  src/components/VoiceRecorder.tsx      (MediaRecorder — web only, NOT reusable on mobile)
+  src/pages/SpeakingLab.tsx             (full pipeline — web only)
+
+Task: Rebuild SpeakingCoachScreen.tsx using expo-av Audio.Recording to replicate the
+same pipeline on mobile.
+
+---
+
+## Step 1 — Permissions & Recording Setup
+
+1. On screen mount, call Audio.requestPermissionsAsync() (expo-av).
+   - If denied: show a permissions-denied state with a "Open Settings" button
+     that calls Linking.openSettings().
+   - If granted: show the main recording UI.
+
+2. Configure audio mode before recording:
+   Audio.setAudioModeAsync({
+     allowsRecordingIOS: true,
+     playsInSilentModeIOS: true,
+   })
+
+3. Recording options — use HIGH_QUALITY preset:
+   Audio.RecordingOptionsPresets.HIGH_QUALITY
+   - This produces .m4a/AAC on iOS and .webm/opus on Android.
+   - Acceptable by OpenAI Whisper (supports m4a, mp4, webm, wav, etc.).
+
+---
+
+## Step 2 — Fetch AI-Generated Prompt
+
+On screen mount (after permissions granted):
+  - Call POST /api/oral/daily-speaking-prompt with { level: userLevel || 'A1' }
+  - Display: promptFr (large, French, centered) + promptEn (smaller, grey, below)
+  - topicLine shown as a subtitle badge (e.g. "Topic: Daily Life")
+  - If API fails: fall back to the 4 existing static SPEAKING_PROMPTS strings.
+
+---
+
+## Step 3 — Record Button UI & State Machine
+
+States: idle → recording → processing → result → idle (new prompt)
+
+idle state:
+  - Large circular red microphone button (centered)
+  - Label: "Hold to speak" text below button
+  - Min 5s / Max 90s recording enforced
+
+recording state:
+  - Button turns pulsing red with animated ring (use React Native Animated, no libraries)
+  - Live duration timer: "0:12" counting up
+  - "Release to stop" label
+  - Auto-stop at 90 seconds
+
+On stop:
+  - recording.stopAndUnloadAsync() → get URI
+  - Reset audio mode (allowsRecordingIOS: false)
+  - Transition to processing state
+
+processing state:
+  - Show spinner + "Transcribing your French…" message
+
+---
+
+## Step 4 — Upload to Whisper
+
+1. Read the recorded file:
+   const response = await fetch(recordingUri)
+   const audioBlob = await response.blob()
+
+2. POST to /api/oral/whisper:
+   - Method: POST
+   - Headers: { 'Content-Type': 'audio/webm' }   (use 'audio/m4a' if iOS .m4a)
+   - Body: raw binary (the blob / arrayBuffer)
+   - Base URL: EXPO_PUBLIC_API_BASE_URL environment variable
+
+3. On success: receive { transcript: string }
+4. On failure: show retry button with error message "Transcription failed — try again"
+
+Detect file extension from URI to set Content-Type correctly:
+  uri.endsWith('.m4a') → 'audio/m4a'
+  uri.endsWith('.webm') → 'audio/webm'
+  default → 'audio/webm'
+
+---
+
+## Step 5 — Analyze Transcript
+
+After Whisper returns transcript:
+  - Update spinner message: "Analyzing your French…"
+  - POST to /api/oral/analyze-transcript:
+    {
+      transcript: string,        // from Whisper
+      level: userLevel,          // 'A1' | 'A2' | 'B1' | 'B2' | 'C1'
+      promptFr: string           // the prompt the user was responding to
+    }
+  - Response: SpeechAnalysisResult {
+      tef_score: number,         // 0–900 scale
+      fluency: string,           // e.g. "Moderate — some hesitations"
+      pronunciation: string,     // e.g. "Good — clear vowels"
+      liaisons: string,          // liaison feedback
+      nasal_vowels: string,      // nasal vowel feedback
+      strengths: string[],       // e.g. ["Good sentence structure", "Correct verb tense"]
+      improvements: string[]     // e.g. ["Work on liaison in 'les amis'"]
+    }
+
+---
+
+## Step 6 — Result Screen (inline, same screen)
+
+Transition to result state — show a scrollable results card:
+
+  ┌─────────────────────────────────────────┐
+  │  Your Response:                         │
+  │  "[transcript text here]"               │
+  ├─────────────────────────────────────────┤
+  │  TEF Score Estimate    [ 420 / 900 ]    │
+  │  ████████░░░░░░░░  (progress bar)       │
+  ├─────────────────────────────────────────┤
+  │  Fluency          Moderate              │
+  │  Pronunciation    Good                  │
+  │  Liaisons         Needs practice        │
+  │  Nasal Vowels     Good                  │
+  ├─────────────────────────────────────────┤
+  │  ✅ Strengths                           │
+  │  • Good sentence structure              │
+  │  • Correct verb tense usage             │
+  ├─────────────────────────────────────────┤
+  │  🔧 Improvements                       │
+  │  • Work on liaison in "les amis"        │
+  │  • Slow down on complex sentences       │
+  ├─────────────────────────────────────────┤
+  │  [ 🎙 Try Another Prompt ]              │
+  └─────────────────────────────────────────┘
+
+- "Try Another Prompt" resets to idle and fetches a new prompt from the API.
+- TEF progress bar: map 0–900 to 0–100% width.
+- Color code TEF score: <300 red, 300–599 amber, ≥600 green.
+
+---
+
+## Step 7 — Persist Attempt to SQLite
+
+After successful analysis, save to existing user_score_events table:
+  INSERT INTO user_score_events (
+    user_id, score, cecr_level, provider, scored_at, skill
+  ) VALUES (
+    userId,
+    Math.round(result.tef_score / 9),  -- normalize 0–900 → 0–100
+    userLevel,
+    'whisper+gemini',
+    now(),
+    'speaking'
+  )
+
+Use the existing database insert pattern from src/database/database.ts.
+Do NOT create a new table — user_score_events already tracks all skill scores.
+
+---
+
+## Step 8 — User Level Selector
+
+Add a small level pill row at the top of the screen (below the topic badge):
+  [ A1 ] [ A2 ] [ B1 ] [ B2 ] [ C1 ]
+  - Tapping selects the active level (highlight in primary color)
+  - Default: read from existing user progress (highest completed level) or A1
+  - Selected level is passed to both /api/oral/daily-speaking-prompt and /api/oral/analyze-transcript
+
+---
+
+## Technical Requirements
+
+- Use only expo-av (already installed) for recording — no new audio packages
+- Use fetch() for all API calls — no axios
+- All API calls use EXPO_PUBLIC_API_BASE_URL base URL
+- NativeWind for all styling — no StyleSheet.create()
+- Handle network errors gracefully: show retry buttons, never crash
+- Clean up recording on unmount: if (recording) recording.stopAndUnloadAsync()
+- TypeScript throughout — define SpeechAnalysisResult interface in the file
+- Keep existing navigation structure intact (screen is already registered in the navigator)
+```
+
+---
+
+### Prompt B10: Reading Room — TTS Dictation + Interleaved Paragraph Format
+```
+Context: The Reading Room has two problems on both mobile and web:
+
+PROBLEM 1 — No dictation (TTS):
+   Mobile: ReadingRoomScreen.tsx never calls frenchExpoTts.ts — there is NO "listen" button.
+   Web:    ReadingRoom.tsx has an "Écouter la page" button but it requires a real audioUrl from
+               the story payload. If audioUrl is null (common), it only runs a fake mock timer with
+               no actual speech.
+
+PROBLEM 2 — Wrong layout:
+   Mobile: Passages have only French text — no English translation at all. No toggle exists.
+   Web:    Translation toggle exists but shows ALL French sentences in one block, then ALL
+               English sentences in a separate block below (two separate panels). User wants:
+               1 French paragraph → 1 English paragraph (interleaved), English only visible when
+               the translation toggle is ON.
+
+---
+
+## Part A — Mobile: Update readingPassages.ts data structure
+
+Extend the ReadingPassage type and update PASSAGES data to support:
+1. Multi-paragraph passages (each level gets 2–3 passages, each 2–3 paragraphs long)
+2. Each paragraph has both fr and en text
+
+New type:
+```ts
+export type ReadingParagraph = {
+   fr: string   // French paragraph text (2–4 sentences)
+   en: string   // English translation of that paragraph
+}
+
+export type ReadingPassage = {
+   title: string
+   paragraphs: ReadingParagraph[]   // ← replaces the old flat `text: string`
+   question: string
+   answer: string
+}
+```
+
+Rewrite PASSAGES with fuller content — each level should have at least 2 passages,
+each passage at least 2 paragraphs:
+
+A1 examples:
+- "Au café": 2 paragraphs (ordering, paying) — natural, simple French
+- "À l'école": 2 paragraphs (arriving, meeting classmates)
+
+A2 examples:
+- "Une journée de travail": 2 paragraphs
+- "Le weekend": 2 paragraphs
+
+B1–C1: 2–3 paragraphs each, increasing complexity.
+
+Keep Canadian/Québec-friendly French. Write real paragraphs (not 1-sentence stubs).
+
+---
+
+## Part B — Mobile: Refactor ReadingRoomScreen.tsx
+
+1. Replace the current text rendering with interleaved paragraph layout:
+
+    For each paragraph in passage.paragraphs:
+    ┌─────────────────────────────────┐
+    │  [French paragraph text]        │  ← always visible, text-slate-900
+    │                                 │
+    │  [English paragraph text]       │  ← only visible when translationOn === true
+    │  (italic, text-slate-500)       │     hidden (opacity-0 / display:none) when off
+    └─────────────────────────────────┘
+    Separator line between paragraphs (border-b border-slate-100)
+
+2. Add a translation toggle button in the header row:
+    - Label: "Translation" (same style as other header pills)
+    - State: translationOn (boolean, default false)
+    - When OFF: English paragraphs are hidden
+    - When ON: English paragraphs appear below each French paragraph
+
+3. Add a "Listen" / TTS button:
+    - Appears in the header next to the Translation toggle
+    - Icon: speaker / headphones emoji or Ionicons icon
+    - On press:
+       a. Concatenate all French paragraphs: passage.paragraphs.map(p => p.fr).join(' ')
+       b. Check isFrenchCloudTtsConfigured() from src/lib/frenchExpoTts.ts
+            - If configured: call speakFrenchListening(fullText)
+            - If NOT configured: show a Toast/Alert: "TTS not available — set EXPO_PUBLIC_API_BASE_URL"
+       c. While speaking: button shows "Stop" — pressing it calls stopFrenchExpoTts()
+       d. Button returns to "Listen" when audio finishes
+    - Disable the button while audio is loading (show a small ActivityIndicator)
+
+4. Keep the existing level selector (A1/A2/B1/B2/C1) pills at the top — no change.
+
+5. Keep the comprehension Q&A card below the passage — no change.
+
+6. State to manage:
+    - translationOn: boolean (default false)
+    - isSpeaking: boolean (for button toggle)
+    - isTtsLoading: boolean (for spinner while fetching TTS)
+
+7. Cleanup on unmount or when level changes: call stopFrenchExpoTts() to cancel any
+    in-flight audio.
+
+---
+
+## Part C — Web: Fix ReadingRoom.tsx interleaved layout
+
+The web story uses sentences[] (not paragraphs) with { fr: string, en: string }.
+Group sentences into visual paragraphs by inserting a paragraph break every 3 sentences.
+
+Change the story text rendering from two separate blocks:
+   [Block 1: all French sentences]
+   [Block 2: all English sentences — opacity 25% when translationOn is false]
+
+To interleaved pairs — one group per 3 sentences:
+   ┌─────────────────────────────────┐
+   │  [French sentence 1]            │
+   │  [French sentence 2]            │
+   │  [French sentence 3]            │
+   ├ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ┤  ← only visible when translationOn
+   │  [English sentence 1]           │
+   │  [English sentence 2]           │
+   │  [English sentence 3]           │
+   └─────────────────────────────────┘
+   [next group of 3...]
+
+Implementation:
+1. Group story.sentences into chunks of 3:
+    const chunks = chunk(story.sentences, 3)   // write a simple chunk() helper
+
+2. For each chunk, render:
+    - French sentences (always visible) — keep existing click-to-select + grammar marker behavior
+    - English sentences block below (only rendered/visible when translationOn === true)
+       shown with: italic text-slate-500, border-l-2 border-indigo-200 pl-3
+
+3. When translationOn toggles:
+    - English blocks animate in/out with a CSS transition (opacity + max-height)
+    - Do NOT simply toggle opacity to 25% — fully hide/show them so they don't take up space
+       when translation is off. Use: translationOn ? 'block' : 'hidden' (Tailwind class)
+
+4. The audio player bar at the bottom of the English panel stays in its current position.
+    Sentence highlighting still works (highlightIdx tracks the active sentence globally).
+    Active French sentence: bg-sky-100 ring
+    Active English sentence: font-semibold italic text-indigo-700
+
+5. Keep both the "Écouter la page" header button AND the bottom player bar.
+    When audioUrl is null (no real audio file), the "Écouter la page" button should
+    call the TTS API as a fallback:
+       - POST to /api/tts/french with { text: story.sentences.map(s => s.fr).join(' ') }
+       - Play the returned MP3 via an Audio() element
+       - Show "Chargement…" on the button while fetching
+    This gives real dictation even on stories without pre-recorded audio.
+
+---
+
+## Summary of files to modify
+
+Mobile:
+   expo-mobile/src/content/readingPassages.ts   ← new type + fuller passage data
+   expo-mobile/src/screens/ReadingRoomScreen.tsx ← interleaved layout + TTS button
+
+Web:
+   french-scorer-web/src/components/reading/ReadingRoom.tsx ← chunk layout + TTS fallback
+
+Do NOT change the story data source (StoryMatcher / loadDailyStoryForUserLevel) for web —
+only change how sentences are grouped and rendered in the UI.
+```

@@ -2,58 +2,153 @@
   "id": "a1-u5",
   "level": "A1",
   "unit_index": 5,
-  "phase": "developing_a1",
-  "theme": "Basic negation: ne ... pas",
-  "lexical_density": 1.464,
-  "grammar_rule_text": "Negation frame: ne + verb + pas. With subject pronouns: Je ne mange pas, Tu ne vas pas, Il ne travaille pas. In spoken French 'ne' often drops; in learning tasks keep both parts. Negation wraps the conjugated verb only.",
-  "vocab_list": [
-    "ne", "pas", "plus", "jamais", "rien", "personne", "non", "encore",
-    "manger", "aller", "faire", "aimer", "vouloir", "pouvoir", "savoir",
-    "maintenant", "aujourd hui", "bien", "mal", "beaucoup", "un peu"
-  ],
-  "quiz": [
+  "theme": "Colors & Clothes Shopping",
+  "estimated_minutes": 12,
+  "steps": [
     {
-      "question": "Negate: 'Je mange.' →",
-      "options": ["Je ne mange pas", "Je mange ne pas", "Ne je mange pas", "Je pas mange"],
-      "answer_index": 0
+      "type": "vocab_intro",
+      "cards": [
+        {
+          "word": "rouge · bleu / bleue",
+          "translation": "red · blue",
+          "example": "Un manteau bleu et une tuque rouge.",
+          "example_translation": "A blue coat and a red tuque.",
+          "audio_key": "rouge_bleu"
+        },
+        {
+          "word": "vert / verte · jaune",
+          "translation": "green · yellow",
+          "example": "Les feuilles vertes deviennent jaunes en automne.",
+          "example_translation": "Green leaves turn yellow in autumn.",
+          "audio_key": "vert_jaune"
+        },
+        {
+          "word": "blanc / blanche · noir / noire",
+          "translation": "white · black",
+          "example": "Une chemise blanche et un pantalon noir.",
+          "example_translation": "A white shirt and black pants.",
+          "audio_key": "blanc_noir"
+        },
+        {
+          "word": "gris / grise · rose · orange",
+          "translation": "gray · pink · orange",
+          "example": "J'aime le pull rose; l'écharpe orange est trop vive pour moi.",
+          "example_translation": "I like the pink sweater; the orange scarf is too bright for me.",
+          "audio_key": "autres_couleurs"
+        },
+        {
+          "word": "la robe · le pantalon · la chemise",
+          "translation": "dress · pants · shirt",
+          "example": "Cette robe est en solde.",
+          "example_translation": "This dress is on sale.",
+          "audio_key": "vetements_haut"
+        },
+        {
+          "word": "le pull · la veste · les chaussures",
+          "translation": "sweater · jacket · shoes",
+          "example": "La veste est chaude; les chaussures sont confortables.",
+          "example_translation": "The jacket is warm; the shoes are comfortable.",
+          "audio_key": "vetements_bas"
+        },
+        {
+          "word": "la taille · essayer",
+          "translation": "size · to try on",
+          "example": "Puis-je essayer la taille moyenne?",
+          "example_translation": "Can I try on the medium size?",
+          "audio_key": "taille_essayer"
+        },
+        {
+          "word": "coûter · cher / chère",
+          "translation": "to cost · expensive",
+          "example": "Ça coûte cher, mais la qualité est là.",
+          "example_translation": "It's expensive, but the quality is there.",
+          "audio_key": "cout_cher"
+        }
+      ]
     },
     {
-      "question": "Which sentence means 'She does not work here'?",
-      "options": [
-        "Elle ne travaille pas ici.",
-        "Elle travaille pas ne ici.",
-        "Elle pas ne travaille ici.",
-        "Ne elle travaille pas ici."
-      ],
-      "answer_index": 0
+      "type": "dialogue",
+      "scene": "Dans un magasin de vêtements : essayer une veste",
+      "turns": [
+        {
+          "speaker": "A",
+          "text": "Bonjour! Je cherche une veste pour l'hiver, pas trop chère.",
+          "translation": "Hi! I'm looking for a winter jacket, not too expensive."
+        },
+        {
+          "speaker": "B",
+          "text": "Regardez ce modèle gris — imperméable, capuche amovible.",
+          "translation": "Look at this gray model — waterproof, removable hood."
+        },
+        {
+          "speaker": "A",
+          "text": "J'aime la couleur. Je peux l'essayer en taille M?",
+          "translation": "I like the color. Can I try it on in size M?"
+        },
+        {
+          "speaker": "B",
+          "text": "Oui, les cabines sont au fond. Si c'est serré, essayez le bleu en L.",
+          "translation": "Yes, fitting rooms are at the back. If it's tight, try the blue one in L."
+        },
+        {
+          "speaker": "A",
+          "text": "Parfait. Et c'est combien avec les taxes?",
+          "translation": "Perfect. And how much is it with tax?"
+        }
+      ]
     },
     {
-      "question": "Fill in: Nous ne ___ pas fatigués. (verb être)",
-      "options": ["sommes", "êtes", "sont", "est"],
-      "answer_index": 0
+      "type": "grammar_tip",
+      "rule": "Les adjectifs de couleur s'accordent en genre et en nombre avec le nom : une robe bleue, des pantalons noirs. « Blanc » devient « blanche » au féminin : une chemise blanche.",
+      "examples": [
+        { "fr": "Des chaussures noires et une jupe verte.", "en": "Black shoes and a green skirt." },
+        { "fr": "Ce pull orange est en solde.", "en": "This orange sweater is on sale." }
+      ]
     },
     {
-      "question": "They are not going — choose correct French.",
-      "options": ["Ils ne vont pas", "Ils vont ne pas", "Ils n aller pas", "Ils pas vont"],
-      "answer_index": 0
-    },
-    {
-      "question": "You (informal) don't like coffee — pick the best line.",
-      "options": [
-        "Tu n aimes pas le café.",
-        "Tu aimes pas le café ne.",
-        "Tu ne pas aimes le café.",
-        "Tu le café n aimes pas."
-      ],
-      "answer_index": 0
+      "type": "practice",
+      "exercises": [
+        {
+          "type": "match_pairs",
+          "instruction": "Match the English colour to French",
+          "pairs": [
+            { "left": "red", "right": "rouge" },
+            { "left": "green", "right": "vert" },
+            { "left": "yellow", "right": "jaune" },
+            { "left": "pink", "right": "rose" }
+          ]
+        },
+        {
+          "type": "fill_blank",
+          "sentence": "Elle porte une jupe ___ (feminine: white).",
+          "answer": "blanche",
+          "options": ["blanc", "blanche", "blancs", "blanches"],
+          "hint": "accord avec « jupe »"
+        },
+        {
+          "type": "word_order",
+          "words": ["chères.", "Ces", "sont", "chaussures", "trop"],
+          "correct_order": [1, 3, 2, 4, 0],
+          "translation": "These shoes are too expensive."
+        },
+        {
+          "type": "mcq",
+          "question": "Which sentence has correct adjective agreement?",
+          "options": [
+            "Unes chaussures noirs.",
+            "Des chaussures noires.",
+            "Des chaussures noir.",
+            "La chaussures noires."
+          ],
+          "answer_index": 1,
+          "explanation": "« Chaussures » is feminine plural → « noires » with -es."
+        }
+      ]
     }
   ],
   "production_task": {
-    "type": "short_writing",
-    "instructions_en": "Write 5–10 words. Use ne ... pas once.",
-    "prompt_fr": "Dites ce que vous ne faites pas aujourd hui (sport, travail, etc.).",
-    "min_words": 5,
-    "max_words": 10,
-    "rubric_hints": ["ne + verb + pas", "Present tense"]
+    "prompt": "Décris une tenue avec au moins trois couleurs et deux vêtements (accords corrects).",
+    "example": "Je porte une veste noire, un pull gris et des bottes brunes.",
+    "skill": "writing"
   }
 }

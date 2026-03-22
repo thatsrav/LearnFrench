@@ -140,6 +140,7 @@ export async function initializeDatabase(): Promise<void> {
 
   await ensureTefPrepProgressTable(db)
   await ensureWritingJournalCloudColumns(db)
+  await ensureUserScoreEventsSkillColumn(db)
 
   await seedIfEmpty()
 }
@@ -169,6 +170,15 @@ async function ensureTefPrepProgressTable(db: SQLite.SQLiteDatabase): Promise<vo
 async function ensureWritingJournalCloudColumns(db: SQLite.SQLiteDatabase): Promise<void> {
   try {
     await db.execAsync('ALTER TABLE writing_entries ADD COLUMN remote_id TEXT;')
+  } catch {
+    /* column already exists */
+  }
+}
+
+/** Speaking / skill tagging for local analytics (optional column on older DB files). */
+async function ensureUserScoreEventsSkillColumn(db: SQLite.SQLiteDatabase): Promise<void> {
+  try {
+    await db.execAsync(`ALTER TABLE user_score_events ADD COLUMN skill TEXT NOT NULL DEFAULT '';`)
   } catch {
     /* column already exists */
   }
@@ -208,15 +218,19 @@ export async function recordScoreEvent(row: {
   score: number
   cecr: string
   provider: string
+  /** e.g. speaking — stored locally when column exists */
+  skill?: string
 }): Promise<void> {
   const db = await getDb()
+  await ensureUserScoreEventsSkillColumn(db)
   await db.runAsync(
-    'INSERT INTO user_score_events (user_id, ts, score, cecr, provider) VALUES (?, ?, ?, ?, ?)',
+    'INSERT INTO user_score_events (user_id, ts, score, cecr, provider, skill) VALUES (?, ?, ?, ?, ?, ?)',
     row.userId ?? null,
     row.ts,
     row.score,
     row.cecr,
     row.provider,
+    row.skill ?? '',
   )
 }
 

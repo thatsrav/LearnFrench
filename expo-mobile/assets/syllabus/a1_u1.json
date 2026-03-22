@@ -2,40 +2,155 @@
   "id": "a1-u1",
   "level": "A1",
   "unit_index": 1,
-  "phase": "ultra_beginner",
-  "theme": "Greetings & recognition",
-  "lexical_density": 1.0,
-  "grammar_rule_text": "Ultra-beginner recognition only. Match greetings: bonjour (day), bonsoir (evening), salut (informal hi/bye), au revoir (goodbye). Say 'thank you' with merci and 'please' with s'il vous plaît. No long sentences yet.",
-  "vocab_list": [
-    "bonjour", "bonsoir", "salut", "au revoir", "merci", "s il vous plait",
-    "oui", "non", "bonne nuit", "a bientot", "a demain", "enchanté", "enchantée"
-  ],
-  "quiz": [
+  "theme": "Greetings & Meeting People",
+  "estimated_minutes": 10,
+  "steps": [
     {
-      "question": "Match: Which word means 'good morning / hello' in daytime?",
-      "options": ["bonsoir", "bonjour", "au revoir", "merci"],
-      "answer_index": 1
+      "type": "vocab_intro",
+      "cards": [
+        {
+          "word": "bonjour",
+          "translation": "hello / good morning",
+          "example": "Bonjour, madame Lavoie!",
+          "example_translation": "Hello, Mrs. Lavoie!",
+          "audio_key": "bonjour"
+        },
+        {
+          "word": "bonsoir",
+          "translation": "good evening",
+          "example": "Bonsoir, on se voit après le souper?",
+          "example_translation": "Good evening, shall we meet after supper?",
+          "audio_key": "bonsoir"
+        },
+        {
+          "word": "salut",
+          "translation": "hi / bye (informal)",
+          "example": "Salut, ça va bien?",
+          "example_translation": "Hi, how are you?",
+          "audio_key": "salut"
+        },
+        {
+          "word": "au revoir / à bientôt",
+          "translation": "goodbye / see you soon",
+          "example": "Au revoir! À bientôt à l'école.",
+          "example_translation": "Goodbye! See you soon at school.",
+          "audio_key": "au_revoir"
+        },
+        {
+          "word": "merci · de rien",
+          "translation": "thank you · you're welcome",
+          "example": "Merci pour ton aide. — De rien!",
+          "example_translation": "Thanks for your help. — You're welcome!",
+          "audio_key": "merci"
+        },
+        {
+          "word": "s'il vous plaît",
+          "translation": "please (polite)",
+          "example": "La porte, s'il vous plaît?",
+          "example_translation": "The door, please?",
+          "audio_key": "sil_vous_plait"
+        },
+        {
+          "word": "enchanté / enchantée",
+          "translation": "nice to meet you (masc. / fem.)",
+          "example": "Enchantée, moi c'est Léa.",
+          "example_translation": "Nice to meet you, I'm Léa.",
+          "audio_key": "enchante"
+        },
+        {
+          "word": "bonne nuit",
+          "translation": "good night",
+          "example": "Bonne nuit, dors bien!",
+          "example_translation": "Good night, sleep well!",
+          "audio_key": "bonne_nuit"
+        },
+        {
+          "word": "pardon · excusez-moi",
+          "translation": "sorry (oops) · excuse me",
+          "example": "Pardon, j'ai oublié mon cartable. Excusez-moi, madame.",
+          "example_translation": "Sorry, I forgot my backpack. Excuse me, ma'am.",
+          "audio_key": "pardon"
+        }
+      ]
     },
     {
-      "question": "Match: Informal 'hi' between friends?",
-      "options": ["monsieur", "salut", "bonsoir", "madame"],
-      "answer_index": 1
+      "type": "dialogue",
+      "scene": "Deux camarades de classe se parlent le premier jour d'école à Montréal",
+      "turns": [
+        {
+          "speaker": "A",
+          "text": "Bonjour! Tu es dans la classe de français aussi?",
+          "translation": "Hi! Are you in French class too?"
+        },
+        {
+          "speaker": "B",
+          "text": "Oui! Je m'appelle Samira. Et toi?",
+          "translation": "Yes! My name is Samira. And you?"
+        },
+        {
+          "speaker": "A",
+          "text": "Moi, c'est Étienne. Enchanté, Samira!",
+          "translation": "I'm Étienne. Nice to meet you, Samira!"
+        },
+        {
+          "speaker": "B",
+          "text": "Enchantée! On va s'asseoir ensemble?",
+          "translation": "Nice to meet you! Shall we sit together?"
+        },
+        {
+          "speaker": "A",
+          "text": "Oui, super! À tout à l'heure en classe.",
+          "translation": "Yes, great! See you later in class."
+        }
+      ]
     },
     {
-      "question": "Complete the three-word idea: '___ revoir' = goodbye.",
-      "options": ["bon", "au", "merci", "salut"],
-      "answer_index": 1
+      "type": "grammar_tip",
+      "rule": "Pour te présenter, utilise « Je m'appelle + ton prénom ». Au Canada comme en France, on dit aussi « Moi, c'est… » dans la conversation.",
+      "examples": [
+        { "fr": "Je m'appelle Marc.", "en": "My name is Marc." },
+        { "fr": "Comment tu t'appelles?", "en": "What's your name? (informal)" }
+      ]
     },
     {
-      "question": "Which is 'thank you'?",
-      "options": ["de rien", "merci", "pardon", "bonjour"],
-      "answer_index": 1
-    },
-    {
-      "question": "Match: Polite 'please' (formal).",
-      "options": ["oui", "s il vous plait", "non", "salut"],
-      "answer_index": 1
+      "type": "practice",
+      "exercises": [
+        {
+          "type": "match_pairs",
+          "instruction": "Associe la salutation à la période ou au contexte",
+          "pairs": [
+            { "left": "bonjour", "right": "morning / daytime" },
+            { "left": "bonsoir", "right": "evening" },
+            { "left": "bonne nuit", "right": "before sleep" },
+            { "left": "salut", "right": "informal hi (friends)" }
+          ]
+        },
+        {
+          "type": "fill_blank",
+          "sentence": "Bonjour, je ___ Marc.",
+          "answer": "m'appelle",
+          "options": ["m'appelle", "appelles", "appelle", "appelons"],
+          "hint": "present of s'appeler with je"
+        },
+        {
+          "type": "word_order",
+          "words": ["m'appelle", "Marie", "Je"],
+          "correct_order": [2, 0, 1],
+          "translation": "My name is Marie."
+        },
+        {
+          "type": "mcq",
+          "question": "Someone bumps into you in the hall. What do you say first?",
+          "options": ["bonne nuit", "excusez-moi", "bon appétit", "au revoir"],
+          "answer_index": 1,
+          "explanation": "« Excusez-moi » (or « pardon ») is the natural apology when you bother someone."
+        }
+      ]
     }
   ],
-  "production_task": null
+  "production_task": {
+    "prompt": "Écris deux phrases : une présentation avec « Je m'appelle… » et une salutation de départ.",
+    "example": "Bonjour! Je m'appelle Alex. Salut, à demain!",
+    "skill": "writing"
+  }
 }
