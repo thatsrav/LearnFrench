@@ -1,0 +1,141 @@
+{
+  "id": "a2-u1",
+  "level": "A2",
+  "unit_index": 1,
+  "theme": "Daily Work and Study",
+  "estimated_minutes": 16,
+  "steps": [
+    {
+      "type": "vocab_intro",
+      "cards": [
+        {
+          "word": "le bureau",
+          "translation": "office / desk",
+          "example": "Je travaille au bureau trois jours par semaine.",
+          "example_translation": "I work at the office three days a week.",
+          "audio_key": "bureau"
+        },
+        {
+          "word": "le collègue · la collègue",
+          "translation": "colleague",
+          "example": "Ma collègue organise la réunion de lundi.",
+          "example_translation": "My colleague is organizing Monday's meeting.",
+          "audio_key": "collegue"
+        },
+        {
+          "word": "la réunion",
+          "translation": "meeting",
+          "example": "La réunion commence à neuf heures pile.",
+          "example_translation": "The meeting starts at nine sharp.",
+          "audio_key": "reunion"
+        },
+        {
+          "word": "le courriel",
+          "translation": "email (Québec usage)",
+          "example": "Envoie-moi un courriel avant midi.",
+          "example_translation": "Send me an email before noon.",
+          "audio_key": "courriel"
+        },
+        {
+          "word": "le projet · l'échéance",
+          "translation": "project · deadline",
+          "example": "Notre échéance est vendredi prochain.",
+          "example_translation": "Our deadline is next Friday.",
+          "audio_key": "projet"
+        },
+        {
+          "word": "d'abord · ensuite · puis · finalement",
+          "translation": "first · then · then · finally",
+          "example": "D'abord le café, ensuite les courriels, puis la réunion.",
+          "example_translation": "First coffee, then emails, then the meeting.",
+          "audio_key": "connecteurs"
+        }
+      ]
+    },
+    {
+      "type": "dialogue",
+      "scene": "Pause-café au bureau à Montréal",
+      "turns": [
+        {
+          "speaker": "Sam",
+          "text": "Alors, ta matinée? J'ai l'impression qu'on n'a pas arrêté depuis huit heures.",
+          "translation": "So, your morning? I feel like we haven't stopped since eight."
+        },
+        {
+          "speaker": "Léa",
+          "text": "D'abord j'ai fini un rapport pour le client. Ensuite, réunion avec l'équipe marketing.",
+          "translation": "First I finished a report for the client. Then, a meeting with the marketing team."
+        },
+        {
+          "speaker": "Sam",
+          "text": "Moi, j'ai répondu à une pile de courriels. Puis j'ai préparé la présentation d'après-midi.",
+          "translation": "I answered a pile of emails. Then I prepared the afternoon presentation."
+        },
+        {
+          "speaker": "Léa",
+          "text": "Finalement, on mérite ce café. Demain je travaille de la maison, au moins!",
+          "translation": "Finally, we deserve this coffee. Tomorrow I'm working from home, at least!"
+        }
+      ]
+    },
+    {
+      "type": "grammar_tip",
+      "rule": "Pour raconter une journée au présent, enchaîne les actions avec d'abord, ensuite, puis, enfin / finalement. « Je travaille au bureau » (lieu) vs « je travaille de la maison » (télétravail, Québec).",
+      "examples": [
+        { "fr": "D'abord je lis mes messages, puis je joins la visioconférence.", "en": "First I read my messages, then I join the video call." },
+        { "fr": "Nous avons un examen la semaine prochaine; ensuite les vacances.", "en": "We have an exam next week; then the holidays." }
+      ]
+    },
+    {
+      "type": "practice",
+      "exercises": [
+        {
+          "type": "match_pairs",
+          "instruction": "Match French to English",
+          "pairs": [
+            { "left": "la réunion", "right": "meeting" },
+            { "left": "le collègue", "right": "colleague (m.)" },
+            { "left": "le courriel", "right": "email" },
+            { "left": "l'échéance", "right": "deadline" }
+          ]
+        },
+        {
+          "type": "fill_blank",
+          "sentence": "___ je prépare mon café, ___ j'ouvre mon ordinateur. (First … then)",
+          "answer": "D'abord",
+          "options": ["D'abord", "Finalement", "Puis", "Ensuite"],
+          "hint": "First word of the sentence — « first »"
+        },
+        {
+          "type": "mcq",
+          "question": "Which sentence is correct for « I work at the office »?",
+          "options": [
+            "Je travaille au bureau.",
+            "Je travailles au bureau.",
+            "Je travail au bureau.",
+            "Je travaillons au bureau."
+          ],
+          "answer_index": 0,
+          "explanation": "With « je », the present ends in -e: je travaille."
+        },
+        {
+          "type": "word_order",
+          "words": ["réunion.", "une", "demain", "Nous", "avons"],
+          "correct_order": [3, 4, 1, 0, 2],
+          "translation": "We have a meeting tomorrow."
+        },
+        {
+          "type": "mcq",
+          "question": "Best French for « homework » (school context)?",
+          "options": ["le métier", "les devoirs", "la réunion", "le résultat"],
+          "answer_index": 1
+        }
+      ]
+    }
+  ],
+  "production_task": {
+    "prompt": "Écris quatre phrases sur ta journée de travail ou d'études : utilise d'abord, ensuite ou puis au moins une fois.",
+    "example": "D'abord je vais à l'université. Ensuite je déjeune au café-étudiant. Puis j'étudie à la bibliothèque.",
+    "skill": "writing"
+  }
+}

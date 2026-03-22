@@ -1,0 +1,183 @@
+{
+  "id": "b1-u8",
+  "level": "B1",
+  "unit_index": 8,
+  "theme": "Future Travel Plans",
+  "estimated_minutes": 18,
+  "steps": [
+    {
+      "type": "vocab_intro",
+      "cards": [
+        {
+          "word": "aller + infinitif",
+          "translation": "near future (going to)",
+          "example": "Nous allons camper en Gaspésie en juillet.",
+          "example_translation": "We're going camping in the Gaspé in July.",
+          "audio_key": "aller"
+        },
+        {
+          "word": "prévoir",
+          "translation": "to plan / foresee",
+          "example": "On prévoit trois jours de randonnée.",
+          "example_translation": "We're planning three days of hiking.",
+          "audio_key": "prevoir"
+        },
+        {
+          "word": "la fin de semaine",
+          "translation": "weekend (Québec)",
+          "example": "Pour la fin de semaine prochaine, je n'ai pas encore réservé.",
+          "example_translation": "For next weekend I haven't booked yet.",
+          "audio_key": "fds"
+        },
+        {
+          "word": "si tout va bien",
+          "translation": "if all goes well",
+          "example": "Si tout va bien, on part vendredi après-midi.",
+          "example_translation": "If all goes well, we leave Friday afternoon.",
+          "audio_key": "si"
+        },
+        {
+          "word": "économiser / le budget",
+          "translation": "to save / budget",
+          "example": "On économise pour le billet d'avion.",
+          "example_translation": "We're saving for the plane ticket.",
+          "audio_key": "budget"
+        },
+        {
+          "word": "les vacances / congé",
+          "translation": "vacation / time off",
+          "example": "Je prends une semaine de congé en août.",
+          "example_translation": "I'm taking a week off in August.",
+          "audio_key": "vacances"
+        }
+      ]
+    },
+    {
+      "type": "dialogue",
+      "scene": "Colocataires qui planifient l'été",
+      "turns": [
+        {
+          "speaker": "Amina",
+          "text": "Cet été, vous faites quoi? Nous allons louer un chalet près de Tremblant.",
+          "translation": "This summer, what are you doing? We're going to rent a chalet near Tremblant."
+        },
+        {
+          "speaker": "Tom",
+          "text": "Cool! Nous, on va probablement visiter la famille en Ontario si le budget le permet.",
+          "translation": "Cool! We'll probably visit family in Ontario if the budget allows."
+        },
+        {
+          "speaker": "Amina",
+          "text": "Si vous passez par Montréal, prévenez-nous : on organise un souper.",
+          "translation": "If you pass through Montreal, let us know: we'll organize a dinner."
+        },
+        {
+          "speaker": "Tom",
+          "text": "C'est noté. On prévoit la fin de semaine du quinze août.",
+          "translation": "Noted. We're aiming for the weekend of August 15."
+        }
+      ]
+    },
+    {
+      "type": "grammar_tip",
+      "rule": "Futur proche : « aller » + infinitif pour projet proche (« je vais réserver »). « Si + présent » pour condition réaliste : « si tu viens, on visite le musée ».",
+      "examples": [
+        {
+          "fr": "Nous allons prendre le train tôt demain matin.",
+          "en": "We're taking the train early tomorrow morning."
+        },
+        {
+          "fr": "Si le temps est beau, nous allons faire du kayak.",
+          "en": "If the weather is nice, we're going kayaking."
+        }
+      ]
+    },
+    {
+      "type": "practice",
+      "exercises": [
+        {
+          "type": "match_pairs",
+          "instruction": "Match",
+          "pairs": [
+            {
+              "left": "aller + infinitif",
+              "right": "near future"
+            },
+            {
+              "left": "la fin de semaine",
+              "right": "weekend (QC)"
+            },
+            {
+              "left": "prévoir",
+              "right": "to plan"
+            },
+            {
+              "left": "congé",
+              "right": "time off"
+            }
+          ]
+        },
+        {
+          "type": "fill_blank",
+          "sentence": "Nous ___ visiter le Nouveau-Brunswick en septembre. (are going to)",
+          "answer": "allons",
+          "options": [
+            "allons",
+            "sommes",
+            "avons",
+            "faisons"
+          ]
+        },
+        {
+          "type": "mcq",
+          "question": "« Fin de semaine » in Québec most often means:",
+          "options": [
+            "weekend",
+            "end of the work week only",
+            "Friday only",
+            "holiday Monday"
+          ],
+          "answer_index": 0
+        },
+        {
+          "type": "word_order",
+          "words": [
+            "Je",
+            "vais",
+            "réserver",
+            "l'hôtel",
+            "pour",
+            "ce",
+            "soir."
+          ],
+          "correct_order": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+          ],
+          "translation": "I'm going to book the hotel for tonight."
+        },
+        {
+          "type": "mcq",
+          "question": "« Si tout va bien » introduces:",
+          "options": [
+            "a realistic condition",
+            "a past regret",
+            "a command",
+            "a comparison"
+          ],
+          "answer_index": 0
+        }
+      ]
+    }
+  ],
+  "production_task": {
+    "prompt": "Écris ton programme pour la prochaine fin de semaine ou les vacances (aller + inf. + si + présent au moins une fois).",
+    "example": "Je vais voir mes parents. Si le trafic est léger, j'arrive pour le souper.",
+    "skill": "writing"
+  }
+}

@@ -1,0 +1,185 @@
+{
+  "id": "b2-u9",
+  "level": "B2",
+  "unit_index": 9,
+  "theme": "Si + imparfait (hypotheses)",
+  "estimated_minutes": 26,
+  "steps": [
+    {
+      "type": "vocab_intro",
+      "cards": [
+        {
+          "word": "si + imparfait",
+          "translation": "if + imperfect (hypothesis)",
+          "example": "Si j'avais plus de temps, j'apprendrais l'italien.",
+          "example_translation": "If I had more time I'd learn Italian.",
+          "audio_key": "siimp"
+        },
+        {
+          "word": "conditionnel présent",
+          "translation": "conditional (then-clause)",
+          "example": "Nous voyagerions autrement si les billets étaient moins chers.",
+          "example_translation": "We'd travel differently if tickets were cheaper.",
+          "audio_key": "cond"
+        },
+        {
+          "word": "à ta / votre place",
+          "translation": "in your place",
+          "example": "À votre place, je négocierais une clause de télétravail.",
+          "example_translation": "In your place I'd negotiate a remote-work clause.",
+          "audio_key": "place"
+        },
+        {
+          "word": "en théorie / en pratique",
+          "translation": "in theory / in practice",
+          "example": "En théorie c'est simple; en pratique il y a des contraintes.",
+          "example_translation": "In theory it's simple; in practice there are constraints.",
+          "audio_key": "theorie"
+        },
+        {
+          "word": "hypothèse irréelle",
+          "translation": "counterfactual hypothesis",
+          "example": "C'est une hypothèse irréelle sur le passé.",
+          "example_translation": "It's a counterfactual about the past.",
+          "audio_key": "hypo"
+        },
+        {
+          "word": "sinon",
+          "translation": "otherwise",
+          "example": "Il faut signer avant lundi, sinon l'offre expire.",
+          "example_translation": "You must sign before Monday, otherwise the offer expires.",
+          "audio_key": "sinon"
+        }
+      ]
+    },
+    {
+      "type": "dialogue",
+      "scene": "Conseil de carrière — mentor et mentore",
+      "turns": [
+        {
+          "speaker": "Mentor",
+          "text": "Si tu avais le choix entre deux villes, laquelle privilégierais-tu?",
+          "translation": "If you had the choice between two cities, which would you favor?"
+        },
+        {
+          "speaker": "Inès",
+          "text": "Si les salaires étaient équivalents, je choisirais Montréal pour le réseau culturel.",
+          "translation": "If salaries were equivalent I'd choose Montreal for the cultural network."
+        },
+        {
+          "speaker": "Mentor",
+          "text": "À ta place, je demanderais une entrevue informelle avant d'accepter.",
+          "translation": "In your place I'd ask for an informal interview before accepting."
+        },
+        {
+          "speaker": "Inès",
+          "text": "Oui. Et si l'entreprise refusait la flexibilité, je négocierais au moins les horaires.",
+          "translation": "Yes. And if the company refused flexibility, I'd at least negotiate hours."
+        }
+      ]
+    },
+    {
+      "type": "grammar_tip",
+      "rule": "Hypothèse présente irréelle : si + imparfait, résultat au conditionnel (« si j'étais riche, j'achèterais… »). Pour le passé : si + plus-que-parfait + conditionnel passé (niveau C1 parfois). Ne dis pas *si j'aurais.",
+      "examples": [
+        {
+          "fr": "Si nous partions plus tôt, nous éviterions le trafic.",
+          "en": "If we left earlier we'd avoid traffic."
+        },
+        {
+          "fr": "Que ferais-tu si on te proposait un transfert à Vancouver?",
+          "en": "What would you do if you were offered a transfer to Vancouver?"
+        }
+      ]
+    },
+    {
+      "type": "practice",
+      "exercises": [
+        {
+          "type": "match_pairs",
+          "instruction": "Match",
+          "pairs": [
+            {
+              "left": "si + imparfait",
+              "right": "hypothetical if-clause"
+            },
+            {
+              "left": "conditionnel",
+              "right": "would … (then clause)"
+            },
+            {
+              "left": "hypothèse irréelle",
+              "right": "counterfactual"
+            },
+            {
+              "left": "sinon",
+              "right": "otherwise"
+            }
+          ]
+        },
+        {
+          "type": "fill_blank",
+          "sentence": "Si j'___ (être) toi, je ___ (accepter) l'offre.",
+          "answer": "étais … accepterais",
+          "options": [
+            "étais … accepterais",
+            "serais … accepte",
+            "suis … accepterai",
+            "avais été … accepte"
+          ]
+        },
+        {
+          "type": "mcq",
+          "question": "Non-standard but common spoken error to avoid in writing:",
+          "options": [
+            "si j'aurais (instead of si j'avais)",
+            "si j'avais",
+            "j'aurais",
+            "nous aurions"
+          ],
+          "answer_index": 0
+        },
+        {
+          "type": "word_order",
+          "words": [
+            "Avec",
+            "un",
+            "budget",
+            "plus",
+            "large,",
+            "nous",
+            "agirions",
+            "vite."
+          ],
+          "correct_order": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+          ],
+          "translation": "With a larger budget we would act quickly."
+        },
+        {
+          "type": "mcq",
+          "question": "« À votre place, je … » typically continues with:",
+          "options": [
+            "conditional",
+            "imperative only",
+            "subjunctive",
+            "infinitive alone"
+          ],
+          "answer_index": 0
+        }
+      ]
+    }
+  ],
+  "production_task": {
+    "prompt": "Cinq phrases hypothétiques sur ta carrière ou tes études (si + imparfait + conditionnel).",
+    "example": "Si je parlais mieux l'espagnol, je postulerais à l'étranger. Si les cours étaient le soir, j'assisterais plus souvent.",
+    "skill": "writing"
+  }
+}

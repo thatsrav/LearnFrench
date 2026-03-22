@@ -1,0 +1,183 @@
+{
+  "id": "b1-u19",
+  "level": "B1",
+  "unit_index": 19,
+  "theme": "Unit 6 Review & Practice",
+  "estimated_minutes": 26,
+  "steps": [
+    {
+      "type": "vocab_intro",
+      "cards": [
+        {
+          "word": "révision des temps du passé",
+          "translation": "review of past tenses",
+          "example": "Passe composé, imparfait, et leurs emplois.",
+          "example_translation": "Passé composé, imparfait, and their uses.",
+          "audio_key": "rev"
+        },
+        {
+          "word": "accords du participe",
+          "translation": "past participle agreement",
+          "example": "Elle est arrivée; les clés qu'elle a perdues.",
+          "example_translation": "She arrived; the keys she lost (f. pl.).",
+          "audio_key": "accord"
+        },
+        {
+          "word": "connecteurs de narration",
+          "translation": "narrative connectors",
+          "example": "Puis, alors, pendant que, soudain.",
+          "example_translation": "Then, so, while, suddenly.",
+          "audio_key": "conn"
+        },
+        {
+          "word": "faits divers et souvenirs",
+          "translation": "news and memories",
+          "example": "Les deux utilisent le passé mais pas pareil.",
+          "example_translation": "Both use the past but not the same way.",
+          "audio_key": "faits"
+        },
+        {
+          "word": "phrase complexe",
+          "translation": "complex sentence",
+          "example": "Bien structurer subordonnées et principales.",
+          "example_translation": "Structure subordinate and main clauses well.",
+          "audio_key": "complexe"
+        },
+        {
+          "word": "objectif 80 %",
+          "translation": "aim for 80%+",
+          "example": "Relis chaque phrase avant de passer à la suite.",
+          "example_translation": "Reread each sentence before moving on.",
+          "audio_key": "obj"
+        }
+      ]
+    },
+    {
+      "type": "dialogue",
+      "scene": "Tutorat — avant un petit examen",
+      "turns": [
+        {
+          "speaker": "Tuteur",
+          "text": "Donne-moi une phrase à l'imparfait pour une habitude, puis une au PC pour une action unique.",
+          "translation": "Give me an imparfait sentence for a habit, then one in PC for a single action."
+        },
+        {
+          "speaker": "Élève",
+          "text": "D'habitude je lisais le journal le matin. Ce matin-là, j'ai vu une nouvelle surprenante.",
+          "translation": "I usually read the paper in the morning. That morning I saw surprising news."
+        },
+        {
+          "speaker": "Tuteur",
+          "text": "Parfait. Et si tu racontes les deux en une phrase avec « pendant que »?",
+          "translation": "Perfect. And if you tell both in one sentence with « pendant que »?"
+        },
+        {
+          "speaker": "Élève",
+          "text": "Pendant que je lisais, mon téléphone a vibré.",
+          "translation": "While I was reading, my phone buzzed."
+        }
+      ]
+    },
+    {
+      "type": "grammar_tip",
+      "rule": "Synthèse B1 passé : imparfait = durée, habitude, description; PC = changement, liste d'actions, événement daté. Vérifie auxiliaire (être vs avoir) et accords avec être.",
+      "examples": [
+        {
+          "fr": "Il était huit heures; les enfants dormaient encore.",
+          "en": "It was eight; the children were still sleeping."
+        },
+        {
+          "fr": "À huit heures pile, le réveil a sonné.",
+          "en": "At eight sharp the alarm rang."
+        }
+      ]
+    },
+    {
+      "type": "practice",
+      "exercises": [
+        {
+          "type": "match_pairs",
+          "instruction": "Match tense to use",
+          "pairs": [
+            {
+              "left": "habit in the past",
+              "right": "imparfait"
+            },
+            {
+              "left": "single completed event",
+              "right": "passé composé"
+            },
+            {
+              "left": "ongoing background when something happens",
+              "right": "imparfait + PC"
+            },
+            {
+              "left": "agreement with être subject",
+              "right": "participe agrees"
+            }
+          ]
+        },
+        {
+          "type": "fill_blank",
+          "sentence": "Quand j'étais ado, je ___ (jouer) au hockey; l'an dernier, j'ai ___ (arrêter).",
+          "answer": "jouais … arrêté",
+          "options": [
+            "jouais … arrêté",
+            "ai joué … arrêtais",
+            "joue … arrête",
+            "jouerai … arrêterai"
+          ]
+        },
+        {
+          "type": "mcq",
+          "question": "« Elles sont ___ à Montréal en 2020 » (arrive — f. plural):",
+          "options": [
+            "arrivées",
+            "arrivés",
+            "arrivé",
+            "arriver"
+          ],
+          "answer_index": 0
+        },
+        {
+          "type": "word_order",
+          "words": [
+            "Pendant",
+            "que",
+            "nous",
+            "discutions,",
+            "il",
+            "a",
+            "neigé."
+          ],
+          "correct_order": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+          ],
+          "translation": "While we were talking, it snowed."
+        },
+        {
+          "type": "mcq",
+          "question": "Which is better for « every Tuesday last year »?",
+          "options": [
+            "Le mardi, je prenais le train.",
+            "Un mardi, j'ai pris le train.",
+            "Je prendrai le train.",
+            "Je prends le train."
+          ],
+          "answer_index": 0
+        }
+      ]
+    }
+  ],
+  "production_task": {
+    "prompt": "Synthèse : 10 phrases qui mélangent souvenirs d'enfance, un fait divers inventé, et une courte conclusion.",
+    "example": "Quand j'avais six ans, nous habitions à Halifax… (suite libre)",
+    "skill": "writing"
+  }
+}

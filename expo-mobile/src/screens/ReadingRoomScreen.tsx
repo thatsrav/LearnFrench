@@ -1,6 +1,16 @@
+import { Ionicons } from '@expo/vector-icons'
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
-import { ActivityIndicator, Alert, Pressable, ScrollView, Text, View } from 'react-native'
-import { LEVEL_ORDER, PASSAGES, type ReadingLevel } from '../content/readingPassages'
+import {
+  ActivityIndicator,
+  Alert,
+  Platform,
+  Pressable,
+  ScrollView,
+  Text,
+  ToastAndroid,
+  View,
+} from 'react-native'
+import { LEVEL_ORDER, PASSAGES, levelFrenchForTts, type ReadingLevel } from '../content/readingPassages'
 import {
   isFrenchCloudTtsConfigured,
   speakFrenchListening,
@@ -10,11 +20,12 @@ import { useTabScreenBottomPadding } from '../lib/screenPadding'
 
 const TTS_ALERT_MESSAGE = 'TTS not available — set EXPO_PUBLIC_API_BASE_URL'
 
-function fullFrenchForScreen(passages: (typeof PASSAGES)['A1']): string {
-  return passages
-    .flatMap((passage) => passage.paragraphs.map((p) => p.fr.trim()))
-    .filter(Boolean)
-    .join(' ')
+function notifyTtsUnavailable() {
+  if (Platform.OS === 'android') {
+    ToastAndroid.show(TTS_ALERT_MESSAGE, ToastAndroid.LONG)
+  } else {
+    Alert.alert('TTS not available', TTS_ALERT_MESSAGE)
+  }
 }
 
 export default function ReadingRoomScreen() {
@@ -46,20 +57,21 @@ export default function ReadingRoomScreen() {
   }, [level, resetTtsUi])
 
   const onListenPress = useCallback(async () => {
-    if (isSpeaking || isTtsLoading) {
+    if (isSpeaking) {
       ttsRunIdRef.current += 1
       await stopFrenchExpoTts()
       resetTtsUi()
       return
     }
+    if (isTtsLoading) return
 
     if (!ttsConfigured) {
-      Alert.alert('TTS not available', TTS_ALERT_MESSAGE)
+      notifyTtsUnavailable()
       return
     }
 
     const runId = ++ttsRunIdRef.current
-    const text = fullFrenchForScreen(content)
+    const text = levelFrenchForTts(content)
     if (!text.trim()) return
 
     setIsTtsLoading(true)
@@ -82,6 +94,8 @@ export default function ReadingRoomScreen() {
       }
     }
   }, [content, isSpeaking, isTtsLoading, resetTtsUi, ttsConfigured])
+
+  const listenDisabled = isTtsLoading && !isSpeaking
 
   return (
     <ScrollView className="flex-1 bg-slate-50" contentContainerStyle={{ padding: 16, paddingBottom: scrollBottomPad }}>
@@ -107,7 +121,9 @@ export default function ReadingRoomScreen() {
             </Pressable>
           )
         })}
+      </ScrollView>
 
+      <View className="mt-3 flex-row flex-wrap items-center gap-2">
         <Pressable
           onPress={() => setTranslationOn((v) => !v)}
           className={['rounded-full px-4 py-2', translationOn ? 'bg-blue-600' : 'bg-slate-200'].join(' ')}
@@ -119,35 +135,34 @@ export default function ReadingRoomScreen() {
 
         <Pressable
           onPress={() => void onListenPress()}
-          disabled={isTtsLoading && !isSpeaking}
+          disabled={listenDisabled}
           className={[
             'flex-row items-center gap-2 rounded-full px-4 py-2',
-            isTtsLoading && !isSpeaking ? 'bg-slate-300' : isSpeaking ? 'bg-slate-800' : 'bg-slate-200',
+            listenDisabled ? 'bg-slate-300' : isSpeaking ? 'bg-slate-800' : 'bg-slate-200',
           ].join(' ')}
         >
-          {isTtsLoading && !isSpeaking ? <ActivityIndicator size="small" color="#1e293b" /> : null}
-          <Text
-            className={[
-              'text-sm font-semibold',
-              isSpeaking ? 'text-white' : 'text-slate-700',
-            ].join(' ')}
-          >
-            {isSpeaking ? 'Stop' : '🔊 Listen'}
+          {isTtsLoading && !isSpeaking ? (
+            <ActivityIndicator size="small" color="#1e293b" />
+          ) : (
+            <Ionicons name={isSpeaking ? 'stop-circle' : 'volume-high'} size={18} color={isSpeaking ? '#fff' : '#334155'} />
+          )}
+          <Text className={['text-sm font-semibold', isSpeaking ? 'text-white' : 'text-slate-700'].join(' ')}>
+            {isSpeaking ? 'Stop' : 'Listen'}
           </Text>
         </Pressable>
-      </ScrollView>
+      </View>
 
       {!ttsConfigured ? (
         <Text className="mt-3 text-xs leading-5 text-amber-800">{TTS_ALERT_MESSAGE}</Text>
       ) : null}
 
       <View className="mt-4 gap-4">
-        {content.map((p, passageIdx) => (
-          <View key={`${p.title}-${passageIdx}`} className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
-            <Text className="text-base font-semibold text-slate-900">{p.title}</Text>
+        {content.map((passage, passageIdx) => (
+          <View key={`${passage.title}-${passageIdx}`} className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
+            <Text className="text-base font-semibold text-slate-900">{passage.title}</Text>
 
             <View className="mt-3">
-              {p.paragraphs.map((para, i) => (
+              {passage.paragraphs.map((para, i) => (
                 <View
                   key={i}
                   className="border-b border-slate-100 py-3 first:pt-0 last:border-b-0 last:pb-0"
@@ -162,9 +177,9 @@ export default function ReadingRoomScreen() {
 
             <View className="mt-4 rounded-xl border border-slate-100 bg-slate-50 p-3">
               <Text className="text-xs font-semibold uppercase tracking-wide text-slate-500">Comprehension</Text>
-              <Text className="mt-1 text-sm text-slate-800">{p.question}</Text>
+              <Text className="mt-1 text-sm text-slate-800">{passage.question}</Text>
               <Text className="mt-2 text-sm text-blue-700">
-                <Text className="font-semibold">Answer:</Text> {p.answer}
+                <Text className="font-semibold">Answer:</Text> {passage.answer}
               </Text>
             </View>
           </View>

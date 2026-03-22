@@ -26,6 +26,7 @@ const LEVEL_FILTER: { label: string; value: CEFRLevel | 'all' }[] = [
   { label: 'A1', value: 'A1' },
   { label: 'A2', value: 'A2' },
   { label: 'B1', value: 'B1' },
+  { label: 'B2', value: 'B2' },
 ]
 
 const LEVEL_PATH_LABEL: Record<CEFRLevel, string> = {
@@ -47,6 +48,11 @@ const UNIT_MINUTES: Record<string, number> = {
   'a1-u3': 14,
   'a1-u4': 14,
   'a1-u5': 13,
+  'a1-u6': 14,
+  'a1-u7': 14,
+  'a1-u8': 14,
+  'a1-u9': 13,
+  'a1-u10': 14,
   'a2-u1': 14,
   'a2-u2': 14,
   'a2-u3': 14,

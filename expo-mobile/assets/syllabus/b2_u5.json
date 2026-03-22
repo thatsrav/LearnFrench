@@ -1,0 +1,185 @@
+{
+  "id": "b2-u5",
+  "level": "B2",
+  "unit_index": 5,
+  "theme": "Polite Disagreement",
+  "estimated_minutes": 22,
+  "steps": [
+    {
+      "type": "vocab_intro",
+      "cards": [
+        {
+          "word": "je vois les choses autrement",
+          "translation": "I see things differently",
+          "example": "Je vois les choses autrement sur la priorité des dépenses.",
+          "example_translation": "I see things differently on spending priorities.",
+          "audio_key": "autrement2"
+        },
+        {
+          "word": "je ne suis pas sûr·e de partager",
+          "translation": "I'm not sure I share (that view)",
+          "example": "Je ne suis pas sûre de partager ton analyse sur les chiffres.",
+          "example_translation": "I'm not sure I share your analysis of the figures.",
+          "audio_key": "partager"
+        },
+        {
+          "word": "pourrait-on envisager …?",
+          "translation": "could we consider …?",
+          "example": "Pourrait-on envisager une phase pilote avant le déploiement?",
+          "example_translation": "Could we consider a pilot phase before rollout?",
+          "audio_key": "envisager"
+        },
+        {
+          "word": "hors de question",
+          "translation": "out of the question (strong)",
+          "example": "Couper le financement est hors de question pour moi.",
+          "example_translation": "Cutting funding is out of the question for me.",
+          "audio_key": "hors"
+        },
+        {
+          "word": "respectueusement",
+          "translation": "respectfully",
+          "example": "Respectueusement, je crois que cette analogie est trompeuse.",
+          "example_translation": "Respectfully I think that analogy is misleading.",
+          "audio_key": "respect"
+        },
+        {
+          "word": "trouver un terrain d'entente",
+          "translation": "find common ground",
+          "example": "Cherchons un terrain d'entente sur les délais.",
+          "example_translation": "Let's find common ground on timelines.",
+          "audio_key": "terrain"
+        }
+      ]
+    },
+    {
+      "type": "dialogue",
+      "scene": "Comité de quartier — projet immobilier",
+      "turns": [
+        {
+          "speaker": "Voisine",
+          "text": "Ce projet augmentera le trafic; c'est évident.",
+          "translation": "This project will increase traffic; it's obvious."
+        },
+        {
+          "speaker": "Promoteur",
+          "text": "Je vois les choses autrement : l'étude prévoit une gestion des accès.",
+          "translation": "I see things differently: the study plans access management."
+        },
+        {
+          "speaker": "Voisine",
+          "text": "Respectueusement, les études sous-estiment souvent l'affluence.",
+          "translation": "Respectfully studies often underestimate crowds."
+        },
+        {
+          "speaker": "Modérateur",
+          "text": "Pourrait-on envisager une rencontre avec les ingénieurs municipaux?",
+          "translation": "Could we consider a meeting with municipal engineers?"
+        }
+      ]
+    },
+    {
+      "type": "grammar_tip",
+      "rule": "Désaccord poli : conditionnel de politesse (« pourrait-on »), adverbes (« respectueusement »), atténuation (« je ne suis pas certain que » + subj.). Évite l'impératif direct quand tu contredis.",
+      "examples": [
+        {
+          "fr": "Je comprends votre point, toutefois les données suggèrent autre chose.",
+          "en": "I understand your point; however the data suggest something else."
+        },
+        {
+          "fr": "Il me semblerait plus juste d'attendre l'avis du comité.",
+          "en": "It would seem fairer to wait for the committee's opinion."
+        }
+      ]
+    },
+    {
+      "type": "practice",
+      "exercises": [
+        {
+          "type": "match_pairs",
+          "instruction": "Match",
+          "pairs": [
+            {
+              "left": "respectueusement",
+              "right": "respectfully"
+            },
+            {
+              "left": "pourrait-on",
+              "right": "could we (polite)"
+            },
+            {
+              "left": "terrain d'entente",
+              "right": "common ground"
+            },
+            {
+              "left": "hors de question",
+              "right": "out of the question"
+            }
+          ]
+        },
+        {
+          "type": "fill_blank",
+          "sentence": "___ , votre comparaison mérite discussion.",
+          "answer": "Respectueusement",
+          "options": [
+            "Respectueusement",
+            "Brutalement",
+            "Silencieusement",
+            "Évidemment"
+          ]
+        },
+        {
+          "type": "mcq",
+          "question": "Soft disagreement starter:",
+          "options": [
+            "Je ne suis pas sûr de partager cette conclusion.",
+            "Tu te trompes complètement.",
+            "Tais-toi.",
+            "C'est faux, point."
+          ],
+          "answer_index": 0
+        },
+        {
+          "type": "word_order",
+          "words": [
+            "Pourrait-on",
+            "reporter",
+            "la",
+            "décision",
+            "d'",
+            "une",
+            "semaine",
+            "?"
+          ],
+          "correct_order": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+          ],
+          "translation": "Could we postpone the decision by one week?"
+        },
+        {
+          "type": "mcq",
+          "question": "« Trouver un terrain d'entente » means:",
+          "options": [
+            "find shared acceptable ground",
+            "buy land",
+            "end the meeting",
+            "reject all proposals"
+          ],
+          "answer_index": 0
+        }
+      ]
+    }
+  ],
+  "production_task": {
+    "prompt": "Écris un échange de 6 répliques : désaccord poli sur les logements étudiants (respectueusement, pourrait-on, je vois les choses autrement).",
+    "example": "— Il faut interdire les tours. — Je vois les choses autrement : la densité peut financer des parcs…",
+    "skill": "writing"
+  }
+}

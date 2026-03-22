@@ -1,0 +1,181 @@
+{
+  "id": "b1-u2",
+  "level": "B1",
+  "unit_index": 2,
+  "theme": "Buying Tickets",
+  "estimated_minutes": 18,
+  "steps": [
+    {
+      "type": "vocab_intro",
+      "cards": [
+        {
+          "word": "l'aller simple",
+          "translation": "one-way (ticket)",
+          "example": "Je prends un aller simple pour Sherbrooke.",
+          "example_translation": "I'm taking a one-way to Sherbrooke.",
+          "audio_key": "aller"
+        },
+        {
+          "word": "l'aller-retour",
+          "translation": "round trip",
+          "example": "Un aller-retour coûte moins cher le mardi.",
+          "example_translation": "A round trip costs less on Tuesday.",
+          "audio_key": "retour"
+        },
+        {
+          "word": "le tarif réduit",
+          "translation": "reduced fare",
+          "example": "Le tarif réduit s'applique aux 65 ans et plus.",
+          "example_translation": "The reduced fare applies to ages 65+.",
+          "audio_key": "tarif"
+        },
+        {
+          "word": "réserver en ligne",
+          "translation": "to book online",
+          "example": "On a réservé en ligne avec une carte de crédit.",
+          "example_translation": "We booked online with a credit card.",
+          "audio_key": "reserver"
+        },
+        {
+          "word": "le siège côté couloir / fenêtre",
+          "translation": "aisle / window seat",
+          "example": "Je préfère un siège côté fenêtre.",
+          "example_translation": "I prefer a window seat.",
+          "audio_key": "siege"
+        },
+        {
+          "word": "non remboursable",
+          "translation": "non-refundable",
+          "example": "Ce billet est non remboursable mais modifiable.",
+          "example_translation": "This ticket is non-refundable but changeable.",
+          "audio_key": "rembours"
+        }
+      ]
+    },
+    {
+      "type": "dialogue",
+      "scene": "Gare Centrale — guichet VIA Rail",
+      "turns": [
+        {
+          "speaker": "Clara",
+          "text": "Bonjour, je voudrais un aller-retour pour Toronto, départ samedi matin.",
+          "translation": "Hi, I'd like a round trip to Toronto, leaving Saturday morning."
+        },
+        {
+          "speaker": "Agent",
+          "text": "Place affaires ou économique? Et voulez-vous un tarif réduit?",
+          "translation": "Business or economy? And do you want a reduced fare?"
+        },
+        {
+          "speaker": "Clara",
+          "text": "Économique, tarif plein. C'est remboursable si j'annule?",
+          "translation": "Economy, full fare. Is it refundable if I cancel?"
+        },
+        {
+          "speaker": "Agent",
+          "text": "C'est modifiable avec des frais; non remboursable. Je vous envoie le billet par courriel.",
+          "translation": "It's changeable with a fee; non-refundable. I'll email you the ticket."
+        }
+      ]
+    },
+    {
+      "type": "grammar_tip",
+      "rule": "« Vouloir » + article + noun: « je voudrais un billet » (polite). « Coûter »: « ça coûte combien? » Pour les conditions, « si j'annule » + présent ou futur selon le contexte.",
+      "examples": [
+        {
+          "fr": "Je voudrais réserver deux places côté couloir.",
+          "en": "I'd like to book two aisle seats."
+        },
+        {
+          "fr": "Le billet coûte quatre-vingts dollars, taxes incluses.",
+          "en": "The ticket costs eighty dollars, tax included."
+        }
+      ]
+    },
+    {
+      "type": "practice",
+      "exercises": [
+        {
+          "type": "match_pairs",
+          "instruction": "Match",
+          "pairs": [
+            {
+              "left": "aller simple",
+              "right": "one-way"
+            },
+            {
+              "left": "aller-retour",
+              "right": "round trip"
+            },
+            {
+              "left": "tarif réduit",
+              "right": "reduced fare"
+            },
+            {
+              "left": "non remboursable",
+              "right": "non-refundable"
+            }
+          ]
+        },
+        {
+          "type": "fill_blank",
+          "sentence": "Nous avons acheté un ___ pour la fin de semaine. (round trip)",
+          "answer": "aller-retour",
+          "options": [
+            "aller-retour",
+            "aller simple",
+            "courriel",
+            "retard"
+          ]
+        },
+        {
+          "type": "mcq",
+          "question": "Polite way to start at the counter:",
+          "options": [
+            "Je voudrais un billet, s'il vous plaît.",
+            "Donne-moi un billet.",
+            "J'ai besoin billet maintenant.",
+            "Billet, vite."
+          ],
+          "answer_index": 0
+        },
+        {
+          "type": "word_order",
+          "words": [
+            "Je",
+            "reçois",
+            "le",
+            "billet",
+            "par",
+            "courriel."
+          ],
+          "correct_order": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "translation": "I receive the ticket by email."
+        },
+        {
+          "type": "mcq",
+          "question": "« Siège côté fenêtre » means:",
+          "options": [
+            "window seat",
+            "aisle seat",
+            "exit row",
+            "standing room"
+          ],
+          "answer_index": 0
+        }
+      ]
+    }
+  ],
+  "production_task": {
+    "prompt": "Rédige un mini-dialogue : tu achètes un aller simple ou aller-retour et tu poses une question sur remboursement ou modification.",
+    "example": "— Je voudrais un aller simple pour Québec. — C'est modifiable? — Oui, avec des frais de quinze dollars.",
+    "skill": "writing"
+  }
+}

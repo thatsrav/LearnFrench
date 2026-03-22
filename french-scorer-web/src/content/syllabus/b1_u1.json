@@ -1,0 +1,191 @@
+{
+  "id": "b1-u1",
+  "level": "B1",
+  "unit_index": 1,
+  "theme": "Airports and Stations",
+  "estimated_minutes": 20,
+  "steps": [
+    {
+      "type": "vocab_intro",
+      "cards": [
+        {
+          "word": "l'embarquement",
+          "translation": "boarding",
+          "example": "L'embarquement commence dans vingt minutes.",
+          "example_translation": "Boarding starts in twenty minutes.",
+          "audio_key": "embarquement"
+        },
+        {
+          "word": "la porte d'embarquement",
+          "translation": "gate",
+          "example": "Notre vol part de la porte C24.",
+          "example_translation": "Our flight leaves from gate C24.",
+          "audio_key": "porte"
+        },
+        {
+          "word": "le bagage à main",
+          "translation": "carry-on",
+          "example": "Un seul bagage à main est inclus.",
+          "example_translation": "Only one carry-on is included.",
+          "audio_key": "bagage"
+        },
+        {
+          "word": "le retard",
+          "translation": "delay",
+          "example": "Il y a un retard de quarante minutes à cause de la météo.",
+          "example_translation": "There's a forty-minute delay because of the weather.",
+          "audio_key": "retard"
+        },
+        {
+          "word": "la correspondance",
+          "translation": "connection",
+          "example": "J'ai une correspondance serrée à Toronto.",
+          "example_translation": "I have a tight connection in Toronto.",
+          "audio_key": "correspondance"
+        },
+        {
+          "word": "le guichet",
+          "translation": "ticket counter / window",
+          "example": "Passe au guichet pour changer ton billet.",
+          "example_translation": "Go to the counter to change your ticket.",
+          "audio_key": "guichet"
+        }
+      ]
+    },
+    {
+      "type": "dialogue",
+      "scene": "Aéroport Trudeau — vol vers Québec",
+      "turns": [
+        {
+          "speaker": "Agent",
+          "text": "Bonjour. Votre passeport et votre carte d'embarquement, s'il vous plaît.",
+          "translation": "Hello. Your passport and boarding pass, please."
+        },
+        {
+          "speaker": "Alex",
+          "text": "Voilà. Est-ce que le vol est à l'heure? J'ai entendu parler d'un retard.",
+          "translation": "Here you go. Is the flight on time? I heard there was a delay."
+        },
+        {
+          "speaker": "Agent",
+          "text": "Pour l'instant, vingt minutes de retard. La porte d'embarquement est la C12; surveillez les écrans.",
+          "translation": "For now, twenty minutes late. The gate is C12; watch the screens."
+        },
+        {
+          "speaker": "Alex",
+          "text": "Merci. Et si je rate ma correspondance à Toronto?",
+          "translation": "Thanks. And if I miss my connection in Toronto?"
+        },
+        {
+          "speaker": "Agent",
+          "text": "Allez au comptoir de la compagnie; on peut vous rebooker sur le prochain vol.",
+          "translation": "Go to the airline counter; they can rebook you on the next flight."
+        }
+      ]
+    },
+    {
+      "type": "grammar_tip",
+      "rule": "Pour parler d'un vol, utilise « être en retard » (subj: le vol) ou « avoir un retard ». Au Québec on dit souvent « carte d'embarquement » comme ailleurs; « courriel » pour l'email de confirmation.",
+      "examples": [
+        {
+          "fr": "Le vol est en retard à cause du brouillard.",
+          "en": "The flight is late because of fog."
+        },
+        {
+          "fr": "Nous avons eu un retard de deux heures à Montréal.",
+          "en": "We had a two-hour delay in Montreal."
+        }
+      ]
+    },
+    {
+      "type": "practice",
+      "exercises": [
+        {
+          "type": "match_pairs",
+          "instruction": "Match French to English",
+          "pairs": [
+            {
+              "left": "la correspondance",
+              "right": "connection"
+            },
+            {
+              "left": "le bagage à main",
+              "right": "carry-on"
+            },
+            {
+              "left": "la porte d'embarquement",
+              "right": "gate"
+            },
+            {
+              "left": "le retard",
+              "right": "delay"
+            }
+          ]
+        },
+        {
+          "type": "fill_blank",
+          "sentence": "Mon vol a trente minutes de ___. (delay)",
+          "answer": "retard",
+          "options": [
+            "retard",
+            "porte",
+            "vol",
+            "train"
+          ],
+          "hint": "Masculine noun"
+        },
+        {
+          "type": "mcq",
+          "question": "How do you say « boarding » (noun) in formal travel French?",
+          "options": [
+            "l'embarquement",
+            "l'embarcation",
+            "l'embarquage",
+            "l'embarcadère"
+          ],
+          "answer_index": 0
+        },
+        {
+          "type": "word_order",
+          "words": [
+            "Est-ce",
+            "que",
+            "notre",
+            "vol",
+            "est",
+            "à",
+            "l'heure",
+            "?"
+          ],
+          "correct_order": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+          ],
+          "translation": "Is our flight on time?"
+        },
+        {
+          "type": "mcq",
+          "question": "Best phrase for « tight connection »?",
+          "options": [
+            "une correspondance serrée",
+            "un bagage serré",
+            "une porte serrée",
+            "un guichet serré"
+          ],
+          "answer_index": 0
+        }
+      ]
+    }
+  ],
+  "production_task": {
+    "prompt": "Écris 3 phrases : tu arrives à l'aéroport, tu demandes si le vol a du retard, tu mentionnes ta correspondance.",
+    "example": "Je viens d'arriver. Est-ce que le vol pour Ottawa a du retard? J'ai une correspondance dans deux heures.",
+    "skill": "writing"
+  }
+}

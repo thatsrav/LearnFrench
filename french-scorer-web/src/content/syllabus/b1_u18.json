@@ -1,0 +1,181 @@
+{
+  "id": "b1-u18",
+  "level": "B1",
+  "unit_index": 18,
+  "theme": "Written Narratives",
+  "estimated_minutes": 24,
+  "steps": [
+    {
+      "type": "vocab_intro",
+      "cards": [
+        {
+          "word": "dans un premier temps",
+          "translation": "first / initially",
+          "example": "Dans un premier temps, décris le lieu et l'heure.",
+          "example_translation": "First, describe the place and time.",
+          "audio_key": "premier"
+        },
+        {
+          "word": "ensuite / par la suite",
+          "translation": "then / subsequently",
+          "example": "Par la suite, explique le problème principal.",
+          "example_translation": "Then explain the main problem.",
+          "audio_key": "suite"
+        },
+        {
+          "word": "en conclusion",
+          "translation": "in conclusion",
+          "example": "En conclusion, dis ce que tu as appris.",
+          "example_translation": "In conclusion, say what you learned.",
+          "audio_key": "conclu"
+        },
+        {
+          "word": "utiliser des temps du passé",
+          "translation": "use past tenses",
+          "example": "Varie passé composé et imparfait pour nuancer.",
+          "example_translation": "Vary passé composé and imparfait for nuance.",
+          "audio_key": "temps"
+        },
+        {
+          "word": "relecture",
+          "translation": "proofreading",
+          "example": "Fais une relecture des accords et des prépositions.",
+          "example_translation": "Proofread agreements and prepositions.",
+          "audio_key": "relecture"
+        },
+        {
+          "word": "structurer le texte",
+          "translation": "structure the text",
+          "example": "Un bon texte a introduction, développement, conclusion.",
+          "example_translation": "A good text has intro, body, conclusion.",
+          "audio_key": "struct"
+        }
+      ]
+    },
+    {
+      "type": "dialogue",
+      "scene": "Atelier d'écriture — prof et étudiant",
+      "turns": [
+        {
+          "speaker": "Prof",
+          "text": "Ton récit manque de cadre temporel. Dans un premier temps, situe-nous : quand et où?",
+          "translation": "Your narrative lacks a time frame. First situate us: when and where?"
+        },
+        {
+          "speaker": "Étudiant",
+          "text": "OK. C'était un mercredi d'octobre; j'étais seul dans la bibliothèque.",
+          "translation": "OK. It was a Wednesday in October; I was alone in the library."
+        },
+        {
+          "speaker": "Prof",
+          "text": "Bien. Ensuite, l'événement déclencheur au passé composé.",
+          "translation": "Good. Then the triggering event in passé composé."
+        },
+        {
+          "speaker": "Étudiant",
+          "text": "Soudain, l'alarme a sonné; tout le monde est sorti calmement.",
+          "translation": "Suddenly the alarm rang; everyone left calmly."
+        }
+      ]
+    },
+    {
+      "type": "grammar_tip",
+      "rule": "Récit écrit : paragraphes courts, temps cohérents, connecteurs logiques (d'abord, ensuite, finalement, cependant). Vérifie accords des participes passés avec être et avec COD avant le verbe.",
+      "examples": [
+        {
+          "fr": "Finalement, j'ai compris que j'avais tort.",
+          "en": "Finally I understood I was wrong."
+        },
+        {
+          "fr": "Les livres que j'avais empruntés étaient encore sur la table.",
+          "en": "The books I had borrowed were still on the table."
+        }
+      ]
+    },
+    {
+      "type": "practice",
+      "exercises": [
+        {
+          "type": "match_pairs",
+          "instruction": "Match",
+          "pairs": [
+            {
+              "left": "introduction",
+              "right": "opening / setup"
+            },
+            {
+              "left": "en conclusion",
+              "right": "in conclusion"
+            },
+            {
+              "left": "relecture",
+              "right": "proofreading"
+            },
+            {
+              "left": "développement",
+              "right": "main body"
+            }
+          ]
+        },
+        {
+          "type": "fill_blank",
+          "sentence": "___ , résume les faits principaux en deux phrases.",
+          "answer": "En conclusion",
+          "options": [
+            "En conclusion",
+            "Dans un premier temps",
+            "Soudain",
+            "Pendant que"
+          ]
+        },
+        {
+          "type": "mcq",
+          "question": "« Les lettres qu'elle a ___ » (write — f. plural agreement):",
+          "options": [
+            "écrites",
+            "écrit",
+            "écrits",
+            "écrivant"
+          ],
+          "answer_index": 0
+        },
+        {
+          "type": "word_order",
+          "words": [
+            "D'abord,",
+            "décris",
+            "le",
+            "cadre",
+            "du",
+            "récit."
+          ],
+          "correct_order": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "translation": "First, describe the setting of the story."
+        },
+        {
+          "type": "mcq",
+          "question": "Good narrative pacing often uses:",
+          "options": [
+            "mix of imparfait (background) and passé composé (events)",
+            "only present tense",
+            "only future",
+            "only infinitives"
+          ],
+          "answer_index": 0
+        }
+      ]
+    }
+  ],
+  "production_task": {
+    "prompt": "Écris un récit de 120–150 mots : introduction, au moins deux événements au PC, cadre à l'imparfait, conclusion.",
+    "example": "(Modèle) C'était en 2019. Je préparais un examen quand j'ai reçu un message inattendu…",
+    "skill": "writing"
+  }
+}

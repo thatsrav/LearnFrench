@@ -1,0 +1,186 @@
+{
+  "id": "b1-u15",
+  "level": "B1",
+  "unit_index": 15,
+  "theme": "Telling a Story",
+  "estimated_minutes": 23,
+  "steps": [
+    {
+      "type": "vocab_intro",
+      "cards": [
+        {
+          "word": "d'abord · ensuite · puis · enfin",
+          "translation": "first · then · then · finally",
+          "example": "D'abord le calme, puis le bruit, enfin le silence.",
+          "example_translation": "First calm, then noise, finally silence.",
+          "audio_key": "ensuite"
+        },
+        {
+          "word": "soudain · tout à coup",
+          "translation": "suddenly",
+          "example": "Soudain, la porte s'est ouverte sans bruit.",
+          "example_translation": "Suddenly the door opened quietly.",
+          "audio_key": "soudain2"
+        },
+        {
+          "word": "alors que",
+          "translation": "while / whereas",
+          "example": "Alors que je payais, quelqu'un a pris mon sac.",
+          "example_translation": "While I was paying, someone took my bag.",
+          "audio_key": "alors"
+        },
+        {
+          "word": "finalement / au final",
+          "translation": "in the end",
+          "example": "Au final, tout s'est bien passé.",
+          "example_translation": "In the end everything went fine.",
+          "audio_key": "final"
+        },
+        {
+          "word": "le dénouement",
+          "translation": "resolution (of a story)",
+          "example": "Le dénouement, c'est quand on comprend le mystère.",
+          "example_translation": "The resolution is when we understand the mystery.",
+          "audio_key": "denoue"
+        },
+        {
+          "word": "raconter une histoire",
+          "translation": "to tell a story",
+          "example": "Il raconte toujours ses histoires avec humour.",
+          "example_translation": "He always tells his stories with humor.",
+          "audio_key": "raconter"
+        }
+      ]
+    },
+    {
+      "type": "dialogue",
+      "scene": "Autour d'un feu — histoire courte",
+      "turns": [
+        {
+          "speaker": "Grand-père",
+          "text": "D'abord, il faisait noir dans le bois. On entendait juste le vent.",
+          "translation": "First it was dark in the woods. We only heard the wind."
+        },
+        {
+          "speaker": "Petit-fils",
+          "text": "Et alors?",
+          "translation": "And then?"
+        },
+        {
+          "speaker": "Grand-père",
+          "text": "Ensuite, un bruit étrange nous a fait sursauter. Puis un coyote est apparu, puis il est reparti.",
+          "translation": "Then a strange noise made us jump. Then a coyote appeared, then it left."
+        },
+        {
+          "speaker": "Petit-fils",
+          "text": "Enfin tu plaisantes!",
+          "translation": "You're kidding in the end!"
+        },
+        {
+          "speaker": "Grand-père",
+          "text": "Un peu. Mais j'ai vraiment eu peur ce soir-là!",
+          "translation": "A little. But I was really scared that evening!"
+        }
+      ]
+    },
+    {
+      "type": "grammar_tip",
+      "rule": "Connecteurs de récit : enchaîne PC pour actions successives (« il est entré, il a parlé, il est parti ») et imparfait pour ambiance (« il pleuvait », « les enfants dormaient »).",
+      "examples": [
+        {
+          "fr": "Puis elle a ouvert la lettre et elle a souri.",
+          "en": "Then she opened the letter and she smiled."
+        },
+        {
+          "fr": "Pendant ce temps, les invités attendaient dans le salon.",
+          "en": "Meanwhile the guests were waiting in the living room."
+        }
+      ]
+    },
+    {
+      "type": "practice",
+      "exercises": [
+        {
+          "type": "match_pairs",
+          "instruction": "Match",
+          "pairs": [
+            {
+              "left": "d'abord",
+              "right": "first"
+            },
+            {
+              "left": "ensuite",
+              "right": "then / next"
+            },
+            {
+              "left": "soudain",
+              "right": "suddenly"
+            },
+            {
+              "left": "enfin",
+              "right": "finally"
+            }
+          ]
+        },
+        {
+          "type": "fill_blank",
+          "sentence": "___ , nous avons cherché nos gants; ___ nous sommes sortis. (First … then)",
+          "answer": "D'abord … puis",
+          "options": [
+            "D'abord … puis",
+            "Puis … d'abord",
+            "Soudain … enfin",
+            "Enfin … pendant"
+          ]
+        },
+        {
+          "type": "mcq",
+          "question": "« Alors que » can introduce:",
+          "options": [
+            "contrast or simultaneous background",
+            "only future time",
+            "only commands",
+            "only negation"
+          ],
+          "answer_index": 0
+        },
+        {
+          "type": "word_order",
+          "words": [
+            "Puis",
+            "elle",
+            "a",
+            "raconté",
+            "toute",
+            "l'histoire."
+          ],
+          "correct_order": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "translation": "Then she told the whole story."
+        },
+        {
+          "type": "mcq",
+          "question": "For a sequence of completed story beats, prefer:",
+          "options": [
+            "passé composé",
+            "only imparfait",
+            "only infinitives",
+            "subjunctive"
+          ],
+          "answer_index": 0
+        }
+      ]
+    }
+  ],
+  "production_task": {
+    "prompt": "Mini-récit (8 phrases) avec connecteurs et mélange PC / imparfait.",
+    "example": "C'était un mardi. Il pleuvait. D'abord j'ai raté le bus. Ensuite j'ai marché vite. Soudain, j'ai vu un ami. Enfin je suis arrivé à l'heure.",
+    "skill": "writing"
+  }
+}

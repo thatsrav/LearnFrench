@@ -1,0 +1,186 @@
+{
+  "id": "b1-u4",
+  "level": "B1",
+  "unit_index": 4,
+  "theme": "Hotel Check-in",
+  "estimated_minutes": 19,
+  "steps": [
+    {
+      "type": "vocab_intro",
+      "cards": [
+        {
+          "word": "la réception",
+          "translation": "front desk / reception",
+          "example": "La réception est au premier étage.",
+          "example_translation": "Reception is on the first floor.",
+          "audio_key": "reception"
+        },
+        {
+          "word": "la clé / la carte-clé",
+          "translation": "key / key card",
+          "example": "Voici votre carte-clé pour la chambre 512.",
+          "example_translation": "Here's your key card for room 512.",
+          "audio_key": "cle"
+        },
+        {
+          "word": "la réservation",
+          "translation": "reservation",
+          "example": "J'ai une réservation au nom de Nguyen.",
+          "example_translation": "I have a reservation under the name Nguyen.",
+          "audio_key": "reservation"
+        },
+        {
+          "word": "le petit-déjeuner inclus",
+          "translation": "breakfast included",
+          "example": "Le petit-déjeuner est inclus jusqu'à dix heures.",
+          "example_translation": "Breakfast is included until ten.",
+          "audio_key": "dejeuner"
+        },
+        {
+          "word": "une chambre avec vue",
+          "translation": "a room with a view",
+          "example": "Est-ce possible d'avoir une chambre avec vue sur le fleuve?",
+          "example_translation": "Is it possible to have a room with a river view?",
+          "audio_key": "vue"
+        },
+        {
+          "word": "le problème / la réclamation",
+          "translation": "problem / complaint",
+          "example": "Je voudrais faire une réclamation : la douche ne fonctionne pas.",
+          "example_translation": "I'd like to make a complaint: the shower doesn't work.",
+          "audio_key": "reclamation"
+        }
+      ]
+    },
+    {
+      "type": "dialogue",
+      "scene": "Hôtel centre-ville Montréal",
+      "turns": [
+        {
+          "speaker": "Réceptionniste",
+          "text": "Bonsoir, bienvenue. Vous avez une réservation?",
+          "translation": "Good evening, welcome. Do you have a reservation?"
+        },
+        {
+          "speaker": "Mira",
+          "text": "Oui, deux nuits au nom de Mira Lavoie. Le courriel de confirmation est sur mon téléphone.",
+          "translation": "Yes, two nights under Mira Lavoie. The confirmation email is on my phone."
+        },
+        {
+          "speaker": "Réceptionniste",
+          "text": "Parfait. Chambre 807, étage huit. Petit-déjeuner inclus au septième, de six heures à dix heures.",
+          "translation": "Perfect. Room 807, eighth floor. Breakfast included on the seventh, from six to ten."
+        },
+        {
+          "speaker": "Mira",
+          "text": "Merci. La climatisation est réglable? Il fait très chaud.",
+          "translation": "Thanks. Is the AC adjustable? It's very hot."
+        },
+        {
+          "speaker": "Réceptionniste",
+          "text": "Oui; si ça ne marche pas, composez zéro depuis la chambre.",
+          "translation": "Yes; if it doesn't work, dial zero from the room."
+        }
+      ]
+    },
+    {
+      "type": "grammar_tip",
+      "rule": "« Avoir une réservation au nom de… ». Étages : au Canada on compte souvent le « premier étage » comme le premier niveau au-dessus du rez-de-chaussée (comme en français européen). « Inclus » invariable quand adjectif après le nom.",
+      "examples": [
+        {
+          "fr": "Nous avons réservé une chambre double avec petit-déjeuner.",
+          "en": "We booked a double room with breakfast."
+        },
+        {
+          "fr": "Je voudrais changer de chambre : le bruit de la rue est fort.",
+          "en": "I'd like to change rooms: the street noise is loud."
+        }
+      ]
+    },
+    {
+      "type": "practice",
+      "exercises": [
+        {
+          "type": "match_pairs",
+          "instruction": "Match",
+          "pairs": [
+            {
+              "left": "la réservation",
+              "right": "reservation"
+            },
+            {
+              "left": "la carte-clé",
+              "right": "key card"
+            },
+            {
+              "left": "petit-déjeuner inclus",
+              "right": "breakfast included"
+            },
+            {
+              "left": "la réclamation",
+              "right": "complaint"
+            }
+          ]
+        },
+        {
+          "type": "fill_blank",
+          "sentence": "J'ai une ___ au nom de Dubois. (reservation)",
+          "answer": "réservation",
+          "options": [
+            "réservation",
+            "réclamation",
+            "réception",
+            "réduction"
+          ]
+        },
+        {
+          "type": "mcq",
+          "question": "You want to say the shower is broken. Best opening:",
+          "options": [
+            "Il y a un problème : la douche ne marche pas.",
+            "La douche est stupide.",
+            "Donnez-moi une autre douche maintenant.",
+            "Je déteste votre hôtel."
+          ],
+          "answer_index": 0
+        },
+        {
+          "type": "word_order",
+          "words": [
+            "Voici",
+            "la",
+            "carte-clé",
+            "pour",
+            "votre",
+            "chambre."
+          ],
+          "correct_order": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "translation": "Here is your key card for the room."
+        },
+        {
+          "type": "mcq",
+          "question": "« Réception » in a hotel is:",
+          "options": [
+            "front desk",
+            "kitchen",
+            "gym",
+            "parking lot"
+          ],
+          "answer_index": 0
+        }
+      ]
+    }
+  ],
+  "production_task": {
+    "prompt": "Message à la réception : tu signales un problème (bruit, température, douche) en restant poli.",
+    "example": "Bonjour, je suis dans la chambre 412. La climatisation ne refroidit pas; pourriez-vous envoyer quelqu'un?",
+    "skill": "writing"
+  }
+}

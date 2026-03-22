@@ -1,0 +1,183 @@
+{
+  "id": "b1-u12",
+  "level": "B1",
+  "unit_index": 12,
+  "theme": "Common Irregular Participles",
+  "estimated_minutes": 21,
+  "steps": [
+    {
+      "type": "vocab_intro",
+      "cards": [
+        {
+          "word": "faire → fait",
+          "translation": "to do → done",
+          "example": "J'ai fait mes devoirs avant le film.",
+          "example_translation": "I did my homework before the movie.",
+          "audio_key": "fait"
+        },
+        {
+          "word": "voir → vu",
+          "translation": "to see → seen",
+          "example": "As-tu vu le nouveau reportage?",
+          "example_translation": "Did you see the new report?",
+          "audio_key": "vu"
+        },
+        {
+          "word": "prendre → pris",
+          "translation": "to take → taken",
+          "example": "Nous avons pris le métro à l'heure de pointe.",
+          "example_translation": "We took the metro at rush hour.",
+          "audio_key": "pris"
+        },
+        {
+          "word": "écrire → écrit",
+          "translation": "to write → written",
+          "example": "Il a écrit un courriel très clair.",
+          "example_translation": "He wrote a very clear email.",
+          "audio_key": "ecrit"
+        },
+        {
+          "word": "mettre → mis",
+          "translation": "to put → put",
+          "example": "J'ai mis les clés sur la table.",
+          "example_translation": "I put the keys on the table.",
+          "audio_key": "mis"
+        },
+        {
+          "word": "ouvrir → ouvert",
+          "translation": "to open → opened",
+          "example": "Elle a ouvert la fenêtre; il faisait chaud.",
+          "example_translation": "She opened the window; it was hot.",
+          "audio_key": "ouvert"
+        }
+      ]
+    },
+    {
+      "type": "dialogue",
+      "scene": "Bureau — retour de congé",
+      "turns": [
+        {
+          "speaker": "Pat",
+          "text": "Tu as vu les chiffres du trimestre? J'ai fait un résumé rapide.",
+          "translation": "Did you see the quarter numbers? I made a quick summary."
+        },
+        {
+          "speaker": "Inès",
+          "text": "Pas encore. J'ai écrit au client pendant que tu étais en réunion.",
+          "translation": "Not yet. I wrote to the client while you were in a meeting."
+        },
+        {
+          "speaker": "Pat",
+          "text": "Super. J'ai mis les documents sur le serveur partagé.",
+          "translation": "Great. I put the documents on the shared drive."
+        },
+        {
+          "speaker": "Inès",
+          "text": "Parfait. On a pris de l'avance pour une fois!",
+          "translation": "Perfect. We got ahead for once!"
+        }
+      ]
+    },
+    {
+      "type": "grammar_tip",
+      "rule": "Participes irréguliers fréquents : voir/vu, faire/fait, prendre/pris, dire/dit, écrire/écrit, mettre/mis. Ils s'emploient avec avoir sauf cas pronominaux ou être (aller/allé).",
+      "examples": [
+        {
+          "fr": "Qu'est-ce que tu as dit au directeur?",
+          "en": "What did you say to the director?"
+        },
+        {
+          "fr": "Ils ont dit oui, puis ils ont tout changé.",
+          "en": "They said yes, then they changed everything."
+        }
+      ]
+    },
+    {
+      "type": "practice",
+      "exercises": [
+        {
+          "type": "match_pairs",
+          "instruction": "Match infinitive → participe",
+          "pairs": [
+            {
+              "left": "voir",
+              "right": "vu"
+            },
+            {
+              "left": "faire",
+              "right": "fait"
+            },
+            {
+              "left": "prendre",
+              "right": "pris"
+            },
+            {
+              "left": "écrire",
+              "right": "écrit"
+            }
+          ]
+        },
+        {
+          "type": "fill_blank",
+          "sentence": "Nous avons ___ le train de six heures. (taken)",
+          "answer": "pris",
+          "options": [
+            "pris",
+            "prises",
+            "prendre",
+            "prirent"
+          ]
+        },
+        {
+          "type": "mcq",
+          "question": "Past participle of « mettre »:",
+          "options": [
+            "mis",
+            "mettu",
+            "metté",
+            "mettant"
+          ],
+          "answer_index": 0
+        },
+        {
+          "type": "word_order",
+          "words": [
+            "Tu",
+            "as",
+            "vu",
+            "le",
+            "nouveau",
+            "horaire",
+            "?"
+          ],
+          "correct_order": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+          ],
+          "translation": "Did you see the new schedule?"
+        },
+        {
+          "type": "mcq",
+          "question": "« Elle a ___ un roman » (write):",
+          "options": [
+            "écrit",
+            "écrivé",
+            "écrite",
+            "écrivit"
+          ],
+          "answer_index": 0
+        }
+      ]
+    }
+  ],
+  "production_task": {
+    "prompt": "Six phrases avec des participes irréguliers (faire, voir, prendre, dire, écrire, mettre).",
+    "example": "J'ai fait une liste. J'ai vu ton message. J'ai pris un café. Tu as dit quoi? J'ai écrit à la banque. J'ai mis le dossier ici.",
+    "skill": "writing"
+  }
+}

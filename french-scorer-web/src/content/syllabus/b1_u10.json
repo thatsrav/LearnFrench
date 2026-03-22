@@ -1,0 +1,184 @@
+{
+  "id": "b1-u10",
+  "level": "B1",
+  "unit_index": 10,
+  "theme": "Unit 5 Review & Practice",
+  "estimated_minutes": 24,
+  "steps": [
+    {
+      "type": "vocab_intro",
+      "cards": [
+        {
+          "word": "récapitulatif voyage",
+          "translation": "travel recap",
+          "example": "Ce module couvre aéroport, billets, directions, hôtel et imprévus.",
+          "example_translation": "This module covers airport, tickets, directions, hotel, and mishaps.",
+          "audio_key": "recap"
+        },
+        {
+          "word": "en résumé",
+          "translation": "in summary",
+          "example": "En résumé : vérifie ta correspondance et garde ton courriel de billet.",
+          "example_translation": "In summary: check your connection and keep your ticket email.",
+          "audio_key": "resume"
+        },
+        {
+          "word": "être prêt·e",
+          "translation": "to be ready",
+          "example": "Sois prêt·e avec une pièce d'identité valide.",
+          "example_translation": "Be ready with valid ID.",
+          "audio_key": "pret"
+        },
+        {
+          "word": "demander poliment",
+          "translation": "to ask politely",
+          "example": "On demande poliment avant d'insister.",
+          "example_translation": "We ask politely before insisting.",
+          "audio_key": "poli"
+        },
+        {
+          "word": "solution de rechange",
+          "translation": "backup plan",
+          "example": "Aie une solution de rechange si le vol est annulé.",
+          "example_translation": "Have a backup plan if the flight is cancelled.",
+          "audio_key": "planb"
+        },
+        {
+          "word": "bon voyage!",
+          "translation": "have a good trip!",
+          "example": "Bon voyage et envoie une photo du coucher de soleil!",
+          "example_translation": "Have a good trip and send a sunset photo!",
+          "audio_key": "bv"
+        }
+      ]
+    },
+    {
+      "type": "dialogue",
+      "scene": "Synthèse — ami qui part demain",
+      "turns": [
+        {
+          "speaker": "Noah",
+          "text": "Demain tu pars tôt : tu as tout pour l'aéroport?",
+          "translation": "You're leaving early tomorrow: do you have everything for the airport?"
+        },
+        {
+          "speaker": "Léa",
+          "text": "Oui, billet sur mon téléphone, passeport, et j'ai noté la porte d'embarquement.",
+          "translation": "Yes, ticket on my phone, passport, and I wrote down the gate."
+        },
+        {
+          "speaker": "Noah",
+          "text": "Si le métro est en panne, prends un taxi jusqu'à la gare.",
+          "translation": "If the metro is down, take a taxi to the station."
+        },
+        {
+          "speaker": "Léa",
+          "text": "Bonne idée. Et si l'hôtel à Toronto est complet?",
+          "translation": "Good idea. And if the hotel in Toronto is full?"
+        },
+        {
+          "speaker": "Noah",
+          "text": "Tu appelles la réception avant; sinon, aie un deuxième hôtel en tête.",
+          "translation": "Call the desk beforehand; otherwise have a second hotel in mind."
+        }
+      ]
+    },
+    {
+      "type": "grammar_tip",
+      "rule": "Révision : impératif pour conseils (« prends », « appelle », « sois »). « Si + présent » pour scénarios (« si l'hôtel est complet »). Mélange PC pour événements ponctuels et présent pour habitudes générales.",
+      "examples": [
+        {
+          "fr": "Si tu rates le bus, prends le métro jusqu'à Bonaventure.",
+          "en": "If you miss the bus, take the metro to Bonaventure."
+        },
+        {
+          "fr": "J'ai toujours un chargeur dans mon sac quand je voyage.",
+          "en": "I always have a charger in my bag when I travel."
+        }
+      ]
+    },
+    {
+      "type": "practice",
+      "exercises": [
+        {
+          "type": "match_pairs",
+          "instruction": "Match travel French",
+          "pairs": [
+            {
+              "left": "correspondance",
+              "right": "connection"
+            },
+            {
+              "left": "remboursement",
+              "right": "refund"
+            },
+            {
+              "left": "réception",
+              "right": "front desk"
+            },
+            {
+              "left": "aller-retour",
+              "right": "round trip"
+            }
+          ]
+        },
+        {
+          "type": "fill_blank",
+          "sentence": "___ tu arrives en retard, préviens l'hôtel par courriel. (If)",
+          "answer": "Si",
+          "options": [
+            "Si",
+            "Même si",
+            "Pendant que",
+            "Soudain"
+          ]
+        },
+        {
+          "type": "mcq",
+          "question": "At the airport, « la porte d'embarquement » is:",
+          "options": [
+            "the gate",
+            "the runway",
+            "the baggage claim",
+            "the customs hall"
+          ],
+          "answer_index": 0
+        },
+        {
+          "type": "word_order",
+          "words": [
+            "Allez",
+            "tout",
+            "droit",
+            "jusqu'au",
+            "parc."
+          ],
+          "correct_order": [
+            0,
+            1,
+            2,
+            3,
+            4
+          ],
+          "translation": "Go straight to the park."
+        },
+        {
+          "type": "mcq",
+          "question": "Best phrase for « I have a tight connection »:",
+          "options": [
+            "J'ai une correspondance serrée.",
+            "J'ai un hôtel serré.",
+            "J'ai une valise serrée.",
+            "J'ai un billet serré."
+          ],
+          "answer_index": 0
+        }
+      ]
+    }
+  ],
+  "production_task": {
+    "prompt": "Liste de contrôle de voyage (5 points) en français : avant l'aéroport, transport, hôtel, imprévus.",
+    "example": "1) Vérifier le courriel du billet. 2) Prévoir le trajet en métro. 3) Confirmer l'hôtel. 4) Noter le numéro du service client. 5) Avoir un plan B.",
+    "skill": "writing"
+  }
+}

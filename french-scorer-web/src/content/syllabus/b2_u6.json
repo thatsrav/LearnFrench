@@ -1,0 +1,183 @@
+{
+  "id": "b2-u6",
+  "level": "B2",
+  "unit_index": 6,
+  "theme": "Travel & Media Capstone",
+  "estimated_minutes": 28,
+  "steps": [
+    {
+      "type": "vocab_intro",
+      "cards": [
+        {
+          "word": "croiser les sources",
+          "translation": "cross-check sources",
+          "example": "Il faut croiser les sources avant de partager une manchette.",
+          "example_translation": "Cross-check sources before sharing a headline.",
+          "audio_key": "croiser"
+        },
+        {
+          "word": "désinformation",
+          "translation": "disinformation",
+          "example": "La désinformation voyage vite sur les réseaux.",
+          "example_translation": "Disinformation travels fast on social networks.",
+          "audio_key": "desinfo"
+        },
+        {
+          "word": "itinéraire responsable",
+          "translation": "responsible itinerary",
+          "example": "Un itinéraire responsable limite les allers-retours en avion.",
+          "example_translation": "A responsible itinerary limits short flights back and forth.",
+          "audio_key": "itin"
+        },
+        {
+          "word": "couverture médiatique",
+          "translation": "media coverage",
+          "example": "La couverture médiatique a influencé les réservations.",
+          "example_translation": "Media coverage influenced bookings.",
+          "audio_key": "couv"
+        },
+        {
+          "word": "enjeu local",
+          "translation": "local issue/stake",
+          "example": "Les enjeux locaux diffèrent entre Montréal et Calgary.",
+          "example_translation": "Local stakes differ between Montreal and Calgary.",
+          "audio_key": "enjeu"
+        },
+        {
+          "word": "formuler une prise de position",
+          "translation": "state a position",
+          "example": "Formule clairement ta prise de position en deux phrases.",
+          "example_translation": "State your position clearly in two sentences.",
+          "audio_key": "prise"
+        }
+      ]
+    },
+    {
+      "type": "dialogue",
+      "scene": "Balado — voyage et actualité",
+      "turns": [
+        {
+          "speaker": "Hôte",
+          "text": "Comment relier écotourisme et lecture critique des médias?",
+          "translation": "How connect ecotourism and critical media reading?"
+        },
+        {
+          "speaker": "Invitée",
+          "text": "Avant de réserver, je croise les sources : blogs, journaux, avis vérifiés.",
+          "translation": "Before booking I cross-check sources: blogs, papers, verified reviews."
+        },
+        {
+          "speaker": "Hôte",
+          "text": "Et si une manchette alarmiste casse une destination?",
+          "translation": "And if an alarmist headline breaks a destination?"
+        },
+        {
+          "speaker": "Invitée",
+          "text": "Je paraphrase l'article principal, je cherche des données officielles; bien que l'émotion vende, les faits comptent.",
+          "translation": "I paraphrase the main article, I look for official data; although emotion sells, facts count."
+        }
+      ]
+    },
+    {
+      "type": "grammar_tip",
+      "rule": "Synthèse B2 médias + voyage : mélange indicatif (faits vérifiés), conditionnel (prudence), subjonctif après bien que / pour que. Varie les connecteurs logiques.",
+      "examples": [
+        {
+          "fr": "Pour que le voyage soit durable, il faut accepter des compromis.",
+          "en": "For the trip to be sustainable you have to accept trade-offs."
+        },
+        {
+          "fr": "Selon plusieurs experts, la fréquentation devrait être encadrée.",
+          "en": "According to several experts attendance should be regulated."
+        }
+      ]
+    },
+    {
+      "type": "practice",
+      "exercises": [
+        {
+          "type": "match_pairs",
+          "instruction": "Match",
+          "pairs": [
+            {
+              "left": "croiser les sources",
+              "right": "cross-check"
+            },
+            {
+              "left": "désinformation",
+              "right": "disinformation"
+            },
+            {
+              "left": "couverture médiatique",
+              "right": "media coverage"
+            },
+            {
+              "left": "prise de position",
+              "right": "stated position"
+            }
+          ]
+        },
+        {
+          "type": "fill_blank",
+          "sentence": "Bien que la ___ soit séduisante, vérifie les faits.",
+          "answer": "manchette",
+          "options": [
+            "manchette",
+            "valise",
+            "gare",
+            "recette"
+          ]
+        },
+        {
+          "type": "mcq",
+          "question": "Responsible travel + media literacy together emphasize:",
+          "options": [
+            "verified information and lower-impact choices",
+            "only viral photos",
+            "ignoring local news",
+            "booking first, reading later"
+          ],
+          "answer_index": 0
+        },
+        {
+          "type": "word_order",
+          "words": [
+            "Je",
+            "synthétise",
+            "deux",
+            "points",
+            "de",
+            "vue",
+            "opposés."
+          ],
+          "correct_order": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+          ],
+          "translation": "I summarize two opposing viewpoints."
+        },
+        {
+          "type": "mcq",
+          "question": "« Enjeu local » refers to:",
+          "options": [
+            "what's at stake for a community",
+            "a train schedule",
+            "a grammar rule",
+            "a hotel star rating"
+          ],
+          "answer_index": 0
+        }
+      ]
+    }
+  ],
+  "production_task": {
+    "prompt": "Texte de 150 mots : tu planifies un voyage au Canada en réagissant à une manchette (bien que, selon, pour résumer).",
+    "example": "J'ai lu une manchette sur les feux de forêt… Pour résumer… Bien que le titre soit alarmiste…",
+    "skill": "writing"
+  }
+}

@@ -1,0 +1,181 @@
+{
+  "id": "b1-u9",
+  "level": "B1",
+  "unit_index": 9,
+  "theme": "Sustainable Tourism",
+  "estimated_minutes": 19,
+  "steps": [
+    {
+      "type": "vocab_intro",
+      "cards": [
+        {
+          "word": "durable · l'écotourisme",
+          "translation": "sustainable · ecotourism",
+          "example": "L'écotourisme mise sur des séjours plus durables.",
+          "example_translation": "Ecotourism focuses on more sustainable stays.",
+          "audio_key": "eco"
+        },
+        {
+          "word": "réduire les déchets",
+          "translation": "reduce waste",
+          "example": "On réduit les déchets en refusant les bouteilles jetables.",
+          "example_translation": "We reduce waste by refusing disposable bottles.",
+          "audio_key": "dechets"
+        },
+        {
+          "word": "les transports en commun",
+          "translation": "public transit",
+          "example": "Privilégier les transports en commun, c'est moins polluant.",
+          "example_translation": "Choosing public transit is less polluting.",
+          "audio_key": "tc"
+        },
+        {
+          "word": "respecter la nature",
+          "translation": "respect nature",
+          "example": "Il faut rester sur les sentiers pour respecter la nature.",
+          "example_translation": "You should stay on the trails to respect nature.",
+          "audio_key": "nature"
+        },
+        {
+          "word": "selon moi / à mon avis",
+          "translation": "in my opinion",
+          "example": "À mon avis, le sur-tourisme nuit aux quartiers historiques.",
+          "example_translation": "In my opinion, overtourism harms historic neighbourhoods.",
+          "audio_key": "avis"
+        },
+        {
+          "word": "même si",
+          "translation": "even if",
+          "example": "Même si c'est plus lent, le train pollue moins que l'avion court-courrier.",
+          "example_translation": "Even if it's slower, the train pollutes less than short-haul flights.",
+          "audio_key": "meme"
+        }
+      ]
+    },
+    {
+      "type": "dialogue",
+      "scene": "Baladodiffusion — deux voyageurs",
+      "turns": [
+        {
+          "speaker": "Hôte",
+          "text": "Comment voyager plus vert sans sacrifier le confort?",
+          "translation": "How to travel greener without sacrificing comfort?"
+        },
+        {
+          "speaker": "Invité",
+          "text": "Je choisis souvent le train pour les distances moyennes, même si ça prend plus de temps.",
+          "translation": "I often choose the train for medium distances, even if it takes longer."
+        },
+        {
+          "speaker": "Hôte",
+          "text": "Et l'hébergement?",
+          "translation": "And lodging?"
+        },
+        {
+          "speaker": "Invité",
+          "text": "Les gîtes locaux réinvestissent dans la communauté; selon moi, c'est mieux que les grandes chaînes.",
+          "translation": "Local B&Bs reinvest in the community; in my view that's better than big chains."
+        }
+      ]
+    },
+    {
+      "type": "grammar_tip",
+      "rule": "Opinion : « à mon avis », « selon moi », « je pense que » + indicatif pour un fait d'opinion. « Même si » + indicatif pour une concession.",
+      "examples": [
+        {
+          "fr": "Je pense que le vélo partagé est une bonne idée en ville.",
+          "en": "I think bike sharing is a good idea in the city."
+        },
+        {
+          "fr": "Même s'il pleut, nous irons à pied pour éviter la voiture.",
+          "en": "Even if it rains, we'll walk to avoid the car."
+        }
+      ]
+    },
+    {
+      "type": "practice",
+      "exercises": [
+        {
+          "type": "match_pairs",
+          "instruction": "Match",
+          "pairs": [
+            {
+              "left": "durable",
+              "right": "sustainable"
+            },
+            {
+              "left": "écotourisme",
+              "right": "ecotourism"
+            },
+            {
+              "left": "à mon avis",
+              "right": "in my opinion"
+            },
+            {
+              "left": "même si",
+              "right": "even if"
+            }
+          ]
+        },
+        {
+          "type": "fill_blank",
+          "sentence": "___ , le train est une option responsable pour Toronto–Montréal. (In my opinion)",
+          "answer": "À mon avis",
+          "options": [
+            "À mon avis",
+            "Même si",
+            "Soudain",
+            "Pendant que"
+          ]
+        },
+        {
+          "type": "mcq",
+          "question": "After « je pense que », the verb is usually:",
+          "options": [
+            "indicative",
+            "subjunctive",
+            "infinitive only",
+            "past participle alone"
+          ],
+          "answer_index": 0
+        },
+        {
+          "type": "word_order",
+          "words": [
+            "Le",
+            "train",
+            "prend",
+            "plus",
+            "de",
+            "temps."
+          ],
+          "correct_order": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "translation": "The train takes more time."
+        },
+        {
+          "type": "mcq",
+          "question": "« Réduire les déchets » means:",
+          "options": [
+            "reduce waste",
+            "increase prices",
+            "book early",
+            "skip meals"
+          ],
+          "answer_index": 0
+        }
+      ]
+    }
+  ],
+  "production_task": {
+    "prompt": "Donne ton avis sur un geste écotouristique (3 phrases : à mon avis / je pense que / même si).",
+    "example": "À mon avis, les bouteilles réutilisables sont essentielles. Je pense que les hôtels devraient filtrer l'eau. Même si c'est moins pratique, je refuse le plastique.",
+    "skill": "writing"
+  }
+}

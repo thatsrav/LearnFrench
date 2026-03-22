@@ -1,0 +1,181 @@
+{
+  "id": "b1-u14",
+  "level": "B1",
+  "unit_index": 14,
+  "theme": "PC vs Imparfait",
+  "estimated_minutes": 24,
+  "steps": [
+    {
+      "type": "vocab_intro",
+      "cards": [
+        {
+          "word": "action ponctuelle",
+          "translation": "one-time completed action",
+          "example": "Soudain, le téléphone a sonné.",
+          "example_translation": "Suddenly the phone rang.",
+          "audio_key": "ponctuel"
+        },
+        {
+          "word": "fond / contexte",
+          "translation": "background / setting",
+          "example": "Il pleuvait quand je suis sorti.",
+          "example_translation": "It was raining when I went out.",
+          "audio_key": "fond"
+        },
+        {
+          "word": "habitude vs événement",
+          "translation": "habit vs event",
+          "example": "Je lisais le journal; puis j'ai vu la nouvelle.",
+          "example_translation": "I was reading the paper; then I saw the news.",
+          "audio_key": "habitude"
+        },
+        {
+          "word": "pendant que + imparfait",
+          "translation": "while X was …",
+          "example": "Pendant qu'il cuisinait, elle a mis la table.",
+          "example_translation": "While he was cooking, she set the table.",
+          "audio_key": "pq"
+        },
+        {
+          "word": "déjà / enfin",
+          "translation": "already / finally",
+          "example": "J'attendais depuis vingt minutes; enfin le bus est arrivé.",
+          "example_translation": "I'd been waiting twenty minutes; finally the bus arrived.",
+          "audio_key": "enfin"
+        },
+        {
+          "word": "tout à coup",
+          "translation": "all of a sudden",
+          "example": "Tout à coup, la lumière s'est éteinte.",
+          "example_translation": "All of a sudden the light went out.",
+          "audio_key": "coup"
+        }
+      ]
+    },
+    {
+      "type": "dialogue",
+      "scene": "Soirée qui tourne mal",
+      "turns": [
+        {
+          "speaker": "Sarah",
+          "text": "Tu te souviens? Il neigeait; nous écoutions de la musique tranquille.",
+          "translation": "Remember? It was snowing; we were listening to calm music."
+        },
+        {
+          "speaker": "Leo",
+          "text": "Oui, et tout à coup l'électricité a sauté dans tout l'immeuble.",
+          "translation": "Yes, and suddenly the power went out in the whole building."
+        },
+        {
+          "speaker": "Sarah",
+          "text": "J'allumais des chandelles pendant que tu cherchais des piles.",
+          "translation": "I was lighting candles while you looked for batteries."
+        },
+        {
+          "speaker": "Leo",
+          "text": "Finalement le courant est revenu après une heure.",
+          "translation": "Finally the power came back after an hour."
+        }
+      ]
+    },
+    {
+      "type": "grammar_tip",
+      "rule": "PC = événement ponctuel, changement, suite d'actions. Imparfait = cadre, temps, habitude, action en cours quand autre chose arrive (« pendant que je lisais, il est entré »).",
+      "examples": [
+        {
+          "fr": "Je me promenais quand j'ai rencontré un ancien ami.",
+          "en": "I was walking when I ran into an old friend."
+        },
+        {
+          "fr": "D'habitude je prenais le bus, mais ce jour-là j'ai pris un taxi.",
+          "en": "I usually took the bus, but that day I took a taxi."
+        }
+      ]
+    },
+    {
+      "type": "practice",
+      "exercises": [
+        {
+          "type": "match_pairs",
+          "instruction": "Match concept to tense family",
+          "pairs": [
+            {
+              "left": "background weather",
+              "right": "often imparfait"
+            },
+            {
+              "left": "sudden interruption",
+              "right": "often passé composé"
+            },
+            {
+              "left": "used to (habit)",
+              "right": "imparfait"
+            },
+            {
+              "left": "completed sequence",
+              "right": "passé composé"
+            }
+          ]
+        },
+        {
+          "type": "fill_blank",
+          "sentence": "Il ___ (faire) froid quand nous ___ (partir).",
+          "answer": "faisait … sommes partis",
+          "options": [
+            "faisait … sommes partis",
+            "a fait … partions",
+            "faisait … partions",
+            "a fait … sommes partis"
+          ]
+        },
+        {
+          "type": "mcq",
+          "question": "« Pendant qu'elle dormait, le chat ___ sur la table » (jumped — one action):",
+          "options": [
+            "a sauté",
+            "sautait",
+            "saute",
+            "sautera"
+          ],
+          "answer_index": 0
+        },
+        {
+          "type": "word_order",
+          "words": [
+            "J'",
+            "lisais",
+            "quand",
+            "tu",
+            "as",
+            "téléphoné."
+          ],
+          "correct_order": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "translation": "I was reading when you called."
+        },
+        {
+          "type": "mcq",
+          "question": "For repeated past habits, prefer:",
+          "options": [
+            "imparfait",
+            "passé composé",
+            "future",
+            "present"
+          ],
+          "answer_index": 0
+        }
+      ]
+    }
+  ],
+  "production_task": {
+    "prompt": "Raconte une soirée ou un trajet : 6 phrases en mélangeant imparfait (cadre) et passé composé (événements).",
+    "example": "Il ventait. Nous attendions le train. Soudain, ils ont annoncé un retard. J'ai acheté un café. Le train est enfin arrivé.",
+    "skill": "writing"
+  }
+}

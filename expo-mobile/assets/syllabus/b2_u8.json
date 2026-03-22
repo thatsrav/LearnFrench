@@ -1,0 +1,181 @@
+{
+  "id": "b2-u8",
+  "level": "B2",
+  "unit_index": 8,
+  "theme": "Professional Email",
+  "estimated_minutes": 22,
+  "steps": [
+    {
+      "type": "vocab_intro",
+      "cards": [
+        {
+          "word": "Objet :",
+          "translation": "Subject:",
+          "example": "Objet : Demande de congé — semaine du 12 août",
+          "example_translation": "Subject: Leave request — week of August 12",
+          "audio_key": "objet"
+        },
+        {
+          "word": "Madame, Monsieur,",
+          "translation": "Dear Sir/Madam,",
+          "example": "Madame, Monsieur, j'ai l'honneur de vous adresser…",
+          "example_translation": "Dear Sir/Madam, I am writing to…",
+          "audio_key": "madame"
+        },
+        {
+          "word": "dans l'attente de votre retour",
+          "translation": "looking forward to your reply",
+          "example": "Dans l'attente de votre retour, veuillez agréer…",
+          "example_translation": "Looking forward to your reply, please accept…",
+          "audio_key": "attente"
+        },
+        {
+          "word": "veuillez trouver ci-joint",
+          "translation": "please find attached",
+          "example": "Veuillez trouver ci-joint le rapport consolidé.",
+          "example_translation": "Please find attached the consolidated report.",
+          "audio_key": "joint"
+        },
+        {
+          "word": "suite à notre échange",
+          "translation": "following our conversation",
+          "example": "Suite à notre échange téléphonique de mardi…",
+          "example_translation": "Following our phone call Tuesday…",
+          "audio_key": "suite"
+        },
+        {
+          "word": "cordialement / Bien à vous",
+          "translation": "regards / best regards",
+          "example": "Cordialement, puis signature complète.",
+          "example_translation": "Regards, then full signature.",
+          "audio_key": "cordial"
+        }
+      ]
+    },
+    {
+      "type": "dialogue",
+      "scene": "Rédaction collaborative — courriel au ministère",
+      "turns": [
+        {
+          "speaker": "A",
+          "text": "On commence par « Objet : » clair, puis formule d'appel polie.",
+          "translation": "We start with a clear 'Subject:' then a polite salutation."
+        },
+        {
+          "speaker": "B",
+          "text": "Suite à notre réunion, nous demandons une clarification sur l'échéance.",
+          "translation": "Following our meeting we're asking for clarification on the deadline."
+        },
+        {
+          "speaker": "A",
+          "text": "Veuillez trouver ci-joint le formulaire signé.",
+          "translation": "Please find attached the signed form."
+        },
+        {
+          "speaker": "B",
+          "text": "On ferme par « Dans l'attente de votre retour, cordialement ».",
+          "translation": "We close with 'Looking forward to your reply, best regards'."
+        }
+      ]
+    },
+    {
+      "type": "grammar_tip",
+      "rule": "Courriel pro : phrases complètes, évite les abréviations texto. « Je vous prie de » + infinitif ou « veuillez » + infinitif. Indicatif pour faits, conditionnel pour demande polie (« pourriez-vous »).",
+      "examples": [
+        {
+          "fr": "Pourriez-vous confirmer la réception de ce dossier?",
+          "en": "Could you confirm receipt of this file?"
+        },
+        {
+          "fr": "Je vous informe que la réunion est reportée à jeudi.",
+          "en": "I'm informing you the meeting is moved to Thursday."
+        }
+      ]
+    },
+    {
+      "type": "practice",
+      "exercises": [
+        {
+          "type": "match_pairs",
+          "instruction": "Match",
+          "pairs": [
+            {
+              "left": "Objet :",
+              "right": "email subject line"
+            },
+            {
+              "left": "ci-joint",
+              "right": "attached"
+            },
+            {
+              "left": "suite à",
+              "right": "following"
+            },
+            {
+              "left": "cordialement",
+              "right": "professional closing"
+            }
+          ]
+        },
+        {
+          "type": "fill_blank",
+          "sentence": "___ trouver ci-joint la facture numéro 2044.",
+          "answer": "Veuillez",
+          "options": [
+            "Veuillez",
+            "Tu peux",
+            "J'espère",
+            "Oubliez de"
+          ]
+        },
+        {
+          "type": "mcq",
+          "question": "Polite request to a manager:",
+          "options": [
+            "Pourriez-vous valider cette version avant vendredi?",
+            "Valide ça vite.",
+            "Fais-moi signe.",
+            "Signe maintenant."
+          ],
+          "answer_index": 0
+        },
+        {
+          "type": "word_order",
+          "words": [
+            "Dans",
+            "l'attente",
+            "de",
+            "votre",
+            "retour,",
+            "cordialement."
+          ],
+          "correct_order": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "translation": "Looking forward to your reply, best regards."
+        },
+        {
+          "type": "mcq",
+          "question": "« Suite à notre échange » introduces:",
+          "options": [
+            "reference to a prior interaction",
+            "a joke",
+            "a salary demand only",
+            "an automatic out-of-office"
+          ],
+          "answer_index": 0
+        }
+      ]
+    }
+  ],
+  "production_task": {
+    "prompt": "Rédige un courriel complet (objet, salutation, corps, formule de politesse) pour demander un rendez-vous avec un service municipal.",
+    "example": "Objet : Demande de rendez-vous — permis de rénovation\nMadame, Monsieur,\nSuite à…\nCordialement,\n[Nom]",
+    "skill": "writing"
+  }
+}

@@ -1,0 +1,181 @@
+{
+  "id": "b2-u11",
+  "level": "B2",
+  "unit_index": 11,
+  "theme": "Running a Meeting",
+  "estimated_minutes": 24,
+  "steps": [
+    {
+      "type": "vocab_intro",
+      "cards": [
+        {
+          "word": "l'ordre du jour",
+          "translation": "agenda",
+          "example": "Passons au troisième point de l'ordre du jour.",
+          "example_translation": "Let's move to the third item on the agenda.",
+          "audio_key": "ordre"
+        },
+        {
+          "word": "donner la parole à",
+          "translation": "to give the floor to",
+          "example": "Je donne la parole à Maya pour la mise à jour technique.",
+          "example_translation": "I'm giving the floor to Maya for the technical update.",
+          "audio_key": "parole"
+        },
+        {
+          "word": "reporter un point",
+          "translation": "to table / postpone an item",
+          "example": "Nous devrons reporter ce point faute de données.",
+          "example_translation": "We'll have to postpone this item for lack of data.",
+          "audio_key": "reporter"
+        },
+        {
+          "word": "les actions à suivre",
+          "translation": "action items",
+          "example": "Quelles sont les actions à suivre d'ici vendredi?",
+          "example_translation": "What are the action items before Friday?",
+          "audio_key": "actions"
+        },
+        {
+          "word": "le compte-rendu",
+          "translation": "minutes / summary",
+          "example": "Le compte-rendu sera envoyé dans les vingt-quatre heures.",
+          "example_translation": "The minutes will be sent within twenty-four hours.",
+          "audio_key": "cr"
+        },
+        {
+          "word": "atteindre le quorum",
+          "translation": "reach quorum",
+          "example": "Nous n'atteignons pas le quorum; la séance est levée.",
+          "example_translation": "We don't reach quorum; the meeting is adjourned.",
+          "audio_key": "quorum"
+        }
+      ]
+    },
+    {
+      "type": "dialogue",
+      "scene": "Visioconférence — équipe produit",
+      "turns": [
+        {
+          "speaker": "Animatrice",
+          "text": "Bienvenue à tous. L'ordre du jour : budget, feuille de route, questions diverses.",
+          "translation": "Welcome everyone. Agenda: budget, roadmap, miscellaneous."
+        },
+        {
+          "speaker": "Dev",
+          "text": "Pour le budget, nous avons besoin d'une décision sur l'outil d'analytics.",
+          "translation": "For the budget we need a decision on the analytics tool."
+        },
+        {
+          "speaker": "Animatrice",
+          "text": "Je propose de reporter la décision finale à mercredi si les chiffres arrivent demain.",
+          "translation": "I propose postponing the final decision to Wednesday if numbers arrive tomorrow."
+        },
+        {
+          "speaker": "PM",
+          "text": "D'accord. Actions : Léo contacte les fournisseurs; Sara met à jour le tableau des coûts.",
+          "translation": "OK. Action items: Léo contacts vendors; Sara updates the cost sheet."
+        }
+      ]
+    },
+    {
+      "type": "grammar_tip",
+      "rule": "Animer : « je propose que » + subjonctif souvent (« je propose que nous passions »). Formulations neutres : « il semble que », « nous convenons de ».",
+      "examples": [
+        {
+          "fr": "Je suggère que chaque équipe envoie un résumé d'une page.",
+          "en": "I suggest each team send a one-page summary."
+        },
+        {
+          "fr": "Faut-il fixer une date limite pour les commentaires?",
+          "en": "Should we set a deadline for comments?"
+        }
+      ]
+    },
+    {
+      "type": "practice",
+      "exercises": [
+        {
+          "type": "match_pairs",
+          "instruction": "Match",
+          "pairs": [
+            {
+              "left": "ordre du jour",
+              "right": "agenda"
+            },
+            {
+              "left": "donner la parole",
+              "right": "give the floor"
+            },
+            {
+              "left": "compte-rendu",
+              "right": "minutes"
+            },
+            {
+              "left": "quorum",
+              "right": "minimum attendance"
+            }
+          ]
+        },
+        {
+          "type": "fill_blank",
+          "sentence": "Je propose que nous ___ au vote suivant. (subjunctive of passer)",
+          "answer": "passions",
+          "options": [
+            "passions",
+            "passons",
+            "passerons",
+            "passassez"
+          ]
+        },
+        {
+          "type": "mcq",
+          "question": "« Reporter un point » in a meeting usually means:",
+          "options": [
+            "postpone the item",
+            "delete the agenda",
+            "speak louder",
+            "end the company"
+          ],
+          "answer_index": 0
+        },
+        {
+          "type": "word_order",
+          "words": [
+            "Je",
+            "donne",
+            "la",
+            "parole",
+            "à",
+            "Léa."
+          ],
+          "correct_order": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "translation": "I'm giving the floor to Léa."
+        },
+        {
+          "type": "mcq",
+          "question": "Good closing action for a meeting:",
+          "options": [
+            "Summarize action items and next deadlines",
+            "Leave without saying goodbye",
+            "Delete all documents",
+            "Assign blame publicly"
+          ],
+          "answer_index": 0
+        }
+      ]
+    }
+  ],
+  "production_task": {
+    "prompt": "Rédige l'ordre du jour d'une réunion de 45 min (4 points) + deux actions à suivre typiques.",
+    "example": "1) Mise à jour projet 2) Risques 3) Décisions 4) Questions — Actions : Jean envoie le budget; Marie contacte le client.",
+    "skill": "writing"
+  }
+}

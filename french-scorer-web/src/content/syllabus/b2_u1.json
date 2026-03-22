@@ -1,0 +1,181 @@
+{
+  "id": "b2-u1",
+  "level": "B2",
+  "unit_index": 1,
+  "theme": "Reading Headlines",
+  "estimated_minutes": 22,
+  "steps": [
+    {
+      "type": "vocab_intro",
+      "cards": [
+        {
+          "word": "la manchette",
+          "translation": "headline",
+          "example": "La manchette résume l'article en quelques mots percutants.",
+          "example_translation": "The headline sums up the article in a few punchy words.",
+          "audio_key": "manchette"
+        },
+        {
+          "word": "le chapeau",
+          "translation": "lead / deck (under headline)",
+          "example": "Le chapeau précise le contexte en une phrase.",
+          "example_translation": "The lead clarifies the context in one sentence.",
+          "audio_key": "chapeau"
+        },
+        {
+          "word": "selon une source anonyme",
+          "translation": "according to an anonymous source",
+          "example": "Selon une source anonyme, les négociations avancent.",
+          "example_translation": "According to an anonymous source, talks are moving forward.",
+          "audio_key": "anonyme"
+        },
+        {
+          "word": "hausse · baisse",
+          "translation": "rise · fall",
+          "example": "Hausse des taux : les emprunteurs s'inquiètent.",
+          "example_translation": "Rate hike: borrowers worry.",
+          "audio_key": "hausse"
+        },
+        {
+          "word": "le gouvernement fédéral",
+          "translation": "federal government",
+          "example": "Le gouvernement fédéral annonce de nouvelles mesures.",
+          "example_translation": "The federal government announces new measures.",
+          "audio_key": "fed"
+        },
+        {
+          "word": "tension / pourparlers",
+          "translation": "tension / talks",
+          "example": "Les pourparlers se poursuivent malgré les tensions.",
+          "example_translation": "Talks continue despite tensions.",
+          "audio_key": "tension"
+        }
+      ]
+    },
+    {
+      "type": "dialogue",
+      "scene": "Kiosque à journaux — deux collègues",
+      "turns": [
+        {
+          "speaker": "Inès",
+          "text": "Tu as vu la manchette? « Hausse des loyers : la Ville réagit » — c'est vague.",
+          "translation": "Did you see the headline? 'Rent hike: the City reacts' — it's vague."
+        },
+        {
+          "speaker": "Omar",
+          "text": "Oui, le chapeau explique que c'est une hausse moyenne de trois pour cent.",
+          "translation": "Yes, the lead explains it's an average three percent increase."
+        },
+        {
+          "speaker": "Inès",
+          "text": "Il faut lire l'article : souvent le titre exagère pour cliquer.",
+          "translation": "You have to read the article: often the title exaggerates for clicks."
+        },
+        {
+          "speaker": "Omar",
+          "text": "Exact. Je note aussi la source : agence officielle ou blog d'opinion?",
+          "translation": "Exactly. I also note the source: official agency or opinion blog?"
+        }
+      ]
+    },
+    {
+      "type": "grammar_tip",
+      "rule": "Manchettes : noms sans article, infinitifs, deux-points. « Hausse des prix » = nominalisation (nom dérivé du verbe hausser). Lis le corps de l'article avant de conclure.",
+      "examples": [
+        {
+          "fr": "Grève dans les écoles : négociations en cours.",
+          "en": "Strike in schools: negotiations underway."
+        },
+        {
+          "fr": "Nouvelle loi sur l'environnement adoptée hier soir.",
+          "en": "New environmental law adopted last night."
+        }
+      ]
+    },
+    {
+      "type": "practice",
+      "exercises": [
+        {
+          "type": "match_pairs",
+          "instruction": "Match",
+          "pairs": [
+            {
+              "left": "manchette",
+              "right": "headline"
+            },
+            {
+              "left": "chapeau",
+              "right": "lead line"
+            },
+            {
+              "left": "hausse",
+              "right": "rise / increase"
+            },
+            {
+              "left": "pourparlers",
+              "right": "talks / negotiations"
+            }
+          ]
+        },
+        {
+          "type": "fill_blank",
+          "sentence": "La ___ annonce l'article; le ___ donne le contexte immédiat.",
+          "answer": "manchette … chapeau",
+          "options": [
+            "manchette … chapeau",
+            "chapeau … manchette",
+            "commentaire … titre",
+            "éditorial … photo"
+          ]
+        },
+        {
+          "type": "mcq",
+          "question": "Headlines often omit articles to:",
+          "options": [
+            "save space and increase impact",
+            "show subjunctive",
+            "indicate past tense",
+            "replace verbs"
+          ],
+          "answer_index": 0
+        },
+        {
+          "type": "word_order",
+          "words": [
+            "Les",
+            "négociations",
+            "ont",
+            "repris",
+            "ce",
+            "matin."
+          ],
+          "correct_order": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "translation": "Negotiations resumed this morning."
+        },
+        {
+          "type": "mcq",
+          "question": "« Selon une source anonyme » signals:",
+          "options": [
+            "unverified / unnamed sourcing",
+            "a legal verdict",
+            "a weather forecast",
+            "a recipe"
+          ],
+          "answer_index": 0
+        }
+      ]
+    }
+  ],
+  "production_task": {
+    "prompt": "Invente trois manchettes courtes sur des sujets canadiens (économie, climat, sport) + une phrase de chapeau pour l'une d'elles.",
+    "example": "Transport : « Projet de REM : retards annoncés » — Chapeau : « Les travailleurs dénoncent la surcharge des horaires. »",
+    "skill": "writing"
+  }
+}

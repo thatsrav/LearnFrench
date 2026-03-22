@@ -143,6 +143,7 @@ export async function initializeDatabase(): Promise<void> {
   await ensureUserScoreEventsSkillColumn(db)
 
   await seedIfEmpty()
+  await syncUnitsCatalogFromSeed()
 }
 
 async function ensureTefPrepProgressTable(db: SQLite.SQLiteDatabase): Promise<void> {
@@ -206,6 +207,30 @@ async function seedIfEmpty(): Promise<void> {
         unit.id,
         status,
         0,
+      )
+    }
+  })
+}
+
+/** Merge catalog from `UNIT_SEED_DATA` on every launch — new units, title fixes, order_index updates. */
+async function syncUnitsCatalogFromSeed(): Promise<void> {
+  const db = await getDb()
+  await db.withTransactionAsync(async () => {
+    for (const unit of UNIT_SEED_DATA) {
+      await db.runAsync(
+        `INSERT INTO units (id, level, title, order_index) VALUES (?, ?, ?, ?)
+         ON CONFLICT(id) DO UPDATE SET
+           level = excluded.level,
+           title = excluded.title,
+           order_index = excluded.order_index`,
+        unit.id,
+        unit.level,
+        unit.title,
+        unit.orderIndex,
+      )
+      await db.runAsync(
+        "INSERT OR IGNORE INTO user_progress (unit_id, status, score) VALUES (?, 'locked', 0)",
+        unit.id,
       )
     }
   })

@@ -1,0 +1,140 @@
+{
+  "id": "a2-u3",
+  "level": "A2",
+  "unit_index": 3,
+  "theme": "Reflexive Daily Routines",
+  "estimated_minutes": 16,
+  "steps": [
+    {
+      "type": "vocab_intro",
+      "cards": [
+        {
+          "word": "se lever",
+          "translation": "to get up",
+          "example": "Je me lève vers six heures en semaine.",
+          "example_translation": "I get up around six on weekdays.",
+          "audio_key": "se_lever"
+        },
+        {
+          "word": "se laver · se doucher",
+          "translation": "to wash · to shower",
+          "example": "Elle se douche avant le déjeuner.",
+          "example_translation": "She showers before breakfast.",
+          "audio_key": "doucher"
+        },
+        {
+          "word": "se préparer",
+          "translation": "to get ready",
+          "example": "Nous nous préparons tranquillement le dimanche.",
+          "example_translation": "We get ready slowly on Sundays.",
+          "audio_key": "preparer"
+        },
+        {
+          "word": "se coucher",
+          "translation": "to go to bed",
+          "example": "Les enfants se couchent à vingt heures.",
+          "example_translation": "The children go to bed at eight p.m.",
+          "audio_key": "coucher"
+        },
+        {
+          "word": "le réveil",
+          "translation": "alarm clock",
+          "example": "Son réveil sonne trop tôt!",
+          "example_translation": "His alarm rings too early!",
+          "audio_key": "reveil"
+        },
+        {
+          "word": "me · te · se · nous · vous · se",
+          "translation": "reflexive pronouns",
+          "example": "Tu te laves les mains? — Oui, je me lave les mains.",
+          "example_translation": "Are you washing your hands? — Yes, I'm washing my hands.",
+          "audio_key": "pronoms"
+        }
+      ]
+    },
+    {
+      "type": "dialogue",
+      "scene": "Colocation à Québec — matin pressé",
+      "turns": [
+        {
+          "speaker": "Alex",
+          "text": "Tu es déjà debout? Moi, je me suis levé en retard. Je me prépare en cinq minutes!",
+          "translation": "You're already up? I got up late. I'm getting ready in five minutes!"
+        },
+        {
+          "speaker": "Maya",
+          "text": "Pas de panique. Je me douche après toi, de toute façon.",
+          "translation": "Don't panic. I'm showering after you anyway."
+        },
+        {
+          "speaker": "Alex",
+          "text": "D'accord. Je ne me rase pas ce matin, ça va plus vite.",
+          "translation": "Okay. I'm not shaving this morning, it'll be faster."
+        },
+        {
+          "speaker": "Maya",
+          "text": "Parfait. Et ce soir, on se couche tôt? Demain c'est tôt le métro.",
+          "translation": "Perfect. And tonight we go to bed early? Tomorrow the metro is early."
+        }
+      ]
+    },
+    {
+      "type": "grammar_tip",
+      "rule": "Verbes pronominaux : le pronom réfléchi se place avant le verbe conjugué : je me lève, tu te couches. À l'impératif affirmatif, après le verbe : lève-toi! Négation : ne + pronom + verbe + pas — tu ne te couches pas tard.",
+      "examples": [
+        { "fr": "Nous nous réveillons à la même heure.", "en": "We wake up at the same time." },
+        { "fr": "Vous vous habillez avant le petit-déjeuner?", "en": "Do you get dressed before breakfast?" }
+      ]
+    },
+    {
+      "type": "practice",
+      "exercises": [
+        {
+          "type": "match_pairs",
+          "instruction": "Match routine to French",
+          "pairs": [
+            { "left": "se lever", "right": "get up" },
+            { "left": "se coucher", "right": "go to bed" },
+            { "left": "se doucher", "right": "shower" },
+            { "left": "se préparer", "right": "get ready" }
+          ]
+        },
+        {
+          "type": "mcq",
+          "question": "Nous ___ levons à sept heures. (we get up)",
+          "options": ["me", "te", "nous", "vous"],
+          "answer_index": 2
+        },
+        {
+          "type": "mcq",
+          "question": "Which sentence is correct?",
+          "options": [
+            "Je me douche le matin.",
+            "Je douche me le matin.",
+            "Je me douches le matin.",
+            "Je douche le matin me."
+          ],
+          "answer_index": 0
+        },
+        {
+          "type": "fill_blank",
+          "sentence": "Tu ne ___ couches pas tard le week-end? (reflexive — you)",
+          "answer": "te",
+          "options": ["te", "tu", "toi", "ta"],
+          "hint": "With « tu », reflexive is « te »"
+        },
+        {
+          "type": "word_order",
+          "words": ["tôt.", "se", "Les", "enfants", "couchent"],
+          "correct_order": [2, 3, 1, 4, 0],
+          "translation": "The children go to bed early."
+        }
+      ]
+    }
+  ],
+  "production_task": {
+    "prompt": "Décris ta routine du matin ou du soir en quatre phrases avec au moins deux verbes pronominaux.",
+    "example": "Je me lève à sept heures. Je me brosse les dents. Je ne me maquille pas. Je me couche vers minuit.",
+    "skill": "writing"
+  }
+}

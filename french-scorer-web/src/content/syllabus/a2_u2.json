@@ -1,0 +1,137 @@
+{
+  "id": "a2-u2",
+  "level": "A2",
+  "unit_index": 2,
+  "theme": "Food Quantities and Partitives",
+  "estimated_minutes": 16,
+  "steps": [
+    {
+      "type": "vocab_intro",
+      "cards": [
+        {
+          "word": "du pain",
+          "translation": "some bread (masc.)",
+          "example": "Je prends du pain frais à la boulangerie du coin.",
+          "example_translation": "I get some fresh bread at the neighbourhood bakery.",
+          "audio_key": "pain"
+        },
+        {
+          "word": "de la salade",
+          "translation": "some salad (fem.)",
+          "example": "Elle achète de la salade et des tomates au marché.",
+          "example_translation": "She buys some salad and tomatoes at the market.",
+          "audio_key": "salade"
+        },
+        {
+          "word": "de l'eau",
+          "translation": "some water",
+          "example": "Tu veux de l'eau plate ou gazeuse?",
+          "example_translation": "Do you want still or sparkling water?",
+          "audio_key": "eau"
+        },
+        {
+          "word": "des pommes",
+          "translation": "some apples / apples (pl.)",
+          "example": "Nous prenons des pommes du Québec pour la tarte.",
+          "example_translation": "We're getting Québec apples for the pie.",
+          "audio_key": "pommes"
+        },
+        {
+          "word": "un kilo · une bouteille",
+          "translation": "a kilo · a bottle",
+          "example": "Une bouteille de lait et un kilo de pommes de terre, s'il vous plaît.",
+          "example_translation": "A bottle of milk and a kilo of potatoes, please.",
+          "audio_key": "quantite"
+        },
+        {
+          "word": "après la négation : de",
+          "translation": "after negation, use « de »",
+          "example": "Je ne mange pas de sucre le soir.",
+          "example_translation": "I don't eat sugar in the evening.",
+          "audio_key": "negation"
+        }
+      ]
+    },
+    {
+      "type": "dialogue",
+      "scene": "À l'épicerie fine près du marché Atwater",
+      "turns": [
+        {
+          "speaker": "Client",
+          "text": "Bonjour! Je voudrais du fromage en tranches et de la charcuterie locale, s'il vous plaît.",
+          "translation": "Hello! I'd like some sliced cheese and some local cold cuts, please."
+        },
+        {
+          "speaker": "Vendeur",
+          "text": "Parfait. Vous prenez aussi du pain? On a du pain aux noix aujourd'hui.",
+          "translation": "Perfect. Are you also getting bread? We have walnut bread today."
+        },
+        {
+          "speaker": "Client",
+          "text": "Oui, une demi-miche. Et je ne prends pas de boisson sucrée, merci.",
+          "translation": "Yes, half a loaf. And I'm not taking any sugary drink, thanks."
+        },
+        {
+          "speaker": "Vendeur",
+          "text": "Très bien. Voulez-vous des sacs réutilisables?",
+          "translation": "Very well. Would you like reusable bags?"
+        }
+      ]
+    },
+    {
+      "type": "grammar_tip",
+      "rule": "Partitifs : du (masc.), de la (fem.), de l' (voyelle), des (pluriel) pour une quantité non précisée. Après ne ... pas (et souvent plus, jamais sans nom), on utilise de : je ne bois pas de café.",
+      "examples": [
+        { "fr": "Je mange du riz et de la soupe.", "en": "I'm eating some rice and some soup." },
+        { "fr": "Elle n'achète pas de viande cette semaine.", "en": "She's not buying meat this week." }
+      ]
+    },
+    {
+      "type": "practice",
+      "exercises": [
+        {
+          "type": "match_pairs",
+          "instruction": "Match partitive to situation",
+          "pairs": [
+            { "left": "du pain", "right": "masculine food (some)" },
+            { "left": "de la crème", "right": "feminine food (some)" },
+            { "left": "de l'huile", "right": "vowel sound" },
+            { "left": "des légumes", "right": "plural" }
+          ]
+        },
+        {
+          "type": "fill_blank",
+          "sentence": "Je prends ___ pain à la boulangerie. (some bread)",
+          "answer": "du",
+          "options": ["du", "de la", "le", "des"],
+          "hint": "« pain » is masculine singular"
+        },
+        {
+          "type": "mcq",
+          "question": "After negation: Je ne bois pas ___ café.",
+          "options": ["du", "de", "de la", "le"],
+          "answer_index": 1,
+          "explanation": "After « ne ... pas », use « de » before the noun."
+        },
+        {
+          "type": "fill_blank",
+          "sentence": "Choisis la bonne forme : ___ salade (some salad)",
+          "answer": "de la",
+          "options": ["de la", "du", "de l'", "des"],
+          "hint": "« salade » is feminine singular"
+        },
+        {
+          "type": "word_order",
+          "words": ["bouteille", "Une", "eau.", "d'", "nous", "apportons"],
+          "correct_order": [4, 5, 1, 0, 3, 2],
+          "translation": "We're bringing a bottle of water."
+        }
+      ]
+    }
+  ],
+  "production_task": {
+    "prompt": "Liste cinq articles que tu achètes souvent à l'épicerie avec du, de la, de l' ou des.",
+    "example": "du lait, de la moutarde, de l'avoine, des bananes, du beurre",
+    "skill": "writing"
+  }
+}

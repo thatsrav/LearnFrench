@@ -1,0 +1,190 @@
+{
+  "id": "b2-u10",
+  "level": "B2",
+  "unit_index": 10,
+  "theme": "Forms and Procedures",
+  "estimated_minutes": 22,
+  "steps": [
+    {
+      "type": "vocab_intro",
+      "cards": [
+        {
+          "word": "remplir un formulaire",
+          "translation": "fill out a form",
+          "example": "Remplis chaque case du formulaire en lettres majuscules.",
+          "example_translation": "Fill each box of the form in capitals.",
+          "audio_key": "form"
+        },
+        {
+          "word": "une pièce justificative",
+          "translation": "supporting document",
+          "example": "Joindre une pièce justificative : permis, facture, etc.",
+          "example_translation": "Attach a supporting document: license, invoice, etc.",
+          "audio_key": "piece"
+        },
+        {
+          "word": "faire une demande",
+          "translation": "submit an application",
+          "example": "Nous faisons une demande de subvention avant le trente.",
+          "example_translation": "We're submitting a grant application before the 30th.",
+          "audio_key": "demande"
+        },
+        {
+          "word": "le délai de traitement",
+          "translation": "processing time",
+          "example": "Le délai de traitement est de dix jours ouvrables.",
+          "example_translation": "Processing time is ten business days.",
+          "audio_key": "delai"
+        },
+        {
+          "word": "en ligne / sur place",
+          "translation": "online / in person",
+          "example": "Tu peux déposer en ligne ou sur place avec rendez-vous.",
+          "example_translation": "You can file online or in person with an appointment.",
+          "audio_key": "ligne"
+        },
+        {
+          "word": "numéro de dossier",
+          "translation": "file number",
+          "example": "Note ton numéro de dossier pour tout suivi.",
+          "example_translation": "Note your file number for any follow-up.",
+          "audio_key": "dossier"
+        }
+      ]
+    },
+    {
+      "type": "dialogue",
+      "scene": "Comptoir Service Canada — citoyenne",
+      "turns": [
+        {
+          "speaker": "Agent",
+          "text": "Bonjour. Vous avez rempli le formulaire en ligne?",
+          "translation": "Hello. Did you fill out the form online?"
+        },
+        {
+          "speaker": "Citoyenne",
+          "text": "Oui, mais le site a rejeté ma pièce justificative : le fichier était trop lourd.",
+          "translation": "Yes, but the site rejected my supporting document: the file was too large."
+        },
+        {
+          "speaker": "Agent",
+          "text": "Pas de problème : nous pouvons scanner une version papier ici. Votre délai de traitement commence aujourd'hui.",
+          "translation": "No problem: we can scan a paper version here. Your processing time starts today."
+        },
+        {
+          "speaker": "Citoyenne",
+          "text": "Parfait. Où trouver mon numéro de dossier?",
+          "translation": "Perfect. Where do I find my file number?"
+        },
+        {
+          "speaker": "Agent",
+          "text": "Sur le récépissé que je vous remets; conservez-le.",
+          "translation": "On the receipt I'm giving you; keep it."
+        }
+      ]
+    },
+    {
+      "type": "grammar_tip",
+      "rule": "Procédures : impératif poli (« veuillez joindre »), infinitif d'instruction (« cocher la case »), présent pour décrire le processus (« le délai est de… »).",
+      "examples": [
+        {
+          "fr": "Après avoir signé, déposez le formulaire au guichet trois.",
+          "en": "After signing, drop the form off at counter three."
+        },
+        {
+          "fr": "Si une case ne s'applique pas, écrivez « sans objet ».",
+          "en": "If a box doesn't apply, write 'N/A'."
+        }
+      ]
+    },
+    {
+      "type": "practice",
+      "exercises": [
+        {
+          "type": "match_pairs",
+          "instruction": "Match",
+          "pairs": [
+            {
+              "left": "pièce justificative",
+              "right": "supporting document"
+            },
+            {
+              "left": "délai de traitement",
+              "right": "processing time"
+            },
+            {
+              "left": "numéro de dossier",
+              "right": "file number"
+            },
+            {
+              "left": "sur place",
+              "right": "in person"
+            }
+          ]
+        },
+        {
+          "type": "fill_blank",
+          "sentence": "Veuillez ___ ce formulaire avant la date limite.",
+          "answer": "remplir",
+          "options": [
+            "remplir",
+            "oublier",
+            "déchirer",
+            "perdre"
+          ]
+        },
+        {
+          "type": "mcq",
+          "question": "« Jours ouvrables » usually excludes:",
+          "options": [
+            "weekends and public holidays",
+            "Mondays",
+            "afternoons",
+            "email"
+          ],
+          "answer_index": 0
+        },
+        {
+          "type": "word_order",
+          "words": [
+            "Le",
+            "délai",
+            "de",
+            "traitement",
+            "est",
+            "de",
+            "dix",
+            "jours."
+          ],
+          "correct_order": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+          ],
+          "translation": "The processing time is ten days."
+        },
+        {
+          "type": "mcq",
+          "question": "« Faire une demande » means:",
+          "options": [
+            "to apply / submit a request",
+            "to delete a file",
+            "to pay a fine only",
+            "to cancel an appointment"
+          ],
+          "answer_index": 0
+        }
+      ]
+    }
+  ],
+  "production_task": {
+    "prompt": "Courriel court à un service : tu demandes le statut de ton dossier (numéro, date de dépôt, politesse).",
+    "example": "Objet : Suivi dossier 2025-884\nMadame, Monsieur,\nJe fais suite à ma demande déposée le 3 mars…\nCordialement,",
+    "skill": "writing"
+  }
+}

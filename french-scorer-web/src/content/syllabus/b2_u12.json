@@ -1,0 +1,183 @@
+{
+  "id": "b2-u12",
+  "level": "B2",
+  "unit_index": 12,
+  "theme": "Workplace Capstone",
+  "estimated_minutes": 28,
+  "steps": [
+    {
+      "type": "vocab_intro",
+      "cards": [
+        {
+          "word": "vision d'ensemble",
+          "translation": "big picture",
+          "example": "Garde une vision d'ensemble avant de trancher.",
+          "example_translation": "Keep the big picture before deciding.",
+          "audio_key": "vision"
+        },
+        {
+          "word": "alignement des équipes",
+          "translation": "team alignment",
+          "example": "L'alignement des équipes passe par une communication claire.",
+          "example_translation": "Team alignment comes from clear communication.",
+          "audio_key": "align"
+        },
+        {
+          "word": "cadre légal / conformité",
+          "translation": "legal framework / compliance",
+          "example": "Vérifie le cadre légal avant de publier.",
+          "example_translation": "Check the legal framework before publishing.",
+          "audio_key": "conform"
+        },
+        {
+          "word": "retour d'expérience",
+          "translation": "lessons learned / feedback",
+          "example": "Le retour d'expérience enrichit la prochaine itération.",
+          "example_translation": "Lessons learned enrich the next iteration.",
+          "audio_key": "rex"
+        },
+        {
+          "word": "prioriser",
+          "translation": "to prioritize",
+          "example": "Il faut prioriser les risques réels, pas les bruits.",
+          "example_translation": "Prioritize real risks, not noise.",
+          "audio_key": "prio"
+        },
+        {
+          "word": "clôture professionnelle",
+          "translation": "professional closing",
+          "example": "Une clôture professionnelle fixe les suites.",
+          "example_translation": "A professional closing sets next steps.",
+          "audio_key": "cloture"
+        }
+      ]
+    },
+    {
+      "type": "dialogue",
+      "scene": "Revue trimestrielle — direction",
+      "turns": [
+        {
+          "speaker": "DG",
+          "text": "Pour clôturer, je veux une vision d'ensemble : où en sommes-nous sur la conformité?",
+          "translation": "To close I want a big picture: where are we on compliance?"
+        },
+        {
+          "speaker": "Juriste",
+          "text": "Les équipes sont alignées sur le nouveau guide; le retour d'expérience des pilotes est positif.",
+          "translation": "Teams are aligned on the new guide; pilot feedback is positive."
+        },
+        {
+          "speaker": "DG",
+          "text": "Bien. Priorisons trois chantiers pour le trimestre prochain.",
+          "translation": "Good. Let's prioritize three workstreams for next quarter."
+        },
+        {
+          "speaker": "COO",
+          "text": "Je propose courriel de synthèse demain matin avec actions nominales.",
+          "translation": "I propose a summary email tomorrow morning with named actions."
+        }
+      ]
+    },
+    {
+      "type": "grammar_tip",
+      "rule": "Synthèse B2 travail : vouvoiement, conditionnel de politesse, subjonctif après il faut que / je propose que, indicatif pour faits auditables. Relie les sections avec « quant à », « en ce qui concerne », « sur le plan juridique ».",
+      "examples": [
+        {
+          "fr": "Il faut que chaque manager valide les délais d'ici vendredi.",
+          "en": "Each manager must confirm deadlines by Friday."
+        },
+        {
+          "fr": "En ce qui concerne les contrats, nous recommandons une relecture externe.",
+          "en": "Regarding contracts we recommend an external review."
+        }
+      ]
+    },
+    {
+      "type": "practice",
+      "exercises": [
+        {
+          "type": "match_pairs",
+          "instruction": "Match",
+          "pairs": [
+            {
+              "left": "vision d'ensemble",
+              "right": "big picture"
+            },
+            {
+              "left": "retour d'expérience",
+              "right": "lessons learned"
+            },
+            {
+              "left": "conformité",
+              "right": "compliance"
+            },
+            {
+              "left": "prioriser",
+              "right": "to prioritize"
+            }
+          ]
+        },
+        {
+          "type": "fill_blank",
+          "sentence": "Il faut que nous ___ (être) transparents sur les retards.",
+          "answer": "soyons",
+          "options": [
+            "soyons",
+            "sommes",
+            "serons",
+            "étions"
+          ]
+        },
+        {
+          "type": "mcq",
+          "question": "« En ce qui concerne » introduces:",
+          "options": [
+            "a specific topic focus",
+            "a joke",
+            "a recipe",
+            "a sports score"
+          ],
+          "answer_index": 0
+        },
+        {
+          "type": "word_order",
+          "words": [
+            "Je",
+            "propose",
+            "une",
+            "synthèse",
+            "pour",
+            "lundi",
+            "matin."
+          ],
+          "correct_order": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+          ],
+          "translation": "I propose a summary for Monday morning."
+        },
+        {
+          "type": "mcq",
+          "question": "Workplace capstone skills in this module combine:",
+          "options": [
+            "meetings, email, admin, and hypothetical reasoning",
+            "only spelling",
+            "only slang",
+            "only handwriting"
+          ],
+          "answer_index": 0
+        }
+      ]
+    }
+  ],
+  "production_task": {
+    "prompt": "Mémo interne (180 mots) : bilan trimestriel + 3 priorités + appel à l'alignement (il faut que, je propose que, en conclusion).",
+    "example": "Objet : Bilan T1 — priorités\nÉquipe,\nEn conclusion de ce trimestre… Il faut que nous finalisions… Je propose que…",
+    "skill": "writing"
+  }
+}

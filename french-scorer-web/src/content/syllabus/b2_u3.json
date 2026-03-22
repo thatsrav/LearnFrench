@@ -1,0 +1,181 @@
+{
+  "id": "b2-u3",
+  "level": "B2",
+  "unit_index": 3,
+  "theme": "Bien que / quoique + subjunctive",
+  "estimated_minutes": 26,
+  "steps": [
+    {
+      "type": "vocab_intro",
+      "cards": [
+        {
+          "word": "bien que + subjonctif",
+          "translation": "although + subjunctive",
+          "example": "Bien qu'il pleuve, la manifestation aura lieu.",
+          "example_translation": "Although it's raining, the demonstration will take place.",
+          "audio_key": "bienque"
+        },
+        {
+          "word": "quoique",
+          "translation": "although (syn.)",
+          "example": "Quoique le débat soit vif, le ton est resté correct.",
+          "example_translation": "Although the debate was lively, the tone stayed appropriate.",
+          "audio_key": "quoique"
+        },
+        {
+          "word": "malgré le fait que",
+          "translation": "despite the fact that (+ subj.)",
+          "example": "Malgré le fait que les preuves manquent, l'enquête continue.",
+          "example_translation": "Despite the lack of evidence, the investigation continues.",
+          "audio_key": "malgre"
+        },
+        {
+          "word": "concéder",
+          "translation": "to concede",
+          "example": "Je concède que le texte est complexe.",
+          "example_translation": "I concede the text is complex.",
+          "audio_key": "conceder"
+        },
+        {
+          "word": "une concession",
+          "translation": "a concession (argument)",
+          "example": "Introduis une concession avant de réfuter.",
+          "example_translation": "Introduce a concession before rebutting.",
+          "audio_key": "concession"
+        },
+        {
+          "word": "néanmoins / toutefois",
+          "translation": "nevertheless",
+          "example": "Le projet est risqué; néanmoins il mérite l'essai.",
+          "example_translation": "The project is risky; nevertheless it deserves a try.",
+          "audio_key": "neanmoins"
+        }
+      ]
+    },
+    {
+      "type": "dialogue",
+      "scene": "Réunion municipale — amendement",
+      "turns": [
+        {
+          "speaker": "Conseiller A",
+          "text": "Bien que nous soyons pressés, je demande un débat sur le budget vert.",
+          "translation": "Although we're pressed for time, I'm asking for a debate on the green budget."
+        },
+        {
+          "speaker": "Conseiller B",
+          "text": "Quoique je partage l'urgence climatique, les chiffres ne sont pas clairs.",
+          "translation": "Although I share the climate urgency, the numbers aren't clear."
+        },
+        {
+          "speaker": "Modératrice",
+          "text": "Malgré le fait qu'il soit tard, une motion courte est possible.",
+          "translation": "Despite the fact it's late, a short motion is possible."
+        },
+        {
+          "speaker": "Conseiller A",
+          "text": "Merci. Néanmoins, reporter le vote nuirait à la confiance.",
+          "translation": "Thanks. Still, postponing the vote would harm trust."
+        }
+      ]
+    },
+    {
+      "type": "grammar_tip",
+      "rule": "Après bien que, quoique, pour que, sans que, avant que… → subjonctif. « Bien qu'il fasse froid » (not *fait). Quoique peut introduire un adjectif invariable parfois (« quoique compréhensible ») en style journalistique.",
+      "examples": [
+        {
+          "fr": "Bien qu'elle soit fatiguée, elle a terminé son rapport.",
+          "en": "Although she was tired, she finished her report."
+        },
+        {
+          "fr": "Quoique la route soit glissante, ils ont roulé prudemment.",
+          "en": "Although the road was slippery, they drove carefully."
+        }
+      ]
+    },
+    {
+      "type": "practice",
+      "exercises": [
+        {
+          "type": "match_pairs",
+          "instruction": "Match",
+          "pairs": [
+            {
+              "left": "bien que",
+              "right": "although (+ subj.)"
+            },
+            {
+              "left": "quoique",
+              "right": "although (+ subj.)"
+            },
+            {
+              "left": "néanmoins",
+              "right": "nevertheless"
+            },
+            {
+              "left": "malgré le fait que",
+              "right": "despite the fact that"
+            }
+          ]
+        },
+        {
+          "type": "fill_blank",
+          "sentence": "Bien qu'il ___ (faire) nuit, les équipes continuaient.",
+          "answer": "fasse",
+          "options": [
+            "fasse",
+            "fait",
+            "faisait",
+            "fera"
+          ]
+        },
+        {
+          "type": "mcq",
+          "question": "« Bien que je ___ d'accord » — correct form:",
+          "options": [
+            "sois",
+            "suis",
+            "serais",
+            "serai"
+          ],
+          "answer_index": 0
+        },
+        {
+          "type": "word_order",
+          "words": [
+            "Quoique",
+            "le",
+            "risque",
+            "soit",
+            "réel,",
+            "agissons."
+          ],
+          "correct_order": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "translation": "Although the risk is real, let's act."
+        },
+        {
+          "type": "mcq",
+          "question": "Subjunctive after bien que expresses:",
+          "options": [
+            "a concession not yet presented as certain fact",
+            "a completed past only",
+            "a future perfect",
+            "a passive command"
+          ],
+          "answer_index": 0
+        }
+      ]
+    }
+  ],
+  "production_task": {
+    "prompt": "Quatre phrases avec bien que ou quoique + subjonctif sur l'environnement ou la politique locale.",
+    "example": "Bien que les coûts augmentent, la ville investit dans les pistes cyclables. Quoique le débat soit tendu, un compromis est possible.",
+    "skill": "writing"
+  }
+}

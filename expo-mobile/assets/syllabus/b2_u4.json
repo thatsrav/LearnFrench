@@ -1,0 +1,183 @@
+{
+  "id": "b2-u4",
+  "level": "B2",
+  "unit_index": 4,
+  "theme": "Summarizing and Paraphrasing",
+  "estimated_minutes": 24,
+  "steps": [
+    {
+      "type": "vocab_intro",
+      "cards": [
+        {
+          "word": "en résumé / pour résumer",
+          "translation": "in summary",
+          "example": "Pour résumer, trois points clés ressortent du rapport.",
+          "example_translation": "In summary, three key points stand out from the report.",
+          "audio_key": "resume"
+        },
+        {
+          "word": "autrement dit",
+          "translation": "in other words",
+          "example": "Autrement dit, la croissance ralentit sans s'arrêter.",
+          "example_translation": "In other words growth is slowing without stopping.",
+          "audio_key": "autrement"
+        },
+        {
+          "word": "l'essentiel est que",
+          "translation": "the essential thing is that",
+          "example": "L'essentiel est que les citoyens comprennent les étapes.",
+          "example_translation": "The essential thing is that citizens understand the steps.",
+          "audio_key": "essentiel"
+        },
+        {
+          "word": "paraphraser",
+          "translation": "to paraphrase",
+          "example": "Paraphrase l'auteur sans copier ses tournures.",
+          "example_translation": "Paraphrase the author without copying their phrasing.",
+          "audio_key": "para"
+        },
+        {
+          "word": "synthétiser",
+          "translation": "to synthesize",
+          "example": "Synthétise deux articles opposés en un paragraphe.",
+          "example_translation": "Synthesize two opposing articles in one paragraph.",
+          "audio_key": "synth"
+        },
+        {
+          "word": "ne pas trahir le sens",
+          "translation": "not to distort meaning",
+          "example": "Attention à ne pas trahir le sens des statistiques.",
+          "example_translation": "Be careful not to distort the meaning of the statistics.",
+          "audio_key": "trahir"
+        }
+      ]
+    },
+    {
+      "type": "dialogue",
+      "scene": "Équipe rédactionnelle — revue de texte",
+      "turns": [
+        {
+          "speaker": "Rédactrice",
+          "text": "Ton résumé est fidèle, mais « exploser les coûts » est trop fort pour les données.",
+          "translation": "Your summary is faithful but 'exploding costs' is too strong for the data."
+        },
+        {
+          "speaker": "Stagiaire",
+          "text": "Autrement dit, je devrais dire « hausse modérée »?",
+          "translation": "In other words I should say 'moderate increase'?"
+        },
+        {
+          "speaker": "Rédactrice",
+          "text": "Oui. Pour résumer : hausse modérée, surtout dans l'énergie.",
+          "translation": "Yes. In summary: moderate increase, especially in energy."
+        },
+        {
+          "speaker": "Stagiaire",
+          "text": "Je paraphrase la citation du ministre sans les mots polémiques.",
+          "translation": "I'll paraphrase the minister's quote without the polemical words."
+        }
+      ]
+    },
+    {
+      "type": "grammar_tip",
+      "rule": "Synthèse : présent de vérité générale ou passé si l'article est daté. Connecteurs « en bref », « dans l'ensemble », « cela dit » pour marquer la teneur globale.",
+      "examples": [
+        {
+          "fr": "Dans l'ensemble, les experts s'accordent sur la tendance.",
+          "en": "Overall experts agree on the trend."
+        },
+        {
+          "fr": "Cela dit, plusieurs nuances méritent attention.",
+          "en": "That said, several nuances deserve attention."
+        }
+      ]
+    },
+    {
+      "type": "practice",
+      "exercises": [
+        {
+          "type": "match_pairs",
+          "instruction": "Match",
+          "pairs": [
+            {
+              "left": "autrement dit",
+              "right": "in other words"
+            },
+            {
+              "left": "synthétiser",
+              "right": "to synthesize"
+            },
+            {
+              "left": "paraphraser",
+              "right": "to paraphrase"
+            },
+            {
+              "left": "en résumé",
+              "right": "in summary"
+            }
+          ]
+        },
+        {
+          "type": "fill_blank",
+          "sentence": "___ , l'article plaide pour plus de transparence.",
+          "answer": "En résumé",
+          "options": [
+            "En résumé",
+            "Bien que",
+            "Afin que",
+            "Pourvu que"
+          ]
+        },
+        {
+          "type": "mcq",
+          "question": "Good paraphrase should:",
+          "options": [
+            "keep the same meaning with new wording",
+            "add your own opinions as facts",
+            "shorten by deleting all numbers",
+            "copy two sentences verbatim"
+          ],
+          "answer_index": 0
+        },
+        {
+          "type": "word_order",
+          "words": [
+            "L'",
+            "essentiel",
+            "est",
+            "que",
+            "nous",
+            "restions",
+            "prudents."
+          ],
+          "correct_order": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+          ],
+          "translation": "The essential thing is that we stay cautious."
+        },
+        {
+          "type": "mcq",
+          "question": "« Ne pas trahir le sens » warns against:",
+          "options": [
+            "distorting the original meaning",
+            "using synonyms",
+            "citing sources",
+            "writing a title"
+          ],
+          "answer_index": 0
+        }
+      ]
+    }
+  ],
+  "production_task": {
+    "prompt": "Résume en 4 phrases un article imaginaire sur l'éducation au Canada (pour résumer, autrement dit, l'essentiel est que).",
+    "example": "Pour résumer, le texte compare deux provinces. Autrement dit, les financements diffèrent. L'essentiel est que l'équité reste le débat central.",
+    "skill": "writing"
+  }
+}

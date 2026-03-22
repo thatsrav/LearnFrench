@@ -5,6 +5,7 @@ import {
   ChevronRight,
   Clock,
   Headphones,
+  Loader2,
   MoreHorizontal,
   Pause,
   Play,
@@ -418,7 +419,11 @@ export default function ReadingRoom({ userLevel }: ReadingRoomProps) {
             className="inline-flex items-center gap-2 rounded-full px-5 py-2.5 text-sm font-bold text-white shadow-md disabled:cursor-not-allowed disabled:opacity-80"
             style={{ backgroundColor: navy }}
           >
-            {!audioUrl && ttsStarting ? null : <Headphones className="h-4 w-4" />}
+            {!audioUrl && ttsStarting ? (
+              <Loader2 className="h-4 w-4 shrink-0 animate-spin" aria-hidden />
+            ) : (
+              <Headphones className="h-4 w-4" />
+            )}
             {!audioUrl && ttsStarting
               ? 'Chargement…'
               : playing
@@ -516,36 +521,25 @@ export default function ReadingRoom({ userLevel }: ReadingRoomProps) {
                     })}
                   </div>
 
-                  <div
-                    className="grid transition-[grid-template-rows] duration-300 ease-out"
-                    style={{ gridTemplateRows: translationOn ? '1fr' : '0fr' }}
-                    aria-hidden={!translationOn}
-                  >
-                    <div className="min-h-0 overflow-hidden">
-                      <div
-                        className={[
-                          'space-y-2 border-t border-dashed border-indigo-200 pt-3 transition-opacity duration-300 ease-out',
-                          translationOn ? 'opacity-100' : 'opacity-0',
-                        ].join(' ')}
-                      >
-                        {chunk.map((sent, offset) => {
-                          const i = startIndex + offset
-                          const active = highlightIdx === i
-                          return (
-                            <p
-                              key={`en-${i}`}
-                              className={[
-                                'border-l-2 border-indigo-200 pl-3 text-sm leading-relaxed italic md:text-base',
-                                active ? 'font-semibold text-indigo-700' : 'text-slate-500',
-                              ].join(' ')}
-                            >
-                              {sent.en}
-                            </p>
-                          )
-                        })}
-                      </div>
+                  {translationOn ? (
+                    <div className="mt-3 block max-h-[min(120vh,8000px)] space-y-2 overflow-hidden border-t border-dashed border-indigo-200 pt-3 transition-[max-height,opacity] duration-300 ease-out">
+                      {chunk.map((sent, offset) => {
+                        const i = startIndex + offset
+                        const active = highlightIdx === i
+                        return (
+                          <p
+                            key={`en-${i}`}
+                            className={[
+                              'border-l-2 border-indigo-200 pl-3 text-sm leading-relaxed italic md:text-base',
+                              active ? 'font-semibold text-indigo-700' : 'text-slate-500',
+                            ].join(' ')}
+                          >
+                            {sent.en}
+                          </p>
+                        )
+                      })}
                     </div>
-                  </div>
+                  ) : null}
                 </div>
               ))}
             </div>

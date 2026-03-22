@@ -1,0 +1,181 @@
+{
+  "id": "b1-u16",
+  "level": "B1",
+  "unit_index": 16,
+  "theme": "Childhood Memories",
+  "estimated_minutes": 21,
+  "steps": [
+    {
+      "type": "vocab_intro",
+      "cards": [
+        {
+          "word": "se souvenir de",
+          "translation": "to remember",
+          "example": "Je me souviens du camping au bord du lac.",
+          "example_translation": "I remember the camping by the lake.",
+          "audio_key": "souvenir"
+        },
+        {
+          "word": "avoir l'habitude de",
+          "translation": "used to (have the habit)",
+          "example": "J'avais l'habitude de lire sous les couvertures.",
+          "example_translation": "I used to read under the covers.",
+          "audio_key": "habitude"
+        },
+        {
+          "word": "mon frère / ma sœur aînée",
+          "translation": "my brother / older sister",
+          "example": "Ma sœur aînée m'emmenait au parc.",
+          "example_translation": "My older sister used to take me to the park.",
+          "audio_key": "frere"
+        },
+        {
+          "word": "les grands-parents",
+          "translation": "grandparents",
+          "example": "Chez mes grands-parents, il y avait toujours des biscuits.",
+          "example_translation": "At my grandparents' there were always cookies.",
+          "audio_key": "gp"
+        },
+        {
+          "word": "l'école primaire",
+          "translation": "elementary school",
+          "example": "À l'école primaire, j'étais timide.",
+          "example_translation": "In elementary school I was shy.",
+          "audio_key": "ecole"
+        },
+        {
+          "word": "on jouait ensemble",
+          "translation": "we used to play together",
+          "example": "Après l'école, on jouait ensemble dans la cour.",
+          "example_translation": "After school we used to play together in the yard.",
+          "audio_key": "jouer"
+        }
+      ]
+    },
+    {
+      "type": "dialogue",
+      "scene": "Deux amis — souvenirs d'enfance à Gatineau",
+      "turns": [
+        {
+          "speaker": "Anaïs",
+          "text": "Quand j'étais petite, on habitait près du parc de la Gatineau. Je faisais du vélo tous les soirs.",
+          "translation": "When I was little we lived near Gatineau Park. I biked every evening."
+        },
+        {
+          "speaker": "Tom",
+          "text": "Moi, je passais les étés chez mes grands-parents à Rimouski. On pêchait sur le quai.",
+          "translation": "I spent summers at my grandparents' in Rimouski. We fished on the pier."
+        },
+        {
+          "speaker": "Anaïs",
+          "text": "C'était quoi ton plat préféré chez eux?",
+          "translation": "What was your favorite dish there?"
+        },
+        {
+          "speaker": "Tom",
+          "text": "Ma grand-mère préparait une tourtière incroyable. Je m'en souviens encore!",
+          "translation": "My grandmother made an incredible tourtière. I still remember it!"
+        }
+      ]
+    },
+    {
+      "type": "grammar_tip",
+      "rule": "Souvenirs : imparfait pour états et habitudes (« j'étais », « on jouait »). Passé composé pour un souvenir ponctuel marquant (« un jour j'ai gagné un prix »).",
+      "examples": [
+        {
+          "fr": "Nous vivions en appartement avant d'emménager en maison.",
+          "en": "We lived in an apartment before moving to a house."
+        },
+        {
+          "fr": "Un été, j'ai appris à nager dans ce lac-là.",
+          "en": "One summer I learned to swim in that lake."
+        }
+      ]
+    },
+    {
+      "type": "practice",
+      "exercises": [
+        {
+          "type": "match_pairs",
+          "instruction": "Match",
+          "pairs": [
+            {
+              "left": "se souvenir de",
+              "right": "to remember"
+            },
+            {
+              "left": "j'avais l'habitude de",
+              "right": "I used to"
+            },
+            {
+              "left": "les grands-parents",
+              "right": "grandparents"
+            },
+            {
+              "left": "l'école primaire",
+              "right": "elementary school"
+            }
+          ]
+        },
+        {
+          "type": "fill_blank",
+          "sentence": "Quand nous ___ petits, nous ___ au même club de soccer. (be / play — imparfait)",
+          "answer": "étions … jouions",
+          "options": [
+            "étions … jouions",
+            "avons été … avons joué",
+            "sommes … jouons",
+            "serons … jouerons"
+          ]
+        },
+        {
+          "type": "mcq",
+          "question": "« Je me souviens ___ ce jour-là » — correct preposition:",
+          "options": [
+            "de",
+            "à",
+            "pour",
+            "chez"
+          ],
+          "answer_index": 0
+        },
+        {
+          "type": "word_order",
+          "words": [
+            "Je",
+            "me",
+            "souviens",
+            "de",
+            "cette",
+            "maison."
+          ],
+          "correct_order": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "translation": "I remember that house."
+        },
+        {
+          "type": "mcq",
+          "question": "Background in childhood stories is usually:",
+          "options": [
+            "imparfait",
+            "passé simple",
+            "future",
+            "imperative"
+          ],
+          "answer_index": 0
+        }
+      ]
+    }
+  ],
+  "production_task": {
+    "prompt": "Paragraphe bref : un souvenir précis d'enfance (imparfait + au moins un passé composé).",
+    "example": "J'avais huit ans. Nous passions Noël chez mes oncles. Un soir, il a neigé toute la nuit et le lendemain j'ai fait un bonhomme énorme.",
+    "skill": "writing"
+  }
+}

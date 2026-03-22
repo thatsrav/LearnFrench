@@ -1,0 +1,135 @@
+{
+  "id": "a2-u5",
+  "level": "A2",
+  "unit_index": 5,
+  "theme": "Comparisons and Opinions",
+  "estimated_minutes": 16,
+  "steps": [
+    {
+      "type": "vocab_intro",
+      "cards": [
+        {
+          "word": "plus ... que",
+          "translation": "more ... than",
+          "example": "Ce café est plus calme que l'autre.",
+          "example_translation": "This café is calmer than the other one.",
+          "audio_key": "plus_que"
+        },
+        {
+          "word": "moins ... que",
+          "translation": "less ... than",
+          "example": "Le trajet est moins long aujourd'hui.",
+          "example_translation": "The trip is shorter today.",
+          "audio_key": "moins_que"
+        },
+        {
+          "word": "aussi ... que",
+          "translation": "as ... as",
+          "example": "Elle est aussi motivée que son frère.",
+          "example_translation": "She's as motivated as her brother.",
+          "audio_key": "aussi_que"
+        },
+        {
+          "word": "parce que",
+          "translation": "because",
+          "example": "Je préfère le métro parce que c'est rapide.",
+          "example_translation": "I prefer the metro because it's fast.",
+          "audio_key": "parce_que"
+        },
+        {
+          "word": "donc · mais",
+          "translation": "so / therefore · but",
+          "example": "Il pleut; donc on reste à la maison. Mais demain, on sort!",
+          "example_translation": "It's raining; so we stay home. But tomorrow, we're going out!",
+          "audio_key": "donc_mais"
+        },
+        {
+          "word": "à mon avis · selon moi",
+          "translation": "in my opinion",
+          "example": "À mon avis, ce film est trop long.",
+          "example_translation": "In my opinion, this film is too long.",
+          "audio_key": "avis"
+        }
+      ]
+    },
+    {
+      "type": "dialogue",
+      "scene": "Choix de restaurant entre collègues",
+      "turns": [
+        {
+          "speaker": "Julien",
+          "text": "À mon avis, le resto italien est plus sympa que la brasserie. L'ambiance est plus chaleureuse.",
+          "translation": "In my opinion, the Italian restaurant is nicer than the brasserie. The atmosphere is warmer."
+        },
+        {
+          "speaker": "Sarah",
+          "text": "Peut-être, mais la brasserie est moins chère et aussi proche que l'italien.",
+          "translation": "Maybe, but the brasserie is cheaper and as close as the Italian place."
+        },
+        {
+          "speaker": "Julien",
+          "text": "C'est vrai. Par contre, les portions sont plus petites là-bas, donc j'ai souvent faim après.",
+          "translation": "True. On the other hand, the portions are smaller there, so I'm often hungry after."
+        },
+        {
+          "speaker": "Sarah",
+          "text": "Bon, choisissons l'italien alors — parce qu'on fête ta promotion!",
+          "translation": "Okay, let's pick the Italian one then — because we're celebrating your promotion!"
+        }
+      ]
+    },
+    {
+      "type": "grammar_tip",
+      "rule": "Comparatif : plus / moins / aussi + adjectif + que. « Meilleur » et « mieux » ne suivent pas toujours ce modèle — ici on reste sur l'adjectif (plus cher, moins pratique). Pour expliquer : parce que + phrase ; donc introduit une conséquence.",
+      "examples": [
+        { "fr": "Cette option est moins risquée que l'autre.", "en": "This option is less risky than the other." },
+        { "fr": "Il est fatigué parce qu'il a couru; donc il se repose.", "en": "He's tired because he ran; so he's resting." }
+      ]
+    },
+    {
+      "type": "practice",
+      "exercises": [
+        {
+          "type": "match_pairs",
+          "instruction": "Match",
+          "pairs": [
+            { "left": "plus cher que", "right": "more expensive than" },
+            { "left": "moins intéressant que", "right": "less interesting than" },
+            { "left": "aussi grand que", "right": "as big as" },
+            { "left": "parce que", "right": "because" }
+          ]
+        },
+        {
+          "type": "fill_blank",
+          "sentence": "Ce trajet est ___ long que hier. (less)",
+          "answer": "moins",
+          "options": ["moins", "plus", "aussi", "très"],
+          "hint": "« less » → moins"
+        },
+        {
+          "type": "mcq",
+          "question": "Ce café est ___ cher que l'autre. (more expensive)",
+          "options": ["plus", "moins", "aussi", "très"],
+          "answer_index": 0
+        },
+        {
+          "type": "mcq",
+          "question": "Connector for a reason?",
+          "options": ["donc", "parce que", "puis", "finalement"],
+          "answer_index": 1
+        },
+        {
+          "type": "word_order",
+          "words": ["que", "pratique", "est", "Cette", "solution", "plus", "l'autre."],
+          "correct_order": [3, 4, 2, 5, 1, 0, 6],
+          "translation": "This solution is more practical than the other."
+        }
+      ]
+    }
+  ],
+  "production_task": {
+    "prompt": "Donne ton avis : compare deux endroits où tu manges (plus / moins / aussi + adjectif + que) et utilise parce que une fois.",
+    "example": "Le café du coin est moins bruyant que la grande chaîne parce qu'il y a moins de monde.",
+    "skill": "writing"
+  }
+}

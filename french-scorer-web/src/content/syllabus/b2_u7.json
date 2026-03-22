@@ -1,0 +1,181 @@
+{
+  "id": "b2-u7",
+  "level": "B2",
+  "unit_index": 7,
+  "theme": "Job Interview Basics",
+  "estimated_minutes": 24,
+  "steps": [
+    {
+      "type": "vocab_intro",
+      "cards": [
+        {
+          "word": "l'entretien d'embauche",
+          "translation": "job interview",
+          "example": "L'entretien d'embauche dure souvent quarante-cinq minutes.",
+          "example_translation": "The hiring interview often lasts forty-five minutes.",
+          "audio_key": "entretien"
+        },
+        {
+          "word": "les forces et axes d'amélioration",
+          "translation": "strengths and areas for improvement",
+          "example": "Prépare des exemples concrets pour tes forces.",
+          "example_translation": "Prepare concrete examples for your strengths.",
+          "audio_key": "forces"
+        },
+        {
+          "word": "le poste à pourvoir",
+          "translation": "position to be filled",
+          "example": "Le poste à pourvoir exige bilinguisme oral.",
+          "example_translation": "The position requires oral bilingualism.",
+          "audio_key": "poste"
+        },
+        {
+          "word": "pourquoi devrions-nous vous embaucher?",
+          "translation": "why should we hire you?",
+          "example": "Réponds en liant profil et besoins de l'équipe.",
+          "example_translation": "Answer by linking profile and team needs.",
+          "audio_key": "embaucher"
+        },
+        {
+          "word": "une question piège",
+          "translation": "trick question",
+          "example": "Reste calme face à une question piège.",
+          "example_translation": "Stay calm facing a trick question.",
+          "audio_key": "piege"
+        },
+        {
+          "word": "suivi / remerciement",
+          "translation": "follow-up / thanks",
+          "example": "Un courriel de remerciement le lendemain est apprécié.",
+          "example_translation": "A thank-you email the next day is appreciated.",
+          "audio_key": "suivi"
+        }
+      ]
+    },
+    {
+      "type": "dialogue",
+      "scene": "Entretien — startup montréalaise",
+      "turns": [
+        {
+          "speaker": "Recruteur",
+          "text": "Parlez-moi d'un projet où vous avez dû convaincre des parties prenantes.",
+          "translation": "Tell me about a project where you had to convince stakeholders."
+        },
+        {
+          "speaker": "Candidate",
+          "text": "J'ai piloté une refonte du site : j'ai synthétisé les retours utilisateurs et fixé des priorités réalistes.",
+          "translation": "I led a website overhaul: I synthesized user feedback and set realistic priorities."
+        },
+        {
+          "speaker": "Recruteur",
+          "text": "Pourquoi devrions-nous vous embaucher plutôt qu'un autre candidat?",
+          "translation": "Why should we hire you rather than another candidate?"
+        },
+        {
+          "speaker": "Candidate",
+          "text": "Mon profil combine analyse de données et communication claire, ce dont votre équipe marketing a besoin.",
+          "translation": "My profile combines data analysis and clear communication, which your marketing team needs."
+        }
+      ]
+    },
+    {
+      "type": "grammar_tip",
+      "rule": "Registre soutenu à l'oral : « je souhaiterais », « j'ai eu l'occasion de », « il m'a été demandé de ». Évite le tutoiement si l'interviewer vouvoie.",
+      "examples": [
+        {
+          "fr": "J'aurais aimé creuser davantage la gouvernance des données.",
+          "en": "I would have liked to explore data governance further."
+        },
+        {
+          "fr": "Permettez-moi de préciser mon expérience en gestion d'équipe.",
+          "en": "Allow me to clarify my experience in team management."
+        }
+      ]
+    },
+    {
+      "type": "practice",
+      "exercises": [
+        {
+          "type": "match_pairs",
+          "instruction": "Match",
+          "pairs": [
+            {
+              "left": "entretien d'embauche",
+              "right": "job interview"
+            },
+            {
+              "left": "poste à pourvoir",
+              "right": "open position"
+            },
+            {
+              "left": "question piège",
+              "right": "trick question"
+            },
+            {
+              "left": "remerciement",
+              "right": "thanks / thank-you note"
+            }
+          ]
+        },
+        {
+          "type": "fill_blank",
+          "sentence": "___-moi de vous expliquer ma motivation en deux phrases.",
+          "answer": "Permettez",
+          "options": [
+            "Permettez",
+            "Écoutez",
+            "Regardez",
+            "Oubliez"
+          ]
+        },
+        {
+          "type": "mcq",
+          "question": "STAR method (situation, task, action, result) helps with:",
+          "options": [
+            "behavioral interview answers",
+            "spelling only",
+            "salary negotiation only",
+            "visa forms"
+          ],
+          "answer_index": 0
+        },
+        {
+          "type": "word_order",
+          "words": [
+            "Je",
+            "souhaiterais",
+            "contribuer",
+            "à",
+            "votre",
+            "équipe."
+          ],
+          "correct_order": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "translation": "I would like to contribute to your team."
+        },
+        {
+          "type": "mcq",
+          "question": "After an interview in formal Québec/workplace French, sending:",
+          "options": [
+            "a short professional thank-you email",
+            "a meme",
+            "nothing for two weeks",
+            "a text full of slang"
+          ],
+          "answer_index": 0
+        }
+      ]
+    }
+  ],
+  "production_task": {
+    "prompt": "Réponses écrites (120 mots) : « Parlez-moi de vous » + « Où vous voyez-vous dans cinq ans? » — ton professionnel.",
+    "example": "Je suis analyste avec quatre ans d'expérience… Dans cinq ans, je vois un rôle hybride data–stratégie…",
+    "skill": "writing"
+  }
+}

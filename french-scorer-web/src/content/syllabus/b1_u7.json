@@ -1,0 +1,179 @@
+{
+  "id": "b1-u7",
+  "level": "B1",
+  "unit_index": 7,
+  "theme": "Describing a Trip",
+  "estimated_minutes": 22,
+  "steps": [
+    {
+      "type": "vocab_intro",
+      "cards": [
+        {
+          "word": "partir · arriver",
+          "translation": "to leave · to arrive",
+          "example": "Nous sommes partis tôt et arrivés à midi.",
+          "example_translation": "We left early and arrived at noon.",
+          "audio_key": "partir"
+        },
+        {
+          "word": "visiter",
+          "translation": "to visit (a place)",
+          "example": "Nous avons visité le Vieux-Québec sous la pluie.",
+          "example_translation": "We visited Old Quebec in the rain.",
+          "audio_key": "visiter"
+        },
+        {
+          "word": "se promener",
+          "translation": "to walk around",
+          "example": "Le soir, on s'est promené sur le Dufferin.",
+          "example_translation": "In the evening we walked on the Dufferin Terrace.",
+          "audio_key": "promener"
+        },
+        {
+          "word": "c'était + adjectif",
+          "translation": "it was + adj.",
+          "example": "C'était magnifique malgré le froid.",
+          "example_translation": "It was magnificent despite the cold.",
+          "audio_key": "cetait"
+        },
+        {
+          "word": "pendant que",
+          "translation": "while",
+          "example": "Pendant que je faisais la file, Léa achetait des cartes postales.",
+          "example_translation": "While I was waiting in line, Léa bought postcards.",
+          "audio_key": "pendant"
+        },
+        {
+          "word": "soudain",
+          "translation": "suddenly",
+          "example": "Soudain, le train s'est arrêté entre deux gares.",
+          "example_translation": "Suddenly the train stopped between two stations.",
+          "audio_key": "soudain"
+        }
+      ]
+    },
+    {
+      "type": "dialogue",
+      "scene": "Retour de weekend à Québec",
+      "turns": [
+        {
+          "speaker": "Zoé",
+          "text": "Alors, ton weekend? Raconte!",
+          "translation": "So, your weekend? Tell me!"
+        },
+        {
+          "speaker": "Marc",
+          "text": "On est partis vendredi soir. On a visité le musée samedi matin; c'était super intéressant.",
+          "translation": "We left Friday evening. We visited the museum Saturday morning; it was really interesting."
+        },
+        {
+          "speaker": "Zoé",
+          "text": "Et le temps?",
+          "translation": "And the weather?"
+        },
+        {
+          "speaker": "Marc",
+          "text": "Il a neigé soudain dimanche, mais pendant que nous déjeunions au café, ça s'est calmé.",
+          "translation": "It snowed suddenly Sunday, but while we were having lunch at the café, it calmed down."
+        }
+      ]
+    },
+    {
+      "type": "grammar_tip",
+      "rule": "Pour une action ponctuelle dans le passé récent raconté : passé composé (« on est partis », « on a visité »). « Pendant que » + imparfait si l'arrière-plan dure (« pendant que nous déjeunions »).",
+      "examples": [
+        {
+          "fr": "J'ai pris le train et je suis arrivé à l'hôtel vers 22 h.",
+          "en": "I took the train and arrived at the hotel around 10 p.m."
+        },
+        {
+          "fr": "Pendant qu'il pleuvait, nous avons lu près de la fenêtre.",
+          "en": "While it was raining, we read by the window."
+        }
+      ]
+    },
+    {
+      "type": "practice",
+      "exercises": [
+        {
+          "type": "match_pairs",
+          "instruction": "Match",
+          "pairs": [
+            {
+              "left": "visiter",
+              "right": "to visit (a place)"
+            },
+            {
+              "left": "se promener",
+              "right": "to walk around"
+            },
+            {
+              "left": "pendant que",
+              "right": "while"
+            },
+            {
+              "left": "soudain",
+              "right": "suddenly"
+            }
+          ]
+        },
+        {
+          "type": "fill_blank",
+          "sentence": "___ la pluie, nous sommes restés au musée. (While)",
+          "answer": "Pendant que",
+          "options": [
+            "Pendant que",
+            "Soudain",
+            "Déjà",
+            "Ensuite"
+          ]
+        },
+        {
+          "type": "mcq",
+          "question": "Correct past for « I arrived » (feminine speaker):",
+          "options": [
+            "Je suis arrivée.",
+            "J'ai arrivée.",
+            "Je suis arrivé.",
+            "J'ai arrivé."
+          ],
+          "answer_index": 0
+        },
+        {
+          "type": "word_order",
+          "words": [
+            "intéressant.",
+            "était",
+            "très",
+            "Le",
+            "musée"
+          ],
+          "correct_order": [
+            3,
+            1,
+            2,
+            4,
+            0
+          ],
+          "translation": "The museum was very interesting."
+        },
+        {
+          "type": "mcq",
+          "question": "« C'était » is:",
+          "options": [
+            "impersonal + imparfait of être",
+            "future",
+            "subjunctive",
+            "conditional"
+          ],
+          "answer_index": 0
+        }
+      ]
+    }
+  ],
+  "production_task": {
+    "prompt": "Six phrases : récit d'un voyage (passé composé + au moins une phrase avec pendant que ou soudain).",
+    "example": "Nous sommes partis tôt. Pendant que nous roulions, il a commencé à neiger. Soudain, le GPS a planté!",
+    "skill": "writing"
+  }
+}

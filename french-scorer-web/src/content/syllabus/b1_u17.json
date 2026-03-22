@@ -1,0 +1,183 @@
+{
+  "id": "b1-u17",
+  "level": "B1",
+  "unit_index": 17,
+  "theme": "News and Past Events",
+  "estimated_minutes": 21,
+  "steps": [
+    {
+      "type": "vocab_intro",
+      "cards": [
+        {
+          "word": "selon les autorités",
+          "translation": "according to authorities",
+          "example": "Selon les autorités, personne n'a été blessé.",
+          "example_translation": "According to authorities, no one was hurt.",
+          "audio_key": "autorites"
+        },
+        {
+          "word": "un incendie · une inondation",
+          "translation": "fire · flood",
+          "example": "Une inondation a forcé l'évacuation de deux rues.",
+          "example_translation": "A flood forced the evacuation of two streets.",
+          "audio_key": "incendie"
+        },
+        {
+          "word": "le maire · la mairesse",
+          "translation": "mayor (m./f.)",
+          "example": "La mairesse a tenu une conférence de presse.",
+          "example_translation": "The mayor held a press conference.",
+          "audio_key": "maire"
+        },
+        {
+          "word": "enquêter / l'enquête",
+          "translation": "to investigate / investigation",
+          "example": "La police enquête sur les causes de l'accident.",
+          "example_translation": "Police are investigating the causes of the accident.",
+          "audio_key": "enquete"
+        },
+        {
+          "word": "hier soir / ce matin",
+          "translation": "last night / this morning",
+          "example": "Hier soir, les vents ont dépassé cent kilomètres/heure.",
+          "example_translation": "Last night winds exceeded 100 km/h.",
+          "audio_key": "hier"
+        },
+        {
+          "word": "pour l'instant",
+          "translation": "for now",
+          "example": "Pour l'instant, la route reste fermée.",
+          "example_translation": "For now the road remains closed.",
+          "audio_key": "instant"
+        }
+      ]
+    },
+    {
+      "type": "dialogue",
+      "scene": "Collation du midi — fil d'actualité",
+      "turns": [
+        {
+          "speaker": "Journaliste (radio)",
+          "text": "Une tempête a frappé la côte hier soir; des milliers de foyers sont sans électricité.",
+          "translation": "A storm hit the coast last night; thousands of homes are without power."
+        },
+        {
+          "speaker": "Amir",
+          "text": "J'ai vu ça sur les manchettes : selon Hydro-Québec, les équipes travaillent depuis l'aube.",
+          "translation": "I saw it in the headlines: according to Hydro-Québec crews have been working since dawn."
+        },
+        {
+          "speaker": "Claire",
+          "text": "Ma sœur habitait dans la zone; elle a dû aller chez des amis.",
+          "translation": "My sister lived in the zone; she had to go to friends'."
+        },
+        {
+          "speaker": "Amir",
+          "text": "Pour l'instant pas de blessés graves, c'est déjà ça.",
+          "translation": "For now no serious injuries — that's something."
+        }
+      ]
+    },
+    {
+      "type": "grammar_tip",
+      "rule": "Faits divers : PC pour événements datés (« hier, une tempête a frappé »). Présent pour la situation actuelle (« la route est fermée »). « Selon » + source + indicatif.",
+      "examples": [
+        {
+          "fr": "Les pompiers sont intervenus vers deux heures du matin.",
+          "en": "Firefighters intervened around two in the morning."
+        },
+        {
+          "fr": "Selon les témoins, le suspect portait un manteau noir.",
+          "en": "According to witnesses, the suspect wore a black coat."
+        }
+      ]
+    },
+    {
+      "type": "practice",
+      "exercises": [
+        {
+          "type": "match_pairs",
+          "instruction": "Match",
+          "pairs": [
+            {
+              "left": "selon",
+              "right": "according to"
+            },
+            {
+              "left": "une inondation",
+              "right": "flood"
+            },
+            {
+              "left": "enquêter",
+              "right": "to investigate"
+            },
+            {
+              "left": "pour l'instant",
+              "right": "for now"
+            }
+          ]
+        },
+        {
+          "type": "fill_blank",
+          "sentence": "___ la police, l'incendie ___ accidentel. (According to … was)",
+          "answer": "Selon … était",
+          "options": [
+            "Selon … était",
+            "Malgré … était",
+            "Bien que … soit",
+            "Afin que … soit"
+          ]
+        },
+        {
+          "type": "mcq",
+          "question": "« Personne n'a été blessé » — voice/style:",
+          "options": [
+            "passive / past event reporting",
+            "a command",
+            "a wish",
+            "a habit"
+          ],
+          "answer_index": 0
+        },
+        {
+          "type": "word_order",
+          "words": [
+            "Hier",
+            "soir,",
+            "un",
+            "accident",
+            "a",
+            "eu",
+            "lieu."
+          ],
+          "correct_order": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+          ],
+          "translation": "Last night an accident took place."
+        },
+        {
+          "type": "mcq",
+          "question": "« La mairesse a tenu une conférence » — « tenir » here means:",
+          "options": [
+            "to hold (an event)",
+            "to keep (physically)",
+            "to be stubborn",
+            "to pull"
+          ],
+          "answer_index": 0
+        }
+      ]
+    }
+  ],
+  "production_task": {
+    "prompt": "Rédige quatre phrases style nouvelle : qui, quoi, quand, selon qui.",
+    "example": "Hier après-midi, un incendie a éclaté dans un entrepôt. Selon les pompiers, le feu était maîtrisé vers dix-huit heures.",
+    "skill": "writing"
+  }
+}

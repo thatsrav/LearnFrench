@@ -1,0 +1,181 @@
+{
+  "id": "b1-u11",
+  "level": "B1",
+  "unit_index": 11,
+  "theme": "Passé Composé Formation",
+  "estimated_minutes": 23,
+  "steps": [
+    {
+      "type": "vocab_intro",
+      "cards": [
+        {
+          "word": "avoir + participe passé",
+          "translation": "most verbs use avoir",
+          "example": "J'ai mangé, tu as fini, elle a attendu.",
+          "example_translation": "I ate, you finished, she waited.",
+          "audio_key": "avoir"
+        },
+        {
+          "word": "être + participe (accord)",
+          "translation": "movement & DR MRS VANDERTRAMP style",
+          "example": "Elle est partie tôt; ils sont revenus tard.",
+          "example_translation": "She left early; they came back late.",
+          "audio_key": "etre"
+        },
+        {
+          "word": "le participe passé",
+          "translation": "past participle",
+          "example": "Parler → parlé; finir → fini; vendre → vendu.",
+          "example_translation": "Speak → spoken; finish → finished; sell → sold.",
+          "audio_key": "pp"
+        },
+        {
+          "word": "ne … pas (passé composé)",
+          "translation": "negation wraps around auxiliary",
+          "example": "Je n'ai pas vu le message hier soir.",
+          "example_translation": "I didn't see the message last night.",
+          "audio_key": "neg"
+        },
+        {
+          "word": "déjà / pas encore",
+          "translation": "already / not yet",
+          "example": "Tu as déjà réservé? — Non, pas encore.",
+          "example_translation": "Have you already booked? — Not yet.",
+          "audio_key": "deja"
+        },
+        {
+          "word": "hier / la semaine dernière",
+          "translation": "yesterday / last week",
+          "example": "Nous sommes arrivés hier soir.",
+          "example_translation": "We arrived yesterday evening.",
+          "audio_key": "hier"
+        }
+      ]
+    },
+    {
+      "type": "dialogue",
+      "scene": "Colocataires — qui a fait les courses?",
+      "turns": [
+        {
+          "speaker": "Kim",
+          "text": "Tu as acheté le lait? Je n'ai rien trouvé dans le frigo.",
+          "translation": "Did you buy the milk? I found nothing in the fridge."
+        },
+        {
+          "speaker": "Ray",
+          "text": "J'ai oublié, désolé. Mais j'ai payé l'électricité ce matin.",
+          "translation": "I forgot, sorry. But I paid the electricity bill this morning."
+        },
+        {
+          "speaker": "Kim",
+          "text": "OK. Moi, je suis passée au dépanneur; j'ai pris du pain.",
+          "translation": "OK. I stopped at the convenience store; I got some bread."
+        },
+        {
+          "speaker": "Ray",
+          "text": "Parfait. Demain j'achète le lait avant huit heures.",
+          "translation": "Perfect. Tomorrow I'll buy the milk before eight."
+        }
+      ]
+    },
+    {
+      "type": "grammar_tip",
+      "rule": "Passé composé = auxiliaire (avoir ou être) + participe passé. Avec être, accord du participe avec le sujet (« elle est partie »). Négation : « ne » avant l'auxiliaire + « pas » après.",
+      "examples": [
+        {
+          "fr": "Nous avons étudié trois heures puis nous sommes sortis.",
+          "en": "We studied three hours then we went out."
+        },
+        {
+          "fr": "Il n'est pas venu à la réunion; il a téléphoné.",
+          "en": "He didn't come to the meeting; he called."
+        }
+      ]
+    },
+    {
+      "type": "practice",
+      "exercises": [
+        {
+          "type": "match_pairs",
+          "instruction": "Match",
+          "pairs": [
+            {
+              "left": "j'ai fini",
+              "right": "I finished"
+            },
+            {
+              "left": "elle est allée",
+              "right": "she went (f.)"
+            },
+            {
+              "left": "participe passé",
+              "right": "past participle"
+            },
+            {
+              "left": "pas encore",
+              "right": "not yet"
+            }
+          ]
+        },
+        {
+          "type": "fill_blank",
+          "sentence": "Elle ___ partie avant minuit. (is / went — être)",
+          "answer": "est",
+          "options": [
+            "est",
+            "a",
+            "était",
+            "sera"
+          ]
+        },
+        {
+          "type": "mcq",
+          "question": "Negative of « j'ai vu »:",
+          "options": [
+            "Je n'ai pas vu.",
+            "Je pas n'ai vu.",
+            "Je n'ai vu pas.",
+            "Je ne pas ai vu."
+          ],
+          "answer_index": 0
+        },
+        {
+          "type": "word_order",
+          "words": [
+            "J'",
+            "ai",
+            "acheté",
+            "les",
+            "billets",
+            "hier."
+          ],
+          "correct_order": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "translation": "I bought the tickets yesterday."
+        },
+        {
+          "type": "mcq",
+          "question": "Which verb typically takes être in PC for movement?",
+          "options": [
+            "aller",
+            "manger",
+            "parler",
+            "travailler"
+          ],
+          "answer_index": 0
+        }
+      ]
+    }
+  ],
+  "production_task": {
+    "prompt": "Cinq phrases au passé composé sur ta journée d'hier (mélange avoir et un verbe avec être si possible).",
+    "example": "Je me suis levée tôt. J'ai pris le café. Je suis allée au travail. J'ai déjeuné vite. Je suis rentrée tard.",
+    "skill": "writing"
+  }
+}

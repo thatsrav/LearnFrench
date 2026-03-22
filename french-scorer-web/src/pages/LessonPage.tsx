@@ -4,7 +4,7 @@ import { Link, useNavigate, useParams, useSearchParams } from 'react-router-dom'
 import RichLessonFlow from '../components/lesson/RichLessonFlow'
 import { useAuth } from '../contexts/AuthContext'
 import { uploadWebUnitProgress } from '../lib/cloudProgressWeb'
-import { getRichA1Lesson } from '../lib/richLessonLoader'
+import { getRichLesson } from '../lib/richLessonLoader'
 import { supabase } from '../lib/supabase'
 import { getSyllabusData, getUnitById, unlockNextUnit } from '../lib/syllabus'
 
@@ -15,7 +15,7 @@ export default function LessonPage() {
   const moduleId = searchParams.get('module')
   const navigate = useNavigate()
   const unit = getUnitById(unitId)
-  const rich = unit ? getRichA1Lesson(unit.id) : null
+  const rich = unit ? getRichLesson(unit.id) : null
 
   const [progressTick, setProgressTick] = useState(0)
   const bumpProgress = () => setProgressTick((t) => t + 1)
@@ -89,6 +89,25 @@ export default function LessonPage() {
     bumpProgress()
   }
 
+  /** A1–B2 use bundled rich JSON only — never the legacy grammar + MCQ screen. */
+  if ((unit.level === 'A1' || unit.level === 'A2' || unit.level === 'B1' || unit.level === 'B2') && !rich) {
+    return (
+      <section className="rounded-2xl border border-slate-200 bg-white p-8 text-center shadow-sm">
+        <h2 className="font-display text-xl font-bold text-[var(--atelier-navy-deep)]">Lesson unavailable</h2>
+        <p className="mt-2 text-sm text-slate-600">
+          This unit has no lesson content loaded. Try another unit or update the app.
+        </p>
+        <button
+          type="button"
+          onClick={goBack}
+          className="mt-4 rounded-xl bg-[var(--atelier-navy-deep)] px-5 py-2.5 text-sm font-bold text-white hover:bg-[#001438]"
+        >
+          Back
+        </button>
+      </section>
+    )
+  }
+
   return (
     <div className="space-y-6">
       <nav className="text-xs font-medium text-slate-500">
@@ -117,7 +136,7 @@ export default function LessonPage() {
                 </div>
               ) : null}
             </div>
-          ) : (
+          ) : unit.level !== 'A1' && unit.level !== 'A2' && unit.level !== 'B1' && unit.level !== 'B2' ? (
             <section className="rounded-2xl border border-slate-200/90 bg-white p-6 shadow-sm md:p-8">
               <div className="mb-6 flex flex-wrap items-start justify-between gap-4">
                 <div>
@@ -219,7 +238,7 @@ export default function LessonPage() {
                 </div>
               ) : null}
             </section>
-          )}
+          ) : null}
         </div>
 
         <aside className="space-y-5 lg:col-span-4">

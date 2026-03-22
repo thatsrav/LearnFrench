@@ -1,0 +1,179 @@
+{
+  "id": "b1-u6",
+  "level": "B1",
+  "unit_index": 6,
+  "theme": "Travel Problems",
+  "estimated_minutes": 21,
+  "steps": [
+    {
+      "type": "vocab_intro",
+      "cards": [
+        {
+          "word": "annulé · annuler",
+          "translation": "cancelled · to cancel",
+          "example": "Le vol a été annulé sans explication claire.",
+          "example_translation": "The flight was cancelled without a clear explanation.",
+          "audio_key": "annuler"
+        },
+        {
+          "word": "le remboursement",
+          "translation": "refund",
+          "example": "J'ai demandé un remboursement sur ma carte de crédit.",
+          "example_translation": "I asked for a refund on my credit card.",
+          "audio_key": "rembour"
+        },
+        {
+          "word": "réserver / décaler",
+          "translation": "to book / to reschedule",
+          "example": "On peut décaler ton billet au vol de demain matin.",
+          "example_translation": "We can move your ticket to tomorrow morning's flight.",
+          "audio_key": "decaler"
+        },
+        {
+          "word": "le surbooking",
+          "translation": "overbooking",
+          "example": "Il y a eu surbooking; ils cherchent des volontaires.",
+          "example_translation": "There was overbooking; they're looking for volunteers.",
+          "audio_key": "surbook"
+        },
+        {
+          "word": "un avoir / un crédit",
+          "translation": "voucher / credit",
+          "example": "La compagnie m'a donné un avoir pour un prochain voyage.",
+          "example_translation": "The airline gave me a credit for a future trip.",
+          "audio_key": "avoir"
+        },
+        {
+          "word": "contacter le service client",
+          "translation": "contact customer service",
+          "example": "Compose le numéro au dos de ton billet.",
+          "example_translation": "Dial the number on the back of your ticket.",
+          "audio_key": "service"
+        }
+      ]
+    },
+    {
+      "type": "dialogue",
+      "scene": "Comptoir aérien après une annulation",
+      "turns": [
+        {
+          "speaker": "Voyageur",
+          "text": "Mon vol pour Halifax est annulé. Quelles sont mes options?",
+          "translation": "My flight to Halifax is cancelled. What are my options?"
+        },
+        {
+          "speaker": "Agent",
+          "text": "Nous pouvons vous rembourser en sept jours ou vous mettre sur le vol de 18 h avec correspondance.",
+          "translation": "We can refund you within seven days or put you on the 6 p.m. flight with a connection."
+        },
+        {
+          "speaker": "Voyageur",
+          "text": "Le remboursement complet, sans frais?",
+          "translation": "A full refund, without fees?"
+        },
+        {
+          "speaker": "Agent",
+          "text": "Oui, annulation imputable à la compagnie. Je vous envoie la confirmation par courriel.",
+          "translation": "Yes, cancellation is the airline's fault. I'll email you the confirmation."
+        }
+      ]
+    },
+    {
+      "type": "grammar_tip",
+      "rule": "Passif / résultat : « le vol est annulé », « le billet a été modifié ». Pour exiger poliment : « je voudrais… », « est-ce possible de…? ». « Surbooking » est courant au Québec comme emprunt.",
+      "examples": [
+        {
+          "fr": "Le train a été retardé; nous avons raté notre correspondance.",
+          "en": "The train was delayed; we missed our connection."
+        },
+        {
+          "fr": "Pourriez-vous me décaler sur le prochain départ?",
+          "en": "Could you move me to the next departure?"
+        }
+      ]
+    },
+    {
+      "type": "practice",
+      "exercises": [
+        {
+          "type": "match_pairs",
+          "instruction": "Match",
+          "pairs": [
+            {
+              "left": "le remboursement",
+              "right": "refund"
+            },
+            {
+              "left": "annulé",
+              "right": "cancelled"
+            },
+            {
+              "left": "le surbooking",
+              "right": "overbooking"
+            },
+            {
+              "left": "décaler",
+              "right": "reschedule"
+            }
+          ]
+        },
+        {
+          "type": "fill_blank",
+          "sentence": "Le vol a été ___ à cause de la tempête. (cancelled)",
+          "answer": "annulé",
+          "options": [
+            "annulé",
+            "remboursé",
+            "décalé",
+            "réservé"
+          ]
+        },
+        {
+          "type": "mcq",
+          "question": "« Un avoir » in customer-service French often means:",
+          "options": [
+            "a travel credit / voucher",
+            "a debt",
+            "a passport",
+            "a seat upgrade only"
+          ],
+          "answer_index": 0
+        },
+        {
+          "type": "word_order",
+          "words": [
+            "Quelles",
+            "sont",
+            "mes",
+            "options",
+            "?"
+          ],
+          "correct_order": [
+            0,
+            1,
+            2,
+            3,
+            4
+          ],
+          "translation": "What are my options?"
+        },
+        {
+          "type": "mcq",
+          "question": "Polite request for a refund:",
+          "options": [
+            "Je voudrais demander un remboursement, s'il vous plaît.",
+            "Rembourse-moi tout de suite.",
+            "Donne l'argent.",
+            "C'est illégal, rembourse."
+          ],
+          "answer_index": 0
+        }
+      ]
+    }
+  ],
+  "production_task": {
+    "prompt": "Courriel court à la compagnie : vol annulé, tu demandes remboursement ou nouveau billet.",
+    "example": "Bonjour, mon vol AC123 a été annulé. Je souhaite un remboursement intégral sur la carte utilisée. Merci.",
+    "skill": "writing"
+  }
+}

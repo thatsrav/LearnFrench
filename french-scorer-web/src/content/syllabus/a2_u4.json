@@ -1,0 +1,135 @@
+{
+  "id": "a2-u4",
+  "level": "A2",
+  "unit_index": 4,
+  "theme": "Future Proche and Plans",
+  "estimated_minutes": 16,
+  "steps": [
+    {
+      "type": "vocab_intro",
+      "cards": [
+        {
+          "word": "aller + infinitif",
+          "translation": "near future (going to …)",
+          "example": "Je vais étudier ce soir.",
+          "example_translation": "I'm going to study tonight.",
+          "audio_key": "futur_proche"
+        },
+        {
+          "word": "demain · la semaine prochaine",
+          "translation": "tomorrow · next week",
+          "example": "Ils vont déménager la semaine prochaine.",
+          "example_translation": "They're going to move next week.",
+          "audio_key": "temps"
+        },
+        {
+          "word": "le billet · la réservation",
+          "translation": "ticket · reservation",
+          "example": "J'ai une réservation au nom de Gagnon.",
+          "example_translation": "I have a reservation under the name Gagnon.",
+          "audio_key": "billet"
+        },
+        {
+          "word": "le · la · les (COD avant le verbe)",
+          "translation": "object pronouns before the verb",
+          "example": "Tu vois Marie? — Oui, je la vois.",
+          "example_translation": "Do you see Marie? — Yes, I see her.",
+          "audio_key": "cod"
+        },
+        {
+          "word": "partir · arriver · visiter",
+          "translation": "to leave · to arrive · to visit",
+          "example": "Nous allons visiter la Gaspésie cet été.",
+          "example_translation": "We're going to visit the Gaspé this summer.",
+          "audio_key": "voyage"
+        },
+        {
+          "word": "pendant les vacances",
+          "translation": "during the holidays",
+          "example": "Que vas-tu faire pendant les vacances?",
+          "example_translation": "What are you going to do during the holidays?",
+          "audio_key": "vacances"
+        }
+      ]
+    },
+    {
+      "type": "dialogue",
+      "scene": "Deux amis planifient un weekend",
+      "turns": [
+        {
+          "speaker": "Noah",
+          "text": "Tu fais quoi samedi? Je vais prendre le train pour Ottawa en fin de matinée.",
+          "translation": "What are you doing Saturday? I'm going to take the train to Ottawa late morning."
+        },
+        {
+          "speaker": "Chloé",
+          "text": "Cool! Moi, je vais retrouver ma sœur au centre-ville. On va déjeuner ensemble.",
+          "translation": "Cool! I'm going to meet my sister downtown. We're going to have lunch together."
+        },
+        {
+          "speaker": "Noah",
+          "text": "Est-ce que tu vas voir le musée? Je l'ai visité l'an dernier.",
+          "translation": "Are you going to see the museum? I visited it last year."
+        },
+        {
+          "speaker": "Chloé",
+          "text": "Oui, on va le visiter l'après-midi. Puis dimanche, repos!",
+          "translation": "Yes, we're going to visit it in the afternoon. Then Sunday, rest!"
+        }
+      ]
+    },
+    {
+      "type": "grammar_tip",
+      "rule": "Futur proche : aller (conjugué) + infinitif — je vais partir, nous allons réserver. Pronom COD (le, la, les) se place avant le verbe : je le prends, tu la vois, nous les achetons.",
+      "examples": [
+        { "fr": "Ils vont annuler la réunion.", "en": "They're going to cancel the meeting." },
+        { "fr": "Tu prends les billets? — Oui, je les prends demain.", "en": "Are you taking the tickets? — Yes, I'm getting them tomorrow." }
+      ]
+    },
+    {
+      "type": "practice",
+      "exercises": [
+        {
+          "type": "match_pairs",
+          "instruction": "Match",
+          "pairs": [
+            { "left": "je vais partir", "right": "I'm going to leave" },
+            { "left": "la semaine prochaine", "right": "next week" },
+            { "left": "je la vois", "right": "I see her" },
+            { "left": "nous allons réserver", "right": "we're going to book" }
+          ]
+        },
+        {
+          "type": "mcq",
+          "question": "Je ___ visiter Québec ce mois-ci.",
+          "options": ["vais", "va", "allons", "vont"],
+          "answer_index": 0
+        },
+        {
+          "type": "mcq",
+          "question": "Replace the object: Je vois Marie.",
+          "options": ["Je la vois.", "Je vois la.", "Je le vois.", "Je vois lui."],
+          "answer_index": 0
+        },
+        {
+          "type": "fill_blank",
+          "sentence": "Nous allons ___ billets ce soir en ligne. (buy — infinitive: acheter)",
+          "answer": "acheter",
+          "options": ["acheter", "achètes", "achetons", "achètent"],
+          "hint": "After « allons », use the infinitive"
+        },
+        {
+          "type": "word_order",
+          "words": ["demain.", "partir", "vais", "Je"],
+          "correct_order": [3, 2, 1, 0],
+          "translation": "I'm going to leave tomorrow."
+        }
+      ]
+    }
+  ],
+  "production_task": {
+    "prompt": "Écris trois projets que tu vas faire bientôt avec le futur proche (aller + infinitif).",
+    "example": "Je vais chercher mes lunettes. Nous allons appeler nos parents. Ils vont déménager en avril.",
+    "skill": "writing"
+  }
+}

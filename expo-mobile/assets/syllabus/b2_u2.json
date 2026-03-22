@@ -1,0 +1,183 @@
+{
+  "id": "b2-u2",
+  "level": "B2",
+  "unit_index": 2,
+  "theme": "Giving Your Opinion",
+  "estimated_minutes": 24,
+  "steps": [
+    {
+      "type": "vocab_intro",
+      "cards": [
+        {
+          "word": "à mon sens",
+          "translation": "in my view",
+          "example": "À mon sens, la mesure est nécessaire mais mal communiquée.",
+          "example_translation": "In my view the measure is necessary but poorly communicated.",
+          "audio_key": "sens"
+        },
+        {
+          "word": "il me semble que",
+          "translation": "it seems to me that",
+          "example": "Il me semble que les citoyens veulent plus de transparence.",
+          "example_translation": "It seems to me citizens want more transparency.",
+          "audio_key": "semble"
+        },
+        {
+          "word": "je ne suis pas convaincu·e que",
+          "translation": "I'm not convinced that",
+          "example": "Je ne suis pas convaincue que ce soit la meilleure option.",
+          "example_translation": "I'm not convinced it's the best option.",
+          "audio_key": "convaincu"
+        },
+        {
+          "word": "d'un côté … de l'autre",
+          "translation": "on one hand … on the other",
+          "example": "D'un côté ça crée des emplois; de l'autre, ça augmente le trafic.",
+          "example_translation": "On one hand it creates jobs; on the other it increases traffic.",
+          "audio_key": "cote"
+        },
+        {
+          "word": "renforcer l'argument",
+          "translation": "strengthen the argument",
+          "example": "Pour renforcer l'argument, cite une étude récente.",
+          "example_translation": "To strengthen the argument, cite a recent study.",
+          "audio_key": "arg"
+        },
+        {
+          "word": "nuancer",
+          "translation": "to nuance",
+          "example": "Il faut nuancer : les effets varient selon les régions.",
+          "example_translation": "We should nuance: effects vary by region.",
+          "audio_key": "nuance"
+        }
+      ]
+    },
+    {
+      "type": "dialogue",
+      "scene": "Débat radio — télétravail",
+      "turns": [
+        {
+          "speaker": "Animateur",
+          "text": "Est-ce que le télétravail doit rester la norme?",
+          "translation": "Should remote work remain the norm?"
+        },
+        {
+          "speaker": "Invitée",
+          "text": "À mon sens, un modèle hybride est plus réaliste que le tout-à-distance.",
+          "translation": "In my view a hybrid model is more realistic than all-remote."
+        },
+        {
+          "speaker": "Invité",
+          "text": "D'accord partiellement. De l'autre côté, certaines équipes ont gagné en productivité.",
+          "translation": "Partly agree. On the other hand some teams gained productivity."
+        },
+        {
+          "speaker": "Invitée",
+          "text": "Il me semble qu'il faut nuancer selon les secteurs : la santé n'a pas ce luxe.",
+          "translation": "It seems to me we should nuance by sector: health care doesn't have that luxury."
+        }
+      ]
+    },
+    {
+      "type": "grammar_tip",
+      "rule": "« Je ne suis pas convaincu que » déclenche souvent le subjonctif (« que ce soit »). « Il me semble que » + indicatif quand tu exprimes une impression factuelle.",
+      "examples": [
+        {
+          "fr": "Je doute que la réforme suffise sans financement.",
+          "en": "I doubt the reform will be enough without funding."
+        },
+        {
+          "fr": "Il me semble que les sondages sont partagés.",
+          "en": "It seems to me the polls are split."
+        }
+      ]
+    },
+    {
+      "type": "practice",
+      "exercises": [
+        {
+          "type": "match_pairs",
+          "instruction": "Match",
+          "pairs": [
+            {
+              "left": "à mon sens",
+              "right": "in my view"
+            },
+            {
+              "left": "nuancer",
+              "right": "to add nuance"
+            },
+            {
+              "left": "d'un côté",
+              "right": "on one hand"
+            },
+            {
+              "left": "renforcer",
+              "right": "to strengthen"
+            }
+          ]
+        },
+        {
+          "type": "fill_blank",
+          "sentence": "Je ne suis pas convaincu qu'il ___ (être) la seule solution.",
+          "answer": "soit",
+          "options": [
+            "soit",
+            "est",
+            "sera",
+            "était"
+          ]
+        },
+        {
+          "type": "mcq",
+          "question": "After « il me semble que » for a personal impression, mood is usually:",
+          "options": [
+            "indicative",
+            "subjunctive",
+            "infinitive only",
+            "imperative"
+          ],
+          "answer_index": 0
+        },
+        {
+          "type": "word_order",
+          "words": [
+            "À",
+            "mon",
+            "avis,",
+            "la",
+            "mesure",
+            "est",
+            "juste."
+          ],
+          "correct_order": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+          ],
+          "translation": "In my opinion the measure is fair."
+        },
+        {
+          "type": "mcq",
+          "question": "« D'un côté … de l'autre » structures:",
+          "options": [
+            "balanced argument",
+            "only commands",
+            "only past narrative",
+            "only questions"
+          ],
+          "answer_index": 0
+        }
+      ]
+    }
+  ],
+  "production_task": {
+    "prompt": "Paragraphe d'opinion (120 mots) sur un sujet d'actualité : à mon sens, d'un côté / de l'autre, il me semble que.",
+    "example": "À mon sens, investir dans le transport en commun est urgent. D'un côté, ça coûte cher; de l'autre, le coût de l'inaction est plus élevé…",
+    "skill": "writing"
+  }
+}

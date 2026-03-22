@@ -1,0 +1,181 @@
+{
+  "id": "b1-u3",
+  "level": "B1",
+  "unit_index": 3,
+  "theme": "Asking for Directions",
+  "estimated_minutes": 20,
+  "steps": [
+    {
+      "type": "vocab_intro",
+      "cards": [
+        {
+          "word": "tout droit",
+          "translation": "straight ahead",
+          "example": "Va tout droit jusqu'au feu rouge.",
+          "example_translation": "Go straight until the red light.",
+          "audio_key": "droit"
+        },
+        {
+          "word": "tourner à gauche / à droite",
+          "translation": "turn left / right",
+          "example": "Tourne à droite après la pharmacie.",
+          "example_translation": "Turn right after the pharmacy.",
+          "audio_key": "tourner"
+        },
+        {
+          "word": "au coin de",
+          "translation": "on the corner of",
+          "example": "C'est au coin de Sainte-Catherine et Peel.",
+          "example_translation": "It's on the corner of Ste-Catherine and Peel.",
+          "audio_key": "coin"
+        },
+        {
+          "word": "la station de métro",
+          "translation": "subway station",
+          "example": "La station de métro la plus proche est Place-des-Arts.",
+          "example_translation": "The nearest metro station is Place-des-Arts.",
+          "audio_key": "metro"
+        },
+        {
+          "word": "l'autobus / le bus",
+          "translation": "bus",
+          "example": "Prends l'autobus 24; il passe aux dix minutes.",
+          "example_translation": "Take the 24 bus; it comes every ten minutes.",
+          "audio_key": "bus"
+        },
+        {
+          "word": "est-ce que c'est loin?",
+          "translation": "is it far?",
+          "example": "Excusez-moi, la bibliothèque est-ce que c'est loin d'ici?",
+          "example_translation": "Excuse me, is the library far from here?",
+          "audio_key": "loin"
+        }
+      ]
+    },
+    {
+      "type": "dialogue",
+      "scene": "Rue Sainte-Catherine — touriste et passant",
+      "turns": [
+        {
+          "speaker": "Noah",
+          "text": "Excusez-moi, je cherche la station de métro Bonaventure. C'est par où?",
+          "translation": "Excuse me, I'm looking for Bonaventure metro. Which way?"
+        },
+        {
+          "speaker": "Julie",
+          "text": "C'est simple : allez tout droit deux rues, puis tournez à gauche au grand café.",
+          "translation": "It's simple: go straight two blocks, then turn left at the big café."
+        },
+        {
+          "speaker": "Noah",
+          "text": "Et c'est loin à pied? J'ai une valise.",
+          "translation": "And is it far on foot? I have a suitcase."
+        },
+        {
+          "speaker": "Julie",
+          "text": "Environ dix minutes. Sinon, le bus 747 passe au coin; il descend près de la gare.",
+          "translation": "About ten minutes. Otherwise the 747 passes on the corner; it stops near the station."
+        }
+      ]
+    },
+    {
+      "type": "grammar_tip",
+      "rule": "Pour demander le chemin : « Excusez-moi » + « je cherche… » / « où est…? ». « Allez » / « tournez » (vous) pour politesse. Au Québec on dit souvent « le métro » ou « la STM » à Montréal.",
+      "examples": [
+        {
+          "fr": "Où se trouve la station de métro la plus proche?",
+          "en": "Where is the nearest metro station?"
+        },
+        {
+          "fr": "Continuez tout droit jusqu'au parc, puis c'est à votre droite.",
+          "en": "Keep straight until the park, then it's on your right."
+        }
+      ]
+    },
+    {
+      "type": "practice",
+      "exercises": [
+        {
+          "type": "match_pairs",
+          "instruction": "Match",
+          "pairs": [
+            {
+              "left": "tout droit",
+              "right": "straight ahead"
+            },
+            {
+              "left": "tourner à gauche",
+              "right": "turn left"
+            },
+            {
+              "left": "au coin de",
+              "right": "on the corner of"
+            },
+            {
+              "left": "la station de métro",
+              "right": "subway station"
+            }
+          ]
+        },
+        {
+          "type": "fill_blank",
+          "sentence": "___ deux rues, puis tournez à droite. (Go straight)",
+          "answer": "Allez tout droit",
+          "options": [
+            "Allez tout droit",
+            "Montez",
+            "Descendez",
+            "Reculez"
+          ]
+        },
+        {
+          "type": "mcq",
+          "question": "Polite start when stopping someone on the street:",
+          "options": [
+            "Excusez-moi,",
+            "Hé toi,",
+            "Viens ici,",
+            "Écoute,"
+          ],
+          "answer_index": 0
+        },
+        {
+          "type": "word_order",
+          "words": [
+            "métro?",
+            "la",
+            "où",
+            "est",
+            "station",
+            "de"
+          ],
+          "correct_order": [
+            2,
+            3,
+            1,
+            4,
+            5,
+            0
+          ],
+          "translation": "Where is the metro station?"
+        },
+        {
+          "type": "mcq",
+          "question": "« C'est loin » means:",
+          "options": [
+            "It's far",
+            "It's near",
+            "It's closed",
+            "It's free"
+          ],
+          "answer_index": 0
+        }
+      ]
+    }
+  ],
+  "production_task": {
+    "prompt": "Écris les directions d'un point A à un café ou une station (4 phrases, impératif ou vous).",
+    "example": "Allez tout droit jusqu'au parc. Tournez à gauche. C'est au coin, en face de la banque.",
+    "skill": "writing"
+  }
+}

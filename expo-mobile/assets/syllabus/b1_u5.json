@@ -1,0 +1,183 @@
+{
+  "id": "b1-u5",
+  "level": "B1",
+  "unit_index": 5,
+  "theme": "Transport Types",
+  "estimated_minutes": 17,
+  "steps": [
+    {
+      "type": "vocab_intro",
+      "cards": [
+        {
+          "word": "le train",
+          "translation": "train",
+          "example": "Le train est souvent plus confortable pour aller à Toronto.",
+          "example_translation": "The train is often more comfortable to Toronto.",
+          "audio_key": "train"
+        },
+        {
+          "word": "l'autocar / le car",
+          "translation": "coach / long-distance bus",
+          "example": "L'autocar est moins cher mais plus long.",
+          "example_translation": "The coach is cheaper but longer.",
+          "audio_key": "car"
+        },
+        {
+          "word": "l'avion",
+          "translation": "plane",
+          "example": "L'avion est rapide pour les grandes distances.",
+          "example_translation": "The plane is fast for long distances.",
+          "audio_key": "avion"
+        },
+        {
+          "word": "la voiture / louer une voiture",
+          "translation": "car / rent a car",
+          "example": "On a loué une voiture pour visiter la Gaspésie.",
+          "example_translation": "We rented a car to visit the Gaspé.",
+          "audio_key": "voiture"
+        },
+        {
+          "word": "plus rapide / moins cher",
+          "translation": "faster / cheaper",
+          "example": "Le métro est plus rapide que l'autobus au centre-ville.",
+          "example_translation": "The metro is faster than the bus downtown.",
+          "audio_key": "comparatif"
+        },
+        {
+          "word": "le trafic / la circulation",
+          "translation": "traffic",
+          "example": "Évite l'autoroute à cinq heures : le trafic est dense.",
+          "example_translation": "Avoid the highway at five: traffic is heavy.",
+          "audio_key": "trafic"
+        }
+      ]
+    },
+    {
+      "type": "dialogue",
+      "scene": "Amis qui planifient un trajet Ottawa–Montréal",
+      "turns": [
+        {
+          "speaker": "Sam",
+          "text": "Tu préfères le train ou l'autocar pour samedi?",
+          "translation": "Do you prefer the train or the coach for Saturday?"
+        },
+        {
+          "speaker": "Léa",
+          "text": "Le train est plus cher mais plus confortable. L'autocar est moins cher.",
+          "translation": "The train is more expensive but more comfortable. The coach is cheaper."
+        },
+        {
+          "speaker": "Sam",
+          "text": "Et en voiture? Avec le trafic sur l'autoroute 417, parfois c'est pareil en temps.",
+          "translation": "And by car? With traffic on highway 417, sometimes it's the same time-wise."
+        },
+        {
+          "speaker": "Léa",
+          "text": "Exact. Si on part tôt, la voiture reste flexible pour les arrêts.",
+          "translation": "Exactly. If we leave early, the car stays flexible for stops."
+        }
+      ]
+    },
+    {
+      "type": "grammar_tip",
+      "rule": "Comparatifs : « plus / moins / aussi + adjectif + que ». Pour les moyens de transport : « en train », « en voiture », « à vélo », « à pied ».",
+      "examples": [
+        {
+          "fr": "L'avion est plus rapide que l'autocar pour Vancouver.",
+          "en": "The plane is faster than the coach to Vancouver."
+        },
+        {
+          "fr": "Je vais au travail en métro parce que c'est moins stressant qu'en voiture.",
+          "en": "I go to work by metro because it's less stressful than by car."
+        }
+      ]
+    },
+    {
+      "type": "practice",
+      "exercises": [
+        {
+          "type": "match_pairs",
+          "instruction": "Match",
+          "pairs": [
+            {
+              "left": "le train",
+              "right": "train"
+            },
+            {
+              "left": "l'autocar",
+              "right": "long-distance bus"
+            },
+            {
+              "left": "le trafic",
+              "right": "traffic"
+            },
+            {
+              "left": "louer une voiture",
+              "right": "rent a car"
+            }
+          ]
+        },
+        {
+          "type": "fill_blank",
+          "sentence": "Le métro est ___ rapide ___ l'autobus ici. (more … than)",
+          "answer": "plus … que",
+          "options": [
+            "plus … que",
+            "moins … que",
+            "aussi … que",
+            "très … que"
+          ]
+        },
+        {
+          "type": "mcq",
+          "question": "« On va à Ottawa ___ train » — correct preposition:",
+          "options": [
+            "en",
+            "à",
+            "du",
+            "sur"
+          ],
+          "answer_index": 0
+        },
+        {
+          "type": "word_order",
+          "words": [
+            "L'autocar",
+            "est",
+            "moins",
+            "cher",
+            "que",
+            "le",
+            "train."
+          ],
+          "correct_order": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+          ],
+          "translation": "The coach is less expensive than the train."
+        },
+        {
+          "type": "mcq",
+          "question": "« La circulation » often refers to:",
+          "options": [
+            "traffic flow / traffic",
+            "a circle",
+            "a ticket",
+            "a schedule"
+          ],
+          "answer_index": 0
+        }
+      ]
+    }
+  ],
+  "production_task": {
+    "prompt": "Compare deux moyens de transport pour un trajet que tu connais (2 phrases avec plus/moins/aussi … que).",
+    "example": "Le vélo est plus écologique que la voiture. L'autobus est moins rapide que le métro le matin.",
+    "skill": "writing"
+  }
+}

@@ -1,9 +1,5 @@
 import type { LegacyLessonUnit, LessonStep, RichLessonUnit, VocabCard } from '../components/lesson-steps/types'
 
-const a1Legacy: LegacyLessonUnit[] = require('../../assets/syllabus/a1.json')
-const a2Legacy: LegacyLessonUnit[] = require('../../assets/syllabus/a2.json')
-const b1Legacy: LegacyLessonUnit[] = require('../../assets/syllabus/b1.json')
-const b2Legacy: LegacyLessonUnit[] = require('../../assets/syllabus/b2.json')
 const c1Legacy: LegacyLessonUnit[] = require('../../assets/syllabus/c1.json')
 
 /** Bundled offline-first A1 units (Busuu-style `steps[]`). */
@@ -20,16 +16,59 @@ const A1_RICH: Record<string, RichLessonUnit> = {
   'a1-u10': require('../../assets/syllabus/a1_u10.json'),
 }
 
+/** Bundled A2 rich units (same JSON as web). */
+const A2_RICH: Record<string, RichLessonUnit> = {
+  'a2-u1': require('../../assets/syllabus/a2_u1.json'),
+  'a2-u2': require('../../assets/syllabus/a2_u2.json'),
+  'a2-u3': require('../../assets/syllabus/a2_u3.json'),
+  'a2-u4': require('../../assets/syllabus/a2_u4.json'),
+  'a2-u5': require('../../assets/syllabus/a2_u5.json'),
+}
+
+const B1_RICH: Record<string, RichLessonUnit> = {
+  'b1-u1': require('../../assets/syllabus/b1_u1.json'),
+  'b1-u2': require('../../assets/syllabus/b1_u2.json'),
+  'b1-u3': require('../../assets/syllabus/b1_u3.json'),
+  'b1-u4': require('../../assets/syllabus/b1_u4.json'),
+  'b1-u5': require('../../assets/syllabus/b1_u5.json'),
+  'b1-u6': require('../../assets/syllabus/b1_u6.json'),
+  'b1-u7': require('../../assets/syllabus/b1_u7.json'),
+  'b1-u8': require('../../assets/syllabus/b1_u8.json'),
+  'b1-u9': require('../../assets/syllabus/b1_u9.json'),
+  'b1-u10': require('../../assets/syllabus/b1_u10.json'),
+  'b1-u11': require('../../assets/syllabus/b1_u11.json'),
+  'b1-u12': require('../../assets/syllabus/b1_u12.json'),
+  'b1-u13': require('../../assets/syllabus/b1_u13.json'),
+  'b1-u14': require('../../assets/syllabus/b1_u14.json'),
+  'b1-u15': require('../../assets/syllabus/b1_u15.json'),
+  'b1-u16': require('../../assets/syllabus/b1_u16.json'),
+  'b1-u17': require('../../assets/syllabus/b1_u17.json'),
+  'b1-u18': require('../../assets/syllabus/b1_u18.json'),
+  'b1-u19': require('../../assets/syllabus/b1_u19.json'),
+}
+
+const B2_RICH: Record<string, RichLessonUnit> = {
+  'b2-u1': require('../../assets/syllabus/b2_u1.json'),
+  'b2-u2': require('../../assets/syllabus/b2_u2.json'),
+  'b2-u3': require('../../assets/syllabus/b2_u3.json'),
+  'b2-u4': require('../../assets/syllabus/b2_u4.json'),
+  'b2-u5': require('../../assets/syllabus/b2_u5.json'),
+  'b2-u6': require('../../assets/syllabus/b2_u6.json'),
+  'b2-u7': require('../../assets/syllabus/b2_u7.json'),
+  'b2-u8': require('../../assets/syllabus/b2_u8.json'),
+  'b2-u9': require('../../assets/syllabus/b2_u9.json'),
+  'b2-u10': require('../../assets/syllabus/b2_u10.json'),
+  'b2-u11': require('../../assets/syllabus/b2_u11.json'),
+  'b2-u12': require('../../assets/syllabus/b2_u12.json'),
+}
+
 function getLegacyArray(level: 'A1' | 'A2' | 'B1' | 'B2' | 'C1'): LegacyLessonUnit[] {
   switch (level) {
     case 'A1':
-      return a1Legacy
     case 'A2':
-      return a2Legacy
     case 'B1':
-      return b1Legacy
     case 'B2':
-      return b2Legacy
+      return []
     case 'C1':
       return c1Legacy
     default:
@@ -94,14 +133,24 @@ function legacyToRich(legacy: LegacyLessonUnit): RichLessonUnit {
 }
 
 /**
- * Resolve lesson content: prefer bundled A1 rich JSON; otherwise legacy flat `a1.json`-style → synthetic steps.
+ * A1–B2: bundled `a1_u*.json` … `b2_u12.json` (same as web). Legacy `b1.json` / `b2.json` are not used for syllabus ids.
+ * C1: legacy flat JSON → synthetic rich-style steps.
  */
 export function loadLessonUnit(
   level: 'A1' | 'A2' | 'B1' | 'B2' | 'C1',
   unitId: string,
 ): RichLessonUnit | null {
-  if (level === 'A1' && A1_RICH[unitId]) {
-    return A1_RICH[unitId]
+  if (level === 'A1') {
+    return A1_RICH[unitId] ?? null
+  }
+  if (level === 'A2') {
+    return A2_RICH[unitId] ?? null
+  }
+  if (level === 'B1') {
+    return B1_RICH[unitId] ?? null
+  }
+  if (level === 'B2') {
+    return B2_RICH[unitId] ?? null
   }
 
   const legacy = getLegacyArray(level).find((u) => u.id === unitId)

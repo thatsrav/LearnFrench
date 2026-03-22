@@ -1,0 +1,179 @@
+{
+  "id": "b1-u13",
+  "level": "B1",
+  "unit_index": 13,
+  "theme": "Imparfait Introduction",
+  "estimated_minutes": 21,
+  "steps": [
+    {
+      "type": "vocab_intro",
+      "cards": [
+        {
+          "word": "l'imparfait",
+          "translation": "imperfect tense",
+          "example": "Je parlais, nous finissions, ils vendaient.",
+          "example_translation": "I was speaking, we were finishing, they were selling.",
+          "audio_key": "imp"
+        },
+        {
+          "word": "nous + -ions / vous + -iez",
+          "translation": "typical endings",
+          "example": "Quand j'étais petit, nous habitions en banlieue.",
+          "example_translation": "When I was little, we lived in the suburbs.",
+          "audio_key": "ions"
+        },
+        {
+          "word": "c'était",
+          "translation": "it was (description)",
+          "example": "C'était calme le dimanche matin.",
+          "example_translation": "It was calm Sunday morning.",
+          "audio_key": "cetait"
+        },
+        {
+          "word": "toujours / souvent",
+          "translation": "always / often",
+          "example": "Il jouait toujours dehors après l'école.",
+          "example_translation": "He always played outside after school.",
+          "audio_key": "souvent"
+        },
+        {
+          "word": "quand j'étais enfant",
+          "translation": "when I was a child",
+          "example": "Quand j'étais enfant, je lisais beaucoup.",
+          "example_translation": "When I was a child, I read a lot.",
+          "audio_key": "enfant"
+        },
+        {
+          "word": "pendant ce temps",
+          "translation": "meanwhile",
+          "example": "Pendant ce temps, la pluie tombait sans arrêt.",
+          "example_translation": "Meanwhile the rain kept falling.",
+          "audio_key": "pendant"
+        }
+      ]
+    },
+    {
+      "type": "dialogue",
+      "scene": "Souvenirs d'école secondaire",
+      "turns": [
+        {
+          "speaker": "Éloïse",
+          "text": "Tu te souviens du vieux gymnase? Il sentait toujours le bois mouillé.",
+          "translation": "Do you remember the old gym? It always smelled of wet wood."
+        },
+        {
+          "speaker": "Marc",
+          "text": "Oui! On s'entraînait trois fois par semaine. L'entraîneur était strict mais juste.",
+          "translation": "Yes! We trained three times a week. The coach was strict but fair."
+        },
+        {
+          "speaker": "Éloïse",
+          "text": "Moi, j'étais réservée; je parlais peu avec les autres équipes.",
+          "translation": "I was shy; I spoke little with the other teams."
+        },
+        {
+          "speaker": "Marc",
+          "text": "Pourtant tu jouais très bien au service.",
+          "translation": "Yet you served really well."
+        }
+      ]
+    },
+    {
+      "type": "grammar_tip",
+      "rule": "Imparfait : radical (souvent la 1re personne du pluriel du présent sans -ons) + terminaisons -ais, -ais, -ait, -ions, -iez, -aient. Sert à l'habitude, la description, le fond du récit.",
+      "examples": [
+        {
+          "fr": "Il faisait froid et les rues étaient vides.",
+          "en": "It was cold and the streets were empty."
+        },
+        {
+          "fr": "Chaque été, nous allions au camping près du lac.",
+          "en": "Every summer we used to go camping near the lake."
+        }
+      ]
+    },
+    {
+      "type": "practice",
+      "exercises": [
+        {
+          "type": "match_pairs",
+          "instruction": "Match",
+          "pairs": [
+            {
+              "left": "imparfait",
+              "right": "imperfect (habit/description)"
+            },
+            {
+              "left": "je finissais",
+              "right": "I was finishing / used to finish"
+            },
+            {
+              "left": "c'était",
+              "right": "it was"
+            },
+            {
+              "left": "souvent",
+              "right": "often"
+            }
+          ]
+        },
+        {
+          "type": "fill_blank",
+          "sentence": "Quand j'étais petit, je ___ au parc tous les samedis. (aller — imparfait)",
+          "answer": "allais",
+          "options": [
+            "allais",
+            "suis allé",
+            "vais",
+            "irai"
+          ]
+        },
+        {
+          "type": "mcq",
+          "question": "« Nous ___ contents » (we were happy) — imparfait:",
+          "options": [
+            "étions",
+            "sommes",
+            "avons été",
+            "serons"
+          ],
+          "answer_index": 0
+        },
+        {
+          "type": "word_order",
+          "words": [
+            "Il",
+            "pleuvait",
+            "toute",
+            "la",
+            "journée."
+          ],
+          "correct_order": [
+            0,
+            1,
+            2,
+            3,
+            4
+          ],
+          "translation": "It was raining all day."
+        },
+        {
+          "type": "mcq",
+          "question": "Imparfait often describes:",
+          "options": [
+            "ongoing past situations or habits",
+            "single completed events only",
+            "future plans",
+            "commands"
+          ],
+          "answer_index": 0
+        }
+      ]
+    }
+  ],
+  "production_task": {
+    "prompt": "Décris une habitude d'enfance (4–5 phrases à l'imparfait).",
+    "example": "Quand j'avais dix ans, j'habitais près d'un parc. Je jouais au soccer tous les mercredis. Il y avait souvent du vent.",
+    "skill": "writing"
+  }
+}
