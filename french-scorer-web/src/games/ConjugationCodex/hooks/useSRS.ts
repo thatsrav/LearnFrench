@@ -161,7 +161,13 @@ export function useSRS(): UseSRSResult {
   }, [])
 
   useEffect(() => {
-    bootstrap()
+    let cancelled = false
+    queueMicrotask(() => {
+      if (!cancelled) bootstrap()
+    })
+    return () => {
+      cancelled = true
+    }
   }, [bootstrap])
 
   const recordSchedulingOutcome = useCallback((cardId: string, correct: boolean) => {

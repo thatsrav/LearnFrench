@@ -192,7 +192,13 @@ export function Phase1_Discovery() {
   }, [])
 
   useEffect(() => {
-    resetSceneLocalState()
+    let cancelled = false
+    queueMicrotask(() => {
+      if (!cancelled) resetSceneLocalState()
+    })
+    return () => {
+      cancelled = true
+    }
   }, [sceneIndex, resetSceneLocalState])
 
   const onVerbClick = useCallback((v: VerbHighlight) => {

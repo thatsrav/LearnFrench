@@ -93,6 +93,7 @@ export function playSoundEffect(effect: SoundEffect, options?: { volume?: number
   })
 }
 
-export function stopSoundEffect(_effect: SoundEffect): void {
+export function stopSoundEffect(_effect?: SoundEffect): void {
+  void _effect
   /* File-based one-shots stop naturally; synth uses short envelopes. */
 }

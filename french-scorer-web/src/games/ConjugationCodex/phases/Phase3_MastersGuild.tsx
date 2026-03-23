@@ -42,7 +42,7 @@ export function Phase3_MastersGuild() {
         setIndex((i) => i + 1)
       }, delayMs)
     },
-    [clearFeedback, totalSession],
+    [clearFeedback],
   )
 
   const onCheck = useCallback(() => {
